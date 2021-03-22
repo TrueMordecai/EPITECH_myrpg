@@ -1,0 +1,9 @@
+include/My
+include/my_containers
+*.a
+*.o
+.vscode*
+bin
+my_rpg
+texture_workdir
+datas
