@@ -12,6 +12,7 @@
 #include "functions.h"
 #include "States/Game/game_cst.h"
 #include "Drawables/drawables_head.h"
+#include "Rpg/rpg.h"
 
 int game_create(game_data_t *data, state_t *state, size_t datas);
 int game_init(state_t *state);

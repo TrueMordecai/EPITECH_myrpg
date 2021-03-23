@@ -24,6 +24,7 @@ int game_handle_input(state_t *state)
             end_state(state->game_data, GAME_STATE);
             return 1;
         }
+        rpg_handle_input((rpg_t *)state->state_datas, event);
     }
     return 1;
 }

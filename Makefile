@@ -12,6 +12,19 @@ SRCS_BASE := 	main.c \
 				center_mouse.c \
 				\
 				\
+				rpg_create.c \
+				rpg_handle_input.c \
+				rpg_update.c \
+				rpg_draw.c \
+				rpg_destroy.c \
+				\
+				map_create.c \
+				map_destroy.c \
+				\
+				zone_create.c \
+				zone_destroy.c \
+				\
+				\
 				drawable_list_fcts.c \
 				drawable_list_fcts_texture.c \
 				remove_drawable.c \
@@ -100,6 +113,13 @@ $(OBJ_PATH)/%.o: ./srcs/Drawables/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/Functions/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+
+$(OBJ_PATH)/%.o: ./srcs/Rpg/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/GameEngine/%.c

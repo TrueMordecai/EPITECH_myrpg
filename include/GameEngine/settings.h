@@ -11,6 +11,7 @@
 #include <SFML/Graphics.h>
 
 #define SCL(state) (state->game_data->settings->scale)
+#define SL(rpg) SCL((rpg)->state)
 
 typedef struct game_settings_t {
     sfVector2u wind_size;

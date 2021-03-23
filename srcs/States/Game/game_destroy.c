@@ -15,6 +15,7 @@ int game_destroy(state_t *state, int from)
         destroy_draw_layer(state->draw_layers[i]);
         my_map_free(&state->draw_layers[i]);
     }
+    rpg_destroy((rpg_t *)state->state_datas);
     my_vector_free((size_t **)&state->draw_layers);
     free(state);
     return 0;

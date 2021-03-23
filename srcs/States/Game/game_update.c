@@ -12,5 +12,6 @@
 
 int game_update(state_t *state, float dt)
 {
+    rpg_update((rpg_t *)state->state_datas, dt);
     return 0;
 }

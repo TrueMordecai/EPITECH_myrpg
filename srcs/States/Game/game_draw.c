@@ -17,6 +17,7 @@ int game_draw(state_t *state, float dt)
     for (size_t layer = 0; layer < nb_layers; layer++){
         draw_map(state->draw_layers[layer], window);
     }
+    rpg_draw((rpg_t *)state->state_datas);
     sfRenderWindow_display(window);
     return 1;
 }
