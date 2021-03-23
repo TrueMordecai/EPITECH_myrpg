@@ -9,5 +9,5 @@
 
 void rpg_handle_input(rpg_t *rpg, sfEvent event)
 {
-    
+
 }

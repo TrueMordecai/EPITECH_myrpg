@@ -24,7 +24,7 @@ static int read_file(int file, char **file_content, int file_size)
         *file_content = NULL;
         return 0;
     }
-    file_content[file_size] = 0;
+    (*file_content)[file_size] = 0;
     return 1;
 }
 

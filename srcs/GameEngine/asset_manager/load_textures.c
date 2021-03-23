@@ -14,6 +14,6 @@ static void load_fonts(asset_manager_t *manager)
 
 void load_all_textures(asset_manager_t *manager)
 {
-    //load_texture(manager, "roboto_font", "assets/Textures/texture_name.ttf");
+    load_texture(manager, "atlas", "assets/Textures/tileset.png");
     load_fonts(manager);
 }

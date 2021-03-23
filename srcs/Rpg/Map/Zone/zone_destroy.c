@@ -10,5 +10,10 @@
 
 void zone_destroy(zone_t *zone)
 {
+    if (zone->layers) {
+        for (int i = 0; i < zone->nb_layers; i++)
+            layer_destroy(zone->layers[i]);
+        free(zone->layers);
+    }
     free(zone);
 }

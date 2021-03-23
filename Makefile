@@ -19,10 +19,21 @@ SRCS_BASE := 	main.c \
 				rpg_destroy.c \
 				\
 				map_create.c \
+				map_draw.c \
 				map_destroy.c \
 				\
 				zone_create.c \
+				zone_init.c \
+				zone_open_file.c \
+				zone_draw.c \
 				zone_destroy.c \
+				\
+				layer_create.c \
+				layer_init.c \
+				layer_cst.c \
+				layer_place_tile.c \
+				layer_draw.c \
+				layer_destroy.c \
 				\
 				\
 				drawable_list_fcts.c \
@@ -120,6 +131,8 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/%.c
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/Layer/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/GameEngine/%.c

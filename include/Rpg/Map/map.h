@@ -23,9 +23,11 @@ typedef struct map_t {
     sfVector2f view_size;
     float current_zoom;
     zone_t **zones;
+    struct rpg_t *rpg;
 } map_t;
 
 map_t *map_create(struct rpg_t *rpg);
+void map_draw(map_t *map);
 void map_destroy(map_t *map);
 
 #endif /* !MAP_H */
