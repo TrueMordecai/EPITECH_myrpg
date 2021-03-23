@@ -7,6 +7,7 @@
 
 #include "Rpg/Map/layer.h"
 #include "My/my_display.h"
+#include "functions.h"
 
 static void draw_pos(layer_t *layer, int x, int y, sfRenderWindow *wind)
 {
@@ -17,9 +18,14 @@ static void draw_pos(layer_t *layer, int x, int y, sfRenderWindow *wind)
     sfRenderWindow_drawRectangleShape(wind, rect, NULL);
 }
 
-void layer_draw(layer_t *layer, sfRenderWindow *wind)
+void layer_draw(layer_t *layer, sfRenderWindow *wind, \
+sfVector2i min, sfVector2i max)
 {
-    for (int x = 0; x < layer->size.x; x++)
-        for (int y = 0; y < layer->size.y; y++)
+    min.x = MAX(0, min.x - layer->pos.x);
+    min.y = MAX(0, min.y - layer->pos.y);
+    max.x = MIN(layer->size.x - 1, max.x - layer->pos.x);
+    max.y = MIN(layer->size.y - 1, max.y - layer->pos.y);
+    for (int x = min.x; x < max.x; x++)
+        for (int y = min.y; y < max.y; y++)
             draw_pos(layer, x, y, wind);
 }

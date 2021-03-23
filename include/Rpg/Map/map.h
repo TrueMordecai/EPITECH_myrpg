@@ -27,6 +27,8 @@ typedef struct map_t {
 } map_t;
 
 map_t *map_create(struct rpg_t *rpg);
+void map_zoom(map_t *map, int zoom_up);
+void map_move(map_t *map, sfVector2f offset);
 void map_draw(map_t *map);
 void map_destroy(map_t *map);
 

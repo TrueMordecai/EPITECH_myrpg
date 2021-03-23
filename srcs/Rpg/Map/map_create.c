@@ -16,7 +16,6 @@ map_t *map_create(rpg_t *rpg)
     map->rpg = rpg;
     map->current_zone_id = 0;
     map->tiles_size = 32;
-    map->current_zone = zone_create(map);
     map->view = sfView_create();
     map->view_pos = (sfVector2f){0, 0};
     map->view_size = (sfVector2f){1920 * SL(rpg), 1080 * SL(rpg)};
@@ -25,6 +24,7 @@ map_t *map_create(rpg_t *rpg)
     sfView_setCenter(map->view, (sfVector2f){map->view_size.x / 2, \
         map->view_size.y / 2});
     sfView_move(map->view, (sfVector2f){-map->view_pos.x, -map->view_pos.y});
+    map->current_zone = zone_create(map);
     zone_init_from_file(map->current_zone, "assets/Zones/zone_test");
     return map;
 }

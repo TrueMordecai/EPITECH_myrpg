@@ -19,6 +19,8 @@ SRCS_BASE := 	main.c \
 				rpg_destroy.c \
 				\
 				map_create.c \
+				map_move.c \
+				map_zoom.c \
 				map_draw.c \
 				map_destroy.c \
 				\
