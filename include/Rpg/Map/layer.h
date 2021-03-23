@@ -11,7 +11,6 @@
 #include <SFML/Graphics.h>
 
 typedef struct layer_t {
-    int y;
     int tiles_size;
     sfVector2i size;
     sfVector2i pos;
@@ -21,7 +20,7 @@ typedef struct layer_t {
 } layer_t;
 
 layer_t *layer_create(sfView *view, sfTexture *tex, int tiles_size);
-void layer_init(layer_t *layer, sfVector2i size, int y, sfVector2i pos);
+void layer_init(layer_t *layer, sfVector2i size, sfVector2i pos);
 void layer_place_tile(layer_t *layer, sfVector2i pos, int tile);
 void layer_draw(layer_t *layer, sfRenderWindow *wind, \
 sfVector2i min, sfVector2i max);

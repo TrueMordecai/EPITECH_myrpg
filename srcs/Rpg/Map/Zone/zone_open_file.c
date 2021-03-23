@@ -13,10 +13,20 @@
 
 static void read_infos(zone_t *zone, char *file_content, size_t *i)
 {
-    zone->nb_layers = my_get_number_pass(file_content, i);
+    sfVector2i size;
+    sfVector2i pos;
+
+    zone->nb_layers = my_get_number_pass(file_content, i) - 1;
     zone->size.x = my_get_number_pass(file_content, i);
     zone->size.y = my_get_number_pass(file_content, i);
     zone_init(zone, zone->nb_layers, zone->size);
+    for (int layer = 0; layer < zone->nb_layers; layer++) {
+        pos.x = my_get_number_pass(file_content, i);
+        pos.y = my_get_number_pass(file_content, i);
+        size.x = my_get_number_pass(file_content, i);
+        size.y = my_get_number_pass(file_content, i);
+        layer_init(zone->layers[layer], size, pos);
+    }
 }
 
 int get_nb_pass(unsigned char *content, size_t *i, int pass)
@@ -68,5 +78,6 @@ void zone_init_from_file(zone_t *zone, char *file)
             i += (file_content[i] != 0);
         }
     }
+    zone_sort_layers(zone);
     free(file_content);
 }

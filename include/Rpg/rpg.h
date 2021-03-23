@@ -10,11 +10,13 @@
 
 #include "GameEngine/game_head.h"
 #include "Rpg/Map/map.h"
+#include "Rpg/Entities/player.h"
 
 typedef struct rpg_t {
     state_t *state;
     sfRenderWindow *wind;
     map_t *map;
+    player_t *player;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);

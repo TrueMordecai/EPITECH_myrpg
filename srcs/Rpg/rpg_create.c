@@ -15,5 +15,6 @@ rpg_t *rpg_create(state_t *state)
     rpg->state = state;
     rpg->wind = state->game_data->window;
     rpg->map = map_create(rpg);
+    rpg->player = player_create();
     return rpg;
 }

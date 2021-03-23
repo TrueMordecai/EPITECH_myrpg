@@ -18,13 +18,21 @@ SRCS_BASE := 	main.c \
 				rpg_draw.c \
 				rpg_destroy.c \
 				\
+				player_create.c \
+				player_handle_input.c \
+				player_update.c \
+				player_draw.c \
+				player_destroy.c \
+				\
 				map_create.c \
 				map_move.c \
 				map_zoom.c \
+				map_update.c \
 				map_draw.c \
 				map_destroy.c \
 				\
 				zone_create.c \
+				zone_sort_layer.c \
 				zone_init.c \
 				zone_open_file.c \
 				zone_draw.c \
@@ -130,6 +138,9 @@ $(OBJ_PATH)/%.o: ./srcs/Functions/%.c
 
 $(OBJ_PATH)/%.o: ./srcs/Rpg/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Player/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c

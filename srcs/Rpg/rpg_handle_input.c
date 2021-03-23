@@ -33,4 +33,5 @@ void rpg_handle_input(rpg_t *rpg, sfEvent event)
             break;
         }
     }
+    player_handle_input(rpg->player, event);
 }

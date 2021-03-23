@@ -9,5 +9,8 @@
 
 void map_draw(map_t *map)
 {
-    zone_draw(map->current_zone, map->rpg->wind);
+    const sfView *base_view = sfRenderWindow_getDefaultView(map->rpg->wind);
+
+    zone_draw(map->current_zone, map->rpg->wind, map->rpg->player);
+    sfRenderWindow_setView(map->rpg->wind, base_view);
 }
