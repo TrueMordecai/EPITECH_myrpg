@@ -6,9 +6,7 @@
 */
 
 #include "States/Game/game_state.h"
-#include "My/my_display.h"
 #include "My/my_convert.h"
-
 
 int game_update(state_t *state, float dt)
 {

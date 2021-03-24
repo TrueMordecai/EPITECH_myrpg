@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <limits.h>
 #include "functions.h"
-#include "My/my_display.h"
 
 float get_rand(float min, float max)
 {

@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.h>
 #include "Rpg/Map/layer.h"
+#include "Physics/physics.h"
 
 struct map_t;
 struct player_t;
@@ -20,6 +21,7 @@ typedef struct zone_t {
     sfVector2i size;
     layer_t **layers;
     struct map_t *map;
+    pe_world_t *world;
 } zone_t;
 
 zone_t *zone_create(struct map_t *map);

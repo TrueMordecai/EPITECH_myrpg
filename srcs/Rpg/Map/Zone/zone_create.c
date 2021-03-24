@@ -5,7 +5,7 @@
 ** zone create
 */
 
-#include "Rpg/Map/map.h"
+#include "Rpg/rpg.h"
 #include "My/my_memory.h"
 
 zone_t *zone_create(map_t *map)

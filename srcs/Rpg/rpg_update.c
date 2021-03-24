@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/rpg.h"
-
 void rpg_update(rpg_t *rpg, float dt)
 {
     player_update(rpg->player, dt);

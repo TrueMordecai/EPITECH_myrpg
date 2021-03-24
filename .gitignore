@@ -1,5 +1,6 @@
 include/My
 include/my_containers
+include/Physics
 *.a
 *.o
 .vscode*

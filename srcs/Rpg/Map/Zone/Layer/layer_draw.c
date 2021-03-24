@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/Map/layer.h"
-#include "My/my_display.h"
 #include "functions.h"
 
 static void draw_pos(layer_t *layer, int x, int y, sfRenderWindow *wind)

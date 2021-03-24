@@ -6,7 +6,6 @@
 */
 
 #include "States/Game/game_state.h"
-#include "My/my_display.h"
 
 int game_init(state_t *state)
 {
