@@ -41,6 +41,18 @@ sfVector2i *min, sfVector2i *max)
     *max = (sfVector2i){max_pos.x, max_pos.y};
 }
 
+static int draw_battle(zone_t *zone, sfRenderWindow *wind, player_t *player)
+{
+    sfVector2i min;
+    sfVector2i max;
+
+    get_min_max(zone, wind, &min, &max);
+    sfRenderWindow_setView(wind, zone->map->view);
+    layer_draw(zone->battle_layer, wind, min, max);
+    player_draw(player, wind);
+    return 1;
+}
+
 void zone_draw(zone_t *zone, sfRenderWindow *wind, player_t *player)
 {
     sfVector2i min;
@@ -49,7 +61,7 @@ void zone_draw(zone_t *zone, sfRenderWindow *wind, player_t *player)
     float y_player = (player->pos.y + \
     sfRectangleShape_getSize(player->rect).y * 1.2) / (float)zone->tiles_size;
 
-    if (!zone->world)
+    if (!zone->world || (zone->is_battle && draw_battle(zone, wind, player)))
         return;
     get_min_max(zone, wind, &min, &max);
     sfRenderWindow_setView(wind, zone->map->view);

@@ -42,6 +42,7 @@ SRCS_BASE := 	main.c \
 				zone_draw.c \
 				zone_destroy.c \
 				zone_add_special.c \
+				zone_compute_battle_layer.c \
 				\
 				layer_create.c \
 				layer_init.c \

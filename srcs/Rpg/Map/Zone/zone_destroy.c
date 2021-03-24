@@ -15,6 +15,10 @@ void zone_destroy(zone_t *zone)
             layer_destroy(zone->layers[i]);
         free(zone->layers);
     }
+    if (zone->battle_layer)
+        layer_destroy(zone->battle_layer);
+    free(zone->battle);
+    free(zone->special);
     if (zone->world)
         pe_world_destroy(zone->world);
     free(zone);

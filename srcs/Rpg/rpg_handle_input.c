@@ -17,6 +17,10 @@ void rpg_handle_input(rpg_t *rpg, sfEvent event)
         case sfKeySubtract:
             map_zoom(rpg->map, 0);
             break;
+        case sfKeyB:
+            rpg->map->current_zone->is_battle = \
+            !rpg->map->current_zone->is_battle;
+            break;
         default:
             break;
         }
