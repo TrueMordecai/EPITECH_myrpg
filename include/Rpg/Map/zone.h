@@ -19,6 +19,8 @@ typedef struct zone_t {
     int nb_layers;
     int tiles_size;
     sfVector2i size;
+    int *battle;
+    int *special;
     layer_t **layers;
     struct map_t *map;
     pe_world_t *world;
@@ -30,5 +32,7 @@ int zone_init_from_file(zone_t *zone, char *file);
 void zone_sort_layers(zone_t *zone);
 void zone_draw(zone_t *zone, sfRenderWindow *wind, struct player_t *player);
 void zone_destroy(zone_t *zone);
+
+void zone_add_special(zone_t *zone, sfVector2i pos, int special);
 
 #endif /* !ZONE_H */

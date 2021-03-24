@@ -41,6 +41,7 @@ SRCS_BASE := 	main.c \
 				zone_open_file.c \
 				zone_draw.c \
 				zone_destroy.c \
+				zone_add_special.c \
 				\
 				layer_create.c \
 				layer_init.c \

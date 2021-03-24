@@ -17,7 +17,7 @@ static void read_infos(zone_t *zone, char *file_content, size_t *i)
     sfVector2i size;
     sfVector2i pos;
 
-    zone->nb_layers = my_get_number_pass(file_content, i) - 1;
+    zone->nb_layers = my_get_number_pass(file_content, i) - 2;
     zone->size.x = my_get_number_pass(file_content, i);
     zone->size.y = my_get_number_pass(file_content, i);
     zone_init(zone, zone->nb_layers, zone->size);
@@ -57,10 +57,12 @@ size_t *i, unsigned char *content)
             (*i)++;
         layer = get_nb_pass(content, i, 1);
         tile = get_nb_pass(content, i, 0);
-        if (layer > 0 && layer - 1 < zone->nb_layers)
-            layer_place_tile(zone->layers[layer - 1], pos, tile);
+        if (layer > 1 && layer - 2 < zone->nb_layers)
+            layer_place_tile(zone->layers[layer - 2], pos, tile);
         if (layer == 0 && zone->nb_layers >= 0)
-            physic_add_tile(zone->world, VEC2F(pos.x, pos.y));
+            physic_add_shaped_tile(zone, (sfVector2i){pos.x, pos.y}, tile);
+        if (layer == 1 && zone->nb_layers >= 1)
+            zone_add_special(zone, (sfVector2i){pos.x, pos.y}, tile);
     } while (content[*i] == 1);
 }
 

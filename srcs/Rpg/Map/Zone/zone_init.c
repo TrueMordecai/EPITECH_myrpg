@@ -18,6 +18,8 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     if (nb_layers <= 0)
         return;
     zone->size = size;
+    zone->battle = my_calloc(sizeof(int) * size.x * size.y, EMPTY);
+    zone->special = my_calloc(sizeof(int) * size.x * size.y, 0);
     zone->layers = my_calloc(sizeof(layer_t **) * nb_layers, 0);
     for (int i = 0; i < nb_layers; i++)
         zone->layers[i] = layer_create(zone->map->view, tex, zone->tiles_size);
@@ -25,4 +27,8 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     MAX(MAX(size.x, size.y), size.x * size.y));
     player_init_physic(zone->map->rpg->player, zone->world);
     physic_add_zone_border(zone);
+    physic_add_shaped_tile(zone, (sfVector2i){1, 8}, 12);
+    physic_add_shaped_tile(zone, (sfVector2i){1, 10}, 13);
+    physic_add_shaped_tile(zone, (sfVector2i){1, 12}, 14);
+    physic_add_shaped_tile(zone, (sfVector2i){1, 14}, 15);
 }
