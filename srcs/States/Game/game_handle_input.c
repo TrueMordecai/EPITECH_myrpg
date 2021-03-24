@@ -7,7 +7,6 @@
 
 #include <math.h>
 #include "States/Game/game_state.h"
-#include "My/my_display.h"
 #include "My/my_convert.h"
 
 

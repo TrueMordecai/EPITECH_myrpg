@@ -5,23 +5,26 @@
 ** player update.c
 */
 
-#include "Rpg/Entities/player.h"
+#include "Rpg/rpg.h"
 
 void player_update(player_t *player, float dt)
 {
     sfVector2f offset = {0, 0};
+    float amplitude = 4;
 
     if (sfKeyboard_isKeyPressed(sfKeyZ))
-        offset.y = -1;
+        offset.y = -amplitude;
     if (sfKeyboard_isKeyPressed(sfKeyS))
-        offset.y = 1;
+        offset.y = amplitude;
     if (sfKeyboard_isKeyPressed(sfKeyQ))
-        offset.x = -1;
+        offset.x = -amplitude;
     if (sfKeyboard_isKeyPressed(sfKeyD))
-        offset.x = 1;
-    offset.x *= dt * 200;
-    offset.y *= dt * 200;
-    player->pos.x += offset.x;
-    player->pos.y += offset.y;
+        offset.x = amplitude;
+    if (offset.x != 0)
+        player->body->velocity.x = offset.x;
+    if (offset.y != 0)
+        player->body->velocity.y = offset.y;
+    player->pos = (sfVector2f){player->body->pos.x * M_TO_PX, \
+        player->body->pos.y * M_TO_PX};
     sfRectangleShape_setPosition(player->rect, player->pos);
 }

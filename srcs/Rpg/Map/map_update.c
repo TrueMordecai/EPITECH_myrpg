@@ -27,4 +27,5 @@ void map_update(map_t *map, float dt)
     else
         offset.y = 0;
     map_move(map, offset);
+    pe_world_update(map->current_zone->world, dt * 1000);
 }

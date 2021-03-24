@@ -9,13 +9,16 @@
 #define RPG_PLAYER_H
 
 #include <SFML/Graphics.h>
+#include "Physics/physics.h"
 
 typedef struct player_t {
     sfRectangleShape *rect;
     sfVector2f pos;
+    pe_body_t *body;
 } player_t;
 
 player_t *player_create(void);
+void player_init_physic(player_t *player, pe_world_t *world);
 void player_handle_input(player_t *player, sfEvent event);
 void player_update(player_t *player, float dt);
 void player_draw(player_t *player, sfRenderWindow *wind);

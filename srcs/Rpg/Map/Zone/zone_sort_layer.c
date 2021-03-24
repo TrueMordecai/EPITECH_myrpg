@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/Map/zone.h"
-#include "My/my_display.h"
 
 static int move_layer(layer_t *a, layer_t *b)
 {

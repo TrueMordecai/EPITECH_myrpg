@@ -8,8 +8,12 @@
 #ifndef PHYSICS_CONSTANTS_H
 #define PHYSICS_CONSTANTS_H
 
+#ifndef MIN
 #define MIN(a, b) (((a) <= (b)) ? (a) : (b))
+#endif
+#ifndef MAX
 #define MAX(a, b) (((a) >= (b)) ? (a) : (b))
+#endif
 #define CLAMP(a, min, max) (MIN(MAX((a), min), max))
 #define SIGN(a) (((a) >= 0) ? 1 : -1)
 #define TO_RAD(a) ((a) * (PE_PI / 180.f))

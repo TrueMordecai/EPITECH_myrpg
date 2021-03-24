@@ -7,7 +7,6 @@
 
 #include "Rpg/rpg.h"
 #include "functions.h"
-#include "My/my_display.h"
 
 static int is_player_btwn(zone_t *zone, float y_player, int i)
 {

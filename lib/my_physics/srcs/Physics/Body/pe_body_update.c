@@ -36,6 +36,8 @@ void pe_body_try_sleep(pe_body_t *body, float dt)
     pe_vec2f_dot_product(body->velocity, body->velocity) + \
     powf(body->angular_velocity, 2);
 
+    if (!body->can_sleep)
+        return;
     body->motion = bias * body->motion + (1 - bias) * current_motion;
     if (body->motion > PE_SLEEP_EPSILON * 10)
         body->motion = PE_SLEEP_EPSILON * 10;

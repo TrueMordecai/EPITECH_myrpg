@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include "Rpg/Map/zone.h"
 #include "My/my_file.h"
-#include "My/my_display.h"
 #include "My/my_convert.h"
+#include "My/my_display.h"
 
 static void read_infos(zone_t *zone, char *file_content, size_t *i)
 {

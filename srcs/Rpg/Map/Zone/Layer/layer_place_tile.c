@@ -7,8 +7,6 @@
 
 #include "Rpg/Map/layer.h"
 
-#include "My/my_display.h"
-
 static void init_rect(layer_t *layer, int pos_id, sfVector2f pos, int tile)
 {
     sfRectangleShape *rect = layer->tiles[pos_id];

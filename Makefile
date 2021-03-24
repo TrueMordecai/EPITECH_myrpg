@@ -19,6 +19,7 @@ SRCS_BASE := 	main.c \
 				rpg_destroy.c \
 				\
 				player_create.c \
+				player_init_physic.c \
 				player_handle_input.c \
 				player_update.c \
 				player_draw.c \

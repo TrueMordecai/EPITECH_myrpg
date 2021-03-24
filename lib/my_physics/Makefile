@@ -99,7 +99,7 @@ SRCS_BASE := 	pe_body_init.c \
 
 OBJS := $(addprefix $(OBJ_PATH)/, $(SRCS_BASE:.c=.o))
 CC := gcc
-CFLAGS := -Wall -Werror -pedantic
+CFLAGS := -Wall -Werror -pedantic -ggdb
 CFLAGS_LIB :=  -lcsfml-graphics  -lcsfml-system -lcsfml-window -lcsfml-audio -L../lib/ -lcontainer -lm -lmy
 CFLAGS_INCLUDE := -I./ -I../../include/
 INCLUDE_PATH := ../../include

@@ -12,6 +12,8 @@
 #include "Rpg/Map/map.h"
 #include "Rpg/Entities/player.h"
 
+#define M_TO_PX 32.f
+
 typedef struct rpg_t {
     state_t *state;
     sfRenderWindow *wind;
