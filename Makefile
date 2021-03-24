@@ -18,6 +18,9 @@ SRCS_BASE := 	main.c \
 				rpg_draw.c \
 				rpg_destroy.c \
 				\
+				physic_add_tile.c \
+				physic_add_zone_border.c \
+				\
 				player_create.c \
 				player_init_physic.c \
 				player_handle_input.c \
@@ -160,6 +163,8 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Player/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Physic/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<

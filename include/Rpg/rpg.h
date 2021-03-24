@@ -11,6 +11,7 @@
 #include "GameEngine/game_head.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Entities/player.h"
+#include "Rpg/Map/physic.h"
 
 #define M_TO_PX 32.f
 

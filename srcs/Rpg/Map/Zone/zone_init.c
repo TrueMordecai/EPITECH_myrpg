@@ -21,4 +21,5 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
         zone->layers[i] = layer_create(zone->map->view, tex, zone->tiles_size);
     zone->world = pe_world_init(VEC2F(0, 0), size.x * size.y);
     player_init_physic(zone->map->rpg->player, zone->world);
+    physic_add_zone_border(zone);
 }

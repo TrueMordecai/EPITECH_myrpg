@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "Rpg/Map/zone.h"
+#include "Rpg/Map/physic.h"
 #include "My/my_file.h"
 #include "My/my_convert.h"
 #include "My/my_display.h"
@@ -58,6 +59,8 @@ size_t *i, unsigned char *content)
         tile = get_nb_pass(content, i, 0);
         if (layer > 0)
             layer_place_tile(zone->layers[layer - 1], pos, tile);
+        else
+            physic_add_tile(zone->world, VEC2F(pos.x, pos.y));
     } while (content[*i] == 1);
 }
 
