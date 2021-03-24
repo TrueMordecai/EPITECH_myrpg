@@ -99,10 +99,11 @@ SRCS_BASE := 	main.c \
 OBJS := $(addprefix $(OBJ_PATH)/, $(SRCS_BASE:.c=.o))
 CC := gcc
 CFLAGS := -Wall -Werror --pedantic -O1
-CFLAGS_LIB :=  -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -L./lib/ -lcontainer -lm -lmy
+CFLAGS_LIB :=  -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -L./lib/ -lcontainer -lm -lmy -lphysics
 CFLAGS_INCLUDE := -I./include/
 MAKE_LIB := make -C lib/my/
-MAKE_CONTAINERS := make -C lib/my_container/
+MAKE_CONTAINERS := make -C lib/my_containers/
+MAKE_PHYSICS := make -C lib/my_physics/
 DATAS_DIR = datas
 
 all: make_libs $(DATAS_DIR) $(OBJ_PATH) $(TARGET)
@@ -110,22 +111,38 @@ all: make_libs $(DATAS_DIR) $(OBJ_PATH) $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ $(CFLAGS_LIB)
 
-clean:
+clean: clean_rpg clean_libs
+
+clean_rpg:
 	rm -rf $(OBJ_PATH)
+
+clean_libs:
 	$(MAKE_LIB) clean
 	$(MAKE_CONTAINERS) clean
+	$(MAKE_PHYSICS) clean
 
-fclean: clean
+fclean: clean fclean_rpg fclean_libs
+
+fclean_rpg: clean_rpg
 	rm -f $(TARGET)
-	$(MAKE_LIB) fclean
-	$(MAKE_CONTAINERS) fclean
 	rm -rf $(DATAS_DIR)
 
+fclean_libs:
+	$(MAKE_LIB) fclean
+	$(MAKE_CONTAINERS) fclean
+	$(MAKE_PHYSICS) fclean
+
 re: fclean all
+
+re_rpg: fclean_rpg all
+
+re_libs: fclean_libs all
+
 
 make_libs:
 	$(MAKE_LIB)
 	$(MAKE_CONTAINERS)
+	$(MAKE_PHYSICS)
 
 $(OBJ_PATH)/%.o: ./srcs/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
