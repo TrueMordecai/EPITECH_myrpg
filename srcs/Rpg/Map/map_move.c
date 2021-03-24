@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "My/my_display.h"
 
 void map_correct_pos(map_t *map)
 {
@@ -14,15 +15,15 @@ void map_correct_pos(map_t *map)
     sfVector2f br = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     (sfVector2i){map->view_pos.x + map->view_size.x, \
         map->view_pos.y + map->view_size.y}, map->view);
-    sfVector2f offset = {((top_left.x <= 0) ? -top_left.x : 0), \
-        ((top_left.y <= 0) ? -top_left.y : 0)};
+    sfVector2f offset = {((top_left.x < 0) ? -top_left.x : 0), \
+        ((top_left.y < 0) ? -top_left.y : 0)};
 
     if (offset.x == 0 && top_left.x != 0 && \
-        br.x > ((map->current_zone->size.x - 1) * map->tiles_size))
-        offset.x = ((map->current_zone->size.x - 1) * map->tiles_size) - br.x;
+        br.x > ((map->current_zone->size.x) * map->tiles_size))
+        offset.x = ((map->current_zone->size.x) * map->tiles_size) - br.x;
     if (offset.y == 0 && top_left.y != 0 && \
-        br.y > ((map->current_zone->size.y - 1) * map->tiles_size))
-        offset.y = ((map->current_zone->size.y - 1) * map->tiles_size) - br.y;
+        br.y > ((map->current_zone->size.y) * map->tiles_size))
+        offset.y = ((map->current_zone->size.y) * map->tiles_size) - br.y;
     sfView_move(map->view, offset);
 }
 

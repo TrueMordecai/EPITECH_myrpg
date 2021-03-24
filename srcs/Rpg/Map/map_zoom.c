@@ -7,15 +7,23 @@
 
 #include "Rpg/rpg.h"
 #include "functions.h"
+#include "My/my_display.h"
 
-static int verif_zoom(map_t *map, float zoom)
+static float verif_zoom(map_t *map, float zoom)
 {
-    float new_size = map->tiles_size / (map->current_zoom * zoom);
+    float new_zoom = map->current_zoom * zoom;
+    sfVector2f min_zooms = {map->current_zone->size.x * map->tiles_size, \
+        map->current_zone->size.y * map->tiles_size};
+    float min_zoom;
 
-    if (new_size <= 10 || new_size > \
-        (MIN(map->view_size.x, map->view_size.y) / 2.f))
-        return 0;
-    return 1;
+    min_zooms.x /= map->view_size.x;
+    min_zooms.y /= map->view_size.y;
+    min_zoom = MIN(min_zooms.x, min_zooms.y);
+    if (new_zoom > min_zoom)
+        return min_zoom / map->current_zoom;
+    if (new_zoom < 0.4f)
+        return 0.4f / map->current_zoom;
+    return zoom;
 }
 
 void map_zoom(map_t *map, int zoom_up)
@@ -25,10 +33,8 @@ void map_zoom(map_t *map, int zoom_up)
     sfRenderWindow_mapPixelToCoords(map->rpg->wind, mouse_pos, map->view);
     sfVector2f aft_coo;
     sfVector2f offset;
-    float zoom = (zoom_up) ? 0.8 : 1.25;
+    float zoom = verif_zoom(map, (zoom_up) ? 0.8 : 1.25);
 
-    if (!verif_zoom(map, zoom))
-        return;
     map->current_zoom *= zoom;
     sfView_zoom(map->view, zoom);
     aft_coo = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \

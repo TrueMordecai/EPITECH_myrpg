@@ -24,7 +24,7 @@ struct state_t;
 #define PI 3.14159265359
 #define DEG_TO_RAD(x) ((x) * (PI / 180.f))
 
-#define MS_UPDATE 15
+#define MS_UPDATE 5
 
 int my_map_strcmp(char *s1, size_t s2);
 int my_map_intcmp(char *s1, size_t s2);

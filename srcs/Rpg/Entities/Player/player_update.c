@@ -10,6 +10,7 @@
 void player_update(player_t *player, float dt)
 {
     sfVector2f offset = {0, 0};
+    float amplitude = 6;
 
     if (sfKeyboard_isKeyPressed(sfKeyZ))
         offset.y = -1;

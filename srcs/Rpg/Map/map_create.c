@@ -26,5 +26,6 @@ map_t *map_create(rpg_t *rpg)
     sfView_move(map->view, (sfVector2f){-map->view_pos.x, -map->view_pos.y});
     map->current_zone = zone_create(map);
     zone_init_from_file(map->current_zone, "assets/Zones/zone_test");
+    map_zoom(map, 0);
     return map;
 }

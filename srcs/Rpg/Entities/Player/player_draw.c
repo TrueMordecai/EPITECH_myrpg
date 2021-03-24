@@ -5,7 +5,7 @@
 ** player draw
 */
 
-#include "Rpg/Entities/player.h"
+#include "Rpg/rpg.h"
 
 void player_draw(player_t *player, sfRenderWindow *wind)
 {
