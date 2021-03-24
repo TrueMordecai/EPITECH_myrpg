@@ -49,6 +49,8 @@ void zone_draw(zone_t *zone, sfRenderWindow *wind, player_t *player)
     float y_player = (player->pos.y + \
     sfRectangleShape_getSize(player->rect).y * 1.2) / (float)zone->tiles_size;
 
+    if (!zone->world)
+        return;
     get_min_max(zone, wind, &min, &max);
     sfRenderWindow_setView(wind, zone->map->view);
     do {

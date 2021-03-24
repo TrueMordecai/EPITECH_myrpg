@@ -57,21 +57,21 @@ size_t *i, unsigned char *content)
             (*i)++;
         layer = get_nb_pass(content, i, 1);
         tile = get_nb_pass(content, i, 0);
-        if (layer > 0)
+        if (layer > 0 && layer - 1 < zone->nb_layers)
             layer_place_tile(zone->layers[layer - 1], pos, tile);
-        else
+        if (layer == 0 && zone->nb_layers >= 0)
             physic_add_tile(zone->world, VEC2F(pos.x, pos.y));
     } while (content[*i] == 1);
 }
 
-void zone_init_from_file(zone_t *zone, char *file)
+int zone_init_from_file(zone_t *zone, char *file)
 {
     char *file_content = NULL;
     size_t i = 0;
 
-    if (!my_readfile(&file_content, file)) {
+    if (!my_readfile(&file_content, file) || !file_content) {
         my_putstr_err("Can't read map\n");
-        return;
+        return 0;
     }
     read_infos(zone, file_content, &i);
     for (int x = 0; x < zone->size.x; x++) {
@@ -83,4 +83,5 @@ void zone_init_from_file(zone_t *zone, char *file)
     }
     zone_sort_layers(zone);
     free(file_content);
+    return 1;
 }

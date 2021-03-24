@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include "GameEngine/game_head.h"
 #include "States/Menu/menu_state.h"
+#include "My/my_display.h"
 
 void destroy_game(game_data_t *data)
 {
@@ -59,18 +60,23 @@ static void run_2(game_data_t *data, float *times, sfClock *clock, \
 state_t **current_state)
 {
     float interpolation = 0;
+    float init_ms = (1 / (float)data->settings->limit_framerate) * 1000;
+    float ms_update = init_ms;
 
     times[0] = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
-    times[2] = MIN(times[2] + times[0] - times[1], 10 * MS_UPDATE);
+    times[2] = times[2] + times[0] - times[1];
+    if (times[2] > 10 * ms_update)
+        ms_update = times[2];
     times[1] = times[0];
     (*current_state)->handle_input(*current_state);
     *current_state = (state_t *)my_vector_top((size_t *)data->states);
-    while (times[2] >= MS_UPDATE) {
-        (*current_state)->update(*current_state, MS_UPDATE / 1000.f);
-        times[2] -= MS_UPDATE;
+    while (times[2] >= ms_update) {
+        (*current_state)->update(*current_state, ms_update / 1000.f);
+        times[2] -= ms_update;
         update_sounds(data->audio, 0);
     }
-    interpolation = times[2] / MS_UPDATE;
+    ms_update = init_ms;
+    interpolation = times[2] / ms_update;
     (*current_state)->draw(*current_state, interpolation);
 }
 

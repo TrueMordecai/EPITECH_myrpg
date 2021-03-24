@@ -33,8 +33,11 @@ void map_zoom(map_t *map, int zoom_up)
     sfRenderWindow_mapPixelToCoords(map->rpg->wind, mouse_pos, map->view);
     sfVector2f aft_coo;
     sfVector2f offset;
-    float zoom = verif_zoom(map, (zoom_up) ? 0.8 : 1.25);
+    float zoom;
 
+    if (!map->current_zone->world)
+        return;
+    zoom = verif_zoom(map, (zoom_up) ? 0.8 : 1.25);
     map->current_zoom *= zoom;
     sfView_zoom(map->view, zoom);
     aft_coo = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \

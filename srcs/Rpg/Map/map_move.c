@@ -18,6 +18,8 @@ void map_correct_pos(map_t *map)
     sfVector2f offset = {((top_left.x < 0) ? -top_left.x : 0), \
         ((top_left.y < 0) ? -top_left.y : 0)};
 
+    if (!map->current_zone->world)
+        return;
     if (offset.x == 0 && top_left.x != 0 && \
         br.x > ((map->current_zone->size.x) * map->tiles_size))
         offset.x = ((map->current_zone->size.x) * map->tiles_size) - br.x;
