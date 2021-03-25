@@ -85,6 +85,6 @@ int zone_init_from_file(zone_t *zone, char *file)
     }
     zone_sort_layers(zone);
     free(file_content);
-    zone_compute_battle_layer(zone);
+    battle_compute_layer(&zone->battle);
     return 1;
 }

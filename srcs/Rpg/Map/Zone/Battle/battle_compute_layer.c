@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** zone compute battle layer
+** battle compute layer
 */
 
 #include "Rpg/rpg.h"
@@ -28,14 +28,12 @@ static sfRectangleShape *init_rect(int flags, int x, int y)
     return rect;
 }
 
-void zone_compute_battle_layer(zone_t *zone)
+void battle_compute_layer(battle_t *battle)
 {
-    zone->battle_layer = layer_create(zone->map->view, NULL, zone->tiles_size);
-
-    layer_init(zone->battle_layer, zone->size, (sfVector2i){0, 0});
-    for (int x = 0; x < zone->size.x; x++) {
-        for (int y = 0; y < zone->size.y; y++)
-            zone->battle_layer->tiles[x + y * zone->size.x] = \
-            init_rect(zone->battle[x + y * zone->size.x] & 3, x, y);
+    layer_init(battle->layer, battle->size, (sfVector2i){0, 0});
+    for (int x = 0; x < battle->size.x; x++) {
+        for (int y = 0; y < battle->size.y; y++)
+            battle->layer->tiles[x + y * battle->size.x] = \
+            init_rect(battle->tiles[x + y * battle->size.x] & 3, x, y);
     }
 }

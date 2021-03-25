@@ -42,7 +42,13 @@ SRCS_BASE := 	main.c \
 				zone_draw.c \
 				zone_destroy.c \
 				zone_add_special.c \
-				zone_compute_battle_layer.c \
+				\
+				battle_init.c \
+				battle_compute_layer.c \
+				battle_set_tactical.c \
+				battle_start.c \
+				battle_draw.c \
+				battle_end.c \
 				\
 				layer_create.c \
 				layer_init.c \
@@ -104,7 +110,7 @@ SRCS_BASE := 	main.c \
 
 OBJS := $(addprefix $(OBJ_PATH)/, $(SRCS_BASE:.c=.o))
 CC := gcc
-CFLAGS := -Wall -Werror --pedantic -O1
+CFLAGS := -Wall -Werror --pedantic -O1 -ggdb
 CFLAGS_LIB :=  -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -L./lib/ -lcontainer -lm -lmy -lphysics
 CFLAGS_INCLUDE := -I./include/
 MAKE_LIB := make -C lib/my/
@@ -171,6 +177,8 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Physic/%.c
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/Layer/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/Battle/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/GameEngine/%.c

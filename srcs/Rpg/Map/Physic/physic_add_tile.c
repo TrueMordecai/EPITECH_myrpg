@@ -65,5 +65,5 @@ void physic_add_shaped_tile(zone_t *zone, sfVector2i pos, int tile)
     body->pos = VEC2F(pos.x, pos.y);
     pe_body_add_fixture(body, fixture);
     pe_world_add_body(zone->world, body);
-    zone->battle[pos.x + pos.y * zone->size.x] = SOLID + (tile >= 16);
+    zone->battle.tiles[pos.x + pos.y * zone->size.x] = SOLID + (tile >= 16);
 }

@@ -26,7 +26,7 @@ static float verif_zoom(map_t *map, float zoom)
     return zoom;
 }
 
-void map_zoom(map_t *map, int zoom_up)
+void map_zoom(map_t *map, float value)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(map->rpg->wind);
     sfVector2f bef_coo = \
@@ -37,11 +37,21 @@ void map_zoom(map_t *map, int zoom_up)
 
     if (!map->current_zone->world)
         return;
-    zoom = verif_zoom(map, (zoom_up) ? 0.8 : 1.25);
+    zoom = verif_zoom(map, value);
     map->current_zoom *= zoom;
     sfView_zoom(map->view, zoom);
     aft_coo = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     mouse_pos, map->view);
     offset = (sfVector2f){bef_coo.x - aft_coo.x, bef_coo.y - aft_coo.y};
     sfView_move(map->view, offset);
+}
+
+void map_zoom_up_down(map_t *map, int zoom_up)
+{
+    map_zoom(map, (zoom_up) ? 0.8f : 1.25f);
+}
+
+void map_reset_zoom(map_t *map)
+{
+    map_zoom(map, 10000);
 }

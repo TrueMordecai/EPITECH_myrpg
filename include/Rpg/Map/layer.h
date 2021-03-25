@@ -16,10 +16,9 @@ typedef struct layer_t {
     sfVector2i pos;
     sfRectangleShape **tiles;
     sfTexture *tex;
-    sfView *view;
 } layer_t;
 
-layer_t *layer_create(sfView *view, sfTexture *tex, int tiles_size);
+layer_t *layer_create(sfTexture *tex, int tiles_size);
 void layer_init(layer_t *layer, sfVector2i size, sfVector2i pos);
 void layer_place_tile(layer_t *layer, sfVector2i pos, int tile);
 void layer_draw(layer_t *layer, sfRenderWindow *wind, \
