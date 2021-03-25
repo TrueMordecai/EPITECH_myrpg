@@ -16,8 +16,8 @@ void map_correct_pos(map_t *map)
     sfVector2f br = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     (sfVector2i){map->view_pos.x + map->view_size.x, \
         map->view_pos.y + map->view_size.y}, map->view);
-    sfVector2f offset = {((top_left.x < map->current_zone->battle.pos.x * ts) ? -(top_left.x - map->current_zone->battle.pos.x * ts) : 0), \
-        ((top_left.y < map->current_zone->battle.pos.y * ts) ? (-top_left.y + map->current_zone->battle.pos.y * ts): 0)};
+    sfVector2f offset = {((top_left.x < map->current_zone->battle.pos.x * ts) ? (-top_left.x + map->current_zone->battle.pos.x * ts): 0), \
+        ((top_left.y < map->current_zone->battle.pos.y * ts) ? (-top_left.y + map->current_zone->battle.pos.y * ts) : 0)};
 
     if (!map->current_zone->world)
         return;

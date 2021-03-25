@@ -34,8 +34,8 @@ sfVector2i *min, sfVector2i *max)
     sfVector2i min_pos = {MAX(top_left.x / zone->tiles_size, 0), \
         MAX(top_left.y / zone->tiles_size, 0)};
     sfVector2i max_pos = {MIN(bottom_right.x / zone->tiles_size + 1, \
-        zone->size.x), MIN(bottom_right.y / \
-        zone->tiles_size + 1, zone->size.y)};
+        zone->battle.size.x), MIN(bottom_right.y / \
+        zone->tiles_size + 1, zone->battle.size.y)};
 
     *min = (sfVector2i){min_pos.x, min_pos.y};
     *max = (sfVector2i){max_pos.x, max_pos.y};
