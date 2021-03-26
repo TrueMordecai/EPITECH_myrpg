@@ -22,7 +22,27 @@ sfVector2f pos, map_t *map)
     return pos_flt;
 }
 
-void map_update(map_t *map, float dt)
+static void assert_offset(map_t *map, sfVector2f *offset)
+{
+    sfVector2f top_left = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
+    (sfVector2i){map->view_pos.x, map->view_pos.y}, map->view);
+    sfVector2f br = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
+    (sfVector2i){map->view_pos.x + map->view_size.x, \
+        map->view_pos.y + map->view_size.y}, map->view);
+
+    if (offset->x + top_left.x < 0 && offset->x < 0)
+        offset->x = MIN(0, -top_left.x);
+    else if (offset->x + br.x > map->current_zone->size.x * M_TO_PX && \
+        offset->x > 0)
+        offset->x = MAX(0, map->current_zone->size.x * M_TO_PX - br.x);
+    if (offset->y + top_left.y < 0 && offset->y < 0)
+        offset->y = MIN(0, -top_left.y);
+    else if (offset->y + br.y > map->current_zone->size.y * M_TO_PX && \
+        offset->y > 0)
+        offset->y = MAX(0, map->current_zone->size.y * M_TO_PX - br.y);
+}
+
+static void move_view_to_player(map_t *map, float dt)
 {
     sfVector2f view_size = map->view_size;
     sfVector2f player_pos = map->rpg->player->pos;
@@ -41,7 +61,16 @@ void map_update(map_t *map, float dt)
         ((4 + 2 * (offset.y > 0)) * view_size.y) / 10.f;
     else
         offset.y = 0;
-    map_move(map, offset);
+    assert_offset(map, &offset);
+    map_move(map, (sfVector2f){offset.x * dt, offset.y * dt});
+}
+
+void map_update(map_t *map, float dt)
+{
+    if (!map->current_zone->is_battle)
+        move_view_to_player(map, dt);
+    map_correct_pos(map, dt);
+    map_update_zoom(map, dt);
     if (map->current_zone->world)
         pe_world_update(map->current_zone->world, dt * 1000);
 }

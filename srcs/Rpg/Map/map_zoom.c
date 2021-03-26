@@ -29,30 +29,47 @@ static float verif_zoom(map_t *map, float zoom)
 
 void map_zoom(map_t *map, float value)
 {
-    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(map->rpg->wind);
-    sfVector2f bef_coo = \
-    sfRenderWindow_mapPixelToCoords(map->rpg->wind, mouse_pos, map->view);
+    sfVector2f player_pos = {map->rpg->player->body->pos.x * M_TO_PX, \
+        map->rpg->player->body->pos.y * M_TO_PX};
+    sfVector2i player = sfRenderWindow_mapCoordsToPixel(map->rpg->wind, \
+    player_pos, map->view);
     sfVector2f aft_coo;
     sfVector2f offset;
     float zoom;
 
     if (!map->current_zone->world)
         return;
-    zoom = verif_zoom(map, value);
+    zoom = value;
     map->current_zoom *= zoom;
     sfView_zoom(map->view, zoom);
     aft_coo = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
-    mouse_pos, map->view);
-    offset = (sfVector2f){bef_coo.x - aft_coo.x, bef_coo.y - aft_coo.y};
+    player, map->view);
+    offset = (sfVector2f){player_pos.x - aft_coo.x, player_pos.y - aft_coo.y};
     sfView_move(map->view, offset);
+}
+
+void map_update_zoom(map_t *map, float dt)
+{
+    float delta = fabsf(map->current_zoom - map->zoom_goal);
+
+    if (map->zoom_goal == 0)
+        return;
+    if (delta < 0.001f) {
+        map_zoom(map, map->zoom_goal / map->current_zoom);
+        map->zoom_goal = 0;
+        return;
+    }
+    map_zoom(map, 1 + (map->zoom_goal / map->current_zoom - 1) * \
+    dt * MAX(2, powf(delta * 7, 2)));
 }
 
 void map_zoom_up_down(map_t *map, int zoom_up)
 {
-    map_zoom(map, (zoom_up) ? 0.8f : 1.25f);
+    map->zoom_goal = map->current_zoom * \
+    verif_zoom(map, (zoom_up) ? 0.8f : 1.25f);
 }
 
 void map_reset_zoom(map_t *map)
 {
-    map_zoom(map, 10000);
+    map->zoom_goal = map->current_zoom * verif_zoom(map, 10000);
 }

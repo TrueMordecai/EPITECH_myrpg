@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "My/my_display.h"
 
 void rpg_handle_input(rpg_t *rpg, sfEvent event)
 {
@@ -21,8 +22,9 @@ void rpg_handle_input(rpg_t *rpg, sfEvent event)
             battle_set_tactical(&rpg->map->current_zone->battle);
             break;
         case sfKeyB:
-            if (!rpg->map->current_zone->is_battle)
+            if (!rpg->map->current_zone->is_battle) {
                 battle_start(&rpg->map->current_zone->battle);
+            }
             else
                 battle_end(&rpg->map->current_zone->battle);
             break;

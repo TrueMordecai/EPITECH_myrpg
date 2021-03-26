@@ -20,7 +20,7 @@ static void init_rect(layer_t *layer, int pos_id, sfVector2f pos, int tile)
         (tile / SET_WIDTH) * TILE_SIZE, \
         TILE_SIZE, TILE_SIZE});
     sfRectangleShape_setOutlineColor(rect, sfColor_fromRGB(50, 50, 50));
-    sfRectangleShape_setOutlineThickness(rect, -0.5);
+    //sfRectangleShape_setOutlineThickness(rect, -0.5);
     sfRectangleShape_setSize(rect, \
     (sfVector2f){layer->tiles_size, layer->tiles_size});
     layer->tiles[pos_id] = rect;

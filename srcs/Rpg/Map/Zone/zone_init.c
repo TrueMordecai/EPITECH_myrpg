@@ -28,4 +28,5 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     player_init_physic(zone->map->rpg->player, zone->world);
     physic_add_zone_border(zone);
     map_reset_zoom(zone->map);
+    map_zoom(zone->map, zone->map->zoom_goal / zone->map->current_zoom);
 }
