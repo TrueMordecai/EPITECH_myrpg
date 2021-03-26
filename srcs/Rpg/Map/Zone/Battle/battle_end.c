@@ -10,7 +10,7 @@
 void battle_end(battle_t *battle)
 {
     battle->pos = (sfVector2i){0, 0};
-    battle->zone->size = battle->size;
+    battle->size = battle->zone->size;
     map_reset_zoom(battle->zone->map);
     battle->zone->is_battle = 0;
 }

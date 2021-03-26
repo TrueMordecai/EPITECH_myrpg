@@ -30,7 +30,9 @@ void battle_start(battle_t *battle);
 void battle_end(battle_t *battle);
 
 void battle_set_tactical(battle_t *battle);
-void battle_draw_tactical(battle_t *battle, sfRenderWindow *wind, sfVector2i min, sfVector2i max);
-void battle_draw(battle_t *battle, sfRenderWindow *wind, sfVector2i min, sfVector2i max);
+void battle_draw_tactical(battle_t *battle, sfRenderWindow *wind, \
+sfVector2i min, sfVector2i max);
+void battle_draw(battle_t *battle, sfRenderWindow *wind, \
+sfVector2i min, sfVector2i max);
 
 #endif /* !RPG_BATTLE_H */

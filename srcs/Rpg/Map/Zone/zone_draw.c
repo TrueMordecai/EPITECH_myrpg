@@ -34,14 +34,15 @@ sfVector2i *min, sfVector2i *max)
     sfVector2i min_pos = {MAX(top_left.x / zone->tiles_size, 0), \
         MAX(top_left.y / zone->tiles_size, 0)};
     sfVector2i max_pos = {MIN(bottom_right.x / zone->tiles_size + 1, \
-        zone->battle.size.x), MIN(bottom_right.y / \
-        zone->tiles_size + 1, zone->battle.size.y)};
+        zone->size.x), MIN(bottom_right.y / \
+        zone->tiles_size + 1, zone->size.y)};
 
     *min = (sfVector2i){min_pos.x, min_pos.y};
     *max = (sfVector2i){max_pos.x, max_pos.y};
 }
 
-void zone_draw_layers(zone_t *zone, sfRenderWindow *wind, sfVector2i min, sfVector2i max)
+void zone_draw_layers(zone_t *zone, sfRenderWindow *wind, \
+sfVector2i min, sfVector2i max)
 {
     player_t *player = zone->map->rpg->player;
     int i = 0;
@@ -62,7 +63,7 @@ void zone_draw(zone_t *zone, sfRenderWindow *wind)
 {
     sfVector2i min;
     sfVector2i max;
-    
+
     get_min_max(zone, wind, &min, &max);
     if (!zone->world)
         return;

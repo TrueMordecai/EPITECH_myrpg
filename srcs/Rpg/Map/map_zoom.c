@@ -12,8 +12,9 @@
 static float verif_zoom(map_t *map, float zoom)
 {
     float new_zoom = map->current_zoom * zoom;
-    sfVector2f min_zooms = {map->current_zone->size.x * map->tiles_size, \
-        map->current_zone->size.y * map->tiles_size};
+    sfVector2f min_zooms = {\
+        map->current_zone->battle.size.x * map->tiles_size, \
+        map->current_zone->battle.size.y * map->tiles_size};
     float min_zoom;
 
     min_zooms.x /= map->view_size.x;
