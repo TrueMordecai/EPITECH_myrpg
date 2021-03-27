@@ -25,7 +25,7 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
         zone->layers[i] = layer_create(tex, zone->tiles_size);
     zone->world = pe_world_init(VEC2F(0, 0), \
     MAX(MAX(size.x, size.y), size.x * size.y));
-    player_init_physic(zone->map->rpg->player, zone->world);
+    zone->player_body = player_init_physic(zone->map->rpg->player, zone->world);
     physic_add_zone_border(zone);
     map_reset_zoom(zone->map);
     map_zoom(zone->map, zone->map->zoom_goal / zone->map->current_zoom);

@@ -10,7 +10,11 @@
 
 void map_destroy(map_t *map)
 {
-    zone_destroy(map->current_zone);
+    size_t nb_zones = my_vector_get_size((size_t *)map->zones);
+
+    for (size_t i = 0; i < nb_zones; i++)
+        zone_destroy(map->zones[i]);
+    my_vector_free((size_t **)&map->zones);
     sfView_destroy(map->view);
     free(map);
 }

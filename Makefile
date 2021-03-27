@@ -29,6 +29,7 @@ SRCS_BASE := 	main.c \
 				player_destroy.c \
 				\
 				map_create.c \
+				map_load_zone.c \
 				map_move.c \
 				map_zoom.c \
 				map_update.c \

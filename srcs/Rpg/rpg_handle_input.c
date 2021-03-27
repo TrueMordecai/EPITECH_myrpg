@@ -28,6 +28,12 @@ void rpg_handle_input(rpg_t *rpg, sfEvent event)
             else
                 battle_end(&rpg->map->current_zone->battle);
             break;
+        case sfKeyH:
+            map_load_zone(rpg->map, "assets/Zones/house_test");
+            break;
+        case sfKeyV:
+            map_load_zone(rpg->map, "assets/Zones/zone_test");
+            break;
         default:
             break;
         }

@@ -38,4 +38,7 @@ void map_update(map_t *map, float dt);
 void map_draw(map_t *map);
 void map_destroy(map_t *map);
 
+zone_t *map_get_zone(map_t *map, char *name);
+void map_load_zone(map_t *map, char *name);
+
 #endif /* !MAP_H */

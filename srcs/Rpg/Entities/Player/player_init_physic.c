@@ -7,13 +7,11 @@
 
 #include "Rpg/rpg.h"
 
-void player_init_physic(player_t *player, pe_world_t *world)
+pe_body_t *player_init_physic(player_t *player, pe_world_t *world)
 {
-    pe_body_t *body = player->body;
+    pe_body_t *body = NULL;
     pe_fixture_t *fixture = pe_fixture_init();
 
-    if (body)
-        pe_body_destroy(body);
     body = pe_body_init(DYNAMIC, 1, 5);
     body->can_sleep = 0;
     body->pos = VEC2F(player->pos.x / M_TO_PX, player->pos.y / M_TO_PX);
@@ -25,4 +23,5 @@ void player_init_physic(player_t *player, pe_world_t *world)
     pe_body_add_fixture(body, fixture);
     pe_world_add_body(world, body);
     player->body = body;
+    return body;
 }

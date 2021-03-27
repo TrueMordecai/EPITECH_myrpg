@@ -24,6 +24,8 @@ typedef struct zone_t {
     layer_t **layers;
     struct map_t *map;
     pe_world_t *world;
+    pe_body_t *player_body;
+    char *name;
     int is_battle;
 } zone_t;
 

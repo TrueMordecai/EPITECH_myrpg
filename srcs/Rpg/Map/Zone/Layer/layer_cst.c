@@ -6,5 +6,5 @@
 */
 
 const int TILE_SIZE = 48;
-const int SET_WIDTH = 19;
+const int SET_WIDTH = 49;
 const int SET_HEIGHT = 45;
