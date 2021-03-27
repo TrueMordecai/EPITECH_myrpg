@@ -8,13 +8,32 @@
 #include "Rpg/rpg.h"
 #include "My/my_display.h"
 
+static sfVector2i get_size(battle_t *battle, sfVector2f top_left, sfVector2f br)
+{
+    sfVector2i size_win = {(br.x - top_left.x), (br.y - top_left.y)};
+    sfVector2i size = {MAX(battle->size.x * M_TO_PX, size_win.x), \
+        MAX(battle->size.y * M_TO_PX, size_win.y)};
+
+    return size;
+}
+
+static sfVector2i get_pos(battle_t *battle, sfVector2i size)
+{
+    sfVector2i size_diff = {size.x - battle->size.x * M_TO_PX, \
+        size.y - battle->size.y * M_TO_PX};
+    sfVector2i pos = {CLAMP(battle->pos.x * M_TO_PX - size_diff.x / 2.f, 0, \
+        battle->zone->size.x * M_TO_PX - size.x), \
+        CLAMP(battle->pos.y * M_TO_PX - size_diff.y / 2.f, 0, \
+        battle->zone->size.y * M_TO_PX - size.y)};
+
+    return pos;
+}
+
 static sfVector2f get_offset(zone_t *zone, sfVector2f top_left, \
 sfVector2f br, float dt)
 {
-    int ts = M_TO_PX;
-    sfVector2i size_battle = {zone->battle.size.x * ts, \
-        zone->battle.size.y * ts};
-    sfVector2i pos_battle = {zone->battle.pos.x * ts, zone->battle.pos.y * ts};
+    sfVector2i size_battle = get_size(&zone->battle, top_left, br);
+    sfVector2i pos_battle = get_pos(&zone->battle, size_battle);
     sfVector2f diffs_tl = {\
         (top_left.x < pos_battle.x) ? (-top_left.x + pos_battle.x) : 0, \
         (top_left.y < pos_battle.y) ? (-top_left.y + pos_battle.y) : 0};
@@ -25,13 +44,12 @@ sfVector2f br, float dt)
     (pos_battle.y + size_battle.y) - br.y : 0};
     sfVector2f offset = {0, 0};
 
-    if (fabsf(diffs_tl.x - diffs_br.x) > 0.1f)
-        offset.x = (fabsf(diffs_tl.x) > fabsf(diffs_br.x)) ? \
-    diffs_tl.x : diffs_br.x;
-    if (fabsf(diffs_tl.y - diffs_br.y) > 0.1f)
-        offset.y = (fabsf(diffs_tl.y) > fabsf(diffs_br.y)) ? \
-    diffs_tl.y : diffs_br.y;
-    return (sfVector2f){offset.x * dt, offset.y * dt};
+    offset.x = (fabsf(diffs_tl.x) > fabsf(diffs_br.x)) ? \
+diffs_tl.x : diffs_br.x;
+    offset.y = (fabsf(diffs_tl.y) > fabsf(diffs_br.y)) ? \
+diffs_tl.y : diffs_br.y;
+    return (sfVector2f){MIN(offset.x, powf(offset.x, 2) * dt), \
+        MIN(offset.y, powf(offset.y, 2) * dt)};
 }
 
 void map_correct_pos(map_t *map, float dt)

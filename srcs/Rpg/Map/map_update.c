@@ -22,13 +22,16 @@ sfVector2f pos, map_t *map)
     return pos_flt;
 }
 
-static void assert_offset(map_t *map, sfVector2f *offset)
+static sfVector2f assert_offset(map_t *map, sfVector2f *offset, \
+sfVector2f view_size)
 {
     sfVector2f top_left = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     (sfVector2i){map->view_pos.x, map->view_pos.y}, map->view);
     sfVector2f br = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     (sfVector2i){map->view_pos.x + map->view_size.x, \
         map->view_pos.y + map->view_size.y}, map->view);
+    sfVector2f factors = {1 + 4 * fabsf(offset->x) / view_size.x, \
+        1 + 4 * fabsf(offset->y) / view_size.y};
 
     if (offset->x + top_left.x < 0 && offset->x < 0)
         offset->x = MIN(0, -top_left.x);
@@ -40,6 +43,7 @@ static void assert_offset(map_t *map, sfVector2f *offset)
     else if (offset->y + br.y > map->current_zone->size.y * M_TO_PX && \
         offset->y > 0)
         offset->y = MAX(0, map->current_zone->size.y * M_TO_PX - br.y);
+    return factors;
 }
 
 static void move_view_to_player(map_t *map, float dt)
@@ -50,6 +54,7 @@ static void move_view_to_player(map_t *map, float dt)
     player_pos, map);
     sfVector2f offset = (sfVector2f){local_player_pos.x - view_size.x / \
         2.f, local_player_pos.y - view_size.y / 2.f};
+    sfVector2f factors;
 
     if (abs(offset.x) >= view_size.x / 10.f)
         offset.x = local_player_pos.x - \
@@ -61,8 +66,9 @@ static void move_view_to_player(map_t *map, float dt)
         ((4 + 2 * (offset.y > 0)) * view_size.y) / 10.f;
     else
         offset.y = 0;
-    assert_offset(map, &offset);
-    map_move(map, (sfVector2f){offset.x * dt, offset.y * dt});
+    factors = assert_offset(map, &offset, view_size);
+    map_move(map, (sfVector2f){offset.x * dt * factors.x, \
+        offset.y * dt * factors.y});
 }
 
 void map_update(map_t *map, float dt)
