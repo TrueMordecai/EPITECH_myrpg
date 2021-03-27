@@ -14,6 +14,7 @@
 typedef struct player_t {
     sfRectangleShape *rect;
     sfVector2f pos;
+    sfVector2i dir;
     pe_body_t *body;
 } player_t;
 

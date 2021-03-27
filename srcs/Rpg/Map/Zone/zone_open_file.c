@@ -66,26 +66,27 @@ size_t *i, unsigned char *content)
     } while (content[*i] == 1);
 }
 
-int zone_init_from_file(zone_t *zone, char *file)
+int zone_init_from_file(zone_t *zone, int id, int door, int mother)
 {
     char *file_content = NULL;
     size_t i = 0;
 
-    if (!my_readfile(&file_content, file) || !file_content) {
+    if (!my_readfile(&file_content, ALL_ZONE_NAMES[id]) || !file_content) {
         my_putstr_err("Can't read map\n");
         return 0;
     }
     read_infos(zone, file_content, &i);
-    for (int x = 0; x < zone->size.x; x++) {
+    for (int x = 0; x < zone->size.x; x++)
         for (int y = 0; y < zone->size.y; y++) {
             read_pos(zone, (sfVector2i){x, y}, &i, \
             (unsigned char *)file_content);
             i += (file_content[i] != 0);
         }
-    }
     zone_sort_layers(zone);
     free(file_content);
     battle_compute_layer(&zone->battle);
-    zone->name = file;
+    zone->id = id;
+    zone->mother_zone = mother;
+    zone_place_at_door(zone, door);
     return 1;
 }

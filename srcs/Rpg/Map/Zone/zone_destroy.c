@@ -19,6 +19,8 @@ void zone_destroy(zone_t *zone)
         layer_destroy(zone->battle.layer);
     free(zone->battle.tiles);
     free(zone->special);
+    my_vector_free((size_t **)&zone->ext_doors);
+    my_vector_free((size_t **)&zone->sub_doors);
     if (zone->world)
         pe_world_destroy(zone->world);
     free(zone);

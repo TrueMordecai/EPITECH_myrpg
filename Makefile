@@ -37,9 +37,11 @@ SRCS_BASE := 	main.c \
 				map_destroy.c \
 				\
 				zone_create.c \
+				zone_cst.c \
 				zone_sort_layer.c \
 				zone_init.c \
 				zone_open_file.c \
+				zone_interract.c \
 				zone_draw.c \
 				zone_destroy.c \
 				zone_add_special.c \

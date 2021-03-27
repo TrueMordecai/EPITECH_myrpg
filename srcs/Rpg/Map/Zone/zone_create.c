@@ -14,7 +14,7 @@ zone_t *zone_create(map_t *map)
 
     zone->tiles_size = map->tiles_size;
     zone->map = map;
-    zone->name = NULL;
+    zone->id = -1;
     zone->player_body = NULL;
     return zone;
 }

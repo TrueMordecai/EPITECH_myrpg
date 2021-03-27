@@ -8,6 +8,7 @@
 #include "My/my_memory.h"
 #include "Rpg/rpg.h"
 #include "GameEngine/asset_manager.h"
+#include "My/my_display.h"
 
 void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
 {
@@ -18,6 +19,8 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     if (nb_layers <= 0)
         return;
     zone->size = size;
+    zone->sub_doors = (int *)my_vector_init(sizeof(int), 1);
+    zone->ext_doors = (int *)my_vector_init(sizeof(int), 1);
     battle_init(&zone->battle, zone);
     zone->special = my_calloc(sizeof(int) * size.x * size.y, 0);
     zone->layers = my_calloc(sizeof(layer_t **) * nb_layers, 0);
@@ -29,4 +32,17 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     physic_add_zone_border(zone);
     map_reset_zoom(zone->map);
     map_zoom(zone->map, zone->map->zoom_goal / zone->map->current_zoom);
+}
+
+void zone_place_at_door(zone_t *zone, int door)
+{
+    pe_vec2f_t pos;
+    int id;
+
+    if (door < 0)
+        return;
+    id = zone->ext_doors[door];
+    pos.x = id % zone->size.x;
+    pos.y = id / zone->size.x;
+    pe_body_set_pos(zone->player_body, pos);
 }

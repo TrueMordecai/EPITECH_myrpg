@@ -16,11 +16,11 @@ struct player_t;
 typedef struct battle_t {
     sfVector2i size;
     sfVector2i pos;
-    int tactical;
     int *tiles;
     layer_t *layer;
     struct zone_t *zone;
     struct player_t *player;
+    int tactical;
 } battle_t;
 
 void battle_init(battle_t *battle, struct zone_t *zone);

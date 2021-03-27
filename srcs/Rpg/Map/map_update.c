@@ -46,7 +46,7 @@ sfVector2f view_size)
     return factors;
 }
 
-static void move_view_to_player(map_t *map, float dt)
+void move_view_to_player(map_t *map, float dt)
 {
     sfVector2f view_size = map->view_size;
     sfVector2f player_pos = map->rpg->player->pos;
@@ -67,8 +67,8 @@ static void move_view_to_player(map_t *map, float dt)
     else
         offset.y = 0;
     factors = assert_offset(map, &offset, view_size);
-    map_move(map, (sfVector2f){offset.x * dt * factors.x, \
-        offset.y * dt * factors.y});
+    map_move(map, (sfVector2f){offset.x * MIN(1, dt * factors.x), \
+        offset.y * MIN(1, dt * factors.y)});
 }
 
 void map_update(map_t *map, float dt)

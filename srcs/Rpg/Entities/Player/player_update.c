@@ -6,6 +6,23 @@
 */
 
 #include "Rpg/rpg.h"
+#include "My/my_display.h"
+
+static void update_dir(player_t *player, sfVector2f offset)
+{
+    if (offset.x < 0)
+        player->dir.x = -1;
+    else if (offset.x > 0)
+        player->dir.x = 1;
+    if (offset.y < 0)
+        player->dir.y = -1;
+    else if (offset.y > 0)
+        player->dir.y = 1;
+    if ((offset.x == 0) ^ (offset.y == 0)) {
+        player->dir.x -= player->dir.x * (offset.x == 0);
+        player->dir.y -= player->dir.y * (offset.y == 0);
+    }
+}
 
 void player_update(player_t *player, float dt)
 {
@@ -22,6 +39,7 @@ void player_update(player_t *player, float dt)
         offset.x = -amplitude;
     if (sfKeyboard_isKeyPressed(sfKeyD))
         offset.x = amplitude;
+    update_dir(player, offset);
     if (offset.x != 0)
         player->body->velocity.x = offset.x;
     if (offset.y != 0)

@@ -6,8 +6,21 @@
 */
 
 #include "Rpg/rpg.h"
+#include "My/my_display.h"
 
 void zone_add_special(zone_t *zone, sfVector2i pos, int special)
 {
-    zone->special[pos.x + pos.y * zone->size.x] = special;
+    zone->special[pos.x + pos.y * zone->size.x] = special + 1;
+    switch (special + 1) {
+    case SUB_DOOR:
+        my_vector_push((size_t **)&zone->sub_doors, \
+        pos.x + pos.y * zone->size.x);
+        break;
+    case EXT_DOOR:
+        my_vector_push((size_t **)&zone->ext_doors, \
+        pos.x + pos.y * zone->size.x);
+        break;
+    default:
+        break;
+    }
 }

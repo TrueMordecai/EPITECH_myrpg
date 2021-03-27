@@ -25,6 +25,6 @@ map_t *map_create(rpg_t *rpg)
     sfView_setCenter(map->view, (sfVector2f){map->view_size.x / 2, \
         map->view_size.y / 2});
     sfView_move(map->view, (sfVector2f){-map->view_pos.x, -map->view_pos.y});
-    map_load_zone(map, "assets/Zones/zone_test");
+    map_load_zone(map, ZONE_START, -1, -1);
     return map;
 }
