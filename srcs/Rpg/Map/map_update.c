@@ -30,8 +30,8 @@ sfVector2f view_size)
     sfVector2f br = sfRenderWindow_mapPixelToCoords(map->rpg->wind, \
     (sfVector2i){map->view_pos.x + map->view_size.x, \
         map->view_pos.y + map->view_size.y}, map->view);
-    sfVector2f factors = {1 + 4 * fabsf(offset->x) / view_size.x, \
-        1 + 4 * fabsf(offset->y) / view_size.y};
+    sfVector2f factors = {powf(1.5f + 4 * fabsf(offset->x) / view_size.x, 2), \
+        powf(1.5f + 4 * fabsf(offset->y) / view_size.y, 2)};
 
     if (offset->x + top_left.x < 0 && offset->x < 0)
         offset->x = MIN(0, -top_left.x);
@@ -77,6 +77,6 @@ void map_update(map_t *map, float dt)
         move_view_to_player(map, dt);
     map_correct_pos(map, dt);
     map_update_zoom(map, dt);
-    if (map->current_zone->world)
+    if (map->current_zone->world && !map->current_zone->is_battle)
         pe_world_update(map->current_zone->world, dt * 1000);
 }

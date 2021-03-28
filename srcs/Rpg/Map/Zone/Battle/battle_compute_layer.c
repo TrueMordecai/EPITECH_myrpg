@@ -30,6 +30,8 @@ static sfRectangleShape *init_rect(int flags, int x, int y)
 
 void battle_compute_layer(battle_t *battle)
 {
+    if (!battle->zone)
+        return;
     layer_init(battle->layer, battle->size, (sfVector2i){0, 0});
     for (int x = 0; x < battle->size.x; x++) {
         for (int y = 0; y < battle->size.y; y++)

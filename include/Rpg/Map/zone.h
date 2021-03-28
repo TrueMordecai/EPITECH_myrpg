@@ -53,6 +53,7 @@ void zone_draw_layers(zone_t *zone, sfRenderWindow *wind, \
 sfVector2i min, sfVector2i max);
 void zone_destroy(zone_t *zone);
 
+int zone_assert_id(zone_t *zone, int x, int y, int *id);
 void zone_add_special(zone_t *zone, sfVector2i pos, int special);
 
 #endif /* !ZONE_H */

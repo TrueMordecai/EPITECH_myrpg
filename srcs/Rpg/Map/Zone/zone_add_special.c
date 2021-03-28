@@ -10,6 +10,8 @@
 
 void zone_add_special(zone_t *zone, sfVector2i pos, int special)
 {
+    if (!zone_assert_id(zone, pos.x, pos.y, NULL))
+        return;
     zone->special[pos.x + pos.y * zone->size.x] = special + 1;
     switch (special + 1) {
     case SUB_DOOR:

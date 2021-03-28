@@ -39,7 +39,7 @@ void zone_place_at_door(zone_t *zone, int door)
     pe_vec2f_t pos;
     int id;
 
-    if (door < 0)
+    if (door < 0 || door >= my_vector_get_size((size_t *)zone->ext_doors))
         return;
     id = zone->ext_doors[door];
     pos.x = id % zone->size.x;

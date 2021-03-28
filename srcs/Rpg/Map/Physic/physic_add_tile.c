@@ -6,7 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
-#include "My/my_display.h"
+
 void physic_add_tile(pe_world_t *world, pe_vec2f_t pos)
 {
     pe_body_t *body = pe_body_init(STATIC, 2, 0);
@@ -44,7 +44,7 @@ static void init_shape_tri(pe_shape_t *shape, int dir)
     pe_shape_init_polygon(shape, VEC2F(0, 0), v_alloc, 3);
 }
 
-void physic_add_shaped_tile(zone_t *zone, sfVector2i pos, int tile)
+static pe_body_t *init_body(sfVector2i pos, int tile)
 {
     pe_body_t *body = pe_body_init(STATIC, 2, 0);
     pe_fixture_t *fixture = pe_fixture_init();
@@ -64,6 +64,13 @@ void physic_add_shaped_tile(zone_t *zone, sfVector2i pos, int tile)
     }
     body->pos = VEC2F(pos.x, pos.y);
     pe_body_add_fixture(body, fixture);
-    pe_world_add_body(zone->world, body);
+    return body;
+}
+
+void physic_add_shaped_tile(zone_t *zone, sfVector2i pos, int tile)
+{
+    if (!zone->world)
+        return;
+    pe_world_add_body(zone->world, init_body(pos, tile));
     zone->battle.tiles[pos.x + pos.y * zone->size.x] = SOLID + (tile >= 16);
 }

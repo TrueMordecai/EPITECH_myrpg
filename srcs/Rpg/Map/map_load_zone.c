@@ -32,6 +32,8 @@ void map_load_zone(map_t *map, int id, int door, int mother)
         zone_init_from_file(zone, id, door, mother);
         my_vector_push((size_t **)&map->zones, (size_t)zone);
     }
+    if (!zone->world)
+        return;
     map->rpg->player->body = zone->player_body;
     player_update(map->rpg->player, 1);
     map->rpg->player->body->velocity = VEC2F(0, 0);

@@ -11,6 +11,8 @@ void my_vector_free(size_t **vec)
 {
     size_t *beg_vec = &(*vec)[-3];
 
+    if (!(*vec))
+        return;
     free(beg_vec);
     *vec = NULL;
 }

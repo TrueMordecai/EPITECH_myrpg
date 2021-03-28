@@ -8,11 +8,12 @@
 #include "Rpg/rpg.h"
 #include "My/my_display.h"
 
-static int get_valid_id(zone_t *zone, int x, int y, int *id)
+int zone_assert_id(zone_t *zone, int x, int y, int *id)
 {
     if (x < 0 || x >= zone->size.x || y < 0 || y >= zone->size.y)
         return 0;
-    *id = x + y * zone->size.x;
+    if (id)
+        *id = x + y * zone->size.x;
     return 1;
 }
 
@@ -22,15 +23,17 @@ sfVector2i start)
     int id;
     sfVector2i lat_dir = {(dir.x) ? 0 : 1, (dir.y) ? 0 : 1};
 
+    if (!zone->world)
+        return (sfVector2i){-1, -1};
     if (zone->special[start.x + start.y * zone->size.x])
         return start;
-    if (get_valid_id(zone, start.x + dir.x, start.y + dir.y, &id) && \
+    if (zone_assert_id(zone, start.x + dir.x, start.y + dir.y, &id) && \
         zone->special[id])
         return (sfVector2i){start.x + dir.x, start.y + dir.y};
-    if (get_valid_id(zone, start.x + lat_dir.x, start.y + lat_dir.y, &id) && \
+    if (zone_assert_id(zone, start.x + lat_dir.x, start.y + lat_dir.y, &id) && \
         zone->special[id])
         return (sfVector2i){start.x + lat_dir.x, start.y + lat_dir.y};
-    if (get_valid_id(zone, start.x - lat_dir.x, start.y - lat_dir.y, &id) && \
+    if (zone_assert_id(zone, start.x - lat_dir.x, start.y - lat_dir.y, &id) && \
         zone->special[id])
         return (sfVector2i){start.x - lat_dir.x, start.y - lat_dir.y};
     return (sfVector2i){-1, -1};
@@ -57,7 +60,7 @@ static void handle_doors(zone_t *zone, sfVector2i pos, int pos_id, int doors)
     int open_door = -1;
     int mother = -1;
 
-    if (door_id == -1)
+    if (door_id == -1 || (doors != SUB_DOOR && doors != EXT_DOOR))
         return;
     if (doors == SUB_DOOR) {
         zone_id = SUB_ZONES_IDS[zone->id][door_id];
