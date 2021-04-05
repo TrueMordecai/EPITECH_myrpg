@@ -10,11 +10,14 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
+#include <libmy/collections/vec.h>
 
 typedef struct game_data_t {
-    struct state_t **states;
-    struct sfRenderWindow *window;
+    /// A vector of element type 'state_t' (note the lack of a '*')
+    my_vec_t states;
+    /// Array of state data, same size as @ref states.
     size_t *datas;
+    struct sfRenderWindow *window;
     struct asset_manager_t *assets;
     struct audio_manager_t *audio;
     struct game_settings_t *settings;
@@ -24,4 +27,4 @@ game_data_t *init_game(sfVideoMode *mode, char const *name);
 void run(game_data_t *data);
 void destroy_game(game_data_t *data);
 
-#endif
+#endif // !defined(GE_GAME_H)

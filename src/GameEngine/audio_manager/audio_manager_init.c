@@ -5,73 +5,68 @@
 ** audio manager functions
 */
 
-#include "GameEngine/game_head.h"
-#include "functions.h"
+#include <stdalign.h>
 
-void init_audio_manager(audio_manager_t *audio_manager, \
-game_settings_t *settings)
+#include "functions.h"
+#include "GameEngine/game_head.h"
+
+void init_audio_manager(
+    audio_manager_t *audio_manager, game_settings_t *settings)
 {
-    audio_manager->sounds = my_map(char *, audio_t *, my_map_strcmp, 0, 1);
-    audio_manager->musics = my_map(char *, audio_t *, my_map_strcmp, 0, 1);
-    audio_manager->musics_playing = \
-    (sfMusic **)my_vector_init(sizeof(sfMusic *), 3);
-    audio_manager->sounds_playing = \
-    (sfSound **)my_vector_init(sizeof(sfSound *), 10);
+    const my_map_kvtypes_t kvtypes = {
+        .key_size = sizeof(char *),
+        .key_align = alignof(char *),
+        .value_size = sizeof(audio_t),
+        .value_align = alignof(audio_t),
+        .hash = MY_HASH_MAP_CSTR_HASH,
+        .compare = MY_HASH_MAP_CSTR_CMP,
+    };
+
+    my_hash_map_init(&audio_manager->sounds, &kvtypes);
+    my_hash_map_init(&audio_manager->music, &kvtypes);
+    my_vec_init_capacity(&audio_manager->music_playing, 3, sizeof(sfMusic *));
+    my_vec_init_capacity(
+        &audio_manager->sounds_playing, 10, sizeof(sfMusic *));
     audio_manager->settings = settings;
     load_audio(audio_manager);
 }
 
-void load_sound(audio_manager_t *audio_manager, char const *name, \
-char const *filepath)
+void load_sound(
+    audio_manager_t *audio_manager, char const *name, char const *filepath)
 {
-    audio_t *elmt = (audio_t *)my_map_find(audio_manager->sounds, \
-    (size_t)name);
-    sfSoundBuffer *sound;
-    audio_t *audio;
+    audio_t audio;
 
-    if (elmt != 0){
+    if (my_hash_map_contains(&audio_manager->sounds, &name))
         return;
-    }
-    sound = sfSoundBuffer_createFromFile(filepath);
-    if (sound == NULL)
+    audio.sound = sfSoundBuffer_createFromFile(filepath);
+    if (audio.sound == NULL)
         return;
-    audio = malloc(sizeof(audio_t));
-    audio->sound = sound;
-    my_map_insert(audio_manager->sounds, (size_t)name, (size_t)audio);
+    my_hash_map_insert(&audio_manager->sounds, &name, &audio);
 }
 
-void load_music(audio_manager_t *audio_manager, char const *name, \
-char const *filepath)
+void load_music(
+    audio_manager_t *audio_manager, char const *name, char const *filepath)
 {
-    audio_t *elmt = (audio_t *)my_map_find(audio_manager->musics, (size_t)name);
-    sfMusic *music;
-    audio_t *audio;
+    audio_t audio;
 
-    if (elmt != NULL)
+    if (my_hash_map_contains(&audio_manager->sounds, &name))
         return;
-    music = sfMusic_createFromFile(filepath);
-    if (music == NULL)
+    audio.music = sfMusic_createFromFile(filepath);
+    if (audio.sound == NULL)
         return;
-    audio = malloc(sizeof(audio_t));
-    audio->music = music;
-    my_map_insert(audio_manager->musics, (size_t)name, (size_t)audio);
+    my_hash_map_insert(&audio_manager->sounds, &name, &audio);
 }
 
 sfSoundBuffer *get_sound(audio_manager_t *audio_manager, char const *name)
 {
-    audio_t *elmt = (audio_t *)my_map_find(audio_manager->sounds, \
-    (size_t)name);
+    audio_t *audio = my_hash_map_get(&audio_manager->sounds, &name);
 
-    if (elmt == NULL)
-        return NULL;
-    return elmt->sound;
+    return audio == NULL ? NULL : audio->sound;
 }
 
 sfMusic *get_music(audio_manager_t *audio_manager, char const *name)
 {
-    audio_t *elmt = (audio_t *)my_map_find(audio_manager->musics, (size_t)name);
+    audio_t *audio = my_hash_map_get(&audio_manager->sounds, &name);
 
-    if (elmt == NULL)
-        return NULL;
-    return elmt->music;
+    return audio == NULL ? NULL : audio->music;
 }

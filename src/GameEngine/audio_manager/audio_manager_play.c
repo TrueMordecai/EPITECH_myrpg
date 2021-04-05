@@ -5,7 +5,10 @@
 ** Game engine - audio manager
 */
 
-#include "GameEngine/game_head.h"
+#include <SFML/Audio/Music.h>
+#include <SFML/Audio/Sound.h>
+
+#include "GameEngine/audio_manager.h"
 
 void play_sound(audio_manager_t *audio_manager, char const *name)
 {
@@ -18,7 +21,7 @@ void play_sound(audio_manager_t *audio_manager, char const *name)
     sfSound_setBuffer(sound, buffer);
     sfSound_setVolume(sound, audio_manager->settings->sound_volume);
     sfSound_play(sound);
-    my_vector_push((size_t **)&audio_manager->sounds_playing, (size_t)sound);
+    my_vec_push(&audio_manager->sounds_playing, &sound);
 }
 
 void play_music(audio_manager_t *audio_manager, char const *name, int loop)
@@ -30,52 +33,31 @@ void play_music(audio_manager_t *audio_manager, char const *name, int loop)
     sfMusic_setVolume(music, audio_manager->settings->music_volume);
     sfMusic_setLoop(music, loop);
     sfMusic_play(music);
-    my_vector_push((size_t **)&audio_manager->musics_playing, (size_t)music);
+    my_vec_push(&audio_manager->music_playing, &music);
 }
 
 void update_sounds(audio_manager_t *audio_manager, int stop_all)
 {
-    size_t nb_sounds = \
-    my_vector_get_size((size_t *)audio_manager->sounds_playing);
+    size_t sounds_count = audio_manager->sounds_playing.length;
 
-    for (size_t i = 0; i < nb_sounds; i++){
-        if (stop_all || \
-        sfSound_getStatus(audio_manager->sounds_playing[i]) == sfStopped){
-            sfSound_destroy(audio_manager->sounds_playing[i]);
-            my_vector_erase((size_t *)audio_manager->sounds_playing, i, 0);
-            i--;
-            nb_sounds--;
+    for (size_t i = 0; i < sounds_count; ++i) {
+        sfSound *sound =
+            MY_VEC_GET_ELEM(sfSound *, &audio_manager->sounds_playing, i);
+
+        if (stop_all || sfSound_getStatus(sound) == sfStopped) {
+            sfSound_destroy(sound);
+            my_vec_remove(&audio_manager->sounds_playing, NULL, i--);
+            --sounds_count;
         }
     }
 }
 
-void stop_musics(audio_manager_t *audio_manager)
+void stop_music(audio_manager_t *audio_manager)
 {
-    size_t nb_musics = \
-    my_vector_get_size((size_t *)audio_manager->musics_playing);
+    size_t music_count = audio_manager->music_playing.length;
 
-    for (size_t i = 0; i < nb_musics; i++)
-        sfMusic_stop(audio_manager->musics_playing[i]);
-    my_vector_clear((size_t *)audio_manager->musics_playing, 0);
-}
-
-void destroy_audio_manager(audio_manager_t **manager_adr)
-{
-    audio_manager_t *manager = *manager_adr;
-    size_t nb_buffers = my_map_size(manager->sounds);
-    size_t nb_musics = my_map_size(manager->musics);
-
-    update_sounds(manager, 1);
-    stop_musics(manager);
-    my_vector_free((size_t **)&manager->musics_playing);
-    my_vector_free((size_t **)&manager->sounds_playing);
-    for (size_t i = 0; i < nb_buffers; i++)
-        sfSoundBuffer_destroy(\
-        ((audio_t *)my_map_at(manager->sounds, i))->sound);
-    for (size_t i = 0; i < nb_musics; i++)
-        sfMusic_destroy(((audio_t *)my_map_at(manager->musics, i))->music);
-    my_map_free(&manager->musics);
-    my_map_free(&manager->sounds);
-    free(manager);
-    *manager_adr = 0;
+    for (size_t i = 0; i < music_count; ++i)
+        sfMusic_stop(
+            MY_VEC_GET_ELEM(sfSound *, &audio_manager->music_playing, i));
+    audio_manager->music_playing.length = 0;
 }

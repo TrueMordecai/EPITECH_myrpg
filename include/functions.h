@@ -26,7 +26,6 @@ struct state_t;
 
 #define MS_UPDATE 5
 
-int my_map_strcmp(char *s1, size_t s2);
 int my_map_intcmp(char *s1, size_t s2);
 int my_map_charcmp(char *s1, size_t s2);
 

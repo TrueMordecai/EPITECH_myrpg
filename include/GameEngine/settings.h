@@ -11,9 +11,9 @@
 #include <SFML/Graphics.h>
 
 #define SCL(state) (state->game_data->settings->scale)
-#define SL(rpg) SCL((rpg)->state)
+#define SL(rpg)    SCL((rpg)->state)
 
-typedef struct game_settings_t {
+typedef struct game_settings_s {
     sfVector2u wind_size;
     unsigned int limit_framerate;
     float music_volume;

@@ -9,13 +9,12 @@
 #include <unistd.h>
 #include "GameEngine/game_head.h"
 #include "States/Menu/menu_state.h"
-#include "My/my_display.h"
 
 void destroy_game(game_data_t *data)
 {
     size_t nb_state = my_vector_get_size((size_t *)data->states);
 
-    for (size_t i = 0; i < nb_state; i++){
+    for (size_t i = 0; i < nb_state; i++) {
         data->states[i]->destroy(data->states[i], NONE);
     }
     free(data->datas);
@@ -30,8 +29,8 @@ void destroy_game(game_data_t *data)
 static void init_window(game_data_t *data, sfVideoMode *mode, char const *name)
 {
     data->window = sfRenderWindow_create(*mode, name, sfClose, NULL);
-    sfRenderWindow_setFramerateLimit(data->window, \
-    data->settings->limit_framerate);
+    sfRenderWindow_setFramerateLimit(
+        data->window, data->settings->limit_framerate);
 }
 
 game_data_t *init_game(sfVideoMode *mode, char const *name)
@@ -40,7 +39,7 @@ game_data_t *init_game(sfVideoMode *mode, char const *name)
 
     data->datas = NULL;
     data->settings = game_settings_init();
-    if (data->settings == NULL){
+    if (data->settings == NULL) {
         free(data);
         return NULL;
     }
@@ -56,8 +55,14 @@ game_data_t *init_game(sfVideoMode *mode, char const *name)
     return data;
 }
 
-static void run_2(game_data_t *data, float *times, sfClock *clock, \
-state_t **current_state)
+/*
+** Times array:
+** 0 = new_time
+** 1 = current_time
+** 2 = accumulator
+*/
+static void run_2(
+    game_data_t *data, float times[2], sfClock *clock, state_t **current_state)
 {
     float interpolation = 0;
     float init_ms = (1 / (float)data->settings->limit_framerate) * 1000;
@@ -80,17 +85,11 @@ state_t **current_state)
     (*current_state)->draw(*current_state, interpolation);
 }
 
-/*
-** Times array:
-** 0 = new_time
-** 1 = current_time
-** 2 = accumulator
-*/
 void run(game_data_t *data)
 {
     sfClock *clock = sfClock_create();
     float times[3] = {0};
-    state_t *current_state =(state_t *)my_vector_top((size_t *)data->states);
+    state_t *current_state = (state_t *)my_vector_top((size_t *)data->states);
 
     times[1] = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
     while (sfRenderWindow_isOpen(data->window))

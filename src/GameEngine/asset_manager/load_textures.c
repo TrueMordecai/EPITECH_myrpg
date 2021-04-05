@@ -5,11 +5,11 @@
 ** load textures
 */
 
-#include "GameEngine/game_head.h"
+#include "GameEngine/asset_manager.h"
 
 static void load_fonts(asset_manager_t *manager)
 {
-    //load_font(manager, "roboto_font", "assets/Fonts/fontname.ttf");
+    // load_font(manager, "roboto_font", "assets/Fonts/fontname.ttf");
 }
 
 void load_all_textures(asset_manager_t *manager)

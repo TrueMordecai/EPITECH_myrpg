@@ -5,68 +5,75 @@
 ** asset manager functions
 */
 
-#include "GameEngine/game_head.h"
+#include <stdalign.h>
+
 #include "functions.h"
+#include "GameEngine/asset_manager.h"
+
+static const my_map_kvtypes_t FONTS_KVTYPES = {
+    .key_size = sizeof(char *),
+    .key_align = alignof(char *),
+    .value_size = sizeof(asset_t),
+    .value_align = alignof(asset_t),
+    .hash = MY_HASH_MAP_CSTR_HASH,
+    .compare = MY_HASH_MAP_CSTR_CMP,
+    .value_drop = (my_map_drop_t)&font_asset_drop,
+};
+
+static const my_map_kvtypes_t TEXTURES_KVTYPES = {
+    .key_size = sizeof(char *),
+    .key_align = alignof(char *),
+    .value_size = sizeof(asset_t),
+    .value_align = alignof(asset_t),
+    .hash = MY_HASH_MAP_CSTR_HASH,
+    .compare = MY_HASH_MAP_CSTR_CMP,
+    .value_drop = (my_map_drop_t)&texture_asset_drop,
+};
 
 void init_asset_manager(asset_manager_t *asset_manager)
 {
-    asset_manager->fonts = my_map(char *, asset_t *, my_map_strcmp, 0, 1);
-    asset_manager->textures = my_map(char *, asset_t *, my_map_strcmp, 0, 1);
+    my_hash_map_init(&asset_manager->fonts, &FONTS_KVTYPES);
+    my_hash_map_init(&asset_manager->textures, &TEXTURES_KVTYPES);
     load_all_textures(asset_manager);
 }
 
-void load_texture(asset_manager_t *asset_manager, char const *name, \
-char const *filepath)
+void load_texture(
+    asset_manager_t *asset_manager, char const *name, char const *filepath)
 {
-    asset_t *elmt = (asset_t *)my_map_find(asset_manager->textures, \
-    (size_t)name);
-    sfTexture *texture;
-    asset_t *asset;
+    asset_t asset;
 
-    if (elmt != 0){
+    if (my_hash_map_contains(&asset_manager->textures, &name))
         return;
-    }
-    texture = sfTexture_createFromFile(filepath, NULL);
-    if (texture == NULL)
+    asset.texture = sfTexture_createFromFile(filepath, NULL);
+    if (asset.texture == NULL)
         return;
-    sfTexture_setSmooth(texture, 1);
-    asset = malloc(sizeof(asset_t));
-    asset->texture = texture;
-    my_map_insert(asset_manager->textures, (size_t)name, (size_t)asset);
+    sfTexture_setSmooth(asset.texture, 1);
+    my_hash_map_insert(&asset_manager->textures, &name, &asset);
 }
 
-void load_font(asset_manager_t *asset_manager, char const *name, \
-char const *filepath)
+void load_font(
+    asset_manager_t *asset_manager, char const *name, char const *filepath)
 {
-    asset_t *elmt = (asset_t *)my_map_find(asset_manager->fonts, (size_t)name);
-    sfFont *font;
-    asset_t *asset;
+    asset_t asset;
 
-    if (elmt != NULL)
+    if (my_hash_map_contains(&asset_manager->textures, &name))
         return;
-    font = sfFont_createFromFile(filepath);
-    if (font == NULL)
+    asset.font = sfFont_createFromFile(filepath);
+    if (asset.font == NULL)
         return;
-    asset = malloc(sizeof(asset_t));
-    asset->font = font;
-    my_map_insert(asset_manager->fonts, (size_t)name, (size_t)asset);
+    my_hash_map_insert(&asset_manager->fonts, &name, &asset);
 }
 
 sfTexture *get_texture(asset_manager_t *asset_manager, char const *name)
 {
-    asset_t *elmt = (asset_t *)my_map_find(asset_manager->textures, \
-    (size_t)name);
+    asset_t *asset = my_hash_map_get(&asset_manager->textures, &name);
 
-    if (elmt == NULL)
-        return NULL;
-    return elmt->texture;
+    return asset == NULL ? NULL : asset->texture;
 }
 
 sfFont *get_font(asset_manager_t *asset_manager, char const *name)
 {
-    asset_t *elmt = (asset_t *)my_map_find(asset_manager->fonts, (size_t)name);
+    asset_t *asset = my_hash_map_get(&asset_manager->textures, &name);
 
-    if (elmt == NULL)
-        return NULL;
-    return elmt->font;
+    return asset == NULL ? NULL : asset->font;
 }
