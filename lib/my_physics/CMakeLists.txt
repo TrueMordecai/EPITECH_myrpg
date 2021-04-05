@@ -38,8 +38,12 @@ set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 # add ./cmake/modules to the module path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
-# find dependencies
-find_package(LibMy 0.3.0 COMPONENTS my-memory my-collections REQUIRED)
+# find dependencies, if necessary
+if (NOT DEFINED LIBMY_LIBRARIES OR NOT DEFINED LIBMY_INCLUDE_DIR)
+    find_package(LibMy 0.3.2 COMPONENTS my-memory my-collections REQUIRED)
+endif()
+message("LIBMY_LIBRARIES: [${LIBMY_LIBRARIES}]")
+message("LIBMY_INCLUDE_DIR: '${LIBMY_INCLUDE_DIR}'")
 
 # add the subdirectories
 add_subdirectory(src/Physics)

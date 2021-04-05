@@ -29,9 +29,9 @@ else()
     add_library(physics STATIC ${SRC})
 
     # copy static library to project root after build
-    add_custom_command(TARGET matchstick 
+    add_custom_command(TARGET physics
     	POST_BUILD
-    	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:matchstick> ${PROJECT_SOURCE_DIR})
+    	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:physics> ${PROJECT_SOURCE_DIR})
 endif()
 
 # setup dependencies
