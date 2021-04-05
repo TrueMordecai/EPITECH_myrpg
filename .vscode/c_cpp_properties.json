@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "MyRPG",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "LIBMY_ALLOW_MALLOC_FREE",
+                "LIBMY_ALLOW_OPEN",
+                "LIBMY_ALLOW_READ",
+                "LIBMY_ALLOW_CLOSE",
+                "LIBMY_ALLOW_WRITE",
+                "LIBMY_LITTLE_ENDIAN"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "gcc-x64",
+            "compilerArgs": []
+        }
+    ],
+    "version": 4
+}
