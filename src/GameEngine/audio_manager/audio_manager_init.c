@@ -10,7 +10,7 @@
 #include "functions.h"
 #include "GameEngine/game_head.h"
 
-void init_audio_manager(
+void audio_manager_init(
     audio_manager_t *audio_manager, game_settings_t *settings)
 {
     const my_map_kvtypes_t kvtypes = {

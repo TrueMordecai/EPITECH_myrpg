@@ -36,10 +36,10 @@ struct audio_manager {
     game_settings_t *settings;
 };
 
-void init_audio_manager(
+void audio_manager_init(
     audio_manager_t *audio_manager, game_settings_t *settings);
 void load_audio(audio_manager_t *manager);
-void audio_manager_destroy(audio_manager_t **manager_adr);
+void audio_manager_drop(audio_manager_t *manager);
 
 void load_sound(
     audio_manager_t *audio_manager, char const *name, char const *filepath);

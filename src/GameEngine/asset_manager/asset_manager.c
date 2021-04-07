@@ -30,7 +30,7 @@ static const my_map_kvtypes_t TEXTURES_KVTYPES = {
     .value_drop = (my_map_drop_t)&texture_asset_drop,
 };
 
-void init_asset_manager(asset_manager_t *asset_manager)
+void asset_manager_init(asset_manager_t *asset_manager)
 {
     my_hash_map_init(&asset_manager->fonts, &FONTS_KVTYPES);
     my_hash_map_init(&asset_manager->textures, &TEXTURES_KVTYPES);

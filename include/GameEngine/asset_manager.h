@@ -23,9 +23,11 @@ struct asset_manager {
     my_hash_map_t textures;
 };
 
-void init_asset_manager(asset_manager_t *asset_manager);
+void asset_manager_init(asset_manager_t *asset_manager);
+/// Uninitializes the asset manager, but does not free the passed pointer.
+void asset_manager_drop(asset_manager_t *manager);
+
 void load_all_textures(asset_manager_t *manager);
-void asset_manager_destroy(asset_manager_t **assets);
 
 void load_texture(
     asset_manager_t *asset_manager, char const *name, char const *filepath);

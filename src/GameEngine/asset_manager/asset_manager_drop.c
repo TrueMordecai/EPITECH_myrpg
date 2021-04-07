@@ -2,19 +2,17 @@
 ** EPITECH PROJECT, 2020
 ** My runner
 ** File description:
-** Game Engine - destroy asset manager
+** Game Engine - uninitializes the asset manager
 */
 
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/Texture.h>
-#include <libmy/memory/alloc.h>
 #include <GameEngine/asset_manager.h>
 
-void asset_manager_destroy(asset_manager_t **assets)
+void asset_manager_drop(asset_manager_t *manager)
 {
-    my_hash_map_drop(&(*assets)->fonts);
-    my_hash_map_drop(&(*assets)->textures);
-    my_sfree((void **)assets);
+    my_hash_map_drop(&manager->fonts);
+    my_hash_map_drop(&manager->textures);
 }
 
 void font_asset_drop(asset_t *asset)
