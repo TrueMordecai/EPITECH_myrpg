@@ -32,6 +32,10 @@ set(LIBMY_LIBRARIES $<TARGET_FILE:my-memory> $<TARGET_FILE:my-collections>)
 set(LIBMY_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/lib/my/include")
 add_subdirectory(lib/my_physics)
 
+# External dependencies
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+find_package(CSFML 2.1 COMPONENTS system window graphics audio REQUIRED)
+
 # Unit Testing
 if (BUILD_TEST_SUITE)
     set(LIBMY_BUILD_TEST_SUITE TRUE)

@@ -28,5 +28,6 @@ if (CMAKE_COMPILER_IS_GNUCC)
     target_compile_options(my_rpg PRIVATE -O1 -Wall -Wextra -Wshadow)
 endif()
 
-target_link_libraries(my_rpg PRIVATE physics my-ascii my-collections my-io my-memory my-parsing my-printf)
+target_link_libraries(my_rpg PRIVATE physics ${CSFML_LIBRARIES} my-ascii my-collections my-io my-memory my-parsing my-printf m)
+include_directories(${CSFML_INCLUDE_DIR})
 target_include_directories(my_rpg PRIVATE ${INCROOT})
