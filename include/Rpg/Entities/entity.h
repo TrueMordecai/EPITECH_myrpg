@@ -21,7 +21,8 @@ typedef struct entity_t {
     void *datas;
 } entity_t;
 
-entity_t *entity_create(void *datas, enum entity_type_e type, enum team_e team, int pos);
+entity_t *entity_create(void *datas, enum entity_type_e type, \
+enum team_e team, int pos);
 void entity_destroy(entity_t *entity);
 
 #endif /* !ENTITY_H_ */

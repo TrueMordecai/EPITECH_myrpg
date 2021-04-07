@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "My/my_display.h"
 
 void physic_add_tile(pe_world_t *world, pe_vec2f_t pos)
 {

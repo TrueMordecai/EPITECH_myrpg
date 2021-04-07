@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "Rpg/Map/zone.h"
+#include "Rpg/Fight/fight.h"
 
 void zone_destroy(zone_t *zone)
 {
@@ -17,6 +18,8 @@ void zone_destroy(zone_t *zone)
     }
     if (zone->battle.layer)
         layer_destroy(zone->battle.layer);
+    if (zone->battle.fight)
+        fight_destroy(zone->battle.fight);
     free(zone->battle.tiles);
     free(zone->special);
     my_vector_free((size_t **)&zone->ext_doors);

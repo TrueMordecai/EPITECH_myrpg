@@ -13,6 +13,9 @@ void fight_destroy(fight_t *fight)
         if (fight->entities[i]->type == ENNEMY)
             entity_destroy(fight->entities[i]);
     }
+    for (int i = 0; i < 100; i++)
+        sfRectangleShape_destroy(fight->rect_buffer[i]);
+    free(fight->rect_buffer);
     free(fight->entities);
     free(fight->grid);
     free(fight);

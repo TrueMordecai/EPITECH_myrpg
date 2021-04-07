@@ -38,8 +38,12 @@ SRCS_BASE := 	main.c \
 				entity_destroy.c \
 				\
 				\
+				cell_tests.c \
 				fight_create.c \
 				fight_update.c \
+				fight_pos_vec_conversions.c \
+				fight_rect_buff.c \
+				fight_draw.c \
 				fight_destroy.c \
 				fight_get_tile.c \
 				\
