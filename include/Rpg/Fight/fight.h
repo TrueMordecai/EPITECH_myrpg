@@ -45,6 +45,7 @@ int fight_vec_to_pos(fight_t *fight, sfVector2i vec);
 int fight_xy_to_pos(fight_t *fight, int x, int y);
 int fight_world_vec_to_pos(fight_t *fight, sfVector2f world_vec);
 int fight_get_mouse_tile(fight_t *fight);
+void fight_draw_line(fight_t *fight, int from, int to);
 
 void fight_reset_buff(fight_t *fight);
 void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
