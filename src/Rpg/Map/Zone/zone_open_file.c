@@ -5,7 +5,9 @@
 ** zone open file
 */
 
+#include <libmy/io/iostream.h>
 #include <stdlib.h>
+
 #include "Rpg/Map/physic.h"
 #include "Rpg/Map/zone.h"
 
@@ -69,7 +71,7 @@ int zone_init_from_file(zone_t *zone, int id, int door, int mother)
     size_t i = 0;
 
     if (!my_readfile(&file_content, ALL_ZONE_NAMES[id]) || !file_content) {
-        my_putstr_err("Can't read map\n");
+        my_eputs("Can't read map\n");
         return 0;
     }
     read_infos(zone, file_content, &i);

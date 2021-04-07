@@ -5,6 +5,7 @@
 ** main
 */
 
+#include <libmy/ascii.h>
 #include <libmy/io/iostream.h>
 #include <stdlib.h>
 #include <time.h>
@@ -37,7 +38,7 @@ int my_rpg(int argc, char *argv[])
         show_usage();
         return 0;
     }
-    data = game_create(&mode, "My RPG");
+    data = game_data_create(&mode, "My RPG");
     if (data == NULL)
         return 84;
     sfRenderWindow_setPosition(data->window, (sfVector2i){0, 0});

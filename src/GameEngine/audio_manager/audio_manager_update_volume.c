@@ -19,7 +19,7 @@ void audio_manager_update_volume(audio_manager_t *manager)
     }
     for (size_t i = 0; i < nb_music; i++) {
         sfMusic_setVolume(
-            MY_VEC_GET_ELEM(sfSound *, &manager->music_playing, i),
+            MY_VEC_GET_ELEM(sfMusic *, &manager->music_playing, i),
             manager->settings->music_volume);
     }
 }

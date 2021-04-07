@@ -58,6 +58,6 @@ void stop_music(audio_manager_t *audio_manager)
 
     for (size_t i = 0; i < music_count; ++i)
         sfMusic_stop(
-            MY_VEC_GET_ELEM(sfSound *, &audio_manager->music_playing, i));
+            MY_VEC_GET_ELEM(sfMusic *, &audio_manager->music_playing, i));
     audio_manager->music_playing.length = 0;
 }

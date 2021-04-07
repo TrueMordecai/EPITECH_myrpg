@@ -18,7 +18,7 @@ int game_state_handle_events(game_state_t *state)
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape) {
-            end_state(state->base.game_data, GAME_STATE);
+            game_data_pop_state(state->base.game_data, GAME_STATE);
             return 1;
         }
         rpg_handle_event(state->rpg, event);

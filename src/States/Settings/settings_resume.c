@@ -13,5 +13,7 @@ int settings_state_resume(settings_state_t *state, state_id_t last_state)
 {
     my_puts("Settings State\n");
     my_fflush(MY_STDOUT);
+    (void)state;
+    (void)last_state;
     return 0;
 }

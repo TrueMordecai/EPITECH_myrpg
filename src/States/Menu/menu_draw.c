@@ -16,7 +16,8 @@ int menu_state_draw(menu_state_t *state, float dt)
 
     sfRenderWindow_clear(window, sfColor_fromRGB(18, 18, 18));
     for (size_t layer = 0; layer < layer_count; ++layer)
-        draw_map(my_vec_get(&state->base.draw_layers, layer), window);
+        draw_from_map(my_vec_get(&state->base.draw_layers, layer), window);
     sfRenderWindow_display(window);
+    (void)dt;
     return 0;
 }

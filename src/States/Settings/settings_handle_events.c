@@ -14,7 +14,7 @@ static int handle_key(sfEvent event, state_t *state)
 {
     switch (event.key.code) {
         case sfKeyEscape:
-            end_state(state->game_data, SETTINGS_STATE);
+            game_data_pop_state(state->game_data, SETTINGS_STATE);
             return 1;
         default: return 0;
     }
@@ -28,7 +28,7 @@ int settings_state_handle_events(settings_state_t *state)
     while (sfRenderWindow_pollEvent(data->window, &event)) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
-        if (event.type == sfEvtKeyReleased && handle_key(event, state))
+        if (event.type == sfEvtKeyReleased && handle_key(event, &state->base))
             return 1;
     }
     return 1;
