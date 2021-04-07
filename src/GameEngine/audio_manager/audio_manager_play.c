@@ -24,7 +24,7 @@ void play_sound(audio_manager_t *audio_manager, char const *name)
     my_vec_push(&audio_manager->sounds_playing, &sound);
 }
 
-void play_music(audio_manager_t *audio_manager, char const *name, int loop)
+void play_music(audio_manager_t *audio_manager, char const *name, bool loop)
 {
     sfMusic *music = get_music(audio_manager, name);
 
@@ -36,7 +36,7 @@ void play_music(audio_manager_t *audio_manager, char const *name, int loop)
     my_vec_push(&audio_manager->music_playing, &music);
 }
 
-void update_sounds(audio_manager_t *audio_manager, int stop_all)
+void update_sounds(audio_manager_t *audio_manager, bool stop_all)
 {
     size_t sounds_count = audio_manager->sounds_playing.length;
 

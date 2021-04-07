@@ -35,7 +35,7 @@ void game_data_destroy(game_data_t *data);
 /// Allocates and initializes a state.
 typedef state_t *(*state_create_t)(game_data_t *);
 
-void game_data_push_state(
+int game_data_push_state(
     game_data_t *data, state_create_t create_state, bool replace);
 void game_data_pop_state(game_data_t *data, state_id_t from);
 

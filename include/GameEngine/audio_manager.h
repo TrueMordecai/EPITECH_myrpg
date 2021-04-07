@@ -10,6 +10,7 @@
 
 #include <SFML/Audio.h>
 #include <libmy/collections.h>
+#include <stdbool.h>
 
 #include "types.h"
 
@@ -45,13 +46,13 @@ void load_sound(
     audio_manager_t *audio_manager, char const *name, char const *filepath);
 sfSoundBuffer *get_sound(audio_manager_t *audio_manager, char const *name);
 void play_sound(audio_manager_t *audio_manager, char const *name);
-void update_sounds(audio_manager_t *audio_manager, int stop_all);
+void update_sounds(audio_manager_t *audio_manager, bool stop_all);
 void audio_manager_update_volume(audio_manager_t *manager);
 
 void load_music(
     audio_manager_t *audio_manager, char const *name, char const *filepath);
 sfMusic *get_music(audio_manager_t *audio_manager, char const *name);
-void play_music(audio_manager_t *audio_manager, char const *name, int loop);
+void play_music(audio_manager_t *audio_manager, char const *name, bool loop);
 void stop_music(audio_manager_t *audio_manager);
 
 /// Frees the inner @c sfMusic of an audio value,

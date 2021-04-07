@@ -49,6 +49,12 @@ struct state {
     state_id_t state_id;
 };
 
+int state_pause(state_t *state, state_id_t from);
+int state_resume(state_t *state, state_id_t from);
+int state_handle_events(state_t *state);
+int state_update(state_t *state, float delta);
+int state_draw(state_t *state, float delta);
+
 /// Frees the common state data (like draw layers) before
 /// calling @ref state::drop, then frees the value of @c state.
 ///

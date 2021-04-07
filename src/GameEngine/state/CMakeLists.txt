@@ -5,7 +5,11 @@ set(SRC
     ${SRC}
     ${INCROOT}/state.h
     ${SRCROOT}/state_destroy.c
+    ${SRCROOT}/state_draw.c
+    ${SRCROOT}/state_handle_events.c
+    ${SRCROOT}/state_pause.c
+    ${SRCROOT}/state_resume.c
     ${SRCROOT}/state_init.c
-    ${SRCROOT}/state.c
+    ${SRCROOT}/state_update.c
     PARENT_SCOPE
 )

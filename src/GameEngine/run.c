@@ -6,6 +6,8 @@
 */
 
 #include "GameEngine/game.h"
+#include "GameEngine/state.h"
+#include "GameEngine/audio_manager.h"
 
 /*
 ** Times array:
@@ -13,6 +15,7 @@
 ** 1 = current_time
 ** 2 = accumulator
 */
+
 static void run_2(
     game_data_t *data, float times[2], sfClock *clock, state_t **current_state)
 {
@@ -25,23 +28,25 @@ static void run_2(
     if (times[2] > 10 * ms_update)
         ms_update = times[2];
     times[1] = times[0];
-    (*current_state)->handle_events(*current_state);
-    *current_state = (state_t *)my_vector_top((size_t *)data->states);
+    state_handle_events(*current_state);
+    *current_state =
+        MY_VEC_GET_ELEM(state_t *, &data->states, data->states.length - 1);
     while (times[2] >= ms_update) {
-        (*current_state)->update(*current_state, ms_update / 1000.f);
+        state_update(*current_state, ms_update / 1000.f);
         times[2] -= ms_update;
-        update_sounds(data->audio, 0);
+        update_sounds(&data->audio, 0);
     }
     ms_update = init_ms;
     interpolation = times[2] / ms_update;
-    (*current_state)->draw(*current_state, interpolation);
+    state_draw(*current_state, interpolation);
 }
 
 void run(game_data_t *data)
 {
     sfClock *clock = sfClock_create();
     float times[3] = {0};
-    state_t *current_state = (state_t *)my_vector_top((size_t *)data->states);
+    state_t *current_state =
+        MY_VEC_GET_ELEM(state_t *, &data->states, data->states.length - 1);
 
     times[1] = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
     while (sfRenderWindow_isOpen(data->window))
