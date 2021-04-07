@@ -34,11 +34,10 @@ struct audio_manager {
     /// Stores @b references to the sounds currently playing.
     /// Element type: 'sfSound *'
     my_vec_t sounds_playing;
-    game_settings_t *settings;
+    settings_t *settings;
 };
 
-void audio_manager_init(
-    audio_manager_t *audio_manager, game_settings_t *settings);
+void audio_manager_init(audio_manager_t *audio_manager, settings_t *settings);
 void load_audio(audio_manager_t *manager);
 void audio_manager_drop(audio_manager_t *manager);
 

@@ -4,7 +4,9 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/GameEngine/settings)
 set(SRC
     ${SRC}
     ${INCROOT}/settings.h
-    ${SRCROOT}/game_settings_create.c
-    ${SRCROOT}/game_settings_save.c
+    ${SRCROOT}/settings_check.c
+    ${SRCROOT}/settings_init_default.c
+    ${SRCROOT}/settings_read.c
+    ${SRCROOT}/settings_write.c
     PARENT_SCOPE
 )

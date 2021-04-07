@@ -13,6 +13,8 @@
 #include "GameEngine/settings.h"
 #include "States/Menu/menu_state.h"
 
+static const char *SETTINGS_PATH = "data/settings.cfg";
+
 static void init_window(game_data_t *data, sfVideoMode *mode, char const *name)
 {
     data->window = sfRenderWindow_create(*mode, name, sfClose, NULL);
@@ -26,7 +28,7 @@ game_data_t *game_data_create(sfVideoMode *mode, char const *name)
 
     if (data == NULL)
         return NULL;
-    data->settings = game_settings_create();
+    data->settings = settings_read(SETTINGS_PATH);
     if (data->settings == NULL) {
         free(data);
         return NULL;
@@ -49,7 +51,7 @@ static void game_data_destroy_state(void *state)
 void game_data_destroy(game_data_t *data)
 {
     my_vec_free(&data->states, &game_data_destroy_state);
-    game_settings_destroy(data->settings);
+    settings_destroy(data->settings);
     asset_manager_drop(&data->assets);
     audio_manager_drop(&data->audio);
     sfRenderWindow_destroy(data->window);

@@ -24,7 +24,7 @@ struct game_data {
     sfRenderWindow *window;
     asset_manager_t assets;
     audio_manager_t audio;
-    game_settings_t *settings;
+    settings_t *settings;
 };
 
 void run(game_data_t *data);

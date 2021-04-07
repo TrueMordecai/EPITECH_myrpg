@@ -11,7 +11,7 @@
 #include "GameEngine/game_head.h"
 
 void audio_manager_init(
-    audio_manager_t *audio_manager, game_settings_t *settings)
+    audio_manager_t *audio_manager, settings_t *settings)
 {
     const my_map_kvtypes_t kvtypes = {
         .key_size = sizeof(char *),

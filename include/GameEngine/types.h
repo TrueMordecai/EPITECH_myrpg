@@ -24,7 +24,7 @@ typedef struct audio_manager audio_manager_t;
 typedef struct game_data game_data_t;
 
 // settings.h
-typedef struct game_settings game_settings_t;
+typedef struct settings settings_t;
 
 // state.h
 typedef enum state_id state_id_t;
