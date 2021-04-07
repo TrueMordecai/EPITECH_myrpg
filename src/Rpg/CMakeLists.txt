@@ -10,7 +10,7 @@ set(SRC
     ${SRCROOT}/rpg_create.c
     ${SRCROOT}/rpg_destroy.c
     ${SRCROOT}/rpg_draw.c
-    ${SRCROOT}/rpg_handle_input.c
+    ${SRCROOT}/rpg_handle_event.c
     ${SRCROOT}/rpg_update.c
     PARENT_SCOPE
 )

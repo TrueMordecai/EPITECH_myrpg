@@ -9,7 +9,7 @@ set(SRC
     ${SRCROOT}/game_cst.c
     ${SRCROOT}/game_destroy.c
     ${SRCROOT}/game_draw.c
-    ${SRCROOT}/game_handle_input.c
+    ${SRCROOT}/game_handle_events.c
     ${SRCROOT}/game_pause.c
     ${SRCROOT}/game_resume.c
     ${SRCROOT}/game_update.c

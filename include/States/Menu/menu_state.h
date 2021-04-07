@@ -20,7 +20,7 @@ typedef struct menu_state {
 
 state_t *menu_create(game_data_t *data);
 int menu_resume(menu_state_t *state, state_id_t last_state);
-int menu_handle_input(menu_state_t *state);
+int menu_handle_events(menu_state_t *state);
 int menu_update(menu_state_t *state, float dt);
 int menu_draw(menu_state_t *state, float dt);
 int menu_pause(menu_state_t *state, state_id_t new_state);

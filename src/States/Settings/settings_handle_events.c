@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** My runner
 ** File description:
-** handle settings inputs
+** handle settings events
 */
 
 #include <SFML/Window/Keyboard.h>
@@ -20,7 +20,7 @@ static int handle_key(sfEvent event, state_t *state)
     }
 }
 
-int settings_handle_input(settings_state_t *state)
+int settings_handle_events(settings_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;

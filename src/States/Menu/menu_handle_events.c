@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** My runner
 ** File description:
-** handle menu inputs
+** handle menu events
 */
 
 #include <SFML/Window/Keyboard.h>
@@ -22,7 +22,7 @@ static void shortcuts(game_data_t *data, state_t *state, int key_code)
     }
 }
 
-int menu_handle_input(menu_state_t *state)
+int menu_handle_events(menu_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;

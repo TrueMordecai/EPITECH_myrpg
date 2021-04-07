@@ -20,7 +20,7 @@ typedef struct settings_state {
 
 state_t *settings_create(game_data_t *data, state_t *state, size_t datas);
 int settings_resume(settings_state_t *state, state_id_t last_state);
-int settings_handle_input(settings_state_t *state);
+int settings_handle_events(settings_state_t *state);
 int settings_update(settings_state_t *state, float dt);
 int settings_draw(settings_state_t *state, float dt);
 int settings_pause(settings_state_t *state, state_id_t new_state);

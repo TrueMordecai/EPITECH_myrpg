@@ -18,7 +18,7 @@ state_t *menu_create(game_data_t *data)
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&menu_pause,
         .resume = (state_resume_t)&menu_resume,
-        .handle_input = (state_handle_input_t)&menu_handle_input,
+        .handle_events = (state_handle_events_t)&menu_handle_events,
         .update = (state_update_t)&menu_update,
         .draw = (state_draw_t)&menu_draw,
         .destroy = (state_destroy_t)&menu_destroy,

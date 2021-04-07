@@ -20,7 +20,7 @@ state_t *game_create(game_data_t *data)
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&game_pause,
         .resume = (state_resume_t)&game_resume,
-        .handle_input = (state_handle_input_t)&game_handle_input,
+        .handle_events = (state_handle_events_t)&game_handle_events,
         .update = (state_update_t)&game_update,
         .draw = (state_draw_t)&game_draw,
         .destroy = (state_destroy_t)&game_destroy,

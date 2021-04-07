@@ -25,7 +25,7 @@ static void run_2(
     if (times[2] > 10 * ms_update)
         ms_update = times[2];
     times[1] = times[0];
-    (*current_state)->handle_input(*current_state);
+    (*current_state)->handle_events(*current_state);
     *current_state = (state_t *)my_vector_top((size_t *)data->states);
     while (times[2] >= ms_update) {
         (*current_state)->update(*current_state, ms_update / 1000.f);

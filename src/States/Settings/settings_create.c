@@ -18,7 +18,7 @@ state_t *settings_create(game_data_t *data)
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&settings_pause,
         .resume = (state_resume_t)&settings_resume,
-        .handle_input = (state_handle_input_t)&settings_handle_input,
+        .handle_events = (state_handle_events_t)&settings_handle_events,
         .update = (state_update_t)&settings_update,
         .draw = (state_draw_t)&settings_draw,
         .destroy = (state_destroy_t)&settings_destroy,

@@ -7,7 +7,6 @@
 
 #include "Rpg/Entities/player.h"
 
-void player_handle_input(player_t *player, sfEvent event)
+void player_handle_event(player_t *player, sfEvent event)
 {
-
 }

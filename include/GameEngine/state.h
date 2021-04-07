@@ -24,7 +24,7 @@ struct state;
 
 typedef int (*state_pause_t)(struct state *, state_id_t);
 typedef int (*state_resume_t)(struct state *, state_id_t);
-typedef int (*state_handle_input_t)(struct state *);
+typedef int (*state_handle_events_t)(struct state *);
 typedef int (*state_update_t)(struct state *, float);
 typedef int (*state_draw_t)(struct state *, float);
 typedef void (*state_destroy_t)(struct state *, state_id_t);
@@ -32,7 +32,7 @@ typedef void (*state_destroy_t)(struct state *, state_id_t);
 struct state_vtable {
     state_pause_t pause;
     state_resume_t resume;
-    state_handle_input_t handle_input;
+    state_handle_events_t handle_events;
     state_update_t update;
     state_draw_t draw;
     state_destroy_t destroy;

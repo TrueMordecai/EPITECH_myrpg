@@ -20,7 +20,7 @@ typedef struct game_state {
 
 state_t *game_create(game_data_t *data);
 int game_resume(state_t *state, state_id_t last_state);
-int game_handle_input(state_t *state);
+int game_handle_events(state_t *state);
 int game_update(state_t *state, float dt);
 int game_draw(state_t *state, float dt);
 int game_pause(state_t *state, state_id_t new_state);
