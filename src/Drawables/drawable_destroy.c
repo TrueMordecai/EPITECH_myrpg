@@ -19,4 +19,6 @@ void drawable_destroy(drawable_t *drawable)
         case D_TEXT: sfText_destroy(drawable->data.text); break;
         default: break;
     }
+    drawable->data.ptr = NULL;
+    drawable->dtype = -1;
 }

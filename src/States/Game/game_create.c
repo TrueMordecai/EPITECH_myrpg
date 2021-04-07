@@ -2,27 +2,34 @@
 ** EPITECH PROJECT, 2020
 ** My runner
 ** File description:
-** Create game state
+** Creates the game state
 */
+
+#include <assert.h>
+#include <stdlib.h>
 
 #include "States/Game/game_state.h"
 
-int game_create(game_data_t *data, state_t *state, size_t datas)
+state_t *game_create(game_data_t *data)
 {
-    state->init = &game_init;
-    state->resume = &game_resume;
-    state->handle_input = &game_handle_input;
-    state->update = &game_update;
-    state->draw = &game_draw;
-    state->pause = &game_pause;
-    state->destroy = &game_destroy;
-    state->state_id = GAME_STATE;
-    state->game_data = data;
-    state->state_datas = NULL;
-    state->draw_layers = (my_map_t **)my_vector_init(sizeof(my_map_t *), \
-    GAME_DRAW_LAYERS);
-    for (int i = 0; i < GAME_DRAW_LAYERS; i++)
-        my_vector_push((size_t **)&state->draw_layers, \
-        (size_t)my_map(unsigned char, draw_elmt_t *, my_map_charcmp, 0, 0));
-    return MENU_STATE;
+    game_state_t *state = malloc(sizeof(*state));
+
+    assert(data != NULL);
+    if (state_init(state, GAME_STATE, GAME_DRAW_LAYERS))
+        return NULL;
+    state->base.vtable = (state_vtable_t){
+        .pause = (state_pause_t)&game_pause,
+        .resume = (state_resume_t)&game_resume,
+        .handle_input = (state_handle_input_t)&game_handle_input,
+        .update = (state_update_t)&game_update,
+        .draw = (state_draw_t)&game_draw,
+        .destroy = (state_destroy_t)&game_destroy,
+    };
+    state->rpg = rpg_create(state);
+    if (state->rpg == NULL) {
+        state->base.vtable.destroy = NULL;
+        state_destroy(&state, NULL_STATE);
+        return NULL;
+    }
+    return &state->base;
 }

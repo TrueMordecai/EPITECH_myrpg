@@ -5,24 +5,23 @@
 ** Create menu state
 */
 
+#include <stdlib.h>
+
 #include "States/Menu/menu_state.h"
 
-int menu_create(game_data_t *data, state_t *state, size_t datas)
+state_t *menu_create(game_data_t *data)
 {
-    state->init = &menu_init;
-    state->resume = &menu_resume;
-    state->handle_input = &menu_handle_input;
-    state->update = &menu_update;
-    state->draw = &menu_draw;
-    state->pause = &menu_pause;
-    state->destroy = &menu_destroy;
-    state->state_id = MENU_STATE;
-    state->game_data = data;
-    state->state_datas = NULL;
-    state->draw_layers = (my_map_t **)my_vector_init(sizeof(my_map_t *), \
-    MENU_DRAW_LAYERS);
-    for (int i = 0; i < MENU_DRAW_LAYERS; i++)
-        my_vector_push((size_t **)&state->draw_layers, \
-        (size_t)my_map(unsigned char, draw_elmt_t *, my_map_charcmp, 0, 0));
-    return MENU_STATE;
+    menu_state_t *state = malloc(sizeof(*state));
+
+    if (state_init(state, MENU_STATE, MENU_DRAW_LAYERS))
+        return NULL;
+    state->base.vtable = (state_vtable_t){
+        .pause = (state_pause_t)&menu_pause,
+        .resume = (state_resume_t)&menu_resume,
+        .handle_input = (state_handle_input_t)&menu_handle_input,
+        .update = (state_update_t)&menu_update,
+        .draw = (state_draw_t)&menu_draw,
+        .destroy = (state_destroy_t)&menu_destroy,
+    };
+    return &state->base;
 }

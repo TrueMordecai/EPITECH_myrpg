@@ -13,15 +13,15 @@
 
 #include "types.h"
 
-typedef union {
+union asset {
     sfTexture *texture;
     sfFont *font;
-} asset_t;
+};
 
-typedef struct asset_manager_s {
+struct asset_manager {
     my_hash_map_t fonts;
     my_hash_map_t textures;
-} asset_manager_t;
+};
 
 void init_asset_manager(asset_manager_t *asset_manager);
 void load_all_textures(asset_manager_t *manager);

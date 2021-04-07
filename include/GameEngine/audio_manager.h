@@ -12,14 +12,15 @@
 #include <libmy/collections.h>
 
 #include "types.h"
+
 #include "settings.h"
 
-typedef union {
+union audio {
     sfMusic *music;
     sfSoundBuffer *sound;
-} audio_t;
+};
 
-typedef struct audio_manager_s {
+struct audio_manager {
     /// key type: 'char *'
     /// Value value: 'audio_t *'
     my_hash_map_t music;
@@ -33,7 +34,7 @@ typedef struct audio_manager_s {
     /// Element type: 'sfSound *'
     my_vec_t sounds_playing;
     game_settings_t *settings;
-} audio_manager_t;
+};
 
 void init_audio_manager(
     audio_manager_t *audio_manager, game_settings_t *settings);

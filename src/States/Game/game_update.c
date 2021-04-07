@@ -2,14 +2,13 @@
 ** EPITECH PROJECT, 2020
 ** My runner
 ** File description:
-** update Menu
+** update Game
 */
 
 #include "States/Game/game_state.h"
-#include "My/my_convert.h"
 
-int game_update(state_t *state, float dt)
+int game_update(game_state_t *state, float dt)
 {
-    rpg_update((rpg_t *)state->state_datas, dt);
+    rpg_update(state->rpg, dt);
     return 0;
 }

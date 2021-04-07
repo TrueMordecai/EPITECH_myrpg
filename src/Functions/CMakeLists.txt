@@ -7,6 +7,5 @@ set(SRC
     ${SRCROOT}/center_mouse.c
     ${SRCROOT}/get_rand.c
     ${SRCROOT}/is_in_bounds.c
-    ${SRCROOT}/my_map_cmp.c
     PARENT_SCOPE
 )

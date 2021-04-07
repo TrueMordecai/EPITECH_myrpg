@@ -10,7 +10,6 @@ set(SRC
     ${SRCROOT}/settings_destroy.c
     ${SRCROOT}/settings_draw.c
     ${SRCROOT}/settings_handle_input.c
-    ${SRCROOT}/settings_init.c
     ${SRCROOT}/settings_pause.c
     ${SRCROOT}/settings_resume.c
     ${SRCROOT}/settings_update.c

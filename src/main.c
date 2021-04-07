@@ -7,20 +7,22 @@
 
 #include <time.h>
 #include "GameEngine/game_head.h"
-#include "My/my_display.h"
-#include "My/my_strings.h"
-#include "My/my_convert.h"
 
 static void show_usage(void)
 {
     my_putstr("My World :\n\n  Description :\n");
     my_putstr("    In this game you can edit a 3D world");
     my_putstr("\n\n  Settings :\n");
-    my_putstr("    - Music / Sound volume : grab the snowflake to adjust the ");
-    my_putstr("volumes\n    - Window Size : change the width by clicking on i");
-    my_putstr("t and writing the size wanted\n    - Framerate : click in the ");
-    my_putstr("box and write the framerate wanted\n\n    All settings are val");
-    my_putstr("idated when clicking in the top right validate button \n    ex");
+    my_putstr(
+        "    - Music / Sound volume : grab the snowflake to adjust the ");
+    my_putstr(
+        "volumes\n    - Window Size : change the width by clicking on i");
+    my_putstr(
+        "t and writing the size wanted\n    - Framerate : click in the ");
+    my_putstr(
+        "box and write the framerate wanted\n\n    All settings are val");
+    my_putstr(
+        "idated when clicking in the top right validate button \n    ex");
     my_putstr("cept for the size for which you must restart the game.\n\n");
 }
 
@@ -34,11 +36,11 @@ int main(int argc, char **argv)
         show_usage();
         return 0;
     }
-    data = init_game(&mode, "My RPG");
+    data = game_create(&mode, "My RPG");
     if (data == NULL)
         return 84;
     sfRenderWindow_setPosition(data->window, (sfVector2i){0, 0});
     run(data);
-    destroy_game(data);
+    game_destroy(data);
     return 0;
 }

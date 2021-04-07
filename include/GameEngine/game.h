@@ -11,22 +11,32 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
 #include <libmy/collections/vec.h>
+#include <stdbool.h>
 
 #include "types.h"
 
-typedef struct game_data_t {
-    /// A vector of element type 'state_t' (note the lack of a '*')
-    my_vec_t states;
-    /// Array of state data, same size as @ref states.
-    size_t *datas;
-    struct sfRenderWindow *window;
-    struct asset_manager_t *assets;
-    struct audio_manager_t *audio;
-    struct game_settings_t *settings;
-} game_data_t;
+#include "asset_manager.h"
+#include "audio_manager.h"
 
-game_data_t *init_game(sfVideoMode *mode, char const *name);
+struct game_data {
+    /// A vector of element type 'state_t *'
+    my_vec_t states;
+    sfRenderWindow *window;
+    asset_manager_t assets;
+    audio_manager_t audio;
+    game_settings_t *settings;
+};
+
 void run(game_data_t *data);
-void destroy_game(game_data_t *data);
+
+game_data_t *game_data_create(sfVideoMode *mode, char const *name);
+void game_data_destroy(game_data_t *data);
+
+/// Allocates and initializes a state.
+typedef state_t *(*state_create_t)(game_data_t *);
+
+void game_data_push_state(
+    game_data_t *data, state_create_t create_state, bool replace);
+void game_data_pop_state(game_data_t *data, state_id_t from);
 
 #endif // !defined(GE_GAME_H)

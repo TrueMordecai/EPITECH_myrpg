@@ -5,11 +5,13 @@
 ** Menu - resume
 */
 
-#include "States/Game/game_state.h"
-#include "My/my_display.h"
+#include <libmy/io/iostream.h>
 
-int game_resume(state_t *state, int last_state)
+#include "States/Game/game_state.h"
+
+int game_resume(state_t *state, state_id_t last_state)
 {
-    my_putstr("Game State\n");
+    my_puts("Game State\n");
+    my_fflush(MY_STDOUT);
     return 0;
 }

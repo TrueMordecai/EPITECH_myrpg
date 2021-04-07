@@ -5,11 +5,13 @@
 ** Settings - resume
 */
 
-#include "States/Settings/settings_state.h"
-#include "My/my_display.h"
+#include <libmy/io/iostream.h>
 
-int settings_resume(state_t *state, int last_state)
+#include "States/Settings/settings_state.h"
+
+int settings_resume(settings_state_t *state, state_id_t last_state)
 {
-    my_putstr("Settings State\n");
+    my_puts("Settings State\n");
+    my_fflush(MY_STDOUT);
     return 0;
 }

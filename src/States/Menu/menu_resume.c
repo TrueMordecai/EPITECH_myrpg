@@ -5,11 +5,13 @@
 ** Menu - resume
 */
 
+#include <libmy/io/iostream.h>
+
 #include "States/Menu/menu_state.h"
-#include "My/my_display.h"
 
 int menu_resume(state_t *state, int last_state)
 {
-    my_putstr("Menu State\n");
+    my_puts("Menu State\n");
+    my_fflush(MY_STDOUT);
     return 0;
 }

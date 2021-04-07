@@ -7,7 +7,9 @@
 
 #include "States/Menu/menu_state.h"
 
-int menu_update(state_t *state, float dt)
+int menu_update(menu_state_t *state, float dt)
 {
+    (void)state;
+    (void)dt;
     return 0;
 }

@@ -69,7 +69,7 @@ void verif_settings(game_settings_t *settings)
     settings->scale = settings->wind_size.x / 1920.f;
 }
 
-game_settings_t *game_settings_init(void)
+game_settings_t *game_settings_create(void)
 {
     game_settings_t *settings;
     FILE *file = open_settings();

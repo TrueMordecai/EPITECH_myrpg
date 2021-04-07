@@ -8,18 +8,22 @@
 #ifndef SETTINGS_STATE_H
 #define SETTINGS_STATE_H
 
-#include "GameEngine/game_head.h"
-#include "functions.h"
-#include "States/Settings/settings_cst.h"
-#include "Drawables/drawable_create.h"
+#include "GameEngine/state.h"
 
-int settings_create(game_data_t *data, state_t *state, size_t datas);
-int settings_init(state_t *state);
-int settings_resume(state_t *state, int last_state);
-int settings_handle_input(state_t *state);
-int settings_update(state_t *state, float dt);
-int settings_draw(state_t *state, float dt);
-int settings_pause(state_t *state, int new_state);
-int settings_destroy(state_t *state, int from);
+#include "settings_cst.h"
+
+typedef struct settings_state {
+    state_t base;
+    // This is where you would put data specific to the settings state.
+    // such as widgets.
+} settings_state_t;
+
+state_t *settings_create(game_data_t *data, state_t *state, size_t datas);
+int settings_resume(settings_state_t *state, state_id_t last_state);
+int settings_handle_input(settings_state_t *state);
+int settings_update(settings_state_t *state, float dt);
+int settings_draw(settings_state_t *state, float dt);
+int settings_pause(settings_state_t *state, state_id_t new_state);
+void settings_destroy(settings_state_t *state, state_id_t from);
 
 #endif /* !SETTINGS_STATE_H */

@@ -5,25 +5,23 @@
 ** handle game inputs
 */
 
-#include <math.h>
+#include <SFML/Window/Keyboard.h>
+
 #include "States/Game/game_state.h"
-#include "My/my_convert.h"
 
-
-int game_handle_input(state_t *state)
+int game_handle_input(game_state_t *state)
 {
-    game_data_t *data = state->game_data;
+    game_data_t *data = state->base.game_data;
     sfEvent event;
 
-    while (sfRenderWindow_pollEvent(data->window, &event)){
+    while (sfRenderWindow_pollEvent(data->window, &event)) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
-        if (event.type == sfEvtKeyPressed && \
-        event.key.code == sfKeyEscape) {
-            end_state(state->game_data, GAME_STATE);
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape) {
+            end_state(state->base.game_data, GAME_STATE);
             return 1;
         }
-        rpg_handle_input((rpg_t *)state->state_datas, event);
+        rpg_handle_input(state->rpg, event);
     }
-    return 1;
+    return 0;
 }
