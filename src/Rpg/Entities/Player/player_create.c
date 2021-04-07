@@ -5,7 +5,8 @@
 ** player create
 */
 
-#include "My/my_memory.h"
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/rpg.h"
 
 player_t *player_create(void)

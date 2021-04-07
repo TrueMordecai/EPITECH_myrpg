@@ -5,7 +5,6 @@
 ** map create
 */
 
-#include "My/my_memory.h"
 #include "Rpg/rpg.h"
 
 map_t *map_create(rpg_t *rpg)
@@ -22,8 +21,8 @@ map_t *map_create(rpg_t *rpg)
     map->view_size = (sfVector2f){1920 * SL(rpg), 1080 * SL(rpg)};
     map->current_zoom = 1;
     sfView_setSize(map->view, map->view_size);
-    sfView_setCenter(map->view, (sfVector2f){map->view_size.x / 2, \
-        map->view_size.y / 2});
+    sfView_setCenter(
+        map->view, (sfVector2f){map->view_size.x / 2, map->view_size.y / 2});
     sfView_move(map->view, (sfVector2f){-map->view_pos.x, -map->view_pos.y});
     map_load_zone(map, ZONE_START, -1, -1);
     return map;

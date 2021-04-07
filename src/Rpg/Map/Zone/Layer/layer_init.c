@@ -5,8 +5,9 @@
 ** layer init
 */
 
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/Map/layer.h"
-#include "My/my_memory.h"
 
 void layer_init(layer_t *layer, sfVector2i size, sfVector2i pos)
 {

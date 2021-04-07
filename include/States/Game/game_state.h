@@ -19,11 +19,11 @@ typedef struct game_state {
 } game_state_t;
 
 state_t *game_create(game_data_t *data);
-int game_resume(state_t *state, state_id_t last_state);
-int game_handle_events(state_t *state);
-int game_update(state_t *state, float dt);
-int game_draw(state_t *state, float dt);
-int game_pause(state_t *state, state_id_t new_state);
-void game_destroy(state_t *state, state_id_t from);
+int game_resume(game_state_t *state, state_id_t last_state);
+int game_handle_events(game_state_t *state);
+int game_update(game_state_t *state, float dt);
+int game_draw(game_state_t *state, float dt);
+int game_pause(game_state_t *state, state_id_t new_state);
+void game_destroy(game_state_t *state, state_id_t from);
 
 #endif /* !MENU_STATE_H */

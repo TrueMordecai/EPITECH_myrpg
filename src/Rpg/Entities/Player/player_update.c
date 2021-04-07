@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/rpg.h"
-#include "My/my_display.h"
 
 static void update_dir(player_t *player, sfVector2f offset)
 {
@@ -44,7 +43,7 @@ void player_update(player_t *player, float dt)
         player->body->velocity.x = offset.x;
     if (offset.y != 0)
         player->body->velocity.y = offset.y;
-    player->pos = (sfVector2f){player->body->pos.x * M_TO_PX, \
-        (player->body->pos.y - 1) * M_TO_PX};
+    player->pos = (sfVector2f){
+        player->body->pos.x * M_TO_PX, (player->body->pos.y - 1) * M_TO_PX};
     sfRectangleShape_setPosition(player->rect, player->pos);
 }

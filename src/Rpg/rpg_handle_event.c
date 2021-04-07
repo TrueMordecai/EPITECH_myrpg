@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/rpg.h"
-#include "My/my_display.h"
 
 void rpg_handle_event(rpg_t *rpg, sfEvent event)
 {

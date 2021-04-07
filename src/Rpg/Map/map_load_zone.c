@@ -6,8 +6,6 @@
 */
 
 #include "Rpg/rpg.h"
-#include "My/my_strings.h"
-#include "My/my_display.h"
 
 zone_t *map_get_zone(map_t *map, int id)
 {

@@ -5,8 +5,9 @@
 ** layer create
 */
 
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/Map/layer.h"
-#include "My/my_memory.h"
 
 layer_t *layer_create(sfTexture *tex, int tiles_size)
 {

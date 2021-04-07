@@ -9,6 +9,7 @@
 
 static void load_fonts(asset_manager_t *manager)
 {
+    (void)manager;
     // load_font(manager, "roboto_font", "assets/Fonts/fontname.ttf");
 }
 

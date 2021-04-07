@@ -6,11 +6,8 @@
 */
 
 #include <stdlib.h>
-#include "Rpg/Map/zone.h"
 #include "Rpg/Map/physic.h"
-#include "My/my_file.h"
-#include "My/my_convert.h"
-#include "My/my_display.h"
+#include "Rpg/Map/zone.h"
 
 static void read_infos(zone_t *zone, char *file_content, size_t *i)
 {
@@ -44,8 +41,8 @@ int get_nb_pass(unsigned char *content, size_t *i, int pass)
     return layer;
 }
 
-static void read_pos(zone_t *zone, sfVector2i pos, \
-size_t *i, unsigned char *content)
+static void read_pos(
+    zone_t *zone, sfVector2i pos, size_t *i, unsigned char *content)
 {
     int layer;
     int tile;
@@ -78,8 +75,8 @@ int zone_init_from_file(zone_t *zone, int id, int door, int mother)
     read_infos(zone, file_content, &i);
     for (int x = 0; x < zone->size.x; x++)
         for (int y = 0; y < zone->size.y; y++) {
-            read_pos(zone, (sfVector2i){x, y}, &i, \
-            (unsigned char *)file_content);
+            read_pos(
+                zone, (sfVector2i){x, y}, &i, (unsigned char *)file_content);
             i += (file_content[i] != 0);
         }
     zone_sort_layers(zone);

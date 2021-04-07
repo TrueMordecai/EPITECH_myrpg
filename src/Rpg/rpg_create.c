@@ -5,7 +5,8 @@
 ** Rpg create
 */
 
-#include "My/my_memory.h"
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/rpg.h"
 
 rpg_t *rpg_create(state_t *state)

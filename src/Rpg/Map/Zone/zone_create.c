@@ -5,8 +5,9 @@
 ** zone create
 */
 
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/rpg.h"
-#include "My/my_memory.h"
 
 zone_t *zone_create(map_t *map)
 {

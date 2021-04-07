@@ -6,7 +6,6 @@
 */
 
 #include "Rpg/rpg.h"
-#include "My/my_display.h"
 
 int zone_assert_id(zone_t *zone, int x, int y, int *id)
 {
@@ -17,8 +16,8 @@ int zone_assert_id(zone_t *zone, int x, int y, int *id)
     return 1;
 }
 
-static sfVector2i get_interract_pos(zone_t *zone, sfVector2i dir, \
-sfVector2i start)
+static sfVector2i get_interract_pos(
+    zone_t *zone, sfVector2i dir, sfVector2i start)
 {
     int id;
     sfVector2i lat_dir = {(dir.x) ? 0 : 1, (dir.y) ? 0 : 1};
@@ -27,22 +26,22 @@ sfVector2i start)
         return (sfVector2i){-1, -1};
     if (zone->special[start.x + start.y * zone->size.x])
         return start;
-    if (zone_assert_id(zone, start.x + dir.x, start.y + dir.y, &id) && \
-        zone->special[id])
+    if (zone_assert_id(zone, start.x + dir.x, start.y + dir.y, &id)
+        && zone->special[id])
         return (sfVector2i){start.x + dir.x, start.y + dir.y};
-    if (zone_assert_id(zone, start.x + lat_dir.x, start.y + lat_dir.y, &id) && \
-        zone->special[id])
+    if (zone_assert_id(zone, start.x + lat_dir.x, start.y + lat_dir.y, &id)
+        && zone->special[id])
         return (sfVector2i){start.x + lat_dir.x, start.y + lat_dir.y};
-    if (zone_assert_id(zone, start.x - lat_dir.x, start.y - lat_dir.y, &id) && \
-        zone->special[id])
+    if (zone_assert_id(zone, start.x - lat_dir.x, start.y - lat_dir.y, &id)
+        && zone->special[id])
         return (sfVector2i){start.x - lat_dir.x, start.y - lat_dir.y};
     return (sfVector2i){-1, -1};
 }
 
 static int get_doors_id(zone_t *zone, int pos_id, int doors)
 {
-    size_t nb_doors = my_vector_get_size((size_t *)\
-((doors == SUB_DOOR) ? zone->sub_doors : zone->ext_doors));
+    size_t nb_doors = my_vector_get_size(
+        (size_t *)((doors == SUB_DOOR) ? zone->sub_doors : zone->ext_doors));
     int id;
 
     for (size_t i = 0; i < nb_doors; i++) {
