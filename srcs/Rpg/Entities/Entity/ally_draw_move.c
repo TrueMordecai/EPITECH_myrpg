@@ -20,6 +20,7 @@ void ally_draw_move_possibilities(fight_t *fight)
     if (!cells)
         return;
     for (int i = 0; cells[i] != -2; i++)
-        fight_place_rect(fight, cells[i], sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
+        fight_place_rect(fight, cells[i], \
+        sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
     free(cells);
 }

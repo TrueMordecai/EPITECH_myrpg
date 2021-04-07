@@ -36,6 +36,7 @@ SRCS_BASE := 	main.c \
 				\
 				ally_draw_move.c \
 				entity_create.c \
+				entity_move.c \
 				entity_destroy.c \
 				\
 				\
@@ -49,6 +50,7 @@ SRCS_BASE := 	main.c \
 				fight_draw_line.c \
 				fight_show_sight.c \
 				fight_get_tile.c \
+				fight_handle_events.c \
 				\
 				\
 				map_create.c \

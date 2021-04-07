@@ -33,8 +33,10 @@ static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     fight->entities[0] = player->entity;
     fight->entities[0]->pos = player->body->pos.x - fight->pos.x + \
     (player->body->pos.y - fight->pos.y) * fight->size.x;
-    for (int i = 0; i < fight->nb_entities; i++)
+    for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
+        fight->entities[i]->fight = fight;
+    }
 }
 
 fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)

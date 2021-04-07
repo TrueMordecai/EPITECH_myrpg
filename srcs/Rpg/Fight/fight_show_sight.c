@@ -22,12 +22,14 @@ static int is_line_valid(fight_t *fight, int *line)
 static void test_lines(fight_t *fight, int start, int *cells, int *outs)
 {
     int *line;
+    int valid;
 
     for (int i = 0; cells[i] != END_ARRAY; i++) {
         if (cells[i] == INEXISTING)
             continue;
         line = fight_get_line(fight, start, cells[i]);
-        if (!is_line_valid(fight, line))
+        valid = is_line_valid(fight, line);
+        if (!valid)
             outs[i] = 1;
         free(line);
     }

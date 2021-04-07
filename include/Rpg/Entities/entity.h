@@ -22,10 +22,12 @@ typedef struct entity_t {
     enum team_e team;
     int pos;
     void *datas;
+    struct fight_t *fight;
 } entity_t;
 
 entity_t *entity_create(void *datas, enum entity_type_e type, \
 enum team_e team, int pos);
+void entity_move(entity_t *entity, int new_pos);
 void entity_destroy(entity_t *entity);
 
 void ally_draw_move_possibilities(struct fight_t *fight);
