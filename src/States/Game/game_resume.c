@@ -9,9 +9,11 @@
 
 #include "States/Game/game_state.h"
 
-int game_resume(state_t *state, state_id_t last_state)
+int game_resume(game_state_t *state, state_id_t last_state)
 {
     my_puts("Game State\n");
     my_fflush(MY_STDOUT);
+    (void)state;
+    (void)last_state;
     return 0;
 }

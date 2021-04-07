@@ -32,7 +32,8 @@ static const my_map_kvtypes_t LAYER_KVTYPES = {
     .value_drop = (my_map_drop_t)&drawable_destroy,
 };
 
-int state_init(state_t *state, state_id_t state_id, size_t layer_count)
+int state_init(
+    state_t *state, game_data_t *data, state_id_t state_id, size_t layer_count)
 {
     if (state == NULL
         || my_vec_init_capacity(
@@ -43,6 +44,7 @@ int state_init(state_t *state, state_id_t state_id, size_t layer_count)
 
         my_hash_map_init(layer, &LAYER_KVTYPES);
     }
+    state->game_data = data;
     state->draw_layers.length = layer_count;
     state->state_id = state_id;
     return 0;

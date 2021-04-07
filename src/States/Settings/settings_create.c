@@ -13,7 +13,7 @@ state_t *settings_create(game_data_t *data)
 {
     settings_state_t *state = malloc(sizeof(*state));
 
-    if (state_init(state, SETTINGS_STATE, SETTINGS_DRAW_LAYERS))
+    if (state_init(&state->base, data, SETTINGS_STATE, SETTINGS_DRAW_LAYERS))
         return NULL;
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&settings_pause,

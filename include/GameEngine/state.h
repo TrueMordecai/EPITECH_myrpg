@@ -70,12 +70,14 @@ void state_destroy(state_t **state, state_id_t from);
 /// NOTE: Do not call outside [state_name]_create functions.
 ///
 /// @param state The (fully uninitialized) state, may be @c NULL.
+/// @param data A pointer to the game's data.
 /// @param state_id The id of the state.
 /// @param layer_count The number of draw layer this state should have.
 ///
 /// @returns 0 on success, 1 if @c state is @c NULL or an allocation error
 /// occured.
 /// @protected
-int state_init(state_t *state, state_id_t state_id, size_t layer_count);
+int state_init(state_t *state, game_data_t *data, state_id_t state_id,
+    size_t layer_count);
 
 #endif

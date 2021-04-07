@@ -13,7 +13,7 @@ state_t *menu_create(game_data_t *data)
 {
     menu_state_t *state = malloc(sizeof(*state));
 
-    if (state_init(state, MENU_STATE, MENU_DRAW_LAYERS))
+    if (state_init(&state->base, data, MENU_STATE, MENU_DRAW_LAYERS))
         return NULL;
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&menu_pause,

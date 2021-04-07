@@ -15,7 +15,7 @@ state_t *game_create(game_data_t *data)
     game_state_t *state = malloc(sizeof(*state));
 
     assert(data != NULL);
-    if (state_init(state, GAME_STATE, GAME_DRAW_LAYERS))
+    if (state_init(&state->base, data, GAME_STATE, GAME_DRAW_LAYERS))
         return NULL;
     state->base.vtable = (state_vtable_t){
         .pause = (state_pause_t)&game_pause,
@@ -25,10 +25,10 @@ state_t *game_create(game_data_t *data)
         .draw = (state_draw_t)&game_draw,
         .destroy = (state_destroy_t)&game_destroy,
     };
-    state->rpg = rpg_create(state);
+    state->rpg = rpg_create(&state->base);
     if (state->rpg == NULL) {
         state->base.vtable.destroy = NULL;
-        state_destroy(&state, NULL_STATE);
+        state_destroy((state_t **)&state, NULL_STATE);
         return NULL;
     }
     return &state->base;
