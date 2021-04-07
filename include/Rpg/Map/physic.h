@@ -8,6 +8,9 @@
 #ifndef RPG_MAP_PHYSIC_H
 #define RPG_MAP_PHYSIC_H
 
+#include "Physics/physics.h"
+#include "Rpg/Map/zone.h"
+
 enum PHYSIC_TILES {EMPTY, SOLID, TRANSPARENT};
 enum PHYSIC_SHAPES {FULL, HALF, QUARTER, TRI};
 

@@ -8,6 +8,7 @@
 #include "Rpg/rpg.h"
 #include "My/my_display.h"
 #include "functions.h"
+#include "Rpg/Fight/fight.h"
 
 static sfVector2i get_size(battle_t *battle)
 {
@@ -33,7 +34,9 @@ void battle_start(battle_t *battle)
     battle->pos = pos;
     battle->size = size;
     map_reset_zoom(battle->zone->map);
+    my_print("Player pos (%d, %d)\n", player_pos.x, player_pos.y);
     pe_body_set_pos(battle->player->body, VEC2F(player_pos.x, player_pos.y));
     battle->player->body->velocity = VEC2F(0, 0);
     battle->zone->is_battle = 1;
+    battle->fight = fight_create(battle, 0, battle->player);
 }

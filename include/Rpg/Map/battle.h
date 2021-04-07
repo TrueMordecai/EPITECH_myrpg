@@ -12,11 +12,13 @@
 
 struct zone_t;
 struct player_t;
+struct fight_t;
 
 typedef struct battle_t {
     sfVector2i size;
     sfVector2i pos;
     int *tiles;
+    struct fight_t *fight;
     layer_t *layer;
     struct zone_t *zone;
     struct player_t *player;

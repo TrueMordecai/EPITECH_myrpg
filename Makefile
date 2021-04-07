@@ -21,6 +21,7 @@ SRCS_BASE := 	main.c \
 				physic_add_tile.c \
 				physic_add_zone_border.c \
 				\
+				\
 				player_create.c \
 				player_init_physic.c \
 				player_handle_input.c \
@@ -32,6 +33,16 @@ SRCS_BASE := 	main.c \
 				stats_destroy.c \
 				stats_init.c \
 				stats_reset.c \
+				\
+				entity_create.c \
+				entity_destroy.c \
+				\
+				\
+				fight_create.c \
+				fight_update.c \
+				fight_destroy.c \
+				fight_get_tile.c \
+				\
 				\
 				map_create.c \
 				map_load_zone.c \
@@ -178,6 +189,11 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/%.c
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Player/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Stats/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Entity/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Fight/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c

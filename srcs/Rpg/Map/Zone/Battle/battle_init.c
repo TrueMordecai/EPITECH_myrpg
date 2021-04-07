@@ -18,4 +18,5 @@ void battle_init(battle_t *battle, zone_t *zone)
     battle->size.y, EMPTY);
     battle->layer = layer_create(NULL, battle->zone->tiles_size);
     battle->player = zone->map->rpg->player;
+    battle->fight = NULL;
 }
