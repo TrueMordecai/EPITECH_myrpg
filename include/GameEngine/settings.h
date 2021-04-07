@@ -10,6 +10,8 @@
 
 #include <SFML/Graphics.h>
 
+#include "types.h"
+
 #define SCL(state) (state->game_data->settings->scale)
 #define SL(rpg)    SCL((rpg)->state)
 

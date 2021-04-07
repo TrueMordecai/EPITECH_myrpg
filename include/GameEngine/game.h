@@ -12,6 +12,8 @@
 #include <SFML/Window.h>
 #include <libmy/collections/vec.h>
 
+#include "types.h"
+
 typedef struct game_data_t {
     /// A vector of element type 'state_t' (note the lack of a '*')
     my_vec_t states;

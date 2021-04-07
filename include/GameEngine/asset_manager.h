@@ -11,6 +11,8 @@
 #include <SFML/Graphics/Types.h>
 #include <libmy/collections/hash_map.h>
 
+#include "types.h"
+
 typedef union {
     sfTexture *texture;
     sfFont *font;

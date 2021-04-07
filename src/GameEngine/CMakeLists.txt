@@ -10,6 +10,7 @@ set(SRC
     ${INCROOT}/game.h
     ${INCROOT}/game_head.h
     ${INCROOT}/state.h
+    ${INCROOT}/types.h
     ${SRCROOT}/game.c
     ${SRCROOT}/state.c
     PARENT_SCOPE

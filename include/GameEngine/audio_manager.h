@@ -11,6 +11,7 @@
 #include <SFML/Audio.h>
 #include <libmy/collections.h>
 
+#include "types.h"
 #include "settings.h"
 
 typedef union {

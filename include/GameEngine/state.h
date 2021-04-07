@@ -10,6 +10,8 @@
 
 #include <libmy/collections/vec.h>
 
+#include "types.h"
+
 enum STATE_ID { NONE, MENU_STATE, SETTINGS_STATE, GAME_STATE };
 
 struct game_data_t;
@@ -39,5 +41,11 @@ void end_state(game_data_t *data, int from);
 void add_state(game_data_t *data,
     int (*state_setfcts)(game_data_t *, state_t *, size_t), int replace,
     size_t datas);
+
+/// Calls @ref state::destroy.
+///
+/// @param state The state, cannot be @c NULL.
+/// @param from
+int state_destroy(state_t *state, state_id_t from);
 
 #endif
