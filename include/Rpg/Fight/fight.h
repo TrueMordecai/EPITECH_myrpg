@@ -12,7 +12,8 @@
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
 
-enum cell_tests {WALKABLE};
+enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
+enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
 
 struct player_t;
 
@@ -45,10 +46,16 @@ int fight_vec_to_pos(fight_t *fight, sfVector2i vec);
 int fight_xy_to_pos(fight_t *fight, int x, int y);
 int fight_world_vec_to_pos(fight_t *fight, sfVector2f world_vec);
 int fight_get_mouse_tile(fight_t *fight);
+int *fight_get_range(fight_t *fight, int from, int range, int test);
+int *fight_get_line(fight_t *fight, int from, int to);
 void fight_draw_line(fight_t *fight, int from, int to);
+void fight_show_sight(fight_t *fight, int from, int range, int need_free_cell);
 
 void fight_reset_buff(fight_t *fight);
 void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
+
 int cell_is_walkable(cell_t *cell);
+int cell_is_occupied(cell_t *cell);
+int cell_is_empty(cell_t *cell);
 
 #endif /* !FIGHT_H_ */

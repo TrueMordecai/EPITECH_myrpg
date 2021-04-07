@@ -47,6 +47,7 @@ SRCS_BASE := 	main.c \
 				fight_draw.c \
 				fight_destroy.c \
 				fight_draw_line.c \
+				fight_show_sight.c \
 				fight_get_tile.c \
 				\
 				\

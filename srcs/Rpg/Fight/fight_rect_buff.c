@@ -33,13 +33,16 @@ static int get_first_i_unused(fight_t *fight)
 void fight_place_rect(fight_t *fight, int pos, sfColor color, int test)
 {
     sfRectangleShape *rect;
-    sfColor new_color = sfColor_fromRGBA(color.r, color.g, color.b, 80);
 
-    if (pos == -1)
+    if (pos == INEXISTING)
         return;
-    if (test == WALKABLE && !cell_is_walkable(&fight->grid[pos]))
+    if ((test & WALKABLE) && !cell_is_walkable(&fight->grid[pos]))
+        return;
+    if ((test & OCCUPIED) && !cell_is_occupied(&fight->grid[pos]))
+        return;
+    if ((test & C_EMPTY) && !cell_is_empty(&fight->grid[pos]))
         return;
     rect = fight->rect_buffer[get_first_i_unused(fight)];
-    sfRectangleShape_setFillColor(rect, new_color);
+    sfRectangleShape_setFillColor(rect, color);
     sfRectangleShape_setPosition(rect, fight_pos_to_world_vec(fight, pos));
 }

@@ -60,7 +60,7 @@ int *fight_get_line(fight_t *fight, int from, int to)
             ps[!id] += (add_other) ? 1 : -1;
         line[i++] = fight_vec_to_pos(fight, (sfVector2i){ps[0], ps[1]});
     }
-    line[i] = -1;
+    line[i] = END_ARRAY;
     return line;
 }
 
@@ -71,7 +71,8 @@ void fight_draw_line(fight_t *fight, int from, int to)
 
     if (!line)
         return;
-    while (line[i] != -1)
-        fight_place_rect(fight, line[i++], sfCyan, WALKABLE);
+    while (line[i] != END_ARRAY)
+        fight_place_rect(fight, line[i++], \
+        sfColor_fromRGBA(0, 255, 255, 50), C_EMPTY);
     free(line);
 }

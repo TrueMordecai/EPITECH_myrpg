@@ -32,7 +32,7 @@ int fight_vec_to_pos(fight_t *fight, sfVector2i vec)
 {
     if (vec.x < 0 || vec.x >= fight->size.x || \
         vec.y < 0 || vec.y >= fight->size.y)
-        return -1;
+        return INEXISTING;
     return vec.x + vec.y * fight->size.x;
 }
 
@@ -50,6 +50,6 @@ int fight_world_vec_to_pos(fight_t *fight, sfVector2f world_vec)
     tile_pos.y -= fight->pos.y;
     if (tile_pos.x < 0 || tile_pos.x >= fight->size.x || \
         tile_pos.y < 0 || tile_pos.y >= fight->size.y)
-        return -1;
+        return INEXISTING;
     return tile_pos.x + tile_pos.y * fight->size.x;
 }
