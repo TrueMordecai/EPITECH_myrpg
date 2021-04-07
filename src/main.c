@@ -42,7 +42,7 @@ int my_rpg(int argc, char *argv[])
         return 84;
     sfRenderWindow_setPosition(data->window, (sfVector2i){0, 0});
     run(data);
-    game_destroy(data);
+    game_data_destroy(data);
     return 0;
 }
 

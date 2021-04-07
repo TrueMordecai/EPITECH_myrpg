@@ -40,12 +40,12 @@ static sfVector2i get_interract_pos(
 
 static int get_doors_id(zone_t *zone, int pos_id, int doors)
 {
-    size_t nb_doors = my_vector_get_size(
-        (size_t *)((doors == SUB_DOOR) ? zone->sub_doors : zone->ext_doors));
+    my_vec_t *d_vec = doors == SUB_DOOR ? &zone->sub_doors : &zone->ext_doors;
+    size_t nb_doors = d_vec->length;
     int id;
 
     for (size_t i = 0; i < nb_doors; i++) {
-        id = (doors == SUB_DOOR) ? zone->sub_doors[i] : zone->ext_doors[i];
+        id = MY_VEC_GET_ELEM(int, d_vec, i);
         if (pos_id == id)
             return i;
     }
@@ -72,6 +72,9 @@ static void handle_doors(zone_t *zone, sfVector2i pos, int pos_id, int doors)
         } else
             zone_id = zone->mother_zone;
     }
+    (void)pos;
+    (void)pos_id;
+    (void)doors;
     map_load_zone(zone->map, zone_id, open_door, mother);
 }
 

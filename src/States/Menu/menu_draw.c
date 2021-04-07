@@ -9,7 +9,7 @@
 #include "GameEngine/game.h"
 #include "States/Menu/menu_state.h"
 
-int menu_draw(menu_state_t *state, float dt)
+int menu_state_draw(menu_state_t *state, float dt)
 {
     sfRenderWindow *window = state->base.game_data->window;
     size_t layer_count = state->base.draw_layers.length;

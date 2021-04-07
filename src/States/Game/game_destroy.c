@@ -7,7 +7,7 @@
 
 #include "States/Game/game_state.h"
 
-void game_destroy(game_state_t *state, state_id_t from)
+void game_state_destroy(game_state_t *state, state_id_t from)
 {
     rpg_destroy(state->rpg);
     (void)from;

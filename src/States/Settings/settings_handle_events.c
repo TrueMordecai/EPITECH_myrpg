@@ -20,7 +20,7 @@ static int handle_key(sfEvent event, state_t *state)
     }
 }
 
-int settings_handle_events(settings_state_t *state)
+int settings_state_handle_events(settings_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;

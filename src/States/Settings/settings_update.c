@@ -7,7 +7,7 @@
 
 #include "States/Settings/settings_state.h"
 
-int settings_update(settings_state_t *state, float dt)
+int settings_state_update(settings_state_t *state, float dt)
 {
     (void)state;
     (void)dt;

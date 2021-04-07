@@ -12,17 +12,21 @@
 #include "States/Menu/menu_state.h"
 #include "States/Settings/settings_state.h"
 
-static void shortcuts(game_data_t *data, state_t *state, int key_code)
+static void shortcuts(game_data_t *data, int key_code)
 {
     switch (key_code) {
         case sfKeyEscape: sfRenderWindow_close(data->window); break;
-        case sfKeyP: game_push_state(data, &game_create, 0, 0); break;
-        case sfKeyS: game_push_state(data, &settings_create, 0, 0); break;
+        case sfKeyP:
+            game_data_push_state(data, &game_state_create, false);
+            break;
+        case sfKeyS:
+            game_data_push_state(data, &settings_state_create, false);
+            break;
         default: break;
     }
 }
 
-int menu_handle_events(menu_state_t *state)
+int menu_state_handle_events(menu_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;
@@ -31,7 +35,7 @@ int menu_handle_events(menu_state_t *state)
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(data->window);
         if (event.type == sfEvtKeyPressed)
-            shortcuts(data, state, event.key.code);
+            shortcuts(data, event.key.code);
     }
     return 0;
 }

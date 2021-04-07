@@ -9,11 +9,13 @@
 
 zone_t *map_get_zone(map_t *map, int id)
 {
-    size_t nb_zones = my_vector_get_size((size_t *)map->zones);
+    size_t zone_count = map->zones.length;
 
-    for (size_t i = 0; i < nb_zones; i++) {
-        if (id == map->zones[i]->id)
-            return map->zones[i];
+    for (size_t i = 0; i < zone_count; i++) {
+        zone_t *zone = MY_VEC_GET_ELEM(zone_t *, &map->zones, i);
+
+        if (id == zone->id)
+            return zone;
     }
     return NULL;
 }
@@ -28,7 +30,7 @@ void map_load_zone(map_t *map, int id, int door, int mother)
         zone = zone_create(map);
         map->current_zone = zone;
         zone_init_from_file(zone, id, door, mother);
-        my_vector_push((size_t **)&map->zones, (size_t)zone);
+        my_vec_push(&map->zones, &zone);
     }
     if (!zone->world)
         return;

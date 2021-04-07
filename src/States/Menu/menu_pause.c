@@ -7,7 +7,7 @@
 
 #include "States/Menu/menu_state.h"
 
-int menu_pause(menu_state_t *state, state_id_t new_state)
+int menu_state_pause(menu_state_t *state, state_id_t new_state)
 {
     (void)state;
     (void)new_state;

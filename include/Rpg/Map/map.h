@@ -9,6 +9,8 @@
 #define MAP_H
 
 #include <SFML/Graphics.h>
+#include <libmy/collections/vec.h>
+
 #include "Rpg/Map/zone.h"
 
 struct rpg_t;
@@ -23,7 +25,8 @@ typedef struct map_t {
     sfView *view;
     sfVector2f view_pos;
     sfVector2f view_size;
-    zone_t **zones;
+    /// Element Type: zone_t *
+    my_vec_t zones;
     struct rpg_t *rpg;
 } map_t;
 

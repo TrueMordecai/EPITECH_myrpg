@@ -9,7 +9,7 @@
 
 #include "States/Menu/menu_state.h"
 
-int menu_resume(menu_state_t *state, state_id_t last_state)
+int menu_state_resume(menu_state_t *state, state_id_t last_state)
 {
     my_puts("Menu State\n");
     my_fflush(MY_STDOUT);

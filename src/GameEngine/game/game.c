@@ -39,7 +39,7 @@ game_data_t *game_data_create(sfVideoMode *mode, char const *name)
     audio_manager_init(&data->audio, data->settings);
     init_window(data, mode, name);
     my_vec_init_capacity(&data->states, 5, sizeof(state_t *));
-    game_data_push_state(data, &menu_create, false);
+    game_data_push_state(data, &menu_state_create, false);
     return data;
 }
 

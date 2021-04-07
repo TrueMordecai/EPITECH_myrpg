@@ -5,6 +5,8 @@
 ** zone init empty
 */
 
+#include <libmy/memory/alloc.h>
+
 #include "Rpg/rpg.h"
 #include "GameEngine/asset_manager.h"
 
@@ -17,8 +19,8 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     if (nb_layers <= 0)
         return;
     zone->size = size;
-    zone->sub_doors = (int *)my_vector_init(sizeof(int), 1);
-    zone->ext_doors = (int *)my_vector_init(sizeof(int), 1);
+    my_vec_init(&zone->sub_doors, sizeof(int));
+    my_vec_init(&zone->ext_doors, sizeof(int));
     battle_init(&zone->battle, zone);
     zone->special = my_calloc(sizeof(int) * size.x * size.y, 0);
     zone->layers = my_calloc(sizeof(layer_t **) * nb_layers, 0);
@@ -38,9 +40,9 @@ void zone_place_at_door(zone_t *zone, int door)
     pe_vec2f_t pos;
     int id;
 
-    if (door < 0 || door >= my_vector_get_size((size_t *)zone->ext_doors))
+    if (door < 0 || (size_t)door >= zone->ext_doors.length)
         return;
-    id = zone->ext_doors[door];
+    id = MY_VEC_GET_ELEM(int, &zone->ext_doors, door);
     pos.x = id % zone->size.x;
     pos.y = id / zone->size.x;
     pe_body_set_pos(zone->player_body, pos);

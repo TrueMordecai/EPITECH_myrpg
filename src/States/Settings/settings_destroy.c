@@ -8,7 +8,7 @@
 #include "States/Settings/settings_state.h"
 
 // Does nothing since the settings state doesn't have any extra data yet.
-void settings_destroy(settings_state_t *state, state_id_t from)
+void settings_state_destroy(settings_state_t *state, state_id_t from)
 {
     (void)state;
     (void)from;

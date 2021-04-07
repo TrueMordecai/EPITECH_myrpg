@@ -9,7 +9,7 @@
 
 #include "States/Game/game_state.h"
 
-int game_handle_events(game_state_t *state)
+int game_state_handle_events(game_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;

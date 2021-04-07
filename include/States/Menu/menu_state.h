@@ -18,12 +18,12 @@ typedef struct menu_state {
     // such as widgets.
 } menu_state_t;
 
-state_t *menu_create(game_data_t *data);
-int menu_resume(menu_state_t *state, state_id_t last_state);
-int menu_handle_events(menu_state_t *state);
-int menu_update(menu_state_t *state, float dt);
-int menu_draw(menu_state_t *state, float dt);
-int menu_pause(menu_state_t *state, state_id_t new_state);
-void menu_destroy(menu_state_t *state, state_id_t from);
+state_t *menu_state_create(game_data_t *data);
+int menu_state_resume(menu_state_t *state, state_id_t last_state);
+int menu_state_handle_events(menu_state_t *state);
+int menu_state_update(menu_state_t *state, float dt);
+int menu_state_draw(menu_state_t *state, float dt);
+int menu_state_pause(menu_state_t *state, state_id_t new_state);
+void menu_state_destroy(menu_state_t *state, state_id_t from);
 
 #endif /* !MENU_STATE_H */

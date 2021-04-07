@@ -7,7 +7,7 @@
 
 #include "States/Game/game_state.h"
 
-int game_update(game_state_t *state, float dt)
+int game_state_update(game_state_t *state, float dt)
 {
     rpg_update(state->rpg, dt);
     return 0;

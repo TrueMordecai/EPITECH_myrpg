@@ -18,12 +18,12 @@ typedef struct settings_state {
     // such as widgets.
 } settings_state_t;
 
-state_t *settings_create(game_data_t *data, state_t *state, size_t datas);
-int settings_resume(settings_state_t *state, state_id_t last_state);
-int settings_handle_events(settings_state_t *state);
-int settings_update(settings_state_t *state, float dt);
-int settings_draw(settings_state_t *state, float dt);
-int settings_pause(settings_state_t *state, state_id_t new_state);
-void settings_destroy(settings_state_t *state, state_id_t from);
+state_t *settings_state_create(game_data_t *data);
+int settings_state_resume(settings_state_t *state, state_id_t last_state);
+int settings_state_handle_events(settings_state_t *state);
+int settings_state_update(settings_state_t *state, float dt);
+int settings_state_draw(settings_state_t *state, float dt);
+int settings_state_pause(settings_state_t *state, state_id_t new_state);
+void settings_state_destroy(settings_state_t *state, state_id_t from);
 
 #endif /* !SETTINGS_STATE_H */

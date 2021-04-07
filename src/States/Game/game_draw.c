@@ -8,7 +8,7 @@
 #include "Drawables/drawable.h"
 #include "States/Game/game_state.h"
 
-int game_draw(game_state_t *state, float dt)
+int game_state_draw(game_state_t *state, float dt)
 {
     sfRenderWindow *window = state->base.game_data->window;
     size_t layer_count = state->base.draw_layers.length;

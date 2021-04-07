@@ -7,7 +7,7 @@
 
 #include "States/Game/game_state.h"
 
-int game_pause(game_state_t *state, state_id_t new_state)
+int game_state_pause(game_state_t *state, state_id_t new_state)
 {
     (void)state;
     (void)new_state;

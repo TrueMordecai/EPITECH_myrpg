@@ -9,13 +9,15 @@
 #define ZONE_H
 
 #include <SFML/Graphics.h>
-#include "Rpg/Map/battle.h"
+#include <libmy/collections/vec.h>
+
 #include "Physics/physics.h"
+#include "Rpg/Map/battle.h"
 
 struct map_t;
 struct player_t;
 
-enum ZONE_SPECIAL{SUB_DOOR = 1, EXT_DOOR = 3};
+enum ZONE_SPECIAL { SUB_DOOR = 1, EXT_DOOR = 3 };
 extern const int ZONE_START;
 extern const int ZONE_HOUSE;
 
@@ -36,8 +38,10 @@ typedef struct zone_t {
     pe_body_t *player_body;
     int id;
     int mother_zone;
-    int *sub_doors;
-    int *ext_doors;
+    /// Element type: int
+    my_vec_t sub_doors;
+    /// Element type: int
+    my_vec_t ext_doors;
 } zone_t;
 
 zone_t *zone_create(struct map_t *map);
@@ -47,10 +51,10 @@ int zone_init_from_file(zone_t *zone, int id, int door, int mother);
 void zone_sort_layers(zone_t *zone);
 int zone_interract(zone_t *zone);
 void zone_draw(zone_t *zone, sfRenderWindow *wind);
-int zone_draw_battle(zone_t *zone, sfRenderWindow *wind, \
-sfVector2i min, sfVector2i max);
-void zone_draw_layers(zone_t *zone, sfRenderWindow *wind, \
-sfVector2i min, sfVector2i max);
+int zone_draw_battle(
+    zone_t *zone, sfRenderWindow *wind, sfVector2i min, sfVector2i max);
+void zone_draw_layers(
+    zone_t *zone, sfRenderWindow *wind, sfVector2i min, sfVector2i max);
 void zone_destroy(zone_t *zone);
 
 int zone_assert_id(zone_t *zone, int x, int y, int *id);
