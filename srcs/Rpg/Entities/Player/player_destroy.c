@@ -10,6 +10,7 @@
 
 void player_destroy(player_t *player)
 {
+    stats_destroy(player->stats);
     sfRectangleShape_destroy(player->rect);
     free(player);
 }

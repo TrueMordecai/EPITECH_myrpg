@@ -28,6 +28,11 @@ SRCS_BASE := 	main.c \
 				player_draw.c \
 				player_destroy.c \
 				\
+				stats_create.c \
+				stats_destroy.c \
+				stats_init.c \
+				stats_reset.c \
+				\
 				map_create.c \
 				map_load_zone.c \
 				map_move.c \
@@ -171,6 +176,8 @@ $(OBJ_PATH)/%.o: ./srcs/Functions/%.c
 $(OBJ_PATH)/%.o: ./srcs/Rpg/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Player/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Stats/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/%.c

@@ -10,12 +10,14 @@
 
 #include <SFML/Graphics.h>
 #include "Physics/physics.h"
+#include "Rpg/Entities/stats.h"
 
 typedef struct player_t {
     sfRectangleShape *rect;
     sfVector2f pos;
     sfVector2i dir;
     pe_body_t *body;
+    stats_t *stats;
 } player_t;
 
 player_t *player_create(void);
