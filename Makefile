@@ -34,6 +34,7 @@ SRCS_BASE := 	main.c \
 				stats_init.c \
 				stats_reset.c \
 				\
+				ally_draw_move.c \
 				entity_create.c \
 				entity_destroy.c \
 				\

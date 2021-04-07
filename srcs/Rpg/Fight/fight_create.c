@@ -27,11 +27,14 @@ static void init_rect_buff(fight_t *fight, int capacity)
 
 static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
 {
+    fight->entity_turn = 0;
     fight->nb_entities = MAX(0, nb_ennemies) + 1;
     fight->entities = malloc(sizeof(entity_t *) * fight->nb_entities);
     fight->entities[0] = player->entity;
     fight->entities[0]->pos = player->body->pos.x - fight->pos.x + \
     (player->body->pos.y - fight->pos.y) * fight->size.x;
+    for (int i = 0; i < fight->nb_entities; i++)
+        stats_reset(fight->entities[i]->stats, 0);
 }
 
 fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)

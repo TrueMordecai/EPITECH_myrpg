@@ -28,6 +28,7 @@ typedef struct fight_t {
     sfVector2i size;
     sfVector2i pos;
     int turn;
+    int entity_turn;
     struct rpg_t *rpg;
     sfRectangleShape **rect_buffer;
 } fight_t;

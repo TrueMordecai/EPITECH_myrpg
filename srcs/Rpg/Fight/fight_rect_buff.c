@@ -35,6 +35,8 @@ void fight_place_rect(fight_t *fight, int pos, sfColor color, int test)
     sfRectangleShape *rect;
     sfColor new_color = sfColor_fromRGBA(color.r, color.g, color.b, 80);
 
+    if (pos == -1)
+        return;
     if (test == WALKABLE && !cell_is_walkable(&fight->grid[pos]))
         return;
     rect = fight->rect_buffer[get_first_i_unused(fight)];

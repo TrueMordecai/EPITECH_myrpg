@@ -10,6 +10,9 @@
 
 #include "Rpg/Entities/stats.h"
 
+
+struct fight_t;
+
 enum entity_type_e {PLAYER, ALLY, ENNEMY};
 enum team_e {ALLIES, ENNEMIES};
 
@@ -24,5 +27,7 @@ typedef struct entity_t {
 entity_t *entity_create(void *datas, enum entity_type_e type, \
 enum team_e team, int pos);
 void entity_destroy(entity_t *entity);
+
+void ally_draw_move_possibilities(struct fight_t *fight);
 
 #endif /* !ENTITY_H_ */
