@@ -30,14 +30,17 @@ typedef struct entity_t {
     int *spell_range;
     void *datas;
     struct fight_t *fight;
+    sfRectangleShape *rect;
 } entity_t;
 
 entity_t *entity_create(void *datas, enum entity_type_e type, \
 enum team_e team, int pos);
 void entity_init(entity_t *entity);
+void entity_init_rect(entity_t *entity, sfColor color);
 void entity_move(entity_t *entity);
 void entity_update(entity_t *entity, float dt, int playing);
 void entity_handle_events(entity_t *entity, sfEvent event);
+void entity_draw(entity_t *entity, sfRenderWindow *wind);
 void entity_destroy(entity_t *entity);
 
 void entity_start_turn(entity_t *entity);

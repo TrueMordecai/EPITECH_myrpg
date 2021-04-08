@@ -36,6 +36,7 @@ int is_in_bounds(sfVector2f pos, sfVector2f item_pos, sfVector2f item_size);
 int is_in_rect(sfVector2f pos, sfFloatRect rect);
 
 float get_rand(float min, float max);
+int get_randi(int a, int b);
 void center_mouse(sfRenderWindow *wind);
 
 #endif /* !FUNCTIONS_H */

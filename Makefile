@@ -43,6 +43,7 @@ SRCS_BASE := 	main.c \
 				entity_move.c \
 				entity_destroy.c \
 				entity_turn.c \
+				entity_draw.c \
 				\
 				\
 				cell_tests.c \

@@ -16,9 +16,9 @@ stats_t *stats_create(void)
     stats->effects = NULL;
     stats->pa = 6;
     stats->pm = 3;
-    stats->current_life = 0;
-    stats->current_pa = 0;
-    stats->current_pm = 0;
+    stats->current_life = 100;
+    stats->current_pa = 6;
+    stats->current_pm = 3;
     for (int i = 0; i < 4; i++) {
         stats->elements[i] = 0;
         stats->resistances[i] = 0;

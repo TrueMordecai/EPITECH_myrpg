@@ -11,6 +11,7 @@ void entity_start_turn(entity_t *entity)
 {
     stats_reset(entity->stats, 1);
     entity_update_move_possibilities(entity);
+    entity_update_spell_sight(entity);
 }
 
 void entity_end_turn(entity_t *entity)

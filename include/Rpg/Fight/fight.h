@@ -71,6 +71,8 @@ int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
 int need_free_cell, int **spell_range);
 int *fight_get_path(fight_t *fight, int from, int to);
 
+int get_heuristic_cost(fight_t *fight, int pos_a, int pos_b);
+
 int fight_is_pos_in(fight_t *fight, int pos);
 int cell_is_walkable(cell_t *cell);
 int cell_is_occupied(cell_t *cell);

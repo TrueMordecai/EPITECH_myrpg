@@ -17,4 +17,8 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
         sfRenderWindow_drawRectangleShape(wind, fight->rect_buffer[i], NULL);
         i++;
     }
+    for (int x = 0; x < fight->size.x; x++) {
+        for (int y = 0; y < fight->size.y; y++)
+            entity_draw(fight->grid[x + y * fight->size.x].entity, wind);
+    }
 }

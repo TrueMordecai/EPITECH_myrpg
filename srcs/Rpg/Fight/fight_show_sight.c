@@ -8,13 +8,13 @@
 #include "Rpg/Fight/fight.h"
 #include "My/my_memory.h"
 
-static int is_line_valid(fight_t *fight, int *line)
+static int is_line_valid(fight_t *fight, int *line, int start)
 {
     if (!line)
         return 0;
     for (int k = 0; line[k] != END_ARRAY; k++)
-        if (((cell_is_occupied(&fight->grid[line[k]]) && \
-            line[k + 1] != END_ARRAY)) || fight->grid[line[k]].physic == SOLID)
+        if (line[k] != start && (((cell_is_occupied(&fight->grid[line[k]]) && \
+            line[k + 1] != END_ARRAY)) || fight->grid[line[k]].physic == SOLID))
             return 0;
     return 1;
 }
@@ -28,9 +28,11 @@ static void test_lines(fight_t *fight, int start, int *cells, int *outs)
         if (cells[i] == INEXISTING)
             continue;
         line = fight_get_line(fight, start, cells[i]);
-        valid = is_line_valid(fight, line);
+        valid = is_line_valid(fight, line, start);
         if (!valid)
             outs[i] = 1;
+        if (valid)
+            valid = 0;
         free(line);
     }
 }
@@ -45,7 +47,7 @@ int need_free_cell, int **spell_range)
         *spell_range = fight_get_range(fight, from_range.x, \
         from_range.y, WALKABLE);
     for (int i = 0; (*spell_range)[i] != END_ARRAY; i++) {
-        if ((*spell_range)[i] == -1)
+        if ((*spell_range)[i] == -1 || (*spell_range)[i] == from_range.x)
             continue;
         if (need_free_cell && cell_is_occupied(&fight->grid[(*spell_range)[i]]))
             outs[i] = 1;

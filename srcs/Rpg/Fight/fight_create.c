@@ -6,9 +6,11 @@
 */
 
 #include <stdlib.h>
+#include "functions.h"
 #include "Rpg/Entities/player.h"
 #include "Rpg/Map/battle.h"
 #include "Rpg/Fight/fight.h"
+#include "My/my_display.h"
 #include "Rpg/rpg.h"
 
 static void init_rect_buff(fight_t *fight, int capacity)
@@ -25,6 +27,46 @@ static void init_rect_buff(fight_t *fight, int capacity)
     }
 }
 
+static int get_pos(fight_t *fight, int player_pos)
+{
+    int *tmp = NULL;
+    int i = 0;
+    int pos;
+
+    do {
+        pos = get_randi(0, fight->size.x * fight->size.y - 1);
+        if (!cell_is_empty(&fight->grid[pos]))
+            continue;
+        tmp = fight_get_path(fight, pos, player_pos);
+        i++;
+    } while (!tmp && i < 100);
+    if (tmp) {
+        free(tmp);
+        return pos;
+    }
+    return -1;
+}
+
+static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
+{
+    int pos;
+
+    for (int i = 0; i < nb_ennemies; i++) {
+        pos = get_pos(fight, player_pos);
+        my_print("Ennemy at pos %d\n", pos);
+        if (pos == -1) {
+            nb_ennemies--;
+            i--;
+            fight->nb_entities--;
+            continue;
+        }
+        fight->entities[i + 1] = entity_create(NULL, ENNEMY, ENNEMIES, pos);
+        fight->entities[i + 1]->stats = stats_create();
+        fight->entities[i + 1]->fight = fight;
+        entity_init_rect(fight->entities[i + 1], sfRed);
+    }
+}
+
 static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
 {
     fight->entity_turn = 0;
@@ -33,9 +75,11 @@ static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     fight->entities[0] = player->entity;
     fight->entities[0]->pos = player->body->pos.x - fight->pos.x + \
     (player->body->pos.y - fight->pos.y) * fight->size.x;
+    init_ennemies(fight, nb_ennemies, fight->entities[0]->pos);
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
         fight->entities[i]->fight = fight;
+        fight->grid[fight->entities[i]->pos].entity = fight->entities[i];
         entity_init(fight->entities[i]);
     }
 }

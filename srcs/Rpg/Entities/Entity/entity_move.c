@@ -19,18 +19,30 @@ static void move_player(player_t *player)
     player->body->pos.y = pos.y;
 }
 
+static void move_rect(entity_t *entity)
+{
+    sfVector2f pos = fight_pos_to_world_vec(entity->fight, entity->pos);
+
+    pos.y -= 32;
+    sfRectangleShape_setPosition(entity->rect, pos);
+}
+
 void entity_move(entity_t *entity)
 {
     int size_move = 0;
 
     if (!entity->move_path)
         return;
-    for (int i = 0; entity->move_path[i] != END_ARRAY; i++) {
+    for (int i = 0; entity->move_path[i] != END_ARRAY; i++)
         size_move++;
-    }
-    entity->pos = entity->move_path[size_move - 1];
-    entity->stats->current_pm -= size_move - 1;
+    size_move = MIN(size_move - 1, entity->stats->current_pm);
+    entity->fight->grid[entity->pos].entity = NULL;
+    entity->pos = entity->move_path[size_move];
+    entity->fight->grid[entity->pos].entity = entity;
+    entity->stats->current_pm -= size_move;
     entity_update_move_possibilities(entity);
     if (entity->type == PLAYER)
         move_player(entity->datas);
+    else
+        move_rect(entity);
 }
