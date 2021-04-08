@@ -50,21 +50,25 @@ void fight_handle_events(fight_t *fight, sfEvent event);
 void fight_draw(fight_t *fight, sfRenderWindow *wind);
 void fight_destroy(fight_t *fight);
 
+void fight_new_turn(fight_t *fight);
+void fight_new_entity(fight_t *fight);
+
 sfVector2i fight_pos_to_vec(fight_t *fight, int pos, int world);
 sfVector2f fight_pos_to_world_vec(fight_t *fight, int pos);
 int fight_vec_to_pos(fight_t *fight, sfVector2i vec);
 int fight_xy_to_pos(fight_t *fight, int x, int y);
 int fight_world_vec_to_pos(fight_t *fight, sfVector2f world_vec);
 int fight_get_mouse_tile(fight_t *fight);
-int *fight_get_range(fight_t *fight, int from, int range, int test);
-int *fight_get_line(fight_t *fight, int from, int to);
 void fight_draw_line(fight_t *fight, int from, int to);
 void fight_show_sight(fight_t *fight, int from, int range, int need_free_cell);
 
 void fight_reset_buff(fight_t *fight);
 void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
 
-
+int *fight_get_range(fight_t *fight, int from, int range, int test);
+int *fight_get_line(fight_t *fight, int from, int to);
+int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
+int need_free_cell, int **spell_range);
 int *fight_get_path(fight_t *fight, int from, int to);
 
 int fight_is_pos_in(fight_t *fight, int pos);

@@ -18,5 +18,11 @@ enum team_e team, int pos)
     entity->team = team;
     entity->pos = pos;
     entity->stats = NULL;
+    entity->move_possibilities = NULL;
+    entity->move_path = NULL;
+    entity->spell_sight = NULL;
+    entity->spell_range = NULL;
+    entity->spell_select = -1;
+    entity->state = IDLE;
     return entity;
 }

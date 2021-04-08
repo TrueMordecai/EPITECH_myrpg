@@ -36,6 +36,7 @@ static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
         fight->entities[i]->fight = fight;
+        entity_init(fight->entities[i]);
     }
 }
 
@@ -46,8 +47,7 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
     fight->rpg = battle->zone->map->rpg;
     fight->size = battle->size;
     fight->pos = battle->pos;
-    init_entities(fight, nb_ennemies, player);
-    fight->turn = 0;
+    fight->turn = -1;
     fight->grid = malloc(sizeof(cell_t) * fight->size.x * fight->size.y);
     for (int x = 0; x < fight->size.x; x++) {
         for (int y = 0; y < fight->size.y; y++) {
@@ -57,6 +57,8 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
             fight->rpg->map->current_zone->size.x];
         }
     }
+    init_entities(fight, nb_ennemies, player);
     init_rect_buff(fight, 10000);
+    fight_new_turn(fight);
     return fight;
 }

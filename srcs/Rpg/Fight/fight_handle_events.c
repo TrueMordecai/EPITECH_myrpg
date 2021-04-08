@@ -9,7 +9,7 @@
 
 void fight_handle_events(fight_t *fight, sfEvent event)
 {
-    if (event.type != sfEvtMouseButtonPressed)
-        return;
-    entity_move(fight->entities[0], fight_get_mouse_tile(fight));
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyN)
+        fight_new_entity(fight);
+    entity_handle_events(fight->entities[fight->entity_turn], event);
 }

@@ -8,14 +8,7 @@
 #include "Rpg/Entities/player.h"
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Fight/fight.h"
-
-static int get_manhattan_dist(fight_t *fight, int p1, int p2)
-{
-    sfVector2i v1 = fight_pos_to_vec(fight, p1, 0);
-    sfVector2i v2 = fight_pos_to_vec(fight, p2, 0);
-
-    return abs(v1.x - v2.x) + abs(v1.y - v2.y);
-}
+#include "My/my_display.h"
 
 static void move_player(player_t *player)
 {
@@ -26,13 +19,18 @@ static void move_player(player_t *player)
     player->body->pos.y = pos.y;
 }
 
-void entity_move(entity_t *entity, int new_pos)
+void entity_move(entity_t *entity)
 {
-    int dist = get_manhattan_dist(entity->fight, entity->pos, new_pos);
+    int size_move = 0;
 
-    if (dist > entity->stats->pm)
+    if (!entity->move_path)
         return;
-    entity->pos = new_pos;
+    for (int i = 0; entity->move_path[i] != END_ARRAY; i++) {
+        size_move++;
+    }
+    entity->pos = entity->move_path[size_move - 1];
+    entity->stats->current_pm -= size_move - 1;
+    entity_update_move_possibilities(entity);
     if (entity->type == PLAYER)
         move_player(entity->datas);
 }

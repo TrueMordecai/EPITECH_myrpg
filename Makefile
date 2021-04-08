@@ -34,14 +34,20 @@ SRCS_BASE := 	main.c \
 				stats_init.c \
 				stats_reset.c \
 				\
-				ally_draw_move.c \
+				entity_init.c \
+				entity_move_possibilities.c \
+				entity_update.c \
+				entity_spell_sight.c \
 				entity_create.c \
+				entity_handle_events.c \
 				entity_move.c \
 				entity_destroy.c \
+				entity_turn.c \
 				\
 				\
 				cell_tests.c \
 				fight_create.c \
+				fight_turn.c \
 				fight_update.c \
 				fight_pos_vec_conversions.c \
 				fight_rect_buff.c \

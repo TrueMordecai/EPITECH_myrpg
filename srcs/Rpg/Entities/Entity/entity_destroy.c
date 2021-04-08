@@ -10,6 +10,9 @@
 
 void entity_destroy(entity_t *entity)
 {
+    free(entity->move_path);
+    free(entity->move_possibilities);
+    free(entity->spell_sight);
     if (entity->stats)
         stats_destroy(entity->stats);
     free(entity);
