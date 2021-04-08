@@ -17,6 +17,15 @@ enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
 
 struct player_t;
 
+typedef struct node_t {
+    int pos;
+    int visited;
+    int wall;
+    int l_cost;
+    int g_cost;
+    struct node_t *parent;
+} node_t;
+
 typedef struct cell_t {
     entity_t *entity;
     int physic;
@@ -55,6 +64,10 @@ void fight_show_sight(fight_t *fight, int from, int range, int need_free_cell);
 void fight_reset_buff(fight_t *fight);
 void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
 
+
+int *fight_get_path(fight_t *fight, int from, int to);
+
+int fight_is_pos_in(fight_t *fight, int pos);
 int cell_is_walkable(cell_t *cell);
 int cell_is_occupied(cell_t *cell);
 int cell_is_empty(cell_t *cell);

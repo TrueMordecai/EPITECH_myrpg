@@ -23,7 +23,7 @@ void my_vector_set_elmt_size(size_t *vec, size_t elmt_size);
 void my_vector_set_capacity(size_t *vec, size_t capacity);
 
 void my_vector_push(size_t **vec, size_t value);
-void my_vector_pop(size_t **vec);
+size_t my_vector_pop(size_t **vec);
 size_t my_vector_top(size_t *vec);
 
 int my_vector_empty(size_t *vec);

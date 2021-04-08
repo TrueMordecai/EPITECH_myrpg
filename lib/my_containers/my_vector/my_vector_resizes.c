@@ -66,9 +66,12 @@ void my_vector_insert(size_t **vec, size_t pos, size_t value)
     my_vector_set_size(*vec, my_vector_get_size(*vec) + 1);
 }
 
-void my_vector_pop(size_t **vec)
+size_t my_vector_pop(size_t **vec)
 {
+    size_t value = my_vector_top(*vec);
+
     my_vector_set_size(*vec, my_vector_get_size(*vec) - 1);
+    return value;
 }
 
 size_t *my_vector_resize(size_t *vec, size_t size)

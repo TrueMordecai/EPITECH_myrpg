@@ -51,6 +51,8 @@ SRCS_BASE := 	main.c \
 				fight_show_sight.c \
 				fight_get_tile.c \
 				fight_handle_events.c \
+				fight_pathfinding.c \
+				fight_pathfinding_2.c \
 				\
 				\
 				map_create.c \

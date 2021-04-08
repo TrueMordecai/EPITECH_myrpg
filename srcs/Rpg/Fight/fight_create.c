@@ -57,6 +57,6 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
             fight->rpg->map->current_zone->size.x];
         }
     }
-    init_rect_buff(fight, 100);
+    init_rect_buff(fight, 10000);
     return fight;
 }

@@ -13,6 +13,7 @@ sfVector2i min, sfVector2i max)
 {
     sfRenderWindow_setView(wind, battle->zone->map->view);
     layer_draw(battle->layer, wind, min, max);
+    fight_draw(battle->fight, wind);
     player_draw(battle->player, wind);
 }
 
@@ -21,7 +22,8 @@ sfVector2i min, sfVector2i max)
 {
     if (battle->tactical)
         battle_draw_tactical(battle, wind, min, max);
-    else
+    else {
         zone_draw_layers(battle->zone, wind, min, max);
-    fight_draw(battle->fight, wind);
+        fight_draw(battle->fight, wind);
+    }
 }
