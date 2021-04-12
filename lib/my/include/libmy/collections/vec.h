@@ -301,6 +301,19 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_insert(
 MY_COLLECTIONS_API my_vec_err_t my_vec_insert_multiple(
     my_vec_t *vec, void *elem, size_t index, size_t count);
 
+/// Change the value of an element at position @c index within the vector.
+///
+/// @param vec   The vector, must be initialized.
+/// @param elem  The element data to change to the vector index.
+///              Must be a valid pointer.
+/// @param index The position of the changed element.
+///
+/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds,
+///          the vec's maximum, @ref MY_VEC_OK otherwise.
+/// @since 0.3.4
+MY_COLLECTIONS_API my_vec_err_t my_vec_change_value(
+my_vec_t *vec, void *elem, size_t index);
+
 /// Removes the element at position @c index and writes it to @c dst,
 /// shifting all elements after it to the left.
 ///
