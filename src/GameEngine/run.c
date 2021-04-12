@@ -49,7 +49,10 @@ void run(game_data_t *data)
         MY_VEC_GET_ELEM(state_t *, &data->states, data->states.length - 1);
 
     times[1] = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
-    while (sfRenderWindow_isOpen(data->window))
+    while (sfRenderWindow_isOpen(data->window)) {
         run_2(data, times, clock, &current_state);
+        my_fflush(MY_STDOUT);
+        my_fflush(MY_STDERR);
+    }
     sfClock_destroy(clock);
 }

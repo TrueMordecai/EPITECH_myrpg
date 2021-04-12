@@ -6,6 +6,7 @@
 */
 
 #include <libmy/io/iostream.h>
+#include <libmy/printf.h>
 #include <stdlib.h>
 
 #include "Rpg/Map/physic.h"
@@ -66,20 +67,31 @@ static void read_pos(
     } while (content[*i] == 1);
 }
 
-int zone_init_from_file(zone_t *zone, int id, int door, int mother)
+static char *zone_read_file(char const *path, size_t *file_size)
 {
     my_iostream_t file;
-    size_t file_size;
     char *file_content;
+
+    if (my_fopen(path, "r", &file)
+        || my_fset_buffer(malloc(1024), 1024, &free, &file)) {
+        my_fprintf(MY_STDERR, "Cannot open zone file: %#s\n", path);
+        return NULL;
+    }
+    file_content = my_fread_to_string(SIZE_MAX, file_size, &file);
+    if (file_content == NULL)
+        my_fprintf(MY_STDERR, "Cannot read zone file: %#s\n", path);
+    my_fclose(&file);
+    return file_content;
+}
+
+int zone_init_from_file(zone_t *zone, int id, int door, int mother)
+{
+    size_t file_size;
+    char *file_content = zone_read_file(ALL_ZONE_NAMES[id], &file_size);
     size_t offset = 0;
 
-    my_fopen(ALL_ZONE_NAMES[id], "r", &file);
-    file_content = my_fread_to_string(SIZE_MAX, &file_size, &file);
-    my_fclose(&file);
-    if (file_content == NULL) {
-        my_eputs("Can't read map\n");
-        return 0;
-    }
+    if (file_content == NULL)
+        return 1;
     read_infos(zone, file_content, &offset);
     for (int x = 0; x < zone->size.x; x++) {
         for (int y = 0; y < zone->size.y; y++) {
@@ -94,5 +106,5 @@ int zone_init_from_file(zone_t *zone, int id, int door, int mother)
     zone->id = id;
     zone->mother_zone = mother;
     zone_place_at_door(zone, door);
-    return 1;
+    return 0;
 }

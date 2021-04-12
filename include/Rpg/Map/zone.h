@@ -47,6 +47,9 @@ typedef struct zone_t {
 zone_t *zone_create(struct map_t *map);
 void zone_init(zone_t *zone, int nb_layers, sfVector2i size);
 void zone_place_at_door(zone_t *zone, int door);
+
+/// Loads a zone to from the the given id to the zone pointer.
+/// @returns 0 on success.
 int zone_init_from_file(zone_t *zone, int id, int door, int mother);
 void zone_sort_layers(zone_t *zone);
 int zone_interract(zone_t *zone);

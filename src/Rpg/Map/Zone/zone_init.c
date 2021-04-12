@@ -22,8 +22,8 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     my_vec_init(&zone->sub_doors, sizeof(int));
     my_vec_init(&zone->ext_doors, sizeof(int));
     battle_init(&zone->battle, zone);
-    zone->special = my_calloc(sizeof(int) * size.x * size.y, 0);
-    zone->layers = my_calloc(sizeof(layer_t **) * nb_layers, 0);
+    zone->special = my_calloc(size.x * size.y, sizeof(int));
+    zone->layers = my_calloc(nb_layers, sizeof(layer_t **));
     for (int i = 0; i < nb_layers; i++)
         zone->layers[i] = layer_create(tex, zone->tiles_size);
     zone->world =

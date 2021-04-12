@@ -11,7 +11,7 @@
 
 layer_t *layer_create(sfTexture *tex, int tiles_size)
 {
-    layer_t *layer = my_calloc(sizeof(layer_t), 0);
+    layer_t *layer = my_calloc(1, sizeof(layer_t));
 
     layer->tex = tex;
     layer->tiles_size = tiles_size;

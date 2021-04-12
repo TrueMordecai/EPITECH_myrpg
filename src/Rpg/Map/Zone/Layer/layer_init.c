@@ -13,5 +13,5 @@ void layer_init(layer_t *layer, sfVector2i size, sfVector2i pos)
 {
     layer->pos = pos;
     layer->size = size;
-    layer->tiles = my_calloc(sizeof(sfRectangleShape *) * size.x * size.y, 0);
+    layer->tiles = my_calloc(size.x * size.y, sizeof(sfRectangleShape *));
 }

@@ -14,12 +14,14 @@ settings_t *settings_read(char const *path)
 {
     settings_t *settings = malloc(sizeof(*settings));
     my_iostream_t input;
+    char buffer[256];
     int ret = 42;
 
     assert(path != NULL);
     if (settings == NULL)
         return NULL;
-    if (my_fopen(path, "r", &input) == 0) {
+    if (my_fopen(path, "r", &input) == 0
+        && my_fset_buffer(buffer, 256, NULL, &input) == 0) {
         ret = settings_parse(settings, &input);
         my_fclose(&input);
     }
