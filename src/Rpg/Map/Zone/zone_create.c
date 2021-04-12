@@ -11,7 +11,7 @@
 
 zone_t *zone_create(map_t *map)
 {
-    zone_t *zone = my_calloc(sizeof(zone_t), 0);
+    zone_t *zone = my_calloc(1, sizeof(zone_t));
 
     zone->tiles_size = map->tiles_size;
     zone->map = map;

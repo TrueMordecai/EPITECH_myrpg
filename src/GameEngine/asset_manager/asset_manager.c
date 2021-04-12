@@ -5,6 +5,8 @@
 ** asset manager functions
 */
 
+#include <SFML/Graphics/Font.h>
+#include <SFML/Graphics/Texture.h>
 #include <stdalign.h>
 
 #include "functions.h"

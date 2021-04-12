@@ -11,7 +11,7 @@
 
 player_t *player_create(void)
 {
-    player_t *player = my_calloc(sizeof(player_t), 0);
+    player_t *player = my_calloc(1, sizeof(player_t));
 
     player->pos = (sfVector2f){6 * M_TO_PX, 6 * M_TO_PX};
     player->rect = sfRectangleShape_create();

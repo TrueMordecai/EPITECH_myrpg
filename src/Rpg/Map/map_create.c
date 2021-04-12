@@ -11,7 +11,7 @@
 
 map_t *map_create(rpg_t *rpg)
 {
-    map_t *map = my_calloc(sizeof(map_t), 0);
+    map_t *map = my_calloc(1, sizeof(map_t));
 
     map->nb_zones = 1;
     map->rpg = rpg;

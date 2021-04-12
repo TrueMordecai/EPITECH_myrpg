@@ -11,7 +11,7 @@
 
 rpg_t *rpg_create(state_t *state)
 {
-    rpg_t *rpg = my_calloc(sizeof(rpg_t), 0);
+    rpg_t *rpg = my_calloc(1, sizeof(rpg_t));
 
     rpg->state = state;
     rpg->wind = state->game_data->window;
