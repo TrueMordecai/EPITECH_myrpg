@@ -16,5 +16,7 @@ void entity_handle_events(entity_t *entity, sfEvent event)
             entity->spell_select = (entity->spell_select) ? 0 : -1;
             entity_update_spell_sight(entity);
         }
+        if (event.key.code == sfKeyI && entity->type == ENNEMY)
+            entity_compute_move(entity);
     }
 }

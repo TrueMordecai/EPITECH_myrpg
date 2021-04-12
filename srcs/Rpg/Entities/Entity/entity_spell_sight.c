@@ -15,7 +15,7 @@ void entity_update_spell_sight(entity_t *entity)
     free(entity->spell_range);
     entity->spell_range = NULL;
     entity->spell_sight = fight_get_sight(fight, \
-    (sfVector2i){entity->pos, 5}, 0, &entity->spell_range);
+    (sfVector2i){entity->pos, 5}, (sfVector2i){-1, 0}, &entity->spell_range);
 }
 
 void entity_draw_spell_sight(entity_t *entity, int update)

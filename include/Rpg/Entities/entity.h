@@ -45,6 +45,7 @@ void entity_destroy(entity_t *entity);
 
 void entity_start_turn(entity_t *entity);
 void entity_end_turn(entity_t *entity);
+void entity_compute_move(entity_t *entity);
 
 void entity_update_move_possibilities(entity_t *entity);
 void entity_draw_move_possibilities(entity_t *entity, int update);

@@ -44,6 +44,7 @@ SRCS_BASE := 	main.c \
 				entity_destroy.c \
 				entity_turn.c \
 				entity_draw.c \
+				entity_compute_move.c \
 				\
 				\
 				cell_tests.c \
@@ -209,6 +210,8 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Player/%.c
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Stats/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Entity/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Entities/Entity/AI/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Fight/%.c

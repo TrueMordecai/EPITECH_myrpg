@@ -49,7 +49,7 @@ void entity_draw_move_possibilities(entity_t *entity, int update)
     cells = entity->move_possibilities;
     if (!cells)
         return;
-    for (int i = 0; cells[i] != -2; i++)
+    for (int i = 0; cells[i] != END_ARRAY; i++)
         fight_place_rect(fight, cells[i], \
         sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
 }
@@ -78,7 +78,7 @@ void entity_draw_move_path(entity_t *entity, int update)
         entity_update_move_path(entity);
     if (!entity->move_path)
         return;
-    for (int i = 0; entity->move_path[i] != -2; i++)
+    for (int i = 0; entity->move_path[i] != END_ARRAY; i++)
         fight_place_rect(entity->fight, entity->move_path[i], \
         sfColor_fromRGBA(0, 255, 0, 120), WALKABLE);
 }

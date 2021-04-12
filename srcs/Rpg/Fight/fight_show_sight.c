@@ -38,18 +38,23 @@ static void test_lines(fight_t *fight, int start, int *cells, int *outs)
 }
 
 int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
-int need_free_cell, int **spell_range)
+sfVector2i max_range_need_free, int **spell_range)
 {
-    int *outs = my_calloc(sizeof(int) * (1 + from_range.y * \
-    (from_range.y + 1) * 2), 0);
+    int *outs = my_calloc(sizeof(int) * (2 + (from_range.y * \
+    (from_range.y + 1)) * 2), -1);
 
+    outs[(1 + (from_range.y * (from_range.y + 1)) * 2)] = END_ARRAY;
+    if (max_range_need_free.x == -1)
+        max_range_need_free.x = from_range.y;
     if (!(*spell_range))
         *spell_range = fight_get_range(fight, from_range.x, \
         from_range.y, WALKABLE);
     for (int i = 0; (*spell_range)[i] != END_ARRAY; i++) {
-        if ((*spell_range)[i] == -1 || (*spell_range)[i] == from_range.x)
+        if ((*spell_range)[i] == -1)
             continue;
-        if (need_free_cell && cell_is_occupied(&fight->grid[(*spell_range)[i]]))
+        if ((*spell_range)[i] == from_range.x || get_heuristic_cost(fight, from_range.x, (*spell_range)[i]) <= max_range_need_free.x)
+            outs[i] = 0;
+        if (max_range_need_free.y && cell_is_occupied(&fight->grid[(*spell_range)[i]]))
             outs[i] = 1;
     }
     test_lines(fight, from_range.x, (*spell_range), outs);
@@ -60,7 +65,7 @@ void fight_show_sight(fight_t *fight, int from, int range, int need_free_cell)
 {
     int *cells = NULL;
     int *outs = fight_get_sight(fight, \
-    (sfVector2i){from, range}, need_free_cell, &cells);
+    (sfVector2i){from, range}, (sfVector2i){range, need_free_cell}, &cells);
 
     for (int i = 0; cells[i] != END_ARRAY; i++)
         fight_place_rect(fight, cells[i], (outs[i]) ? \

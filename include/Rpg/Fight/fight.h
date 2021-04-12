@@ -68,7 +68,7 @@ void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
 int *fight_get_range(fight_t *fight, int from, int range, int test);
 int *fight_get_line(fight_t *fight, int from, int to);
 int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
-int need_free_cell, int **spell_range);
+sfVector2i max_range_need_free, int **spell_range);
 int *fight_get_path(fight_t *fight, int from, int to);
 
 int get_heuristic_cost(fight_t *fight, int pos_a, int pos_b);
