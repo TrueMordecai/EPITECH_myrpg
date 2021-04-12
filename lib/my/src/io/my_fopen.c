@@ -13,9 +13,9 @@ static int my_fopen_get_mode(const char *mode_str, int *invalid_mode)
     int plus = mode_str[0] != '\0' && mode_str[1] == '+';
 
     switch (*mode_str) {
-        case 'r': return plus ? P_MY_FOPEN_R : P_MY_FOPEN_R_PLUS;
-        case 'w': return plus ? P_MY_FOPEN_W : P_MY_FOPEN_W_PLUS;
-        case 'a': return plus ? P_MY_FOPEN_A : P_MY_FOPEN_A_PLUS;
+        case 'r': return plus ? P_MY_FOPEN_R_PLUS : P_MY_FOPEN_R;
+        case 'w': return plus ? P_MY_FOPEN_W_PLUS : P_MY_FOPEN_W;
+        case 'a': return plus ? P_MY_FOPEN_A_PLUS : P_MY_FOPEN_A;
         default: *invalid_mode = 1; return 0;
     }
 }
