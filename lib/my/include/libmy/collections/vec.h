@@ -270,6 +270,7 @@ MY_COLLECTIONS_API void my_vec_pop(my_vec_t *vec, void *dst);
 MY_COLLECTIONS_API void my_vec_pop_multiple(
     my_vec_t *vec, void *dst, size_t count);
 
+/// @todo NOT YET IMPLEMENTED!
 /// Inserts an element at position @c index within the vector,
 /// shifting all elements after it to the right.
 ///
@@ -304,15 +305,15 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_insert_multiple(
 /// Change the value of an element at position @c index within the vector.
 ///
 /// @param vec   The vector, must be initialized.
-/// @param elem  The element data to change to the vector index.
-///              Must be a valid pointer.
+/// @param new_value The new value of the element. Must be a valid pointer.
 /// @param index The position of the changed element.
 ///
-/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds,
-///          the vec's maximum, @ref MY_VEC_OK otherwise.
+/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds, or @ref
+/// MY_VEC_OK otherwise.
+/// @author Andréas Leroux
 /// @since 0.3.4
 MY_COLLECTIONS_API my_vec_err_t my_vec_change_value(
-my_vec_t *vec, void *elem, size_t index);
+    my_vec_t *vec, void *new_value, size_t index);
 
 /// Removes the element at position @c index and writes it to @c dst,
 /// shifting all elements after it to the left.
@@ -366,7 +367,7 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_extend_to_length(
 ///
 /// @returns The element.
 /// @since 0.1.0
-#define MY_VEC_CAST_ELEM(type, ptr) (*((type *)ptr))
+#define MY_VEC_CAST_ELEM(type, ptr) (*((type *)(ptr)))
 
 /// Fetches an element from the given vector and casts it.
 ///
@@ -378,7 +379,19 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_extend_to_length(
 /// @returns The element.
 /// @since 0.1.0
 #define MY_VEC_GET_ELEM(type, vec, index) \
-    MY_VEC_CAST_ELEM(type, my_vec_get(vec, index))
+    MY_VEC_CAST_ELEM(type, my_vec_get((vec), (index)))
+
+/// Fetches an element from the given vector and casts it.
+/// Same as @ref MY_VEC_GET_ELEM, but shorter.
+///
+/// @param type  The type of element.
+/// @param vec   The vector, must be initialized.
+/// @param index The position of the element.
+///              Must not exceed @ref my_vec_t::length.
+///
+/// @returns The element.
+/// @since 0.3.4
+#define MY_VEC_GET(type, vec, index) MY_VEC_GET_ELEM(type, vec, index)
 
 MY_API_END
 
