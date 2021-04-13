@@ -20,6 +20,7 @@ set(SRC
     ${SRCROOT}/my_memcpy.c
     ${SRCROOT}/my_memmove.c
     ${SRCROOT}/my_memset.c
+    ${SRCROOT}/my_memrev.c
     ${SRCROOT}/my_msort.c
     ${SRCROOT}/my_swap_ptr.c
 )

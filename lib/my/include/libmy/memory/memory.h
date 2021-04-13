@@ -74,6 +74,16 @@ MY_MEMORY_API void *my_memcpy(void *dest, const void *src, size_t n);
 /// @since 0.1.0
 MY_MEMORY_API void *my_memmove(void *dest, const void *src, size_t n);
 
+/// Reverse the @c nmemb elements of size @c size in @c mem
+///
+/// @param mem A pointer to the memory area, must not be @c NULL.
+/// @param nmemb The number of elements in @c data.
+/// @param size  The size of an individual element of @c data.
+///
+/// @returns The passed @c dest pointer.
+/// @since 0.3.4
+MY_MEMORY_API void *my_memrev(void *mem, size_t nmemb, size_t size);
+
 /// Swaps the two passed pointers, @c a and @c b must not alias.
 ///
 /// @param a Set to the value of @c b.
