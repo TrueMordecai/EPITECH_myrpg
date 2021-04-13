@@ -81,6 +81,7 @@ static char *zone_read_file(char const *path, size_t *file_size)
     if (file_content == NULL)
         my_fprintf(MY_STDERR, "Cannot read zone file: %#s\n", path);
     my_fclose(&file);
+    my_ffree(&file);
     return file_content;
 }
 
