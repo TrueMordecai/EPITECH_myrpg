@@ -5,11 +5,13 @@
 ** Physics - body destroy
 */
 
+#include <stdlib.h>
 #include "Physics/physics.h"
 
 static void pe_body_destroy_fixture(void *fixture)
 {
     pe_shape_reset(&(*(pe_fixture_t **)fixture)->shape);
+    free(*(pe_fixture_t **)fixture);
 }
 
 void pe_body_destroy(pe_body_t *body)
