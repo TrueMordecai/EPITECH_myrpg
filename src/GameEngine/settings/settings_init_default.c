@@ -13,8 +13,8 @@
 void settings_init_default(settings_t *settings)
 {
     sfVideoMode mode = sfVideoMode_getDesktopMode();
-    unsigned width = MY_MAX(1280, mode.width);
-    unsigned height = MY_MAX(720, mode.height);
+    unsigned width = MY_MIN(1280, mode.width);
+    unsigned height = MY_MIN(720, mode.height);
 
     *settings = (settings_t){
         .wind_size = (sfVector2u){width, height},

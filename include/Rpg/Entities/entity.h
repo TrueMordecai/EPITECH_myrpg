@@ -9,6 +9,7 @@
 #define ENTITY_H
 
 #include <SFML/Graphics.h>
+#include <libmy/collections/vec.h>
 #include "Rpg/Entities/stats.h"
 
 struct fight_t;
@@ -25,7 +26,7 @@ typedef struct entity_t {
     int pos;
     int spell_select;
     int *move_possibilities;
-    int *move_path;
+    my_vec_t *move_path;
     int *spell_sight;
     int *spell_range;
     void *datas;
@@ -47,9 +48,11 @@ void entity_start_turn(entity_t *entity);
 void entity_end_turn(entity_t *entity);
 void entity_compute_move(entity_t *entity);
 
+void entity_attack(entity_t *entity);
+
 void entity_update_move_possibilities(entity_t *entity);
 void entity_draw_move_possibilities(entity_t *entity, int update);
-void entity_update_move_path(entity_t *entity);
+void entity_update_move_path(entity_t *entity, my_vec_t *new_path);
 void entity_draw_move_path(entity_t *entity, int update);
 void entity_update_spell_sight(entity_t *entity);
 void entity_draw_spell_sight(entity_t *entity, int update);

@@ -5,6 +5,7 @@
 ** entity_move
 */
 
+#include <libmy/printf.h>
 #include "Rpg/Entities/player.h"
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Fight/fight.h"
@@ -32,11 +33,10 @@ void entity_move(entity_t *entity)
 
     if (!entity->move_path)
         return;
-    for (int i = 0; entity->move_path[i] != END_ARRAY; i++)
-        size_move++;
-    size_move = MIN(size_move - 1, entity->stats->current_pm);
+    size_move = MIN(entity->move_path->length - 1, \
+    (size_t)entity->stats->current_pm);
     entity->fight->grid[entity->pos].entity = NULL;
-    entity->pos = entity->move_path[size_move];
+    entity->pos = MY_VEC_GET_ELEM(int, entity->move_path, size_move);
     entity->fight->grid[entity->pos].entity = entity;
     entity->stats->current_pm -= size_move;
     entity_update_move_possibilities(entity);

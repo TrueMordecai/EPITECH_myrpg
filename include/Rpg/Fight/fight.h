@@ -9,6 +9,7 @@
 #define RPG_FIGHT_H
 
 #include <SFML/Graphics.h>
+#include <libmy/collections/vec.h>
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
 
@@ -69,7 +70,7 @@ int *fight_get_range(fight_t *fight, int from, int range, int test);
 int *fight_get_line(fight_t *fight, int from, int to);
 int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
 sfVector2i max_range_need_free, int **spell_range);
-int *fight_get_path(fight_t *fight, int from, int to);
+my_vec_t *fight_get_path(fight_t *fight, int from, int to);
 
 int get_heuristic_cost(fight_t *fight, int pos_a, int pos_b);
 

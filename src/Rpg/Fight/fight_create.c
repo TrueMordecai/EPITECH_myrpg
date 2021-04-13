@@ -30,7 +30,7 @@ static void init_rect_buff(fight_t *fight, int capacity)
 
 static int get_pos(fight_t *fight, int player_pos)
 {
-    int *tmp = NULL;
+    my_vec_t *tmp = NULL;
     int i = 0;
     int pos;
 
@@ -42,6 +42,7 @@ static int get_pos(fight_t *fight, int player_pos)
         i++;
     } while (!tmp && i < 100);
     if (tmp) {
+        my_vec_free(tmp, NULL);
         free(tmp);
         return pos;
     }

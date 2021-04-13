@@ -37,12 +37,11 @@ static node_t **init_nodes(fight_t *fight, int start, int end)
     return nodes;
 }
 
-static int *resolve_path(node_t *end)
+static my_vec_t *resolve_path(node_t *end)
 {
-    int *path = NULL;
-    int size = 0;
-    int i;
+    my_vec_t *path = NULL;
     node_t *current = end;
+    int size = 0;
 
     if (!current)
         return path;
@@ -51,13 +50,14 @@ static int *resolve_path(node_t *end)
         current = current->parent;
     }
     current = end;
-    path = malloc(sizeof(int) * (size + 1));
-    i = size - 1;
+    path = malloc(sizeof(my_vec_t));
+    my_vec_init(path, sizeof(int));
+    my_vec_set_capacity(path, size, NULL);
     while (current) {
-        path[i--] = current->pos;
+        my_vec_push(path, &current->pos);
         current = current->parent;
     }
-    path[size] = END_ARRAY;
+    my_vec_reverse(path);
     return path;
 }
 
@@ -84,10 +84,10 @@ node_t **nodes, my_vec_t *opened, int end)
     }
 }
 
-static int *end_algo(fight_t *fight, my_vec_t *opened, \
+static my_vec_t *end_algo(fight_t *fight, my_vec_t *opened, \
 node_t *current, node_t **nodes)
 {
-    int *path = NULL;
+    my_vec_t *path = NULL;
 
     my_vec_free(opened, NULL);
     if ((current != NULL))
@@ -101,7 +101,7 @@ node_t *current, node_t **nodes)
     return path;
 }
 
-int *fight_get_path(fight_t *fight, int from, int to)
+my_vec_t *fight_get_path(fight_t *fight, int from, int to)
 {
     node_t **nodes = init_nodes(fight, from, to);
     node_t *current = nodes[from];

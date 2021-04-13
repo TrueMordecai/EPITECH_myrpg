@@ -15,6 +15,8 @@ set(VECTOR_SRC
     ${SRCROOT}/my_vec_set_capacity.c
     ${SRCROOT}/my_vec_shrink_to_fit.c
     ${SRCROOT}/my_vec_change_value.c
+    ${SRCROOT}/my_vec_swap_values.c
+    ${SRCROOT}/my_vec_reverse.c
 )
 set(VECTOR_SRC ${VECTOR_SRC} PARENT_SCOPE)
 

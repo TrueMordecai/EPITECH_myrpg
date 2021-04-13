@@ -16,5 +16,6 @@ set(SRC
     ${SRCROOT}/entity_spell_sight.c
     ${SRCROOT}/entity_turn.c
     ${SRCROOT}/entity_update.c
+    ${SRCROOT}/entity_attack.c
     PARENT_SCOPE
 )

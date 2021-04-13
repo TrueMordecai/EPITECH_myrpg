@@ -314,6 +314,31 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_insert_multiple(
 MY_COLLECTIONS_API my_vec_err_t my_vec_change_value(
 my_vec_t *vec, void *elem, size_t index);
 
+/// Swap the elements at position @c index_1 and @c index_2 within the vector.
+///
+/// @param vec   The vector, must be initialized.
+/// @param index_1  The position of the first swapped element.
+/// @param index_2 The position of the second swapped element.
+///
+/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds,
+///          the vec's maximum, 
+///          @ref MY_VEC_ALLOC if an allocator error has occured
+///          @ref MY_VEC_OK otherwise.
+///          
+/// @since 0.3.5
+MY_COLLECTIONS_API my_vec_err_t my_vec_swap_values(
+my_vec_t *vec, size_t index_1, size_t index_2);
+
+/// Reverse the elements within the vector.
+///
+/// @param vec   The vector, must be initialized.
+///
+/// @returns @ref MY_VEC_ALLOC if an allocator error has occured
+///          @ref MY_VEC_OK otherwise.
+///          
+/// @since 0.3.5
+MY_COLLECTIONS_API my_vec_err_t my_vec_reverse(my_vec_t *vec);
+
 /// Removes the element at position @c index and writes it to @c dst,
 /// shifting all elements after it to the left.
 ///
