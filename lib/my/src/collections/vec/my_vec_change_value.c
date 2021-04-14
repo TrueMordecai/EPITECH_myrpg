@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** LibMy - collections modules
+** LibMy - collections module
 ** File description:
 ** Change a value
 */

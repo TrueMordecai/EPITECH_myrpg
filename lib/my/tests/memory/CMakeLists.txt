@@ -13,7 +13,9 @@ set(SRC
     ${SRCROOT}/test_my_memchr.c
     ${SRCROOT}/test_my_memcpy.c
     ${SRCROOT}/test_my_memmove.c
+    ${SRCROOT}/test_my_memrev.c
     ${SRCROOT}/test_my_memset.c
+    ${SRCROOT}/test_my_memswap.c
     ${SRCROOT}/test_my_msort.c
     ${SRCROOT}/test_my_swap_ptr.c
 )
