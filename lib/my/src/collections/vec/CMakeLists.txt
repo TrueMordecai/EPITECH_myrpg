@@ -3,6 +3,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/collections/vec)
 
 set(VECTOR_SRC
     ${INCROOT}/vec.h
+    ${SRCROOT}/my_vec_change_value.c
     ${SRCROOT}/my_vec_copy.c
     ${SRCROOT}/my_vec_ensure_capacity.c
     ${SRCROOT}/my_vec_extend_to_length.c
@@ -14,9 +15,6 @@ set(VECTOR_SRC
     ${SRCROOT}/my_vec_reserve.c
     ${SRCROOT}/my_vec_set_capacity.c
     ${SRCROOT}/my_vec_shrink_to_fit.c
-    ${SRCROOT}/my_vec_change_value.c
-    ${SRCROOT}/my_vec_swap_values.c
-    ${SRCROOT}/my_vec_reverse.c
 )
 set(VECTOR_SRC ${VECTOR_SRC} PARENT_SCOPE)
 
