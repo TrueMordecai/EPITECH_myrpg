@@ -46,6 +46,11 @@ SRCS_BASE := 	main.c \
 				layer_destroy.c \
 				\
 				\
+				init_inventory.c            \
+				loop.c            \
+				rpg_create_item.c            \
+				rpg_create_item_name_gen.c   \
+				\
 				drawable_list_fcts.c \
 				drawable_list_fcts_texture.c \
 				remove_drawable.c \
@@ -147,7 +152,8 @@ $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/Rpg/Map/Zone/Layer/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
-
+$(OBJ_PATH)/%.o: ./srcs/Rpg/Interfarces/%.c
+	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/GameEngine/%.c
 	$(CC) $(CFLAGS) -c $(CFLAGS_INCLUDE) -o $@ $<
 $(OBJ_PATH)/%.o: ./srcs/GameEngine/asset_manager/%.c

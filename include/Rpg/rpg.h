@@ -11,12 +11,14 @@
 #include "GameEngine/game_head.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Entities/player.h"
+#include "Rpg/Interfarces/inventory.h"
 
 typedef struct rpg_t {
     state_t *state;
     sfRenderWindow *wind;
     map_t *map;
     player_t *player;
+    inventory_t inventory;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);
