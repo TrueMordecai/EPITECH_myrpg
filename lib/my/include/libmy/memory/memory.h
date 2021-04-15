@@ -18,6 +18,7 @@
 
 MY_API_BEGIN
 
+#include <assert.h>
 #include <stddef.h>
 #include "libmy/internal/types.h"
 
@@ -74,14 +75,33 @@ MY_MEMORY_API void *my_memcpy(void *dest, const void *src, size_t n);
 /// @since 0.1.0
 MY_MEMORY_API void *my_memmove(void *dest, const void *src, size_t n);
 
-/// Reverse the @c nmemb elements of size @c size in @c mem
+/// Swaps the contents of the given pointers @c a and @c b.
+///
+/// @param a The first memory location, pointed memory must be at least of
+/// @c size bytes.
+/// @param b The first memory location, pointed memory must be at least of
+/// @c size bytes.
+/// @param size The number of bytes to swap.
+///
+/// @since 0.3.5
+MY_INLINE void my_memswap(void *restrict a, void *restrict b, size_t size)
+{
+    assert(a != b);
+    for (size_t i = 0; i < size; ++i) {
+        ((char *)a)[i] = ((char *)a)[i] ^ ((char *)b)[i];
+        ((char *)b)[i] = ((char *)a)[i] ^ ((char *)b)[i];
+        ((char *)a)[i] = ((char *)a)[i] ^ ((char *)b)[i];
+    }
+}
+
+/// Reverses @c nmemb elements of size @c size in @c mem
 ///
 /// @param mem A pointer to the memory area, must not be @c NULL.
 /// @param nmemb The number of elements in @c data.
 /// @param size  The size of an individual element of @c data.
 ///
-/// @returns The passed @c dest pointer.
-/// @since 0.3.4
+/// @returns The passed @c mem pointer.
+/// @since 0.3.5
 MY_MEMORY_API void *my_memrev(void *mem, size_t nmemb, size_t size);
 
 /// Swaps the two passed pointers, @c a and @c b must not alias.

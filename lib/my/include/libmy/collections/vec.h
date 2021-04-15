@@ -20,8 +20,10 @@
 
 MY_API_BEGIN
 
+#include <assert.h>
 #include <stddef.h>
-#include "libmy/internal/types.h"
+
+#include "libmy/memory/memory.h"
 
 /// A contiguous growable array type.
 ///
@@ -158,6 +160,9 @@ MY_COLLECTIONS_API void my_vec_free(my_vec_t *vec, void (*elem_free)(void *));
 /// @since 0.1.0
 MY_INLINE void *my_vec_get(my_vec_t const *vec, size_t index)
 {
+    assert(vec != NULL);
+    assert(vec->data != NULL);
+    assert(index < vec->length);
     return (void *)((char *)vec->data + vec->elem_size * index);
 }
 
@@ -175,6 +180,7 @@ MY_INLINE void *my_vec_get(my_vec_t const *vec, size_t index)
 MY_INLINE my_vec_err_t my_vec_try_get(
     my_vec_t const *vec, size_t index, void **elem)
 {
+    assert(vec != NULL);
     if (index >= vec->length)
         return MY_VEC_OUT_OF_BOUNDS;
     *elem = my_vec_get(vec, index);
@@ -270,6 +276,7 @@ MY_COLLECTIONS_API void my_vec_pop(my_vec_t *vec, void *dst);
 MY_COLLECTIONS_API void my_vec_pop_multiple(
     my_vec_t *vec, void *dst, size_t count);
 
+/// @todo NOT YET IMPLEMENTED!
 /// Inserts an element at position @c index within the vector,
 /// shifting all elements after it to the right.
 ///
@@ -304,40 +311,40 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_insert_multiple(
 /// Change the value of an element at position @c index within the vector.
 ///
 /// @param vec   The vector, must be initialized.
-/// @param elem  The element data to change to the vector index.
-///              Must be a valid pointer.
+/// @param new_value The new value of the element. Must be a valid pointer.
 /// @param index The position of the changed element.
 ///
-/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds,
-///          the vec's maximum, @ref MY_VEC_OK otherwise.
+/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds, or @ref
+/// MY_VEC_OK otherwise.
+/// @author Andréas Leroux
 /// @since 0.3.4
 MY_COLLECTIONS_API my_vec_err_t my_vec_change_value(
-my_vec_t *vec, void *elem, size_t index);
+    my_vec_t *vec, void *elem, size_t index);
 
 /// Swap the elements at position @c index_1 and @c index_2 within the vector.
 ///
-/// @param vec   The vector, must be initialized.
-/// @param index_1  The position of the first swapped element.
+/// @param vec The vector, must be initialized.
+/// @param index_1 The position of the first swapped element.
 /// @param index_2 The position of the second swapped element.
 ///
-/// @returns @ref MY_VEC_OUT_OF_BOUNDS if index is out of bounds,
-///          the vec's maximum, 
-///          @ref MY_VEC_ALLOC if an allocator error has occured
-///          @ref MY_VEC_OK otherwise.
-///          
 /// @since 0.3.5
-MY_COLLECTIONS_API my_vec_err_t my_vec_swap_values(
-my_vec_t *vec, size_t index_1, size_t index_2);
+MY_INLINE void my_vec_swap(my_vec_t *vec, size_t index_1, size_t index_2)
+{
+    my_memswap(
+        my_vec_get(vec, index_1), my_vec_get(vec, index_2), vec->elem_size);
+}
 
-/// Reverse the elements within the vector.
+/// Reverses the elements within the vector.
 ///
-/// @param vec   The vector, must be initialized.
+/// @param vec The vector, must be initialized.
 ///
-/// @returns @ref MY_VEC_ALLOC if an allocator error has occured
-///          @ref MY_VEC_OK otherwise.
-///          
 /// @since 0.3.5
-MY_COLLECTIONS_API my_vec_err_t my_vec_reverse(my_vec_t *vec);
+MY_INLINE void my_vec_reverse(my_vec_t *vec)
+{
+    assert(vec != NULL);
+    assert(vec->length == 0 || vec->data != NULL);
+    my_memrev(vec->data, vec->length, vec->elem_size);
+}
 
 /// Removes the element at position @c index and writes it to @c dst,
 /// shifting all elements after it to the left.
@@ -391,7 +398,7 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_extend_to_length(
 ///
 /// @returns The element.
 /// @since 0.1.0
-#define MY_VEC_CAST_ELEM(type, ptr) (*((type *)ptr))
+#define MY_VEC_CAST_ELEM(type, ptr) (*((type *)(ptr)))
 
 /// Fetches an element from the given vector and casts it.
 ///
@@ -403,7 +410,19 @@ MY_COLLECTIONS_API my_vec_err_t my_vec_extend_to_length(
 /// @returns The element.
 /// @since 0.1.0
 #define MY_VEC_GET_ELEM(type, vec, index) \
-    MY_VEC_CAST_ELEM(type, my_vec_get(vec, index))
+    MY_VEC_CAST_ELEM(type, my_vec_get((vec), (index)))
+
+/// Fetches an element from the given vector and casts it.
+/// Same as @ref MY_VEC_GET_ELEM, but shorter.
+///
+/// @param type  The type of element.
+/// @param vec   The vector, must be initialized.
+/// @param index The position of the element.
+///              Must not exceed @ref my_vec_t::length.
+///
+/// @returns The element.
+/// @since 0.3.4
+#define MY_VEC_GET(type, vec, index) MY_VEC_GET_ELEM(type, vec, index)
 
 MY_API_END
 
