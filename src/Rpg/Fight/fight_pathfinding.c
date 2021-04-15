@@ -58,8 +58,7 @@ static my_vec_t *resolve_path(node_t *end)
         my_vec_push(path, &current->pos);
         current = current->parent;
     }
-    //my_memrev(path->data, path->length, sizeof(int));
-    my_vec_reverse(path);
+    my_memrev(path->data, path->length, sizeof(int));
     return path;
 }
 
