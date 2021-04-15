@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "Rpg/Fight/fight.h"
 
 static sfVector2f coord_to_px_float(sfVector2f pos, map_t *map)
 {
@@ -76,6 +77,10 @@ void map_update(map_t *map, float dt)
         move_view_to_player(map, dt);
     map_correct_pos(map, dt);
     map_update_zoom(map, dt);
-    if (map->current_zone->world && !map->current_zone->is_battle)
-        pe_world_update(map->current_zone->world, dt * 1000);
+    if (map->current_zone->world) {
+        if (!map->current_zone->is_battle)
+            pe_world_update(map->current_zone->world, dt * 1000);
+        else
+            fight_update(map->current_zone->battle.fight, dt);
+    }
 }

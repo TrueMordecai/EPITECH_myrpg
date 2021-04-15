@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "Rpg/Fight/fight.h"
 
 void rpg_handle_event(rpg_t *rpg, sfEvent event)
 {
@@ -27,4 +28,6 @@ void rpg_handle_event(rpg_t *rpg, sfEvent event)
         }
     }
     player_handle_event(rpg->player, event);
+    if (rpg->map->current_zone && rpg->map->current_zone->is_battle)
+        fight_handle_events(rpg->map->current_zone->battle.fight, event);
 }

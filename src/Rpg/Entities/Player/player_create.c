@@ -19,5 +19,7 @@ player_t *player_create(void)
     sfRectangleShape_setFillColor(player->rect, sfWhite);
     sfRectangleShape_setOutlineColor(player->rect, sfBlack);
     sfRectangleShape_setOutlineThickness(player->rect, -2);
+    player->entity = entity_create(player, PLAYER, ALLIES, 0);
+    player->entity->stats = stats_create();
     return player;
 }

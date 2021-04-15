@@ -14,7 +14,9 @@
 #ifndef MAX
 #define MAX(a, b) (((a) >= (b)) ? (a) : (b))
 #endif
+#ifndef CLAMP
 #define CLAMP(a, min, max) (MIN(MAX((a), min), max))
+#endif
 #define SIGN(a) (((a) >= 0) ? 1 : -1)
 #define TO_RAD(a) ((a) * (PE_PI / 180.f))
 #define TO_DEG(a) ((a) * (180 / PE_PI))
