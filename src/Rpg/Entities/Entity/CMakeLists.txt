@@ -6,9 +6,11 @@ add_subdirectory(AI)
 set(SRC
     ${SRC}
     ${INCROOT}/entity.h
+    ${SRCROOT}/entity_add_action.c
     ${SRCROOT}/entity_create.c
     ${SRCROOT}/entity_destroy.c
     ${SRCROOT}/entity_draw.c
+    ${SRCROOT}/entity_force_end_action.c
     ${SRCROOT}/entity_handle_events.c
     ${SRCROOT}/entity_init.c
     ${SRCROOT}/entity_move_possibilities.c

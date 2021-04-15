@@ -45,9 +45,12 @@ void entity_draw_move_possibilities(entity_t *entity, int update)
     cells = entity->move_possibilities;
     if (!cells)
         return;
-    for (int i = 0; cells[i] != END_ARRAY; i++)
+    for (int i = 0; cells[i] != END_ARRAY; i++) {
+        if (cells[i] == entity->pos)
+            continue;
         fight_place_rect(fight, cells[i], \
         sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
+    }
 }
 
 void entity_update_move_path(entity_t *entity, my_vec_t *new_path)

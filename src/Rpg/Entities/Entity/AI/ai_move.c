@@ -27,7 +27,7 @@ void move_forward(entity_t *entity, my_vec_t *allies)
     }
     free(entity->move_path);
     entity->move_path = path;
-    entity_move(entity);
+    entity_move(entity, 0);
 }
 
 static void move_after_attack(entity_t *entity, my_vec_t *allies)
@@ -59,7 +59,7 @@ my_vec_t *allies)
         }
     }
     entity_update_move_path(entity, path);
-    entity_move(entity);
-    entity_attack(entity);
+    entity_move(entity, 0);
+    entity_add_action(entity, ATTACK);
     move_after_attack(entity, allies);
 }

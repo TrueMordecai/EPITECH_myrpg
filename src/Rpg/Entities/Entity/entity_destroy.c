@@ -19,4 +19,5 @@ void entity_destroy(entity_t *entity)
     if (entity->rect)
         sfRectangleShape_destroy(entity->rect);
     free(entity);
+    my_vec_free(&entity->actions, NULL);
 }

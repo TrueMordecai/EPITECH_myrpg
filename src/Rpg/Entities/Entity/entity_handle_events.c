@@ -10,7 +10,7 @@
 void entity_handle_events(entity_t *entity, sfEvent event)
 {
     if (event.type == sfEvtMouseButtonPressed)
-        entity_move(entity);
+        entity_move(entity, 0);
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code == sfKeyM) {
             entity->spell_select = (entity->spell_select) ? 0 : -1;

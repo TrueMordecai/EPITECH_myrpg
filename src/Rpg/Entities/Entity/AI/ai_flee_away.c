@@ -5,6 +5,8 @@
 ** ai_flee_away
 */
 
+#include <libmy/printf.h>
+
 #include "Rpg/Fight/fight.h"
 #include "functions.h"
 
@@ -55,7 +57,6 @@ int max_dist, int *sight)
 void flee_2(entity_t *entity, my_vec_t *allies, \
 int max_dist, int *sight)
 {
-    sfVector2i dist;
     my_vec_t *choices = fill_choices(entity, allies, max_dist, sight);
 
     free(entity->move_path);
@@ -65,7 +66,7 @@ int max_dist, int *sight)
     get_randi(0, choices->length - 1)));
     my_vec_free(choices, NULL);
     free(choices);
-    entity_move(entity);
+    entity_move(entity, 0);
 }
 
 void flee_away(entity_t *entity, my_vec_t *allies)

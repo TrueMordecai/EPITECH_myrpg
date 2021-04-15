@@ -43,5 +43,6 @@ enum team_e team, int pos)
     entity->spell_select = -1;
     entity->state = IDLE;
     entity->rect = NULL;
+    my_vec_init(&entity->actions, sizeof(action_t));
     return entity;
 }
