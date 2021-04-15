@@ -3,7 +3,7 @@ BUILD_DIR := build
 
 CONFIG_FLAGS := -G"Unix Makefiles" -B$(BUILD_DIR)
 
-CONFIG_FLAGS_RELEASE := -DCMAKE_BUILD_TYPE=Release $(CONFIG_FLAGS)
+CONFIG_FLAGS_RELEASE := -DCMAKE_BUILD_TYPE=Release $(CONFIG_FLAGS) -DSW_BUILD_DOC=TRUE -DLIBMY_BUILD_DOC=TRUE
 CONFIG_FLAGS_DEBUG := -DCMAKE_BUILD_TYPE=Debug $(CONFIG_FLAGS)
 CONFIG_FLAGS_TEST := -DBUILD_TEST_SUITE=TRUE -DLIBMY_USE_GCOV=TRUE $(CONFIG_FLAGS_DEBUG)
 
@@ -21,10 +21,15 @@ clean:
 	rm -rf $(BUILD_DIR)/CMakeFiles
 	rm -rf $(BUILD_DIR)/src/CMakeFiles
 	rm -rf $(BUILD_DIR)/lib/my/src
-
 fclean: clean
 	rm -rf $(BUILD_DIR)
 	rm -f $(TARGET)
+
+docs: libmy_docs simple_widgets_docs
+libmy_docs:
+	(cd $(BUILD_DIR) && cmake --build . --target libmy-doc)
+simple_widgets_docs:
+	(cd $(BUILD_DIR) && cmake --build . --target simple-widgets-doc)
 
 debug:
 	cmake $(CONFIG_FLAGS_DEBUG)
@@ -44,4 +49,4 @@ test_run: run_test
 coverage:
 	gcovr .
 
-.PHONY: all $(TARGET) clean fclean debug re run_tests run_test tests_run test_run coverage
+.PHONY: all $(TARGET) clean fclean docs libmy_docs simple_widgets_docs debug re run_tests run_test tests_run test_run coverage
