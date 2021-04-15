@@ -30,6 +30,14 @@ void move_forward(entity_t *entity, my_vec_t *allies)
     entity_move(entity);
 }
 
+static void move_after_attack(entity_t *entity, my_vec_t *allies)
+{
+    if (entity->type == ENNEMY_DIST)
+        flee_away(entity, allies);
+    else
+        move_forward(entity, allies);
+}
+
 void move_to_reachable_sights(entity_t *entity, int *sight, \
 my_vec_t *allies)
 {
@@ -53,5 +61,5 @@ my_vec_t *allies)
     entity_update_move_path(entity, path);
     entity_move(entity);
     entity_attack(entity);
-    flee_away(entity, allies);
+    move_after_attack(entity, allies);
 }

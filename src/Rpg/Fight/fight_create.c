@@ -62,7 +62,7 @@ static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
             fight->nb_entities--;
             continue;
         }
-        fight->entities[i + 1] = entity_create(NULL, ENNEMY, ENNEMIES, pos);
+        fight->entities[i + 1] = entity_create(NULL, ENNEMY_CAC + i % 2, ENNEMIES, pos);
         fight->entities[i + 1]->stats = stats_create();
         fight->entities[i + 1]->fight = fight;
         entity_init_rect(fight->entities[i + 1], sfRed);

@@ -10,7 +10,7 @@
 void fight_destroy(fight_t *fight)
 {
     for (int i = 0; i < fight->nb_entities; i++) {
-        if (fight->entities[i]->type == ENNEMY)
+        if (fight->entities[i]->team == ENNEMIES)
             entity_destroy(fight->entities[i]);
     }
     for (int i = 0; i < 10000; i++)

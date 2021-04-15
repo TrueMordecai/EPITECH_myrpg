@@ -15,7 +15,7 @@
 struct fight_t;
 
 enum entity_state_e {IDLE, MOVING, CASTING_SPELL};
-enum entity_type_e {PLAYER, ALLY, ENNEMY};
+enum entity_type_e {PLAYER, ALLY, ENNEMY_CAC, ENNEMY_DIST};
 enum team_e {ALLIES, ENNEMIES};
 
 typedef struct entity_t {

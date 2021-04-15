@@ -13,7 +13,7 @@ static sfVector2i get_allies_counts(entity_t *entity, int max_dist)
     sfVector2i nb_allies = {0, 0};
 
     for (int i = 0; i < fight->nb_entities; i++) {
-        if (fight->entities[i]->type == ENNEMY)
+        if (fight->entities[i]->team == ENNEMIES)
             continue;
         nb_allies.x++;
         nb_allies.y += get_heuristic_cost(fight, entity->pos, \
@@ -32,7 +32,7 @@ my_vec_t *allies)
     if (counts.x == 0)
         return 0;
     for (int i = 0; i < fight->nb_entities; i++) {
-        if (fight->entities[i]->type == ENNEMY)
+        if (fight->entities[i]->team == ENNEMIES)
             continue;
         if (!counts.y || get_heuristic_cost(fight, entity->pos, \
             fight->entities[i]->pos) <= max_dist)

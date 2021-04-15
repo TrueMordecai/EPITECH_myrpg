@@ -41,7 +41,7 @@ void entity_compute_move(entity_t *entity)
     fight_t *fight = entity->fight;
     my_vec_t allies;
 
-    if (entity->type != ENNEMY)
+    if (entity->team != ENNEMIES)
         return;
     my_vec_init(&allies, sizeof(entity_t *));
     if (!get_allies(fight, entity, &allies)) {
