@@ -6,8 +6,11 @@ project(MyRPG C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
-# LibMy dependency
 set(BUILD_SHARED_LIBS FALSE)
+set(LIBMY_LIBRARIES $<TARGET_FILE:my-memory> $<TARGET_FILE:my-collections>)
+set(LIBMY_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/lib/my/include")
+
+# LibMy dependency
 set(LIBMY_MODULES
     ascii
     collections
@@ -27,10 +30,10 @@ set(LIBMY_ALLOWED_FUNCTIONS
 add_subdirectory(lib/my)
 
 # MyPhysics dependency
-set(BUILD_SHARED_LIBS FALSE)
-set(LIBMY_LIBRARIES $<TARGET_FILE:my-memory> $<TARGET_FILE:my-collections>)
-set(LIBMY_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/lib/my/include")
 add_subdirectory(lib/my_physics)
+
+# SimpleWidgets dependency
+add_subdirectory(lib/simple_widgets)
 
 # External dependencies
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
