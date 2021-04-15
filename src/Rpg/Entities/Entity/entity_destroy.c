@@ -10,6 +10,7 @@
 
 void entity_destroy(entity_t *entity)
 {
+    my_vec_free(entity->move_path, NULL);
     free(entity->move_path);
     free(entity->move_possibilities);
     free(entity->spell_sight);
@@ -18,6 +19,6 @@ void entity_destroy(entity_t *entity)
         stats_destroy(entity->stats);
     if (entity->rect)
         sfRectangleShape_destroy(entity->rect);
-    free(entity);
     my_vec_free(&entity->actions, NULL);
+    free(entity);
 }

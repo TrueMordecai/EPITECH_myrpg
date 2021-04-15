@@ -12,6 +12,7 @@
 void flee_away(entity_t *entity, my_vec_t *allies);
 my_vec_t *get_nearest_side_path(fight_t *fight, int from, \
 int to, size_t *min_len);
+void free_tmp_path(my_vec_t *path);
 
 void move_forward(entity_t *entity, my_vec_t *allies)
 {
@@ -22,15 +23,17 @@ void move_forward(entity_t *entity, my_vec_t *allies)
     for (size_t i = 0; i < allies->length; i++) {
         tmp = get_nearest_side_path(entity->fight, entity->pos, \
         MY_VEC_GET_ELEM(entity_t *, allies, i)->pos, &min_len);
-        if (tmp)
+        if (tmp) {
             path = tmp;
+            break;
+        }
     }
-    free(entity->move_path);
+    free_tmp_path(entity->move_path);
     entity->move_path = path;
     entity_move(entity, 0);
 }
 
-static void move_after_attack(entity_t *entity, my_vec_t *allies)
+void move_after_attack(entity_t *entity, my_vec_t *allies)
 {
     if (entity->type == ENNEMY_DIST)
         flee_away(entity, allies);
@@ -52,11 +55,10 @@ my_vec_t *allies)
         entity->move_possibilities[i]);
         if (tmp && tmp->length < min_len) {
             min_len = tmp->length;
+            free_tmp_path(path);
             path = tmp;
-        } else {
-            my_vec_free(tmp, NULL);
-            free(tmp);
-        }
+        } else
+            free_tmp_path(tmp);
     }
     entity_update_move_path(entity, path);
     entity_move(entity, 0);

@@ -10,6 +10,7 @@ libmy_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debu
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 3)
 set(VERSION_PATCH 5)
+set(VERSION_PATCH 4)
 set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 project(LibMy

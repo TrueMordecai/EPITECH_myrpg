@@ -6,6 +6,7 @@
 */
 
 #include <assert.h>
+#include <stdlib.h>
 #include <libmy/collections.h>
 
 #include "GameEngine/state.h"
@@ -22,5 +23,6 @@ void state_destroy(state_t **state_ptr, state_id_t from)
     assert(state->vtable.destroy != NULL);
     my_vec_free(&state->draw_layers, (void (*)(void *))my_hash_map_drop);
     (*state->vtable.destroy)(state, from);
+    free(state);
     *state_ptr = NULL;
 }

@@ -5,18 +5,18 @@
 ** entity_update
 */
 
-#include <stdio.h>
 #include <libmy/printf.h>
+#include <stdio.h>
 #include "Rpg/Fight/fight.h"
 
 void action_move_update(entity_t *entity, float dt, action_t *act)
 {
-    sfVector2f start = fight_pos_to_world_vec(entity->fight, \
-    MY_VEC_GET_ELEM(int, &act->move.path, act->move.i));
-    sfVector2f end = fight_pos_to_world_vec(entity->fight, \
-    MY_VEC_GET_ELEM(int, &act->move.path, act->move.i + 1));
+    sfVector2f start = fight_pos_to_world_vec(
+        entity->fight, MY_VEC_GET_ELEM(int, &act->move.path, act->move.i));
+    sfVector2f end = fight_pos_to_world_vec(
+        entity->fight, MY_VEC_GET_ELEM(int, &act->move.path, act->move.i + 1));
     sfVector2f delta = {end.x - start.x, end.y - start.y};
-    sfVector2f pos = {start.x + delta.x * act->move.progress, \
+    sfVector2f pos = {start.x + delta.x * act->move.progress,
         start.y + delta.y * act->move.progress};
 
     act->move.progress += dt * 5;

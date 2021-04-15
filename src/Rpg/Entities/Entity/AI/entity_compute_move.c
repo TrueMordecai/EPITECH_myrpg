@@ -47,7 +47,6 @@ void entity_compute_move(entity_t *entity)
     if (!get_allies(fight, entity, &allies)) {
         my_printf("Allies too far, move forward\n");
         move_forward(entity, &allies);
-        return;
     } else
         get_reachable_sights(entity, &allies);
     my_vec_free(&allies, NULL);

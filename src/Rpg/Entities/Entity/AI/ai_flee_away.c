@@ -11,6 +11,7 @@
 #include "functions.h"
 
 int *init_sight(entity_t *entity, my_vec_t *allies, int ally_po);
+void free_tmp_path(my_vec_t *path);
 
 int get_allies_sum_dist(entity_t *entity, my_vec_t *allies, int pos)
 {
@@ -59,7 +60,7 @@ int max_dist, int *sight)
 {
     my_vec_t *choices = fill_choices(entity, allies, max_dist, sight);
 
-    free(entity->move_path);
+    free_tmp_path(entity->move_path);
     entity->fight->grid[entity->pos].entity = entity;
     entity->move_path = fight_get_path(entity->fight, \
     entity->pos, MY_VEC_GET_ELEM(int, choices, \

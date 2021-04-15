@@ -17,7 +17,7 @@ void asset_manager_drop(asset_manager_t *manager)
 
 void font_asset_drop(asset_t *asset)
 {
-    if (asset->font == NULL) {
+    if (asset->font != NULL) {
         sfFont_destroy(asset->font);
         asset->font = NULL;
     }
@@ -25,7 +25,7 @@ void font_asset_drop(asset_t *asset)
 
 void texture_asset_drop(asset_t *asset)
 {
-    if (asset->texture == NULL) {
+    if (asset->texture != NULL) {
         sfTexture_destroy(asset->texture);
         asset->texture = NULL;
     }

@@ -7,17 +7,17 @@
 
 #include "Rpg/Fight/fight.h"
 
+void free_tmp_path(my_vec_t *path);
+
 static void verif_cells(fight_t *fight, int from, int *cells, size_t pm)
 {
     my_vec_t *tmp;
 
     for (int i = 0; cells[i] != END_ARRAY; i++) {
         tmp = fight_get_path(fight, from, cells[i]);
-        if (tmp && tmp->length <= pm + 1) {
-            my_vec_free(tmp, NULL);
-            free(tmp);
-        } else
+        if (!tmp || tmp->length > pm + 1)
             cells[i] = -1;
+        free_tmp_path(tmp);
     }
 }
 
@@ -57,7 +57,7 @@ void entity_update_move_path(entity_t *entity, my_vec_t *new_path)
 {
     fight_t *fight = entity->fight;
 
-    free(entity->move_path);
+    free_tmp_path(entity->move_path);
     if (!new_path)
         new_path = fight_get_path(fight, entity->pos, \
         fight_get_mouse_tile(fight));
@@ -65,7 +65,7 @@ void entity_update_move_path(entity_t *entity, my_vec_t *new_path)
     if (!entity->move_path)
         return;
     if (entity->move_path->length - 1 > (size_t)entity->stats->current_pm) {
-        free(entity->move_path);
+        free_tmp_path(entity->move_path);
         entity->move_path = NULL;
     }
 }
