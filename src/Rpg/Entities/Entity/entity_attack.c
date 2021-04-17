@@ -5,11 +5,12 @@
 ** entity_attack
 */
 
-#include "Rpg/Fight/fight.h"
 #include <unistd.h>
+
+#include "Rpg/Fight/fight.h"
 
 void entity_attack(entity_t *entity)
 {
     sleep(1);
-    (void *)entity;
+    (void)entity;
 }
