@@ -14,6 +14,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include <sw/widgets/button.h>
+
 #define ABS(a) (((a) >= 0) ? (a) : (-(a)))
 
 #ifndef MAX
@@ -51,6 +53,8 @@
 /// unused ?
 #define MS_UPDATE 5
 
+struct state;
+
 int is_in_bounds_i(
     sfVector2i pos, sfVector2i item_pos, sfVector2i item_size, int strict);
 int is_in_bounds(sfVector2f pos, sfVector2f item_pos, sfVector2f item_size);
@@ -63,5 +67,14 @@ void center_mouse(sfRenderWindow *wind);
 long get_number_adv(
     char const *str, size_t *offset, bool is_signed, bool only_num);
 long get_number_pass(char const *str, size_t *offset);
+
+sw_button_t *create_btn(
+    struct state *state, char *text, sw_spacing_t margin, sw_vec2f_t size);
+
+void cb_menu_play(sw_button_t *btn, void *data);
+void cb_menu_settings(sw_button_t *btn, void *data);
+void cb_menu_quit(sw_button_t *btn, void *data);
+void cb_pause_resume(sw_button_t *btn, void *data);
+void cb_pause_menu(sw_button_t *btn, void *data);
 
 #endif /* !FUNCTIONS_H */

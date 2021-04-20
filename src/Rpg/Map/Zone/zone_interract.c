@@ -73,7 +73,6 @@ static void handle_doors(zone_t *zone, sfVector2i pos, int pos_id, int doors)
             zone_id = zone->mother_zone;
     }
     (void)pos;
-    (void)pos_id;
     (void)doors;
     map_load_zone(zone->map, zone_id, open_door, mother);
 }

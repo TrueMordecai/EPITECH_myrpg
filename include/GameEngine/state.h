@@ -17,6 +17,7 @@ enum state_id {
     MENU_STATE,
     SETTINGS_STATE,
     GAME_STATE,
+    GAME_PAUSE_STATE,
     STATE_ID_COUNT,
 };
 

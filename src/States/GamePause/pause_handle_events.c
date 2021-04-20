@@ -7,11 +7,10 @@
 
 #include <SFML/Window/Keyboard.h>
 
-#include "States/Game/game_state.h"
+#include "GameEngine/game_head.h"
+#include "States/GamePause/pause_state.h"
 
-state_t *pause_state_create(game_data_t *data);
-
-int game_state_handle_events(game_state_t *state)
+int pause_state_handle_events(pause_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;
@@ -23,10 +22,7 @@ int game_state_handle_events(game_state_t *state)
             game_data_pop_state(state->base.game_data, GAME_STATE);
             return 1;
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyP)
-            game_data_push_state(
-                state->base.game_data, &pause_state_create, false);
-        rpg_handle_event(state->rpg, event);
+        sw_send_event(state->gui_base, &event);
     }
     return 0;
 }
