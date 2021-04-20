@@ -1,4 +1,5 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include)
+set(SW_INCROOT ${PROJECT_SOURCE_DIR}/lib/simple_widgets/include)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src)
 
 set(SRC
@@ -28,6 +29,6 @@ if (CMAKE_COMPILER_IS_GNUCC)
     target_compile_options(my_rpg PRIVATE -O1 -Wall -Wextra -Wshadow)
 endif()
 
-target_link_libraries(my_rpg PRIVATE physics ${CSFML_LIBRARIES} my-ascii my-collections my-io my-memory my-parsing my-printf m)
+target_link_libraries(my_rpg PRIVATE physics simple-widgets ${CSFML_LIBRARIES} my-ascii my-collections my-io my-memory my-parsing my-printf m)
 include_directories(${CSFML_INCLUDE_DIR})
-target_include_directories(my_rpg PRIVATE ${INCROOT})
+target_include_directories(my_rpg PRIVATE ${INCROOT} ${SW_INCROOT})

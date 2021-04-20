@@ -23,5 +23,6 @@ state_t *menu_state_create(game_data_t *data)
         .draw = (state_draw_t)&menu_state_draw,
         .destroy = (state_destroy_t)&menu_state_destroy,
     };
+    menu_init_gui(state);
     return &state->base;
 }

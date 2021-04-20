@@ -36,6 +36,7 @@ int menu_state_handle_events(menu_state_t *state)
             sfRenderWindow_close(data->window);
         if (event.type == sfEvtKeyPressed)
             shortcuts(data, event.key.code);
+        sw_send_event(state->gui_base, &event);
     }
     return 0;
 }

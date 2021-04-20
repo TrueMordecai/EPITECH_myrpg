@@ -13,8 +13,8 @@
 
 #include "types.h"
 
-#define SCL(state) (state->game_data->settings->scale)
-#define SL(rpg)    SCL((rpg)->state)
+#define SCL(state) (state->base.game_data->settings->scale)
+#define SL(rpg)    ((rpg)->state->game_data->settings->scale)
 
 struct settings {
     sfVector2u wind_size;

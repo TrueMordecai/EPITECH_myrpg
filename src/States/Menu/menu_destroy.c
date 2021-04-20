@@ -12,4 +12,5 @@ void menu_state_destroy(menu_state_t *state, state_id_t from)
 {
     (void)state;
     (void)from;
+    sw_destroy(state->gui_base);
 }

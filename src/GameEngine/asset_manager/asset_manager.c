@@ -75,7 +75,7 @@ sfTexture *get_texture(asset_manager_t *asset_manager, char const *name)
 
 sfFont *get_font(asset_manager_t *asset_manager, char const *name)
 {
-    asset_t *asset = my_hash_map_get(&asset_manager->textures, &name);
+    asset_t *asset = my_hash_map_get(&asset_manager->fonts, &name);
 
     return asset == NULL ? NULL : asset->font;
 }
