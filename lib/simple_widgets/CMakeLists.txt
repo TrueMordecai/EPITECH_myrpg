@@ -9,7 +9,7 @@ sw_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug o
 # setup version numbers
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 1)
-set(VERSION_PATCH 0)
+set(VERSION_PATCH 1)
 set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 project(SimpleWidgets

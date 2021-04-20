@@ -8,6 +8,7 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Text.h>
+#include <libmy/memory/memory.h>
 #include <stdlib.h>
 
 #include "sw/widgets/button.h"
@@ -39,6 +40,8 @@ SW_API sw_result_t sw_button_init(
         .has_text = false,
         .text = text,
     };
+    my_memset(widget->data.sprites, 0,
+        sizeof(*widget->data.sprites) * SW_BUTTON_STATE_COUNT);
     widget->base.vtable = SW_BUTTON_BASE_VTABLE;
     return SW_OK;
 }

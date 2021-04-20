@@ -69,5 +69,6 @@ SW_PROTECTED_API void sw_button_set_position(
     sfText_setPosition(widget->data.text,
         (sw_vec2f_t){new_pos.x + size.x / 2, new_pos.y + size.y / 2});
     for (int i = 0; i < SW_BUTTON_STATE_COUNT; ++i)
-        sfSprite_setPosition(widget->data.sprites[i], new_pos);
+        if (widget->data.sprites[i] != NULL)
+            sfSprite_setPosition(widget->data.sprites[i], new_pos);
 }

@@ -9,7 +9,7 @@ set(DOXYGEN_CONFIGURED_INPUT ${DOXYGEN_OUTPUT_DIR}/Doxyfile)
 configure_file(${DOXYGEN_INPUT_DIR}/doc/Doxyfile.in ${DOXYGEN_CONFIGURED_INPUT} @ONLY)
 
 # target setup
-add_custom_target(simple-widgets-doc ALL
+add_custom_target(doc ALL
     COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation..."
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_CONFIGURED_INPUT}
     COMMAND ${CMAKE_COMMAND} -E echo "Done."
@@ -17,4 +17,4 @@ add_custom_target(simple-widgets-doc ALL
 )
 
 # Prevent this target from being built by default
-set_target_properties(simple-widgets-doc PROPERTIES EXCLUDE_FROM_ALL TRUE)
+set_target_properties(doc PROPERTIES EXCLUDE_FROM_ALL TRUE)
