@@ -32,7 +32,6 @@ static void move_rect(entity_t *entity, sfVector2f pos)
 {
     if ((int)pos.x == -1 && (int)pos.y == -1)
         pos = fight_pos_to_world_vec(entity->fight, entity->pos);
-    pos.y -= 32;
     sfRectangleShape_setPosition(entity->rect, pos);
 }
 

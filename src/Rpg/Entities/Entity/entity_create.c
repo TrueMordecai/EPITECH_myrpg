@@ -16,14 +16,27 @@ void entity_init_rect(entity_t *entity, sfColor color)
     sfVector2i loc_pos = fight_pos_to_vec(entity->fight, entity->pos, 0);
     sfVector2f pos = fight_pos_to_world_vec(entity->fight, entity->pos);
 
-    my_printf("Pos ennemy (%d, %d)\n", loc_pos.x, loc_pos.y);
-    pos.y -= 32;
     entity->rect = sfRectangleShape_create();
     sfRectangleShape_setFillColor(entity->rect, color);
     sfRectangleShape_setPosition(entity->rect, pos);
-    sfRectangleShape_setSize(entity->rect, (sfVector2f){32, 64});
-    sfRectangleShape_setOutlineColor(entity->rect, sfBlack);
-    sfRectangleShape_setOutlineThickness(entity->rect, -0.5);
+    sfRectangleShape_setSize(entity->rect, (sfVector2f){32, 32});
+}
+
+static void init_animations(entity_t *entity)
+{
+    int anim_count = 4;
+    int *lengths = malloc(sizeof(int) * anim_count);
+    sfIntRect **frames = malloc(sizeof(sfIntRect *) * anim_count);
+
+    for (int i = 0; i < anim_count; i++) {
+        lengths[i] = 4;
+        frames[i] = malloc(sizeof(sfIntRect) * 4);
+        for (int j = 0; j < 4; j++)
+            frames[i][j] = (sfIntRect){i * 16, j * 16, 16, 16};
+    }
+    animations_init(&entity->anim, anim_count, lengths, frames);
+    entity->anim.rect = &entity->rect;
+    entity->anim.paused = 1;
 }
 
 entity_t *entity_create(void *datas, enum entity_type_e type, \
@@ -43,6 +56,8 @@ enum team_e team, int pos)
     entity->spell_select = -1;
     entity->state = IDLE;
     entity->rect = NULL;
+    entity->fight = NULL;
     my_vec_init(&entity->actions, sizeof(action_t));
+    init_animations(entity);
     return entity;
 }

@@ -9,6 +9,19 @@
 #include <stdio.h>
 #include "Rpg/Fight/fight.h"
 
+void update_anim(entity_t *entity, float dt, sfVector2f delta)
+{
+    int anim_id = 0;
+
+    if (delta.x)
+        anim_id = 2 + (delta.x > 0);
+    if (delta.y)
+        anim_id = 0 + (delta.y < 0);
+    entity->anim.paused = 0;
+    if (entity->anim.current_anim != anim_id)
+        animations_set_animation(&entity->anim, anim_id);
+}
+
 void action_move_update(entity_t *entity, float dt, action_t *act)
 {
     sfVector2f start = fight_pos_to_world_vec(
@@ -19,6 +32,7 @@ void action_move_update(entity_t *entity, float dt, action_t *act)
     sfVector2f pos = {start.x + delta.x * act->move.progress,
         start.y + delta.y * act->move.progress};
 
+    update_anim(entity, dt, delta);
     act->move.progress += dt * 5;
     entity_update_sprite_pos(entity, pos);
     if (act->move.progress > 1.0) {
@@ -29,6 +43,7 @@ void action_move_update(entity_t *entity, float dt, action_t *act)
         if (act->move.i == act->move.len_path) {
             my_vec_free(&act->move.path, NULL);
             my_vec_remove(&entity->actions, NULL, 0);
+            animations_pause(&entity->anim);
         }
     }
 }
@@ -52,6 +67,7 @@ void entity_update_actions(entity_t *entity, float dt)
 
 void entity_update(entity_t *entity, float dt, int playing)
 {
+    animations_update(&entity->anim, dt);
     if (!playing)
         return;
     if (entity->state == IDLE) {

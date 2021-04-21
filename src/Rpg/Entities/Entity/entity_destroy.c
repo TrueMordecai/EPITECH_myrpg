@@ -10,6 +10,7 @@
 
 void entity_destroy(entity_t *entity)
 {
+    animations_destroy(&entity->anim, 1, 0, 1);
     my_vec_free(entity->move_path, NULL);
     free(entity->move_path);
     free(entity->move_possibilities);

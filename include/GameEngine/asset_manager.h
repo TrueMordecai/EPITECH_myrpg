@@ -29,8 +29,8 @@ void asset_manager_drop(asset_manager_t *manager);
 
 void load_all_textures(asset_manager_t *manager);
 
-void load_texture(
-    asset_manager_t *asset_manager, char const *name, char const *filepath);
+void load_texture(asset_manager_t *asset_manager, char const *name,
+    char const *filepath, int smooth);
 struct sfTexture *get_texture(
     asset_manager_t *asset_manager, char const *name);
 

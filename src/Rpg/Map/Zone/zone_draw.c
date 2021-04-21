@@ -47,7 +47,7 @@ sfVector2i min, sfVector2i max)
     player_t *player = zone->map->rpg->player;
     int i = 0;
     float y_player = (player->pos.y + \
-    sfRectangleShape_getSize(player->rect).y * 1.2) / (float)zone->tiles_size;
+    sfRectangleShape_getSize(player->entity->rect).y * 1.2) / (float)zone->tiles_size;
 
     sfRenderWindow_setView(wind, zone->map->view);
     do {

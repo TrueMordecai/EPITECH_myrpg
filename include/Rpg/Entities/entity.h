@@ -11,6 +11,7 @@
 #include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
 #include "Rpg/Entities/stats.h"
+#include "Rpg/Entities/animations.h"
 
 struct fight_t;
 
@@ -53,6 +54,7 @@ typedef struct entity_t {
     void *datas;
     struct fight_t *fight;
     sfRectangleShape *rect;
+    animations_t anim;
 } entity_t;
 
 entity_t *entity_create(void *datas, enum entity_type_e type, \

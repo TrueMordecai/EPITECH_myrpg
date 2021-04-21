@@ -9,5 +9,5 @@
 
 void player_draw(player_t *player, sfRenderWindow *wind)
 {
-    sfRenderWindow_drawRectangleShape(wind, player->rect, NULL);
+    sfRenderWindow_drawRectangleShape(wind, player->entity->rect, NULL);
 }

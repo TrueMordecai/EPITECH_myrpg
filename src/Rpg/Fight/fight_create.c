@@ -5,14 +5,14 @@
 ** fight_create
 */
 
-#include <stdlib.h>
 #include <libmy/printf.h>
+#include <stdlib.h>
 
-#include "functions.h"
 #include "Rpg/Entities/player.h"
-#include "Rpg/Map/battle.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/Map/battle.h"
 #include "Rpg/rpg.h"
+#include "functions.h"
 
 static void init_rect_buff(fight_t *fight, int capacity)
 {
@@ -55,17 +55,21 @@ static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
 
     for (int i = 0; i < nb_ennemies; i++) {
         pos = get_pos(fight, player_pos);
-        my_printf("Ennemy at pos %d\n", pos);
         if (pos == -1) {
             nb_ennemies--;
             i--;
             fight->nb_entities--;
             continue;
         }
-        fight->entities[i + 1] = entity_create(NULL, ENNEMY_CAC + i % 2, ENNEMIES, pos);
+        fight->entities[i + 1] =
+            entity_create(NULL, ENNEMY_CAC + i % 2, ENNEMIES, pos);
         fight->entities[i + 1]->stats = stats_create();
         fight->entities[i + 1]->fight = fight;
         entity_init_rect(fight->entities[i + 1], sfRed);
+        sfRectangleShape_setTexture(fight->entities[i + 1]->rect,
+            get_texture(&fight->rpg->state->game_data->assets, "skeleton"),
+            true);
+        animations_update_rect(&fight->entities[i + 1]->anim);
     }
 }
 
@@ -75,8 +79,8 @@ static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     fight->nb_entities = MAX(0, nb_ennemies) + 1;
     fight->entities = malloc(sizeof(entity_t *) * fight->nb_entities);
     fight->entities[0] = player->entity;
-    fight->entities[0]->pos = player->body->pos.x - fight->pos.x + \
-    (player->body->pos.y - fight->pos.y) * fight->size.x;
+    fight->entities[0]->pos = player->body->pos.x - fight->pos.x
+        + (player->body->pos.y - fight->pos.y) * fight->size.x;
     init_ennemies(fight, nb_ennemies, fight->entities[0]->pos);
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
@@ -98,9 +102,9 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
     for (int x = 0; x < fight->size.x; x++) {
         for (int y = 0; y < fight->size.y; y++) {
             fight->grid[x + y * fight->size.x].entity = NULL;
-            fight->grid[x + y * fight->size.x].physic = \
-            battle->tiles[x + fight->pos.x + (y + fight->pos.y) * \
-            fight->rpg->map->current_zone->size.x];
+            fight->grid[x + y * fight->size.x]
+                .physic = battle->tiles[x + fight->pos.x
+                + (y + fight->pos.y) * fight->rpg->map->current_zone->size.x];
         }
     }
     init_entities(fight, nb_ennemies, player);

@@ -39,8 +39,8 @@ void asset_manager_init(asset_manager_t *asset_manager)
     load_all_textures(asset_manager);
 }
 
-void load_texture(
-    asset_manager_t *asset_manager, char const *name, char const *filepath)
+void load_texture(asset_manager_t *asset_manager, char const *name,
+    char const *filepath, int smooth)
 {
     asset_t asset;
 
@@ -49,7 +49,7 @@ void load_texture(
     asset.texture = sfTexture_createFromFile(filepath, NULL);
     if (asset.texture == NULL)
         return;
-    sfTexture_setSmooth(asset.texture, 1);
+    sfTexture_setSmooth(asset.texture, smooth);
     my_hash_map_insert(&asset_manager->textures, &name, &asset);
 }
 

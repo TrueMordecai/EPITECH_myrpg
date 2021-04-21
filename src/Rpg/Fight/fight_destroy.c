@@ -12,6 +12,8 @@ void fight_destroy(fight_t *fight)
     for (int i = 0; i < fight->nb_entities; i++) {
         if (fight->entities[i]->team == ENNEMIES)
             entity_destroy(fight->entities[i]);
+        else
+            fight->entities[i]->fight = NULL;
     }
     for (int i = 0; i < 10000; i++)
         sfRectangleShape_destroy(fight->rect_buffer[i]);

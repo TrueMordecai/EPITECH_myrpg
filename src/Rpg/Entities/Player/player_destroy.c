@@ -11,6 +11,5 @@
 void player_destroy(player_t *player)
 {
     entity_destroy(player->entity);
-    sfRectangleShape_destroy(player->rect);
     free(player);
 }
