@@ -16,6 +16,9 @@
 #define M_TO_PX 32.f
 
 typedef struct rpg_t {
+    /// key type: 'char *'
+    /// Value value: 'spell_base_t *'
+    my_hash_map_t spells;
     state_t *state;
     sfRenderWindow *wind;
     map_t *map;

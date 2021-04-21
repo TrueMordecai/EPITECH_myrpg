@@ -8,13 +8,16 @@
 #ifndef BATTLE_STAT_H_
 #define BATTLE_STAT_H_
 
+#include <libmy/collections/vec.h>
+
 enum elements {EARTH, FIRE, WATER, WIND};
 
 struct stats_t;
+struct spell_effect;
 
 typedef struct effect_t {
     int lifetime;
-    void (*effect)(struct stats_t *, int);
+    struct spell_effect *spell;
 } effect_t;
 
 typedef struct stats_t {
@@ -26,7 +29,7 @@ typedef struct stats_t {
     int pm;
     int elements[4];
     int resistances[4];
-    effect_t *effects;
+    my_vec_t effects;
 } stats_t;
 
 stats_t *stats_create(void);

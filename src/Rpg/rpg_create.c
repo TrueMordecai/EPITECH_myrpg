@@ -8,6 +8,7 @@
 #include <libmy/memory/alloc.h>
 
 #include "Rpg/rpg.h"
+#include "Rpg/Fight/spell.h"
 
 rpg_t *rpg_create(state_t *state)
 {
@@ -20,5 +21,6 @@ rpg_t *rpg_create(state_t *state)
         get_texture(&state->game_data->assets, "inspector"), true);
     animations_reset(&rpg->player->entity->anim);
     rpg->map = map_create(rpg);
+    spells_init(rpg);
     return rpg;
 }

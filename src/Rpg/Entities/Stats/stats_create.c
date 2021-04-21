@@ -13,7 +13,6 @@ stats_t *stats_create(void)
     stats_t *stats = malloc(sizeof(stats_t));
 
     stats->life = 100;
-    stats->effects = NULL;
     stats->pa = 6;
     stats->pm = 3;
     stats->current_life = 100;

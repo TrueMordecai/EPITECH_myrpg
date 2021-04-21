@@ -49,6 +49,7 @@ typedef struct entity_t {
     int *move_possibilities;
     my_vec_t *move_path;
     my_vec_t actions;
+    my_vec_t spells;
     int *spell_sight;
     int *spell_range;
     void *datas;
