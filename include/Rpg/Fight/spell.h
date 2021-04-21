@@ -10,7 +10,13 @@
 
 #include "Rpg/Entities/stats.h"
 
-enum spell_type_e { SPELL_ATTACK, SPELL_HEAL, SPELL_EFFECT, SPELL_DEBUFF };
+enum spell_type_e {
+    SPELL_NONE,
+    SPELL_ATTACK,
+    SPELL_HEAL,
+    SPELL_EFFECT,
+    SPELL_DEBUFF
+};
 enum effect_type_e { EFFECT_DAMAGE, EFFECT_BOOST };
 
 typedef struct spell_base {
@@ -22,17 +28,17 @@ typedef struct spell_base {
 } spell_base_t;
 
 typedef struct spell_attack {
-    spell_base base;
+    spell_base_t base;
     int damages[4];
 } spell_attack_t;
 
 typedef struct spell_heal {
-    spell_base base;
-    int value;
+    spell_base_t base;
+    int heal;
 } spell_heal_t;
 
 typedef struct spell_effect {
-    spell_base base;
+    spell_base_t base;
     int lifetime;
     enum effect_type_e type;
     int damages[4];
@@ -40,8 +46,11 @@ typedef struct spell_effect {
 } spell_effect_t;
 
 typedef struct spell_debuff {
-    spell_base base;
+    spell_base_t base;
     enum effect_type_e type;
 } spell_debuff_t;
+
+spell_base_t *spell_create_from_file(char *file);
+void spell_base_parse(spell_base_t *spell, char *file_content);
 
 #endif /* !SPELL_H_ */

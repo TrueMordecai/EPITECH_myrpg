@@ -77,4 +77,8 @@ void cb_menu_quit(sw_button_t *btn, void *data);
 void cb_pause_resume(sw_button_t *btn, void *data);
 void cb_pause_menu(sw_button_t *btn, void *data);
 
+int my_strlen_to(char *str, char end);
+char *my_strndup(char const *str, size_t n);
+char *read_file(char const *path, size_t *file_size);
+
 #endif /* !FUNCTIONS_H */

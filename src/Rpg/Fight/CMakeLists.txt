@@ -1,6 +1,8 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/Rpg/Fight)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Fight)
 
+add_subdirectory(Spells)
+
 set(SRC
     ${SRC}
     ${INCROOT}/fight.h

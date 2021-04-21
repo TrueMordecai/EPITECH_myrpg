@@ -1,0 +1,5 @@
+TYPE=EFFECT
+NAME="Debuff Damages"
+PA=3
+PO=0
+DEBUFF=BOOST

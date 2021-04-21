@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Rpg/Fight/spell.h"
 #include "GameEngine/game_head.h"
 
 static const size_t IO_BUF_SIZE = 512;
@@ -47,6 +48,29 @@ int my_rpg(int argc, char *argv[])
     return 0;
 }
 
+static void test_spell_read(void)
+{
+    int nb_spells = 12;
+    char *paths[] = {
+        "assets/Spells/a_punch.spell",
+        "assets/Spells/a_spit_fire.spell",
+        "assets/Spells/a_spit.spell",
+        "assets/Spells/d_debuff_all.spell",
+        "assets/Spells/d_debuff_boost.spell",
+        "assets/Spells/d_debuff_damage.spell",
+        "assets/Spells/e_burn.spell",
+        "assets/Spells/e_jump.spell",
+        "assets/Spells/h_heal_zone.spell",
+        "assets/Spells/h_heal.spell",
+        "assets/Spells/i_invalid_type.spell",
+        "assets/Spells/i_notype.spell"
+    };
+
+    for (int i = 0; i < nb_spells; i++) {
+        spell_create_from_file(paths[i]);
+    }
+}
+
 int main(int argc, char *argv[])
 {
     int ret;
@@ -57,6 +81,7 @@ int main(int argc, char *argv[])
         my_free_stderr();
         return 84;
     }
+    test_spell_read();
     ret = my_rpg(argc, argv);
     my_free_stderr();
     my_free_stdout();

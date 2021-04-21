@@ -10,5 +10,8 @@ set(SRC
     ${SRCROOT}/get_numbers.c
     ${SRCROOT}/get_rand.c
     ${SRCROOT}/is_in_bounds.c
+    ${SRCROOT}/my_strlen_to.c
+    ${SRCROOT}/my_strndup.c
+    ${SRCROOT}/read_file.c
     PARENT_SCOPE
 )
