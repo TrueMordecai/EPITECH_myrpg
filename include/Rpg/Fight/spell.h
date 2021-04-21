@@ -54,7 +54,7 @@ typedef struct spell_debuff {
 } spell_debuff_t;
 
 void spells_init(struct rpg_t *rpg);
-spell_base_t *get_spell(rpg_t *rpg, char const *name);
+spell_base_t *get_spell(struct rpg_t *rpg, char const *name);
 
 spell_base_t *spell_create_from_file(char *file);
 void spell_destroy(spell_base_t *spell);

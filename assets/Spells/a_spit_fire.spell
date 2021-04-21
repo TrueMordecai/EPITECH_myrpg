@@ -1,5 +1,6 @@
 TYPE=ATTACK
-NAME="Spit"
-PA=3
-PO=5
-WATER=3
+NAME="Spit fire"
+PA=6
+PO=3
+WATER=5
+FIRE=5

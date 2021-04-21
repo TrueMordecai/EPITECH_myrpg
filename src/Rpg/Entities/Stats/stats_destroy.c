@@ -10,5 +10,6 @@
 
 void stats_destroy(stats_t *stats)
 {
+    my_vec_free(&stats->effects, NULL);
     free(stats);
 }

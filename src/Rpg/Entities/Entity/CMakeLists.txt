@@ -7,6 +7,9 @@ set(SRC
     ${SRC}
     ${INCROOT}/entity.h
     ${SRCROOT}/entity_add_action.c
+    ${SRCROOT}/entity_add_spell.c
+    ${SRCROOT}/entity_attack.c
+    ${SRCROOT}/entity_cast_spell.c
     ${SRCROOT}/entity_create.c
     ${SRCROOT}/entity_destroy.c
     ${SRCROOT}/entity_draw.c
@@ -18,6 +21,5 @@ set(SRC
     ${SRCROOT}/entity_spell_sight.c
     ${SRCROOT}/entity_turn.c
     ${SRCROOT}/entity_update.c
-    ${SRCROOT}/entity_attack.c
     PARENT_SCOPE
 )

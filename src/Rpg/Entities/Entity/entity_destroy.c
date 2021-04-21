@@ -12,6 +12,7 @@ void entity_destroy(entity_t *entity)
 {
     animations_destroy(&entity->anim, 1, 0, 1);
     my_vec_free(entity->move_path, NULL);
+    my_vec_free(&entity->spells, NULL);
     free(entity->move_path);
     free(entity->move_possibilities);
     free(entity->spell_sight);

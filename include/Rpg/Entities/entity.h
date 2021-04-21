@@ -12,8 +12,10 @@
 #include <libmy/collections/vec.h>
 #include "Rpg/Entities/stats.h"
 #include "Rpg/Entities/animations.h"
+#include "Rpg/Fight/spell.h"
 
 struct fight_t;
+struct rpg_t;
 
 enum entity_state_e {IDLE, MOVING, CASTING_SPELL};
 enum entity_type_e {PLAYER, ALLY, ENNEMY_CAC, ENNEMY_DIST};
@@ -74,6 +76,10 @@ void entity_end_turn(entity_t *entity);
 void entity_compute_move(entity_t *entity);
 
 void entity_attack(entity_t *entity);
+void entity_init_spells(entity_t *entity, struct rpg_t *rpg);
+void entity_add_spell(entity_t *entity, spell_base_t *spell);
+spell_base_t *entity_get_select_spell(entity_t *entity);
+void entity_cast_spell(entity_t *from, int to_cell);
 
 void entity_add_action(entity_t *entity, enum actions_e action_type);
 void entity_force_end_action(entity_t *entity, action_t *act);

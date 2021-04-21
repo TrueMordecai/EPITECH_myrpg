@@ -58,6 +58,7 @@ enum team_e team, int pos)
     entity->rect = NULL;
     entity->fight = NULL;
     my_vec_init(&entity->actions, sizeof(action_t));
+    my_vec_init(&entity->spells, sizeof(spell_base_t *));
     init_animations(entity);
     return entity;
 }

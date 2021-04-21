@@ -14,9 +14,11 @@ enum elements {EARTH, FIRE, WATER, WIND};
 
 struct stats_t;
 struct spell_effect;
+struct entity_t;
 
 typedef struct effect_t {
     int lifetime;
+    struct entity_t *from;
     struct spell_effect *spell;
 } effect_t;
 
@@ -38,5 +40,10 @@ void stats_init_blank(stats_t *stats);
 void stats_init_pa_pm(stats_t *stats, int pa, int pm);
 void stats_reset(stats_t *stats, int only_pa_pm);
 void stats_destroy(stats_t *stats);
+
+void stats_add_effect(stats_t *stats, effect_t *effect);
+void apply_effect_turn_start(stats_t *stats);
+void apply_effect_turn_ends(stats_t *stats);
+void update_effect_turn_ends(stats_t *stats);
 
 #endif /* !BATTLE_STAT_H_ */

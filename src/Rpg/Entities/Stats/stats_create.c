@@ -18,6 +18,7 @@ stats_t *stats_create(void)
     stats->current_life = 100;
     stats->current_pa = 6;
     stats->current_pm = 3;
+    my_vec_init(&stats->effects, sizeof(effect_t));
     for (int i = 0; i < 4; i++) {
         stats->elements[i] = 0;
         stats->resistances[i] = 0;

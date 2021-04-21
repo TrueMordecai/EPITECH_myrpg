@@ -4,6 +4,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Entities/Stats)
 set(SRC
     ${SRC}
     ${INCROOT}/stats.h
+    ${SRCROOT}/stats_apply_effects.c
     ${SRCROOT}/stats_create.c
     ${SRCROOT}/stats_destroy.c
     ${SRCROOT}/stats_init.c

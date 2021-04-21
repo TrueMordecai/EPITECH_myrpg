@@ -12,6 +12,7 @@
 #include <libmy/collections/vec.h>
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
+#include "Rpg/Fight/spell.h"
 
 enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
 enum cell_flags {INEXISTING = -1, END_ARRAY = -2};

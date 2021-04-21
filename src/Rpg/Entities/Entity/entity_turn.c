@@ -11,12 +11,14 @@
 void entity_start_turn(entity_t *entity)
 {
     stats_reset(entity->stats, 1);
+    apply_effect_turn_start(entity->stats);
     entity_update_move_possibilities(entity);
     entity_update_spell_sight(entity);
 }
 
 void entity_end_turn(entity_t *entity)
 {
+    update_effect_turn_ends(entity->stats);
     if (!entity->actions.length)
         return;
     for (size_t i = 0; i < entity->actions.length; i++)
