@@ -69,6 +69,6 @@ void player_update(player_t *player, float dt)
     if (offset.y != 0)
         player->body->velocity.y = offset.y;
     player->pos = (sfVector2f){
-        player->body->pos.x * M_TO_PX, (player->body->pos.y) * M_TO_PX};
+        player->body->pos.x * M_TO_PX, player->body->pos.y * M_TO_PX};
     sfRectangleShape_setPosition(player->entity->rect, player->pos);
 }
