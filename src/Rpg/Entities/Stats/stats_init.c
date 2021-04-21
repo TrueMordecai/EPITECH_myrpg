@@ -7,6 +7,17 @@
 
 #include "Rpg/Entities/stats.h"
 
+void stats_init_blank(stats_t *stats)
+{
+    stats->life = 0;
+    stats->pm = 0;
+    stats->pa = 0;
+    for (int i = 0; i < 4; i++) {
+        stats->elements[i] = 0;
+        stats->resistances[i] = 0;
+    }
+}
+
 void stats_init(stats_t *stats, int *elements, int *resistances, int life)
 {
     for (int i = 0; i < 4; i++) {

@@ -1,5 +1,6 @@
-TYPE=EFFECT
-NAME="Debuff Damages"
+TYPE=DEBUFF
+NAME="Debuff boost"
 PA=3
 PO=0
 DEBUFF=BOOST
+TURNS=1

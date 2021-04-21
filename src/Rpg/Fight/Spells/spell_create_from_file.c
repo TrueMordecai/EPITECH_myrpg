@@ -64,6 +64,9 @@ spell_base_t *spell_create_from_file(char *file)
     spell = spell_create_from_type(spell_type);
     spell->type = spell_type;
     assert(spell != NULL);
-    spell_base_parse(spell, file_content + my_strlen_to(file_content, '\n') + 1);
+    spell_base_parse(spell,
+        file_content + my_strlen_to(file_content, '\n') + 1,
+        file_size - (my_strlen_to(file_content, '\n') + 1));
+    free(file_content);
     return spell;
 }

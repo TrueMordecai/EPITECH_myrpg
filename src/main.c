@@ -67,7 +67,7 @@ static void test_spell_read(void)
     };
 
     for (int i = 0; i < nb_spells; i++) {
-        spell_create_from_file(paths[i]);
+        spell_destroy(spell_create_from_file(paths[i]));
     }
 }
 

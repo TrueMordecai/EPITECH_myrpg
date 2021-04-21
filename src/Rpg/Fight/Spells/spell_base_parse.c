@@ -23,7 +23,7 @@ static int parse_value(size_t *offset, int name_len, char *line_beg)
     return nb;
 }
 
-int parse_line(spell_base_t *spell, char *line_beg, int line_len)
+static int parse_line(spell_base_t *spell, char *line_beg)
 {
     size_t offset = 0;
     int diff;
@@ -45,7 +45,26 @@ int parse_line(spell_base_t *spell, char *line_beg, int line_len)
     return 0;
 }
 
-void spell_base_parse(spell_base_t *spell, char *file_content)
+static void parse_types(spell_base_t *spell, char *parse_beg, size_t filesize)
+{
+    switch (spell->type) {
+        case SPELL_ATTACK:
+            spell_attack_parse((spell_attack_t *)spell, parse_beg, filesize);
+            break;
+        case SPELL_HEAL:
+            spell_heal_parse((spell_heal_t *)spell, parse_beg, filesize);
+            break;
+        case SPELL_DEBUFF:
+            spell_debuff_parse((spell_debuff_t *)spell, parse_beg, filesize);
+            break;
+        case SPELL_EFFECT:
+            spell_effect_parse((spell_effect_t *)spell, parse_beg, filesize);
+            break;
+        default: break;
+    }
+}
+
+void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
 {
     size_t offset = 0;
     int line_len;
@@ -54,11 +73,12 @@ void spell_base_parse(spell_base_t *spell, char *file_content)
     spell->pa = 1;
     spell->po = 0;
     spell->area = 0;
-    while (file_content[offset]) {
+    while (offset < filesize) {
         line_len = my_strlen_to(file_content + offset, '\n');
-        parse_line(spell, file_content + offset, line_len);
+        parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
     my_printf("Name = %#s\n   Pa = %d\n   Po = %d\n   Area = %d\n",
         spell->name, spell->pa, spell->po, spell->area);
+    parse_types(spell, file_content, filesize);
 }
