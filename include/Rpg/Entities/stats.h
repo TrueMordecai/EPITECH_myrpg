@@ -46,6 +46,7 @@ void apply_effect_turn_start(stats_t *stats);
 void apply_effect_turn_ends(stats_t *stats);
 void update_effect_turn_ends(stats_t *stats);
 
+int stats_update(stats_t *stats);
 void stats_display(stats_t *stats);
 
 #endif /* !BATTLE_STAT_H_ */

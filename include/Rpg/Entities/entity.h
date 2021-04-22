@@ -49,6 +49,7 @@ typedef struct entity_t {
     int pos;
     int spell_select;
     int spell_cell;
+    int alive;
     int *move_possibilities;
     my_vec_t *move_path;
     my_vec_t actions;
@@ -68,6 +69,7 @@ void entity_init_rect(entity_t *entity, sfColor color);
 void entity_move(entity_t *entity, int update_sprite);
 void entity_update_sprite_pos(entity_t *entity, sfVector2f pos);
 void entity_update(entity_t *entity, float dt, int playing);
+void entity_update_alive(entity_t *entity);
 void entity_handle_events(entity_t *entity, sfEvent event);
 void entity_draw(entity_t *entity, sfRenderWindow *wind);
 void entity_destroy(entity_t *entity);

@@ -56,6 +56,8 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
         cast_effect(from, to, (spell_effect_t *)spell);
     if (spell->type == SPELL_DEBUFF)
         cast_debuff(to, (spell_debuff_t *)spell);
+    entity_update_alive(from);
+    entity_update_alive(to);
     stats_display(from->stats);
     stats_display(to->stats);
 }

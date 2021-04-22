@@ -9,5 +9,6 @@ set(SRC
     ${SRCROOT}/stats_destroy.c
     ${SRCROOT}/stats_init.c
     ${SRCROOT}/stats_reset.c
+    ${SRCROOT}/stats_update.c
     PARENT_SCOPE
 )

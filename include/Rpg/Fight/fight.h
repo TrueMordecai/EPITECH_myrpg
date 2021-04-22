@@ -50,10 +50,13 @@ struct player_t *player);
 void fight_update(fight_t *fight, float dt);
 void fight_handle_events(fight_t *fight, sfEvent event);
 void fight_draw(fight_t *fight, sfRenderWindow *wind);
+int fight_end(fight_t *fight);
 void fight_destroy(fight_t *fight);
 
-void fight_new_turn(fight_t *fight);
-void fight_new_entity(fight_t *fight);
+int fight_new_turn(fight_t *fight);
+int fight_new_entity(fight_t *fight);
+int fight_rm_dead_entity(fight_t *fight, int id);
+void fight_rm_dead_entities(fight_t *fight);
 
 sfVector2i fight_pos_to_vec(fight_t *fight, int pos, int world);
 sfVector2f fight_pos_to_world_vec(fight_t *fight, int pos);

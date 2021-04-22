@@ -43,6 +43,8 @@ static int parse_line_elmts(spell_effect_t *spell, char *line_beg)
         spell->buff.resistances[WATER] = parse_value(&offset, 10, line_beg);
     if (my_strncmp("WIND_RES=", line_beg, 9) == 0)
         spell->buff.resistances[WIND] = parse_value(&offset, 9, line_beg);
+    if (my_strncmp("LIFETIME=", line_beg, 9) == 0)
+        spell->lifetime = parse_value(&offset, 9, line_beg);
     return 0;
 }
 
@@ -76,6 +78,7 @@ void spell_effect_parse(
     size_t offset = 0;
     int line_len;
 
+    spell->lifetime = 1;
     for (int i = 0; i < 4; i++)
         spell->damages[i] = 0;
     stats_init_blank(&spell->buff);

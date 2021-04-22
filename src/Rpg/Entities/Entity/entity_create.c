@@ -57,6 +57,7 @@ enum team_e team, int pos)
     entity->state = IDLE;
     entity->rect = NULL;
     entity->fight = NULL;
+    entity->alive = 1;
     my_vec_init(&entity->actions, sizeof(action_t));
     my_vec_init(&entity->spells, sizeof(spell_base_t *));
     init_animations(entity);

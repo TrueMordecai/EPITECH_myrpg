@@ -9,7 +9,7 @@
 
 void entity_draw(entity_t *entity, sfRenderWindow *wind)
 {
-    if (!entity || !entity->rect)
+    if (!entity || !entity->rect || !entity->alive)
         return;
     sfRenderWindow_drawRectangleShape(wind, entity->rect, NULL);
 }

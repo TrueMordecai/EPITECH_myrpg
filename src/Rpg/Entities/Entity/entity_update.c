@@ -68,7 +68,7 @@ void entity_update_actions(entity_t *entity, float dt)
 void entity_update(entity_t *entity, float dt, int playing)
 {
     animations_update(&entity->anim, dt);
-    if (!playing)
+    if (!playing || !entity->alive)
         return;
     if (entity->state == IDLE) {
         if (entity->spell_select < 0) {

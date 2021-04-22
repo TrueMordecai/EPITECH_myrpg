@@ -76,7 +76,7 @@ void entity_draw_move_path(entity_t *entity, int update)
         entity_update_move_path(entity, NULL);
     if (!entity->move_path)
         return;
-    for (size_t i = 0; i < entity->move_path->length; i++)
+    for (size_t i = 1; i < entity->move_path->length; i++)
         fight_place_rect(entity->fight, \
         MY_VEC_GET_ELEM(int, entity->move_path, i), \
         sfColor_fromRGBA(0, 255, 0, 120), WALKABLE);
