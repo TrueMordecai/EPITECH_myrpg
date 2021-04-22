@@ -35,14 +35,14 @@ static int parse_line_elmts(spell_effect_t *spell, char *line_beg)
         spell->buff.elements[WATER] = parse_value(&offset, 6, line_beg);
     if (my_strncmp("WIND=", line_beg, 5) == 0)
         spell->buff.elements[WIND] = parse_value(&offset, 5, line_beg);
-    if (my_strncmp("EARTH_RES=", line_beg, 9) == 0)
-        spell->buff.resistances[EARTH] = parse_value(&offset, 9, line_beg);
-    if (my_strncmp("FIRE_RES=", line_beg, 8) == 0)
-        spell->buff.resistances[FIRE] = parse_value(&offset, 8, line_beg);
-    if (my_strncmp("WATER_RES=", line_beg, 9) == 0)
-        spell->buff.resistances[WATER] = parse_value(&offset, 9, line_beg);
-    if (my_strncmp("WIND_RES=", line_beg, 8) == 0)
-        spell->buff.resistances[WIND] = parse_value(&offset, 8, line_beg);
+    if (my_strncmp("EARTH_RES=", line_beg, 10) == 0)
+        spell->buff.resistances[EARTH] = parse_value(&offset, 10, line_beg);
+    if (my_strncmp("FIRE_RES=", line_beg, 9) == 0)
+        spell->buff.resistances[FIRE] = parse_value(&offset, 9, line_beg);
+    if (my_strncmp("WATER_RES=", line_beg, 10) == 0)
+        spell->buff.resistances[WATER] = parse_value(&offset, 10, line_beg);
+    if (my_strncmp("WIND_RES=", line_beg, 9) == 0)
+        spell->buff.resistances[WIND] = parse_value(&offset, 9, line_beg);
     return 0;
 }
 
@@ -54,18 +54,18 @@ static int parse_line(spell_effect_t *spell, char *line_beg)
         spell->type |= parse_effect_type(line_beg + 7);
     if (my_strncmp("LIFE=", line_beg, 5) == 0)
         spell->buff.life = parse_value(&offset, 5, line_beg);
-    if (my_strncmp("PA=", line_beg, 3) == 0)
-        spell->buff.pa = parse_value(&offset, 3, line_beg);
+    if (my_strncmp("PA_BOOST=", line_beg, 9) == 0)
+        spell->buff.pa = parse_value(&offset, 9, line_beg);
     if (my_strncmp("PM=", line_beg, 3) == 0)
         spell->buff.pm = parse_value(&offset, 3, line_beg);
-    if (my_strncmp("EARTH_DMG=", line_beg, 9) == 0)
-        spell->damages[EARTH] = parse_value(&offset, 9, line_beg);
-    if (my_strncmp("FIRE_DMG=", line_beg, 8) == 0)
-        spell->damages[FIRE] = parse_value(&offset, 8, line_beg);
-    if (my_strncmp("WATER_DMG=", line_beg, 9) == 0)
-        spell->damages[WATER] = parse_value(&offset, 9, line_beg);
-    if (my_strncmp("WIND_DMG=", line_beg, 8) == 0)
-        spell->damages[WIND] = parse_value(&offset, 8, line_beg);
+    if (my_strncmp("EARTH_DMG=", line_beg, 10) == 0)
+        spell->damages[EARTH] = parse_value(&offset, 10, line_beg);
+    if (my_strncmp("FIRE_DMG=", line_beg, 9) == 0)
+        spell->damages[FIRE] = parse_value(&offset, 9, line_beg);
+    if (my_strncmp("WATER_DMG=", line_beg, 10) == 0)
+        spell->damages[WATER] = parse_value(&offset, 10, line_beg);
+    if (my_strncmp("WIND_DMG=", line_beg, 9) == 0)
+        spell->damages[WIND] = parse_value(&offset, 9, line_beg);
     parse_line_elmts(spell, line_beg);
     return 0;
 }
@@ -84,5 +84,6 @@ void spell_effect_parse(
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Pm = %d\n", spell->buff.pm);
+    my_printf("   Pm = %d, pa %d, fire dmg %d\n", spell->buff.pm,
+        spell->buff.pa, spell->damages[FIRE]);
 }

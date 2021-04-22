@@ -74,8 +74,10 @@ void entity_update(entity_t *entity, float dt, int playing)
         if (entity->spell_select < 0) {
             entity_draw_move_possibilities(entity, 0);
             entity_draw_move_path(entity, 1);
-        } else
+        } else {
             entity_draw_spell_sight(entity, 0);
+            entity_draw_spell_cell(entity);
+        }
     }
     if (entity->actions.length)
         entity_update_actions(entity, dt);

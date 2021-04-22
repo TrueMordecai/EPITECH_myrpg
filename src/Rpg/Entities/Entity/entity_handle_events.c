@@ -9,8 +9,12 @@
 
 void entity_handle_events(entity_t *entity, sfEvent event)
 {
-    if (event.type == sfEvtMouseButtonPressed)
-        entity_move(entity, 0);
+    if (event.type == sfEvtMouseButtonPressed) {
+        if (entity->spell_select == -1)
+            entity_move(entity, 0);
+        else
+            entity_cast_spell(entity, entity->spell_cell);
+    }
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code >= sfKeyNumpad0 && event.key.code <= sfKeyNumpad9) {
             entity->spell_select = event.key.code - sfKeyNumpad0 - 1;

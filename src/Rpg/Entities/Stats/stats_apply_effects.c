@@ -5,6 +5,8 @@
 ** stats_apply_effects
 */
 
+#include <libmy/printf.h>
+
 #include "Rpg/Entities/entity.h"
 
 void stats_add_effect(stats_t *stats, effect_t *effect)
@@ -12,7 +14,7 @@ void stats_add_effect(stats_t *stats, effect_t *effect)
     my_vec_push(&stats->effects, effect);
     if (!(effect->spell->type & EFFECT_BOOST))
         return;
-    stats->life += effect->spell->buff.life;
+    stats->current_life += effect->spell->buff.life;
     stats->current_pa += effect->spell->buff.pa;
     stats->current_pm += effect->spell->buff.pm;
     for (int j = 0; j < 4; j++) {
@@ -43,8 +45,8 @@ void apply_effect_turn_ends(stats_t *stats)
         if (!(effect->spell->type & EFFECT_DAMAGE))
             continue;
         for (int j = 0; j < 4; j++)
-            stats->life -= effect->spell->damages[i]
-                * (1 + effect->from->stats->elements[i] / 30.f);
+            stats->current_life -= effect->spell->damages[j]
+                * (1 + effect->from->stats->elements[j] / 30.f);
     }
 }
 

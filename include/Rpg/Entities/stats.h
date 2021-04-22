@@ -10,7 +10,7 @@
 
 #include <libmy/collections/vec.h>
 
-enum elements {EARTH, FIRE, WATER, WIND};
+enum elements { EARTH, FIRE, WATER, WIND };
 
 struct stats_t;
 struct spell_effect;
@@ -45,5 +45,7 @@ void stats_add_effect(stats_t *stats, effect_t *effect);
 void apply_effect_turn_start(stats_t *stats);
 void apply_effect_turn_ends(stats_t *stats);
 void update_effect_turn_ends(stats_t *stats);
+
+void stats_display(stats_t *stats);
 
 #endif /* !BATTLE_STAT_H_ */
