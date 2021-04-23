@@ -66,7 +66,7 @@ static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
         entity_init_spells(fight->entities[i + 1], fight->rpg);
         fight->entities[i + 1]->stats = stats_create();
         fight->entities[i + 1]->fight = fight;
-        entity_init_rect(fight->entities[i + 1], sfRed);
+        entity_init_rect(fight->entities[i + 1], sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
         sfRectangleShape_setTexture(fight->entities[i + 1]->rect,
             get_texture(&fight->rpg->state->game_data->assets, "skeleton"),
             true);
@@ -108,8 +108,10 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
                 + (y + fight->pos.y) * fight->rpg->map->current_zone->size.x];
         }
     }
+    player->entity->alive = 1;
     init_entities(fight, nb_ennemies, player);
     init_rect_buff(fight, 10000);
+    timeline_init(&fight->timeline, fight);
     fight_new_turn(fight);
     return fight;
 }

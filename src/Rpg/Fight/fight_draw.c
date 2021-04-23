@@ -21,4 +21,5 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
         for (int y = 0; y < fight->size.y; y++)
             entity_draw(fight->grid[x + y * fight->size.x].entity, wind);
     }
+    timeline_draw(&fight->timeline, wind);
 }

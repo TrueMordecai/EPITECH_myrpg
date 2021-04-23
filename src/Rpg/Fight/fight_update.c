@@ -21,12 +21,13 @@ int fight_rm_dead_entity(fight_t *fight, int id)
         return 0;
     fight->grid[entity->pos].entity = NULL;
     entity_update_spell_sight(fight->entities[fight->entity_turn]);
+    timeline_remove_entity(&fight->timeline, entity);
     if (id == fight->entity_turn && fight_new_entity(fight))
         return 1;
     return fight_end(fight);
 }
 
-void fight_rm_dead_entities(fight_t *fight)
+int fight_rm_dead_entities(fight_t *fight)
 {
     entity_t *entity;
 
@@ -34,8 +35,9 @@ void fight_rm_dead_entities(fight_t *fight)
         entity = fight->entities[i];
         if (!entity->alive && fight->grid[entity->pos].entity == entity
             && fight_rm_dead_entity(fight, i))
-            return;
+            return 1;
     }
+    return 0;
 }
 
 int fight_end(fight_t *fight)
@@ -61,5 +63,6 @@ void fight_update(fight_t *fight, float dt)
     fight_reset_buff(fight);
     for (int i = 0; i < fight->nb_entities; i++)
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
-    fight_rm_dead_entities(fight);
+    if (!fight_rm_dead_entities(fight))
+        timeline_update(&fight->timeline, dt);
 }

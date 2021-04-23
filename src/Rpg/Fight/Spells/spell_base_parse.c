@@ -78,7 +78,5 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("Name = %#s\n   Pa = %d\n   Po = %d\n   Area = %d\n",
-        spell->name, spell->pa, spell->po, spell->area);
     parse_types(spell, file_content, filesize);
 }

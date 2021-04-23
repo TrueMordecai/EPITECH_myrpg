@@ -88,6 +88,4 @@ void spell_effect_parse(
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Pm = %d, pa %d, fire dmg %d\n", spell->buff.pm,
-        spell->buff.pa, spell->damages[FIRE]);
 }

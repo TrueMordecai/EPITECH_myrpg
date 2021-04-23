@@ -6,8 +6,8 @@
 */
 
 #include <libmy/printf.h>
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 static int get_next_entity(fight_t *fight, int from)
 {
@@ -28,6 +28,7 @@ int fight_new_turn(fight_t *fight)
     entity_start_turn(fight->entities[fight->entity_turn]);
     my_printf("--- TURN %d ---\n", fight->turn);
     my_printf("    --- ENTITY %d ---\n", fight->entity_turn);
+    timeline_new_turn(&fight->timeline, fight->entities[fight->entity_turn]);
     return 0;
 }
 
@@ -42,6 +43,8 @@ int fight_new_entity(fight_t *fight)
         fight->entity_turn = next_entity;
         entity_start_turn(fight->entities[fight->entity_turn]);
         my_printf("    --- ENTITY %d ---\n", fight->entity_turn);
+        timeline_new_turn(
+            &fight->timeline, fight->entities[fight->entity_turn]);
         return 0;
     }
 }

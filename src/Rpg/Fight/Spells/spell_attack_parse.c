@@ -53,7 +53,4 @@ void spell_attack_parse(
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Earth = %d\n   Fire = %d\n   Water = %d\n   Wind = %d\n",
-        spell->damages[EARTH], spell->damages[FIRE], spell->damages[WATER],
-        spell->damages[WIND]);
 }

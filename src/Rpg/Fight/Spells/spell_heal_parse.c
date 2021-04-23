@@ -45,5 +45,4 @@ void spell_heal_parse(spell_heal_t *spell, char *file_content, size_t filesize)
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Heal = %d\n", spell->heal);
 }

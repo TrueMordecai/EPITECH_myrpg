@@ -13,6 +13,7 @@
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/Fight/timeline.h"
 
 enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
 enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
@@ -42,6 +43,7 @@ typedef struct fight_t {
     int turn;
     int entity_turn;
     struct rpg_t *rpg;
+    timeline_t timeline;
     sfRectangleShape **rect_buffer;
 } fight_t;
 
@@ -56,7 +58,7 @@ void fight_destroy(fight_t *fight);
 int fight_new_turn(fight_t *fight);
 int fight_new_entity(fight_t *fight);
 int fight_rm_dead_entity(fight_t *fight, int id);
-void fight_rm_dead_entities(fight_t *fight);
+int fight_rm_dead_entities(fight_t *fight);
 
 sfVector2i fight_pos_to_vec(fight_t *fight, int pos, int world);
 sfVector2f fight_pos_to_world_vec(fight_t *fight, int pos);
