@@ -79,6 +79,7 @@ void spell_effect_parse(
     int line_len;
 
     spell->lifetime = 1;
+    spell->type = EFFECT_NONE;
     for (int i = 0; i < 4; i++)
         spell->damages[i] = 0;
     stats_init_blank(&spell->buff);
