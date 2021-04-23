@@ -10,6 +10,26 @@
 #include <string.h>
 #include "dirent.h"
 
+item_t inventory_init_blanck_item(void)
+{
+    item_t i;
+
+    i.earth = 0;
+    i.elem = 0;
+    i.fire = 0;
+    i.level = 0;
+    i.life = 0;
+    i.name = NULL;
+    i.rarity = 0;
+    i.res_earth = 0;
+    i.res_water = 0;
+    i.res_wind = 0;
+    i.res_fire = 0;
+    i.water = 0;
+    i.wind = 0;
+    return (i);
+}
+
 extern inventory_t inventory_init(void)
 {
     inventory_t inv;
@@ -32,6 +52,15 @@ extern inventory_t inventory_init(void)
     sfText_setFont(inv.text, inv.font);
     sfText_setColor(inv.text, sfWhite);
     sfText_setCharacterSize(inv.text, 37);
+    inv.equipement = malloc(sizeof(item_t) * 4);
+    for (int i = 0; i != 4; i++) {
+        inv.equipement[i].name = malloc(sizeof(char) * 1);
+        inv.equipement[i] = rpg_create_blank_item();
+    }
+    inv.container =  sfSprite_create();
+    sfSprite_setTexture(inv.container, inv.ui_int_texture , sfFalse);
+    sfSprite_setTextureRect(inv.container, (sfIntRect){0, 0, 16, 16});
+    sfSprite_setScale(inv.container, (sfVector2f){4, 4});
     inv.tooltip = sfSprite_create();
     inv.texture_tooltip = sfTexture_createFromFile("./assets/Inventory/items_tooltip.png", NULL);
     sfSprite_setTexture(inv.tooltip, inv.texture_tooltip, sfFalse);
@@ -42,5 +71,6 @@ extern inventory_t inventory_init(void)
     sfText_setCharacterSize(inv.stat_text, 30);
     sfText_setColor(inv.stat_text, sfWhite);
     inv.is_open = false;
+    inv.item_selected = rpg_create_blank_item();
     return (inv);
 }

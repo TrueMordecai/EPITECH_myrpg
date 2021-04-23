@@ -17,6 +17,42 @@ sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w)
     return (sfVector2f){vec.x, vec.y};
 }
 
+extern void rpg_destroy_item(item_t *i)
+{
+    i->earth = 0;
+    i->elem = 0;
+    i->fire = 0;
+    i->life = 0;
+    i->level = 0;
+    i->name = NULL;
+    free(i->name);
+    i->rarity = 0;
+    i->res_earth = 0;
+    i->res_fire = 0;
+    i->res_water = 0;
+    i->res_wind = 0;
+    i->water = 0;
+    i->wind = 0;
+    i = NULL;
+}
+
+extern void rpg_copy_item(item_t *d, item_t s)
+{
+    d->earth = s.earth;
+    d->elem = s.elem;
+    d->fire = s.fire;
+    d->level = s.level;
+    d->life = s.life;
+    d->name = strdup(s.name);
+    d->rarity = s.rarity;
+    d->res_earth = s.res_earth;
+    d->res_fire = s.res_fire;
+    d->res_water = s.res_water;
+    d->res_wind = s.res_wind;
+    d->water = s.water;
+    d->wind = s.wind;
+}
+
 static bool sprite_is_hover(sfSprite *s, sfVector2f m_pos)
 {
     sfVector2f pos = sfSprite_getPosition(s);
@@ -108,21 +144,30 @@ static void rpg_inventory_draw_items_tooltip(rpg_t *game, item_t *item)
     sfRenderWindow_drawText(game->wind, game->inventory.text, NULL);
 }
 
-static inline void set_item_texture_rect(sfSprite *sprite, item_t i)
+static inline void set_item_texture_rect(sfSprite *sprite, item_t *i)
 {
-    sfSprite_setTextureRect(sprite, (sfIntRect){i.rarity * 16,
-                i.elem * 16, 16, 16});
+    if (i->name != NULL)
+        sfSprite_setTextureRect(sprite, (sfIntRect){i->rarity * 16,
+                    i->elem * 16, 16, 16});
 }
 
 static inline bool is_scrolling_deep(inventory_t *inv, unsigned int i)
 {
-    return ((bool)((inv->items[i].name && i < (unsigned int)40
+    return ((bool)((i < (unsigned int)40
                    + inv->scroll * 4) && (inv->scroll < 39)));
 }
 
 static inline int get_scroll(rpg_t *g)
 {
     return (int)(g->inventory.scroll * 4);
+}
+
+static void item_clicked(rpg_t *game, item_t *item, sfVector2f pos)
+{
+    if (sprite_is_hover(game->inventory.sprite, pos) && sfMouse_isButtonPressed(sfMouseLeft) && item->name != NULL) {
+        rpg_copy_item(&game->inventory.item_selected, *item);
+        rpg_destroy_item(item);
+    }
 }
 
 static void rpg_inventory_draw_items(rpg_t *game)
@@ -134,10 +179,13 @@ static void rpg_inventory_draw_items(rpg_t *game)
 
     sfSprite_setPosition(game->inventory.sprite, (sfVector2f){0, 0});
     for (int i = get_scroll(game); is_scrolling_deep(&game->inventory, i);i++) {
-        set_item_texture_rect(game->inventory.sprite, game->inventory.items[i]);
-        sfRenderWindow_drawSprite(game->wind, game->inventory.sprite, NULL);
+        if (game->inventory.items[i].name != NULL) {
+            set_item_texture_rect(game->inventory.sprite, &game->inventory.items[i]);
+            sfRenderWindow_drawSprite(game->wind, game->inventory.sprite, NULL);
+        }
         if (sprite_is_hover(game->inventory.sprite, new_vec))
             save = i;
+        item_clicked(game, &game->inventory.items[i], new_vec);
         sfSprite_move(game->inventory.sprite, (sfVector2f){64, 0});
         pos.x++;
         if (pos.x == 4) {
@@ -150,15 +198,73 @@ static void rpg_inventory_draw_items(rpg_t *game)
         rpg_inventory_draw_items_tooltip(game, &game->inventory.items[save]);
 }
 
+void rpg_inventory_draw_cursor(rpg_t *g)
+{
+    sfVector2i v = sfMouse_getPositionRenderWindow(g->wind);
 
+    if (g->inventory.item_selected.name == NULL)
+        return;
+    set_item_texture_rect(g->inventory.sprite, &g->inventory.item_selected);
+    sfSprite_setPosition(g->inventory.sprite, (sfVector2f){v.x, v.y});
+    sfRenderWindow_drawSprite(g->wind, g->inventory.sprite, NULL);
+}
+
+extern void rpg_draw_equipement(rpg_t *game)
+{
+    int save = -1;
+    for (unsigned int i = 0; i != 4; i++) {
+        sfSprite_setPosition(game->inventory.container, (sfVector2f){320 + i * 64, 320});
+        sfSprite_setPosition(game->inventory.sprite, (sfVector2f){320 + i * 64, 320});
+        sfRenderWindow_drawSprite(game->wind, game->inventory.container, NULL);
+        if (sprite_is_hover(game->inventory.container, get_mouse_pos_vec2f(game->wind)) && sfMouse_isButtonPressed(sfMouseLeft) && game->inventory.item_selected.name != NULL) {
+            rpg_copy_item(&game->inventory.equipement[i], game->inventory.item_selected);
+            rpg_destroy_item(&game->inventory.item_selected);
+            game->inventory.item_selected.name = NULL;
+        }
+        if (game->inventory.equipement[i].name != NULL) {
+            set_item_texture_rect(game->inventory.sprite, &game->inventory.equipement[i]);
+            sfRenderWindow_drawSprite(game->wind, game->inventory.sprite, NULL);
+        }
+        if (sprite_is_hover(game->inventory.container, get_mouse_pos_vec2f(game->wind)))
+            save = i;
+    }
+    if (save != -1 && game->inventory.equipement[save].name != NULL)
+        rpg_inventory_draw_items_tooltip(game, &game->inventory.equipement[save]);
+}
+
+extern void rpg_inventory_clean_cursor(rpg_t *game)
+{
+    if (game->inventory.mouse_left == PRESS && game->inventory.item_selected.name != NULL) {
+        rpg_add_item_to_inventory(game, game->inventory.item_selected);
+        game->inventory.item_selected.name = NULL;
+    }
+}
+
+extern void rpg_inventory_mouse_input(rpg_t *game)
+{
+    if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&      \
+    (game->inventory.mouse_left == PRESS || game->inventory.mouse_left == HOLD)) {
+        game->inventory.mouse_left = HOLD;
+        return;
+    }
+    if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue)
+        game->inventory.mouse_left = PRESS;
+    else
+        game->inventory.mouse_left = NOTHING;
+
+}
 
 extern void rpg_inventory_draw(rpg_t *game)
 {
+    rpg_inventory_mouse_input(game);
     if (sfKeyboard_isKeyPressed(sfKeyA))
         game->inventory.is_open = !(game->inventory.is_open);
     if (game->inventory.is_open) {
-        sfRenderWindow_drawSprite(game->wind, game->inventory.ui_inventory, 0);
+        sfRenderWindow_drawSprite(game->wind, game->inventory.ui_inventory, NULL);
+        rpg_draw_equipement(game);
         rpg_inventory_draw_items(game);
+        rpg_inventory_draw_cursor(game);
+        rpg_inventory_clean_cursor(game);
     }
 }
 
@@ -176,7 +282,7 @@ extern void destroy_inventory(rpg_t *game)
         free(game->inventory.items[i].name);
     }
     free(game->inventory.items);
-    free(game->inventory.item_selected);
+//    free(game->inventory.item_selected);
     sfSprite_destroy(game->inventory.sprite);
     sfSprite_destroy(game->inventory.tooltip);
     sfTexture_destroy(game->inventory.texture);

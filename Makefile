@@ -103,7 +103,7 @@ SRCS_BASE := 	main.c \
 
 OBJS := $(addprefix $(OBJ_PATH)/, $(SRCS_BASE:.c=.o))
 CC := gcc
-CFLAGS := -Wall -Werror --pedantic -O1
+CFLAGS := -Wall -Werror --pedantic -O1 -g
 CFLAGS_LIB :=  -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -L./lib/ -lcontainer -lm -lmy
 CFLAGS_INCLUDE := -I./include/
 MAKE_LIB := make -C lib/my/

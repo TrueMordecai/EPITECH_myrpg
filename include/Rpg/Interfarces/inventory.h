@@ -36,6 +36,12 @@ typedef enum {
     WIND
 } item_element_t;
 
+typedef enum {
+    NOTHING = 0,
+    PRESS = 1,
+    HOLD = 2
+} key_state;
+
 typedef struct item_s {
     char *name;
     unsigned char level;
@@ -66,7 +72,10 @@ typedef struct inventory_s {
     sfSprite *ui_inventory;
     sfTexture *ui_int_texture;
     sfBool is_open;
-    item_t *item_selected;
+    item_t item_selected;
+    item_t *equipement;
+    sfSprite *container;
+    key_state mouse_left;
 }inventory_t;
 
 extern item_t rpg_create_blank_item();
