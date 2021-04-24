@@ -47,10 +47,14 @@ SRCS_BASE := 	main.c \
 				\
 				\
 				init_inventory.c            \
-				loop.c            \
+				inventory_draw_other.c		\
+				utils.c            \
+				inventory_index.c					\
 				rpg_create_item.c            \
+				inventory_input.c				\
+				inventory_draw_items.c			\
 				rpg_create_item_name_gen.c   \
-				\
+				rpg_draw_item_tooltip.c		\
 				drawable_list_fcts.c \
 				drawable_list_fcts_texture.c \
 				remove_drawable.c \

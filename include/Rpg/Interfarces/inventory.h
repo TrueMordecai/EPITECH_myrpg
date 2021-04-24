@@ -80,14 +80,22 @@ typedef struct inventory_s {
 
 extern item_t rpg_create_blank_item();
 extern item_t rpg_create_item(unsigned char level, item_rarity_t rarity);
-extern void rpg_create_item_name_generator(item_t *item, int level);
-extern item_t rpg_create_blank_item();
-extern item_t rpg_create_item(unsigned char level, item_rarity_t rarity);
+item_t inventory_init_blanck_item(void);
+extern inventory_t inventory_init(void);
 int my_strcpy(char *dest, char *src);
 extern void rpg_create_item_name_generator(item_t *item, int level);
-sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w);
-extern void destroy_inventory(struct rpg_t *game);
+extern sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w);
+extern void rpg_destroy_item(item_t *i);
+extern void rpg_copy_item(item_t *d, item_t s);
+extern bool sprite_is_hover(sfSprite *s, sfVector2f m_pos);
+extern void rpg_inventory_draw_items_tooltip(struct rpg_t *game, item_t *item);
+extern void rpg_inventory_draw_cursor(struct rpg_t *g);
+extern void rpg_draw_equipement(struct rpg_t *game);
+extern void rpg_inventory_clean_cursor(struct rpg_t *game);
+extern void rpg_inventory_mouse_input(struct rpg_t *game);
 extern void rpg_inventory_draw(struct rpg_t *game);
 extern void rpg_add_item_to_inventory(struct rpg_t *game, item_t item);
-extern inventory_t inventory_init(void);
+extern void destroy_inventory(struct rpg_t *game);
+extern void set_item_texture_rect(sfSprite *s, item_t *i);
+extern void rpg_inventory_draw_items(struct rpg_t *game);
 #endif
