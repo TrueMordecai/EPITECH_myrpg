@@ -17,7 +17,7 @@ int fight_rm_dead_entity(fight_t *fight, int id)
     if (id < 0 || fight->nb_entities <= id)
         return 0;
     entity = fight->entities[id];
-    if (!entity || entity->alive)
+    if (!entity || entity->alive > 0)
         return 0;
     fight->grid[entity->pos].entity = NULL;
     entity_update_spell_sight(fight->entities[fight->entity_turn]);
@@ -33,7 +33,7 @@ int fight_rm_dead_entities(fight_t *fight)
 
     for (int i = 0; i < fight->nb_entities; i++) {
         entity = fight->entities[i];
-        if (!entity->alive && fight->grid[entity->pos].entity == entity
+        if (entity->alive <= 0 && fight->grid[entity->pos].entity == entity
             && fight_rm_dead_entity(fight, i))
             return 1;
     }
@@ -46,10 +46,10 @@ int fight_end(fight_t *fight)
     int player = 0;
 
     for (int i = 0; i < fight->nb_entities; i++) {
-        ennemies += (fight->entities[i]->alive
+        ennemies += (fight->entities[i]->alive > 0
             && fight->entities[i]->team == ENNEMIES);
-        player +=
-            (fight->entities[i]->alive && fight->entities[i]->type == PLAYER);
+        player += (fight->entities[i]->alive > 0
+            && fight->entities[i]->type == PLAYER);
     }
     if (!ennemies || !player) {
         battle_end(&fight->rpg->map->current_zone->battle);

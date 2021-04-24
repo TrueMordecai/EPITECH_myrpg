@@ -51,10 +51,9 @@ static int get_pos(fight_t *fight, int player_pos)
 
 static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
 {
-    int pos;
-
     for (int i = 0; i < nb_ennemies; i++) {
-        pos = get_pos(fight, player_pos);
+        int pos = get_pos(fight, player_pos);
+
         if (pos == -1) {
             nb_ennemies--;
             i--;
@@ -66,7 +65,8 @@ static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
         entity_init_spells(fight->entities[i + 1], fight->rpg);
         fight->entities[i + 1]->stats = stats_create();
         fight->entities[i + 1]->fight = fight;
-        entity_init_rect(fight->entities[i + 1], sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
+        entity_init_rect(fight->entities[i + 1],
+            sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
         sfRectangleShape_setTexture(fight->entities[i + 1]->rect,
             get_texture(&fight->rpg->state->game_data->assets, "skeleton"),
             true);

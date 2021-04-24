@@ -62,8 +62,8 @@ static my_vec_t *resolve_path(node_t *end)
     return path;
 }
 
-static void handle_dir(fight_t *fight, sfVector2i dir_cur, \
-node_t **nodes, my_vec_t *opened, int end)
+static void handle_dir(fight_t *fight, sfVector2i dir_cur, node_t **nodes,
+    my_vec_t *opened, int end)
 {
     node_t *current = nodes[dir_cur.y];
     node_t *neighbour;
@@ -75,18 +75,18 @@ node_t **nodes, my_vec_t *opened, int end)
     neighbour = nodes[next_pos];
     if (!neighbour->visited && !neighbour->wall)
         my_vec_push(opened, &neighbour);
-    cost = current->l_cost + \
-    get_heuristic_cost(fight, current->pos, neighbour->pos);
+    cost = current->l_cost
+        + get_heuristic_cost(fight, current->pos, neighbour->pos);
     if (cost < neighbour->l_cost) {
         neighbour->parent = current;
         neighbour->l_cost = cost;
-        neighbour->g_cost = neighbour->l_cost + \
-        get_heuristic_cost(fight, neighbour->pos, end);
+        neighbour->g_cost =
+            neighbour->l_cost + get_heuristic_cost(fight, neighbour->pos, end);
     }
 }
 
-static my_vec_t *end_algo(fight_t *fight, my_vec_t *opened, \
-node_t *current, node_t **nodes)
+static my_vec_t *end_algo(
+    fight_t *fight, my_vec_t *opened, node_t *current, node_t **nodes)
 {
     my_vec_t *path = NULL;
 
@@ -112,8 +112,8 @@ my_vec_t *fight_get_path(fight_t *fight, int from, int to)
     my_vec_push(&opened, &current);
     while (opened.length) {
         sort_nodes(&opened);
-        while (opened.length && \
-            MY_VEC_GET_ELEM(node_t *, &opened, opened.length - 1)->visited)
+        while (opened.length
+            && MY_VEC_GET_ELEM(node_t *, &opened, opened.length - 1)->visited)
             my_vec_pop(&opened, NULL);
         if (!opened.length)
             break;
@@ -123,8 +123,8 @@ my_vec_t *fight_get_path(fight_t *fight, int from, int to)
             return end_algo(fight, &opened, current, nodes);
         current->visited = 1;
         for (int dir = 0; dir < 4; dir++)
-            handle_dir(fight, \
-            (sfVector2i){dir, current->pos}, nodes, &opened, to);
+            handle_dir(
+                fight, (sfVector2i){dir, current->pos}, nodes, &opened, to);
     }
     return end_algo(fight, &opened, NULL, nodes);
 }

@@ -25,7 +25,7 @@ static void init_attack_action(entity_t *entity, action_t *act)
     my_vec_push(&entity->actions, act);
 }
 
-void entity_add_action(entity_t *entity, enum actions_e action_type)
+action_t *entity_add_action(entity_t *entity, enum actions_e action_type)
 {
     action_t action;
 
@@ -34,4 +34,5 @@ void entity_add_action(entity_t *entity, enum actions_e action_type)
         init_move_action(entity, &action);
     if (action_type == ATTACK)
         init_attack_action(entity, &action);
+    return ((action_t *)entity->actions.data + entity->actions.length - 1);
 }

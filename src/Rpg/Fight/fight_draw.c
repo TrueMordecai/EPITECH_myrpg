@@ -21,5 +21,10 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
         for (int y = 0; y < fight->size.y; y++)
             entity_draw(fight->grid[x + y * fight->size.x].entity, wind);
     }
+    for (int e = 0; e < fight->nb_entities; e++) {
+        if (fight->entities[e]->alive > 0)
+            continue;
+        entity_draw(fight->entities[e], wind);
+    }
     timeline_draw(&fight->timeline, wind);
 }

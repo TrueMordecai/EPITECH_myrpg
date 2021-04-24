@@ -10,8 +10,11 @@
 
 void entity_update_alive(entity_t *entity)
 {
-    if (stats_update(entity->stats))
+    if (stats_update(entity->stats)) {
         entity->alive = 0;
+        sfRectangleShape_setTextureRect(
+            entity->rect, (sfIntRect){0, 96, 16, 16});
+    }
 }
 
 void entity_start_turn(entity_t *entity)

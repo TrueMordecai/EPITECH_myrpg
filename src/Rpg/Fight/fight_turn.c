@@ -11,7 +11,7 @@
 
 static int get_next_entity(fight_t *fight, int from)
 {
-    while (from < fight->nb_entities && !fight->entities[from]->alive)
+    while (from < fight->nb_entities && fight->entities[from]->alive <= 0)
         from++;
     if (from >= fight->nb_entities)
         return -1;

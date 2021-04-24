@@ -31,6 +31,7 @@ struct move_action {
 
 struct attack_action {
     float progress;
+    int cell;
 };
 
 typedef struct action {
@@ -49,7 +50,7 @@ typedef struct entity_t {
     int pos;
     int spell_select;
     int spell_cell;
-    int alive;
+    float alive;
     int *move_possibilities;
     my_vec_t *move_path;
     my_vec_t actions;
@@ -78,13 +79,13 @@ void entity_start_turn(entity_t *entity);
 void entity_end_turn(entity_t *entity);
 void entity_compute_move(entity_t *entity);
 
-void entity_attack(entity_t *entity);
+void entity_attack(entity_t *entity, action_t *action);
 void entity_init_spells(entity_t *entity, struct rpg_t *rpg);
 void entity_add_spell(entity_t *entity, spell_base_t *spell);
 spell_base_t *entity_get_select_spell(entity_t *entity);
 void entity_cast_spell(entity_t *from, int to_cell);
 
-void entity_add_action(entity_t *entity, enum actions_e action_type);
+action_t *entity_add_action(entity_t *entity, enum actions_e action_type);
 void entity_force_end_action(entity_t *entity, action_t *act);
 
 void entity_update_move_possibilities(entity_t *entity);
