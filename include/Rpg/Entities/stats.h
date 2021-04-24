@@ -42,6 +42,7 @@ void stats_reset(stats_t *stats, int only_pa_pm);
 void stats_destroy(stats_t *stats);
 
 void stats_add_effect(stats_t *stats, effect_t *effect);
+void stats_remove_effect(stats_t *stats, int effect_id, int debuff);
 void apply_effect_turn_start(stats_t *stats);
 void apply_effect_turn_ends(stats_t *stats);
 void update_effect_turn_ends(stats_t *stats);

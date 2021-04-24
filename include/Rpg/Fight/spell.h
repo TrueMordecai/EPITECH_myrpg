@@ -26,6 +26,8 @@ typedef struct spell_base {
     int po;
     int pa;
     int area;
+    int cast_left;
+    int turn_limit;
     enum spell_type_e type;
 } spell_base_t;
 
@@ -42,6 +44,7 @@ typedef struct spell_heal {
 typedef struct spell_effect {
     spell_base_t base;
     int lifetime;
+    int max_cumul;
     enum effect_type_e type;
     int damages[4];
     stats_t buff;

@@ -42,6 +42,9 @@ static int parse_line(spell_base_t *spell, char *line_beg)
         spell->pa = parse_value(&offset, 3, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("AREA=", line_beg, 5) == 0)
         spell->area = parse_value(&offset, 5, line_beg, (sfVector2i){0, 10});
+    if (my_strncmp("TURN_LIMIT=", line_beg, 11) == 0)
+        spell->turn_limit =
+            parse_value(&offset, 11, line_beg, (sfVector2i){1, 6});
     if (offset == 0 || line_beg[offset] != '\n')
         return 1;
     return 0;
@@ -75,6 +78,8 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
     spell->pa = 1;
     spell->po = 0;
     spell->area = 0;
+    spell->turn_limit = 3;
+    spell->cast_left = 3;
     while (offset < filesize) {
         line_len = my_strlen_to(file_content + offset, '\n');
         parse_line(spell, file_content + offset);

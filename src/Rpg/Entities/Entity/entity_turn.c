@@ -17,8 +17,19 @@ void entity_update_alive(entity_t *entity)
     }
 }
 
+static void reset_spells_turn(entity_t *entity)
+{
+    spell_base_t *base;
+
+    for (size_t i = 0; i < entity->spells.length; i++) {
+        base = MY_VEC_GET_ELEM(spell_base_t *, &entity->spells, i);
+        base->cast_left = base->turn_limit;
+    }
+}
+
 void entity_start_turn(entity_t *entity)
 {
+    reset_spells_turn(entity);
     stats_reset(entity->stats, 1);
     apply_effect_turn_start(entity->stats);
     entity_update_move_possibilities(entity);

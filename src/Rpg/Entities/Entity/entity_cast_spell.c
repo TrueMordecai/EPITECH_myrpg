@@ -26,6 +26,7 @@ static void cast_effect(entity_t *from, entity_t *to, spell_effect_t *spell)
 static void cast_debuff(entity_t *to, spell_debuff_t *spell)
 {
     effect_t *effect;
+    int pm = to->stats->current_pm;
 
     for (size_t i = 0; i < to->stats->effects.length; i++) {
         effect = ((effect_t *)to->stats->effects.data) + i;
@@ -36,8 +37,10 @@ static void cast_debuff(entity_t *to, spell_debuff_t *spell)
         else
             effect->lifetime -= spell->turns;
         if (effect->lifetime <= 0)
-            my_vec_remove(&to->stats->effects, NULL, i--);
+            stats_remove_effect(to->stats, i--, 1);
     }
+    if (pm != to->stats->current_pm)
+        entity_update_move_possibilities(to);
 }
 
 static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
@@ -68,8 +71,8 @@ void entity_cast_spell(entity_t *from, int to_cell)
     entity_t *to = from->fight->grid[to_cell].entity;
     int *area;
 
-    if (!spell || from->spell_cell == -1
-        || from->stats->current_pa < spell->pa)
+    if (!spell || from->spell_cell == -1 || from->stats->current_pa < spell->pa
+        || spell->cast_left-- <= 0)
         return;
     from->stats->current_pa -= spell->pa;
     entity_add_action(from, ATTACK)->attack.cell = to_cell;

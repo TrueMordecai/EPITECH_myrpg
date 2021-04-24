@@ -67,7 +67,10 @@ static void parse_line_2(spell_effect_t *spell, char *line_beg)
             parse_value(&offset, 9, line_beg, (sfVector2i){-100, 100});
     if (my_strncmp("LIFETIME=", line_beg, 9) == 0)
         spell->lifetime =
-            parse_value(&offset, 9, line_beg, (sfVector2i){0, 20});
+            parse_value(&offset, 9, line_beg, (sfVector2i){1, 20});
+    if (my_strncmp("MAX_CUMUL=", line_beg, 10) == 0)
+        spell->max_cumul =
+            parse_value(&offset, 10, line_beg, (sfVector2i){1, 5});
 }
 
 static void parse_line(spell_effect_t *spell, char *line_beg)
@@ -102,6 +105,7 @@ void spell_effect_parse(
     int line_len;
 
     spell->lifetime = 1;
+    spell->max_cumul = 2;
     spell->type = EFFECT_NONE;
     for (int i = 0; i < 4; i++)
         spell->damages[i] = 0;
