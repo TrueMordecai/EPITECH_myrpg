@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/Fight/timeline.h"
+#include "Rpg/Fight/fight.h"
 
 int timeline_get_entity_id(timeline_t *timeline, entity_t *entity)
 {
@@ -32,8 +33,8 @@ void timeline_remove_entity(timeline_t *timeline, entity_t *entity)
     my_vec_remove(&timeline->frames, NULL, id);
     for (size_t i = id; i < timeline->frames.length; i++)
         frame_update_id(((frame_t *)timeline->frames.data) + i, i);
-    if (timeline->bubble.last_entity == entity)
-        timeline->bubble.last_entity = NULL;
+    if (timeline->fight->spells_bar.last_entity == entity)
+        timeline->fight->spells_bar.last_entity = NULL;
     if (timeline->current <= id)
         return;
     timeline->current--;

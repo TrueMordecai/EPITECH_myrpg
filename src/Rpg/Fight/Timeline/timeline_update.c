@@ -33,5 +33,4 @@ void timeline_update(timeline_t *timeline, float dt)
     for (size_t i = 0; i < timeline->frames.length; i++)
         frame_update(((frame_t *)timeline->frames.data) + i);
     current_entity = timeline->fight->entities[timeline->fight->entity_turn];
-    playing_bubble_update(&timeline->bubble, current_entity);
 }

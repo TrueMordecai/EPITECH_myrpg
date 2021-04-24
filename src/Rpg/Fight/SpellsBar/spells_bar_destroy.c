@@ -16,4 +16,8 @@ void spells_bar_destroy(spells_bar_t *bar)
     sfView_destroy(bar->view);
     sfRectangleShape_destroy(bar->background);
     sfRectangleShape_destroy(bar->move_bar);
+    sfRectangleShape_destroy(bar->life_bg);
+    sfRectangleShape_destroy(bar->life);
+    sfText_destroy(bar->text_pa);
+    sfText_destroy(bar->text_pm);
 }

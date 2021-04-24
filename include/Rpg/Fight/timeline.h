@@ -27,13 +27,6 @@ typedef struct frame {
     entity_t *entity;
 } frame_t;
 
-typedef struct playing_bubble {
-    sfCircleShape *circle;
-    sfText *text_pa;
-    sfText *text_pm;
-    entity_t *last_entity;
-} playing_bubble_t;
-
 typedef struct timeline {
     sfView *view;
     struct fight_t *fight;
@@ -41,7 +34,6 @@ typedef struct timeline {
     int current;
     sfRectangleShape *time_rect;
     sfVector2i last_pos;
-    playing_bubble_t bubble;
     /// vector of frame_t
     my_vec_t frames;
     int grabbed;
@@ -53,11 +45,6 @@ void frame_update_id(frame_t *frame, int new_id);
 void frame_set_playing(frame_t *frame, int playing);
 void frame_draw(frame_t *frame, sfRenderWindow *window);
 void frame_destroy(frame_t *frame);
-
-void playing_bubble_init(playing_bubble_t *bubble, sfFont *font);
-void playing_bubble_update(playing_bubble_t *bubble, entity_t *entity);
-void playing_bubble_draw(playing_bubble_t *bubble, sfRenderWindow *window);
-void playing_bubble_destroy(playing_bubble_t *bubble);
 
 void timeline_init(timeline_t *timeline, struct fight_t *fight);
 void timeline_update_time(timeline_t *timeline, float dt);

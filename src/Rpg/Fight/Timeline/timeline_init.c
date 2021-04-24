@@ -39,11 +39,9 @@ void timeline_init(timeline_t *timeline, fight_t *fight)
     timeline->grabbed = 0;
     timeline->time_rect = sfRectangleShape_create();
     init_rects(timeline, fight->nb_entities);
-    playing_bubble_init(&timeline->bubble,
-        get_font(&fight->rpg->state->game_data->assets, "roboto_font"));
     my_vec_init(&timeline->frames, sizeof(frame_t));
     init_frames(timeline, fight);
     sfView_setSize(timeline->view, (sfVector2f){1280, 720});
     sfView_setCenter(timeline->view, (sfVector2f){640, 360});
-    sfView_move(timeline->view, (sfVector2f){-90, -30});
+    sfView_move(timeline->view, (sfVector2f){-30, -30});
 }

@@ -18,14 +18,13 @@ static void update_grabbed(
     sfVector2i mouse_pos = {event->mouseButton.x, event->mouseButton.y};
     sfVector2f mouse_pos_view =
         sfRenderWindow_mapPixelToCoords(window, mouse_pos, timeline->view);
-    sfVector2f bubble_pos = sfCircleShape_getPosition(timeline->bubble.circle);
-    float dist;
 
     if (timeline->grabbed)
         return;
-    dist = sqrtf(powf(mouse_pos_view.x - bubble_pos.x, 2)
-        + powf(mouse_pos_view.y - bubble_pos.y, 2));
-    if (dist < CIRCLE_RADIUS) {
+    if (mouse_pos_view.x >= 0
+        && mouse_pos_view.x
+            <= (FRAME_WIDTH + FRAME_SPACING) * timeline->frames.length
+        && mouse_pos_view.y >= 0 && mouse_pos_view.y <= FRAME_WIDTH + 5) {
         timeline->grabbed = 1;
         timeline->last_pos = mouse_pos;
     }
@@ -34,13 +33,12 @@ static void update_grabbed(
 static void correct_pos(timeline_t *timeline, sfRenderWindow *window)
 {
     sfVector2u win_size = sfRenderWindow_getSize(window);
-    sfVector2i top_left = sfRenderWindow_mapCoordsToPixel(window,
-        (sfVector2f){-CIRCLE_RADIUS * 1.6, -CIRCLE_RADIUS + 0.5 * FRAME_WIDTH},
-        timeline->view);
+    sfVector2i top_left = sfRenderWindow_mapCoordsToPixel(
+        window, (sfVector2f){0, -5}, timeline->view);
     sfVector2i bottom_right = sfRenderWindow_mapCoordsToPixel(window,
         (sfVector2f){timeline->frames.length * (FRAME_WIDTH + FRAME_SPACING)
                 - FRAME_SPACING,
-            CIRCLE_RADIUS + 0.5 * FRAME_WIDTH},
+            FRAME_WIDTH + 5},
         timeline->view);
     sfVector2f offset = {0, 0};
 

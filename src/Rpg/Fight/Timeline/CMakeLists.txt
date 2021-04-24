@@ -2,7 +2,6 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include/Rpg/Fight)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Fight/Timeline)
 
 add_subdirectory(Frame)
-add_subdirectory(PlayingBubble)
 
 set(SRC
     ${SRC}

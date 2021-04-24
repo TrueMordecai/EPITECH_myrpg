@@ -15,8 +15,14 @@
 #define SPELLS_BAR_HEIGHT 2
 
 struct fight_t;
+struct entity_t;
 
 typedef struct spells_bar {
+    sfText *text_pa;
+    sfText *text_pm;
+    sfRectangleShape *life;
+    sfRectangleShape *life_bg;
+    struct entity_t *last_entity;
     int current_frame;
     sfView *view;
     sfRectangleShape *background;
@@ -31,6 +37,7 @@ void spells_bar_draw(spells_bar_t *bar, sfRenderWindow *window);
 int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event);
 void spells_bar_update_outlines(spells_bar_t *bar);
 void spells_bar_update_spells(spells_bar_t *bar);
+void spells_bar_update(spells_bar_t *bar, struct entity_t *entity);
 void spells_bar_new_turn(spells_bar_t *bar);
 void spells_bar_set_selected(spells_bar_t *bar, int selected);
 void spells_bar_update_entity_spell(spells_bar_t *bar);
