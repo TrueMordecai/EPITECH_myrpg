@@ -13,13 +13,15 @@
 #include "Rpg/Fight/spell.h"
 #include "functions.h"
 
-static int parse_value(size_t *offset, int name_len, char *line_beg)
+static int parse_value(
+    size_t *offset, int name_len, char *line_beg, sfVector2i min_max)
 {
     int nb;
 
     *offset = name_len;
     nb = get_number_pass(line_beg, offset);
     (*offset)--;
+    CLAMP_ASSIGN(nb, min_max.x, min_max.y);
     return nb;
 }
 
@@ -35,11 +37,11 @@ static int parse_line(spell_base_t *spell, char *line_beg)
         return 0;
     }
     if (my_strncmp("PO=", line_beg, 3) == 0)
-        spell->po = parse_value(&offset, 3, line_beg);
+        spell->po = parse_value(&offset, 3, line_beg, (sfVector2i){0, 30});
     if (my_strncmp("PA=", line_beg, 3) == 0)
-        spell->pa = parse_value(&offset, 3, line_beg);
+        spell->pa = parse_value(&offset, 3, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("AREA=", line_beg, 5) == 0)
-        spell->area = parse_value(&offset, 5, line_beg);
+        spell->area = parse_value(&offset, 5, line_beg, (sfVector2i){0, 10});
     if (offset == 0 || line_beg[offset] != '\n')
         return 1;
     return 0;

@@ -36,7 +36,7 @@ static int get_pos(fight_t *fight, int player_pos)
 
     do {
         pos = get_randi(0, fight->size.x * fight->size.y - 1);
-        if (!cell_is_empty(&fight->grid[pos]))
+        if (!cell_is_empty(&fight->grid[pos]) || pos == player_pos)
             continue;
         tmp = fight_get_path(fight, pos, player_pos);
         i++;

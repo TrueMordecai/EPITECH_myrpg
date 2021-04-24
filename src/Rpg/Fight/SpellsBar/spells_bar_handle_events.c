@@ -32,6 +32,8 @@ static int update_selected(
         || spell_pos.y >= SPELLS_BAR_HEIGHT)
         return 0;
     id = spell_pos.x + spell_pos.y * SPELLS_BAR_WIDTH;
+    if (sfColor_toInteger(sfRectangleShape_getFillColor(bar->frames[id])) == 0)
+        return 0;
     if (bar->current_frame == id)
         bar->current_frame = -1;
     else
@@ -46,7 +48,7 @@ int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event)
     sfRenderWindow *window = bar->fight->rpg->state->game_data->window;
 
     if (spells_bar_handle_move(bar, event, window))
-        return;
+        return 1;
     if (event->type == sfEvtMouseButtonPressed
         && event->mouseButton.button == sfMouseLeft
         && update_selected(bar, event, window))

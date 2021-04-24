@@ -20,6 +20,7 @@ static int parse_value(size_t *offset, int name_len, char *line_beg)
     *offset = name_len;
     nb = get_number_pass(line_beg, offset);
     (*offset)--;
+    CLAMP_ASSIGN(nb, -100, 100);
     return nb;
 }
 
