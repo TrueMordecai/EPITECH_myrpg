@@ -10,6 +10,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+static inline bool is(sfSprite *s, rpg_t *game)
+{
+    if (sprite_is_hover(s, get_mouse_pos_vec2f(game->wind)) &&
+        game->inventory.mouse_left == PRESS)
+        return (true);
+    return (false);
+}
+
 extern void rpg_inventory_draw_cursor(rpg_t *g)
 {
     sfVector2i v = sfMouse_getPositionRenderWindow(g->wind);
@@ -21,33 +29,59 @@ extern void rpg_inventory_draw_cursor(rpg_t *g)
     sfRenderWindow_drawSprite(g->wind, g->inventory.sprite, NULL);
 }
 
-extern void rpg_draw_equipement(rpg_t *game)
+static void rpg_draw_equipemnt_on_click_behaviour(rpg_t *g, unsigned int i)
 {
-    int save = -1;
-    for (unsigned int i = 0; i != 4; i++) {
-        sfSprite_setPosition(game->inventory.container, (sfVector2f){320 + i * 64, 320});
-        sfSprite_setPosition(game->inventory.sprite, (sfVector2f){320 + i * 64, 320});
-        sfRenderWindow_drawSprite(game->wind, game->inventory.container, NULL);
-        if (sprite_is_hover(game->inventory.container, get_mouse_pos_vec2f(game->wind)) && sfMouse_isButtonPressed(sfMouseLeft) && game->inventory.item_selected.name != NULL) {
-            rpg_copy_item(&game->inventory.equipement[i], game->inventory.item_selected);
-            rpg_destroy_item(&game->inventory.item_selected);
-            game->inventory.item_selected.name = NULL;
-        }
-        if (game->inventory.equipement[i].name != NULL) {
-            set_item_texture_rect(game->inventory.sprite, &game->inventory.equipement[i]);
-            sfRenderWindow_drawSprite(game->wind, game->inventory.sprite, NULL);
-        }
-        if (sprite_is_hover(game->inventory.container, get_mouse_pos_vec2f(game->wind)))
-            save = i;
+    item_t tmp;
+    char *sel_name = g->inventory.item_selected.name;
+    char *eq_name = g->inventory.equipement[i].name;
+
+    if (is(g->inventory.container, g) && sel_name && eq_name) {
+        rpg_copy_item(&tmp, g->inventory.item_selected);
+        rpg_destroy_item(&g->inventory.item_selected);
+        rpg_copy_item(&g->inventory.item_selected, g->inventory.equipement[i]);
+        rpg_copy_item(&g->inventory.equipement[i], tmp);
+        rpg_destroy_item(&tmp);
     }
-    if (save != -1 && game->inventory.equipement[save].name != NULL)
-        rpg_inventory_draw_items_tooltip(game, &game->inventory.equipement[save]);
+    if (is(g->inventory.container, g) && !sel_name && eq_name) {
+        rpg_copy_item(&g->inventory.item_selected, g->inventory.equipement[i]);
+        rpg_destroy_item(&g->inventory.equipement[i]);
+        g->inventory.mouse_left = HOLD;
+    }
+    if (is(g->inventory.container, g) && sel_name && !eq_name) {
+        rpg_copy_item(&g->inventory.equipement[i], g->inventory.item_selected);
+        rpg_destroy_item(&g->inventory.item_selected);
+        g->inventory.item_selected.name = NULL;
+    }
 }
 
-extern void rpg_inventory_clean_cursor(rpg_t *game)
+extern void rpg_draw_equipement(rpg_t *g)
 {
-    if (game->inventory.mouse_left == PRESS && game->inventory.item_selected.name != NULL) {
-        rpg_add_item_to_inventory(game, game->inventory.item_selected);
-        game->inventory.item_selected.name = NULL;
+    int tooltip = -1;
+
+    for (unsigned int i = 0; i != 4; i++) {
+        sfSprite_setPosition(g->inventory.container, (sfVector2f){320 + i * 64,
+                    320});
+        sfSprite_setPosition(g->inventory.sprite, (sfVector2f){320 + i * 64,
+                    320});
+        sfRenderWindow_drawSprite(g->wind, g->inventory.container, NULL);
+        rpg_draw_equipemnt_on_click_behaviour(g, i);
+        if (g->inventory.equipement[i].name != NULL) {
+            set_item_texture_rect(g->inventory.sprite,
+                                  &g->inventory.equipement[i]);
+            sfRenderWindow_drawSprite(g->wind, g->inventory.sprite, NULL);
+        }
+        if (sprite_is_hover(g->inventory.container,
+                            get_mouse_pos_vec2f(g->wind)))
+            tooltip = i;
+    }
+    if (tooltip != -1 && g->inventory.equipement[tooltip].name != NULL)
+        rpg_inventory_draw_items_tooltip(g, &g->inventory.equipement[tooltip]);
+}
+
+extern void rpg_inventory_clean_cursor(rpg_t *g)
+{
+    if (g->inventory.mouse_left == PRESS && g->inventory.item_selected.name) {
+        rpg_add_item_to_inventory(g, g->inventory.item_selected);
+        g->inventory.item_selected.name = NULL;
     }
 }

@@ -13,7 +13,8 @@
 extern void rpg_inventory_mouse_input(rpg_t *game)
 {
     if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&      \
-    (game->inventory.mouse_left == PRESS || game->inventory.mouse_left == HOLD)) {
+    (game->inventory.mouse_left == PRESS ||
+     game->inventory.mouse_left == HOLD)) {
         game->inventory.mouse_left = HOLD;
         return;
     }

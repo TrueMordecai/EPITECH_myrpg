@@ -30,7 +30,7 @@ int my_strcpy(char *dest, char *src)
     int i = 0;
 
     if (dest == NULL || src == NULL)
-        return(0);
+        return (0);
     for (; src[i]; i++)
         dest[i] = src[i];
     return (i);
@@ -41,6 +41,7 @@ extern void rpg_create_item_name_generator(item_t *item, int level)
     item->name = malloc(sizeof(char) * 50);
     int index = 0;
 
+    (void)level;
     for (uint i = 0; i != 50; i++)
         item->name[i] = '\0';
     index += my_strcpy(item->name, PREFIX[rand() % 20]);

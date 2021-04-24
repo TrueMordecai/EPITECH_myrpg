@@ -16,7 +16,7 @@ extern void rpg_inventory_draw(rpg_t *game)
     if (sfKeyboard_isKeyPressed(sfKeyA))
         game->inventory.is_open = !(game->inventory.is_open);
     if (game->inventory.is_open) {
-        sfRenderWindow_drawSprite(game->wind, game->inventory.ui_inventory, NULL);
+        sfRenderWindow_drawSprite(game->wind, game->inventory.ui_inventory, 0);
         rpg_draw_equipement(game);
         rpg_inventory_draw_items(game);
         rpg_inventory_draw_cursor(game);

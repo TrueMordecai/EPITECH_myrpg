@@ -48,7 +48,7 @@ SRCS_BASE := 	main.c \
 				\
 				init_inventory.c            \
 				inventory_draw_other.c		\
-				utils.c            \
+				inventory_utils.c            \
 				inventory_index.c					\
 				rpg_create_item.c            \
 				inventory_input.c				\

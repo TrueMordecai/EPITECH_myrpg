@@ -7,7 +7,7 @@
 
 #include "Rpg/rpg.h"
 
-extern item_t rpg_create_blank_item()
+extern item_t rpg_create_blank_item(void)
 {
     item_t new;
 
