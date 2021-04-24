@@ -65,6 +65,7 @@ void fight_update(fight_t *fight, float dt)
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
     if (!fight_rm_dead_entities(fight)) {
         timeline_update(&fight->timeline, dt);
-        spells_bar_update(&fight->spells_bar, fight->entities[fight->entity_turn]);
+        spells_bar_update(
+            &fight->spells_bar, fight->entities[fight->entity_turn]);
     }
 }

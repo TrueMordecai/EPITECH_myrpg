@@ -45,6 +45,8 @@ int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event)
 {
     sfRenderWindow *window = bar->fight->rpg->state->game_data->window;
 
+    if (spells_bar_handle_move(bar, event, window))
+        return;
     if (event->type == sfEvtMouseButtonPressed
         && event->mouseButton.button == sfMouseLeft
         && update_selected(bar, event, window))

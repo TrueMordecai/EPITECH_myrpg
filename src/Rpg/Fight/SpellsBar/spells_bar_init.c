@@ -76,6 +76,7 @@ static void init_life_pa_pm(spells_bar_t *bar)
 void spells_bar_init(spells_bar_t *bar, fight_t *fight)
 {
     bar->fight = fight;
+    bar->grabbed = 0;
     bar->last_entity = NULL;
     bar->background = sfRectangleShape_create();
     bar->move_bar = sfRectangleShape_create();

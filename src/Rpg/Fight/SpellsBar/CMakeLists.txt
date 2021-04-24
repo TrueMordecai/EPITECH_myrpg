@@ -8,6 +8,7 @@ set(SRC
     ${SRCROOT}/spells_bar_draw.c
     ${SRCROOT}/spells_bar_handle_events.c
     ${SRCROOT}/spells_bar_init.c
+    ${SRCROOT}/spells_bar_update_pos.c
     ${SRCROOT}/spells_bar_update_spells.c
     ${SRCROOT}/spells_bar_update.c
     PARENT_SCOPE

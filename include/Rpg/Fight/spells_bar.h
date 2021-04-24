@@ -24,7 +24,9 @@ typedef struct spells_bar {
     sfRectangleShape *life_bg;
     struct entity_t *last_entity;
     int current_frame;
+    int grabbed;
     sfView *view;
+    sfVector2i last_pos;
     sfRectangleShape *background;
     sfRectangleShape *move_bar;
     struct fight_t *fight;
@@ -35,6 +37,8 @@ typedef struct spells_bar {
 void spells_bar_init(spells_bar_t *bar, struct fight_t *fight);
 void spells_bar_draw(spells_bar_t *bar, sfRenderWindow *window);
 int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event);
+int spells_bar_handle_move(
+    spells_bar_t *bar, sfEvent *event, sfRenderWindow *window);
 void spells_bar_update_outlines(spells_bar_t *bar);
 void spells_bar_update_spells(spells_bar_t *bar);
 void spells_bar_update(spells_bar_t *bar, struct entity_t *entity);
