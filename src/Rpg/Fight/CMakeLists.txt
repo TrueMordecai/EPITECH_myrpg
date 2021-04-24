@@ -3,6 +3,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Fight)
 
 add_subdirectory(Spells)
 add_subdirectory(Timeline)
+add_subdirectory(SpellsBar)
 
 set(SRC
     ${SRC}

@@ -40,11 +40,11 @@ typedef struct timeline {
     float time_past;
     int current;
     sfRectangleShape *time_rect;
-    int grabbed;
     sfVector2i last_pos;
     playing_bubble_t bubble;
     /// vector of frame_t
     my_vec_t frames;
+    int grabbed;
 } timeline_t;
 
 void frame_init(frame_t *frame, entity_t *entity, int id);

@@ -27,4 +27,5 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
         entity_draw(fight->entities[e], wind);
     }
     timeline_draw(&fight->timeline, wind);
+    spells_bar_draw(&fight->spells_bar, wind);
 }

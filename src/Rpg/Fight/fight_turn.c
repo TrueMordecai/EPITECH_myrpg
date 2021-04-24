@@ -28,6 +28,7 @@ int fight_new_turn(fight_t *fight)
     my_printf("--- TURN %d ---\n", fight->turn);
     my_printf("    --- ENTITY %d ---\n", fight->entity_turn);
     timeline_new_turn(&fight->timeline, fight->entities[fight->entity_turn]);
+    spells_bar_new_turn(&fight->spells_bar);
     return 0;
 }
 
@@ -44,6 +45,7 @@ int fight_new_entity(fight_t *fight)
         my_printf("    --- ENTITY %d ---\n", fight->entity_turn);
         timeline_new_turn(
             &fight->timeline, fight->entities[fight->entity_turn]);
+        spells_bar_new_turn(&fight->spells_bar);
         return 0;
     }
 }

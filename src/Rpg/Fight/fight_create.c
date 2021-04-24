@@ -112,6 +112,7 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
     init_entities(fight, nb_ennemies, player);
     init_rect_buff(fight, 10000);
     timeline_init(&fight->timeline, fight);
+    spells_bar_init(&fight->spells_bar, fight);
     fight_new_turn(fight);
     return fight;
 }

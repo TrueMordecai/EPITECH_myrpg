@@ -13,6 +13,7 @@
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/Fight/spells_bar.h"
 #include "Rpg/Fight/timeline.h"
 
 enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
@@ -44,6 +45,7 @@ typedef struct fight_t {
     int entity_turn;
     struct rpg_t *rpg;
     timeline_t timeline;
+    spells_bar_t spells_bar;
     sfRectangleShape **rect_buffer;
 } fight_t;
 
