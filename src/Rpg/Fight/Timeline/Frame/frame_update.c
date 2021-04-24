@@ -21,12 +21,12 @@ void frame_update_id(frame_t *frame, int new_id)
 {
     int y = sfRectangleShape_getPosition(frame->bg).y;
 
-    sfRectangleShape_setPosition(
-        frame->entity_rect, (sfVector2f){new_id * (FRAME_WIDTH + FRAME_SPACING), y});
+    sfRectangleShape_setPosition(frame->entity_rect,
+        (sfVector2f){new_id * (FRAME_WIDTH + FRAME_SPACING), y});
     sfRectangleShape_setPosition(
         frame->bg, (sfVector2f){new_id * (FRAME_WIDTH + FRAME_SPACING), y});
-    sfRectangleShape_setPosition(
-        frame->life_bar, (sfVector2f){new_id * (FRAME_WIDTH + FRAME_SPACING), FRAME_WIDTH});
+    sfRectangleShape_setPosition(frame->life_bar,
+        (sfVector2f){new_id * (FRAME_WIDTH + FRAME_SPACING), FRAME_WIDTH});
 }
 
 void frame_set_playing(frame_t *frame, int playing)
@@ -35,6 +35,5 @@ void frame_set_playing(frame_t *frame, int playing)
 
     sfRectangleShape_setPosition(
         frame->entity_rect, (sfVector2f){x, -playing * 5});
-    sfRectangleShape_setPosition(
-        frame->bg, (sfVector2f){x, -playing * 5});
+    sfRectangleShape_setPosition(frame->bg, (sfVector2f){x, -playing * 5});
 }

@@ -23,9 +23,10 @@ void playing_bubble_init(playing_bubble_t *bubble, sfFont *font)
         bubble->circle, sfColor_fromRGB(255, 131, 0));
     sfCircleShape_setOutlineThickness(bubble->circle, -3);
     sfCircleShape_setRadius(bubble->circle, CIRCLE_RADIUS);
-    sfCircleShape_setPosition(bubble->circle,
-        (sfVector2f){-CIRCLE_RADIUS * 1.6,
-            -0.5 * (2 * CIRCLE_RADIUS - FRAME_WIDTH)}); //});
+    sfCircleShape_setOrigin(
+        bubble->circle, (sfVector2f){CIRCLE_RADIUS, CIRCLE_RADIUS});
+    sfCircleShape_setPosition(
+        bubble->circle, (sfVector2f){-CIRCLE_RADIUS * 0.6, 0.5 * FRAME_WIDTH});
     bubble->text_pa = sfText_create();
     bubble->text_pm = sfText_create();
     init_text(bubble->text_pa, font, "6/6 PA",

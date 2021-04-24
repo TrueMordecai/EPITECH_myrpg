@@ -22,7 +22,6 @@ int fight_new_turn(fight_t *fight)
 {
     fight->turn++;
     fight->entity_turn = get_next_entity(fight, 0);
-    my_printf("Next entity from %d = %d\n", 0, fight->entity_turn);
     if (fight->entity_turn == -1)
         return fight_end(fight);
     entity_start_turn(fight->entities[fight->entity_turn]);

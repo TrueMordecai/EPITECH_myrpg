@@ -17,8 +17,8 @@ void timeline_update_time(timeline_t *timeline, float dt)
     timeline->time_past += dt;
     new_height = (timeline->time_past / TURN_TIME) * FRAME_WIDTH;
     sfRectangleShape_setPosition(timeline->time_rect,
-        (sfVector2f){
-            timeline->current * (FRAME_WIDTH + FRAME_SPACING), FRAME_WIDTH - new_height});
+        (sfVector2f){timeline->current * (FRAME_WIDTH + FRAME_SPACING),
+            FRAME_WIDTH - new_height - 5});
     sfRectangleShape_setSize(
         timeline->time_rect, (sfVector2f){FRAME_WIDTH, new_height});
     if (timeline->time_past > TURN_TIME)

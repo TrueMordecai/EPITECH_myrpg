@@ -9,6 +9,7 @@ set(SRC
     ${INCROOT}/timeline.h
     ${SRCROOT}/timeline_destroy.c
     ${SRCROOT}/timeline_draw.c
+    ${SRCROOT}/timeline_handle_events.c
     ${SRCROOT}/timeline_init.c
     ${SRCROOT}/timeline_new_turn.c
     ${SRCROOT}/timeline_remove_frame.c

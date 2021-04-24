@@ -13,7 +13,7 @@
 static void init_rects(timeline_t *timeline, int nb_entities)
 {
     sfRectangleShape_setPosition(
-        timeline->time_rect, (sfVector2f){0, FRAME_WIDTH});
+        timeline->time_rect, (sfVector2f){0, FRAME_WIDTH - 5});
     sfRectangleShape_setSize(
         timeline->time_rect, (sfVector2f){FRAME_WIDTH, 0});
     sfRectangleShape_setFillColor(
@@ -36,6 +36,7 @@ void timeline_init(timeline_t *timeline, fight_t *fight)
     timeline->time_past = 0;
     timeline->fight = fight;
     timeline->current = 0;
+    timeline->grabbed = 0;
     timeline->time_rect = sfRectangleShape_create();
     init_rects(timeline, fight->nb_entities);
     playing_bubble_init(&timeline->bubble,

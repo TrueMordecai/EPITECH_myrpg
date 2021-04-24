@@ -40,6 +40,8 @@ typedef struct timeline {
     float time_past;
     int current;
     sfRectangleShape *time_rect;
+    int grabbed;
+    sfVector2i last_pos;
     playing_bubble_t bubble;
     /// vector of frame_t
     my_vec_t frames;
@@ -60,6 +62,7 @@ void playing_bubble_destroy(playing_bubble_t *bubble);
 void timeline_init(timeline_t *timeline, struct fight_t *fight);
 void timeline_update_time(timeline_t *timeline, float dt);
 void timeline_update(timeline_t *timeline, float dt);
+void timeline_handle_events(timeline_t *timeline, sfEvent *event);
 int timeline_get_entity_id(timeline_t *timeline, entity_t *entity);
 void timeline_new_turn(timeline_t *timeline, entity_t *playing_entity);
 void timeline_remove_entity(timeline_t *timeline, entity_t *entity);
