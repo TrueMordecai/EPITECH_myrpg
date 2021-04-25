@@ -28,9 +28,13 @@ typedef struct infobox_base {
 
 infobox_base_t *infobox_create(
     struct rpg_t *rpg, enum infobox_type type, void *data, char *font_name);
-void infobox_init(infobox_base_t *base, void *data, char const *font_name);
+infobox_base_t *infobox_recreate(
+    enum infobox_type type, void *data, infobox_base_t *from);
+void infobox_init(infobox_base_t *base, void *data);
 void infobox_update(
     infobox_base_t **base_ptr, enum infobox_type type, void *data);
+void infobox_change_type(
+    infobox_base_t **base_ptr, enum infobox_type new_type, void *new_data);
 void infobox_draw(infobox_base_t *base, sfRenderWindow *window);
 void infobox_destroy(infobox_base_t *base);
 

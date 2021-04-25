@@ -56,9 +56,10 @@ void infobox_entity_set_entity_2(infobox_entity_t *info, entity_t *entity)
         (sfVector3f){0.8 * bs.x, 0.35 * bs.y, 0});
 }
 
-void infobox_entity_set_entity(infobox_entity_t *info, entity_t *entity)
+void infobox_entity_set_entity(infobox_entity_t **info_ptr, entity_t *entity)
 {
     stats_t *s;
+    infobox_entity_t *info = *info_ptr;
 
     if (!entity)
         return;

@@ -2,6 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include/Rpg/InfoBox)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/InfoBox)
 
 add_subdirectory(entity)
+add_subdirectory(spells)
 
 set(SRC
     ${SRC}

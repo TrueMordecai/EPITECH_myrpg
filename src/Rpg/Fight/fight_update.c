@@ -58,6 +58,21 @@ int fight_end(fight_t *fight)
     return 0;
 }
 
+static void update_infobox(fight_t *fight)
+{
+    if (fight->timeline.time_hovered >= INFO_WAIT
+        && fight->timeline.hovered >= 0)
+        infobox_update(&fight->infobox, INFOBOX_ENTITY,
+            ((frame_t *)fight->timeline.frames.data + fight->timeline.hovered)
+                ->entity);
+    else if (fight->spells_bar.time_hovered >= INFO_WAIT
+        && fight->spells_bar.current_hovered >= 0)
+        infobox_update(&fight->infobox, INFOBOX_SPELL,
+            MY_VEC_GET_ELEM(spell_base_t *,
+                &fight->spells_bar.last_entity->spells,
+                fight->spells_bar.current_hovered));
+}
+
 void fight_update(fight_t *fight, float dt)
 {
     fight_reset_buff(fight);
@@ -65,13 +80,8 @@ void fight_update(fight_t *fight, float dt)
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
     if (!fight_rm_dead_entities(fight)) {
         timeline_update(&fight->timeline, dt);
-        if (fight->timeline.time_hovered >= INFO_WAIT
-            && fight->timeline.hovered >= 0)
-            infobox_update(&fight->infobox, INFOBOX_ENTITY,
-                ((frame_t *)fight->timeline.frames.data
-                    + fight->timeline.hovered)
-                    ->entity);
         spells_bar_update(
-            &fight->spells_bar, fight->entities[fight->entity_turn]);
+            &fight->spells_bar, fight->entities[fight->entity_turn], dt);
+        update_infobox(fight);
     }
 }

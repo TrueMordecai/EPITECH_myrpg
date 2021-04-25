@@ -77,7 +77,7 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
     spell->name = NULL;
     spell->pa = 1;
     spell->po = 0;
-    spell->area = 0;
+    spell->area = 1;
     spell->turn_limit = 3;
     spell->cast_left = 3;
     while (offset < filesize) {

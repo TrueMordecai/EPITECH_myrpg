@@ -9,6 +9,26 @@
 #include "Rpg/rpg.h"
 #include "Rpg/Fight/spells_bar.h"
 
+int spells_bar_get_hovered(spells_bar_t *bar)
+{
+    sfRenderWindow *window = bar->fight->rpg->state->game_data->window;
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(window);
+    sfVector2f view_pos =
+        sfRenderWindow_mapPixelToCoords(window, mouse_pos, bar->view);
+    sfVector2i spell_pos = {-1, -1};
+    int id;
+
+    spell_pos.x = view_pos.x / FRAME_WIDTH;
+    spell_pos.y = view_pos.y / FRAME_WIDTH;
+    if (view_pos.x < 0 || view_pos.y < 0 || spell_pos.x >= SPELLS_BAR_WIDTH
+        || spell_pos.y >= SPELLS_BAR_HEIGHT)
+        return -1;
+    id = spell_pos.x + spell_pos.y * SPELLS_BAR_WIDTH;
+    if (sfColor_toInteger(sfRectangleShape_getFillColor(bar->frames[id])) == 0)
+        return -1;
+    return id;
+}
+
 void spells_bar_update_outlines(spells_bar_t *bar)
 {
     for (int i = 0; i < bar->nb_frames; i++)
@@ -20,19 +40,9 @@ void spells_bar_update_outlines(spells_bar_t *bar)
 static int update_selected(
     spells_bar_t *bar, sfEvent *event, sfRenderWindow *window)
 {
-    sfVector2i mouse_pos = {event->mouseButton.x, event->mouseButton.y};
-    sfVector2f view_pos =
-        sfRenderWindow_mapPixelToCoords(window, mouse_pos, bar->view);
-    sfVector2i spell_pos = {-1, -1};
-    int id;
+    int id = spells_bar_get_hovered(bar);
 
-    spell_pos.x = view_pos.x / FRAME_WIDTH;
-    spell_pos.y = view_pos.y / FRAME_WIDTH;
-    if (view_pos.x < 0 || view_pos.y < 0 || spell_pos.x >= SPELLS_BAR_WIDTH
-        || spell_pos.y >= SPELLS_BAR_HEIGHT)
-        return 0;
-    id = spell_pos.x + spell_pos.y * SPELLS_BAR_WIDTH;
-    if (sfColor_toInteger(sfRectangleShape_getFillColor(bar->frames[id])) == 0)
+    if (id == -1)
         return 0;
     if (bar->current_frame == id)
         bar->current_frame = -1;

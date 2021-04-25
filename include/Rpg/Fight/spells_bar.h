@@ -23,6 +23,8 @@ typedef struct spells_bar {
     sfRectangleShape *life;
     sfRectangleShape *life_bg;
     struct entity_t *last_entity;
+    int current_hovered;
+    float time_hovered;
     int current_frame;
     int grabbed;
     sfView *view;
@@ -41,7 +43,8 @@ int spells_bar_handle_move(
     spells_bar_t *bar, sfEvent *event, sfRenderWindow *window);
 void spells_bar_update_outlines(spells_bar_t *bar);
 void spells_bar_update_spells(spells_bar_t *bar);
-void spells_bar_update(spells_bar_t *bar, struct entity_t *entity);
+int spells_bar_get_hovered(spells_bar_t *bar);
+void spells_bar_update(spells_bar_t *bar, struct entity_t *entity, float dt);
 void spells_bar_new_turn(spells_bar_t *bar);
 void spells_bar_set_selected(spells_bar_t *bar, int selected);
 void spells_bar_update_entity_spell(spells_bar_t *bar);

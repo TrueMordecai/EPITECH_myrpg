@@ -31,7 +31,7 @@ typedef struct infobox_entity {
 extern char const *ELEMENTS_NAMES[4];
 
 void infobox_entity_init(infobox_entity_t *info, entity_t *entity);
-void infobox_entity_set_entity(infobox_entity_t *info, entity_t *entity);
+void infobox_entity_set_entity(infobox_entity_t **info_ptr, entity_t *entity);
 void infobox_entity_draw(infobox_entity_t *info, sfRenderWindow *window);
 void infobox_entity_destroy(infobox_entity_t *info);
 

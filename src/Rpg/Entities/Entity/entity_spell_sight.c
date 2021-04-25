@@ -29,7 +29,7 @@ void entity_update_spell_sight(entity_t *entity)
     entity->spell_sight = NULL;
     if (!spell)
         return;
-    my_printf("Spell %#s\n", spell->name);
+    my_printf("Spell %#s, type %d\n", spell->name, spell->type);
     entity->spell_sight =
         fight_get_sight(fight, (sfVector2i){entity->pos, spell->po},
             (sfVector2i){-1, 0}, &entity->spell_range);

@@ -8,22 +8,25 @@
 #ifndef INFOBOX_SPELL_H_
 #define INFOBOX_SPELL_H_
 
-#include "Rpg/InfoBox/infobox.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/InfoBox/infobox.h"
 
 typedef struct infobox_spell_base {
     infobox_base_t base;
     spell_base_t *spell;
-    enum spell_type_e type;
     sfText *name;
-    /// PA, PO, TURN LIMIT, AREA, TYPE
-    sfText *base_stats;
+    sfText *pa;
+    sfText *po;
+    sfText *turn_limit;
+    sfText *area;
+    sfText *type;
 } infobox_spell_base_t;
 
 typedef struct infobox_spell_attack {
     infobox_spell_base_t base;
     int nb_lines;
-    sfText **damages;
+    sfText *damages;
+    sfText **elements[2];
 } infobox_spell_attack_t;
 
 typedef struct infobox_spell_heal {
@@ -41,8 +44,37 @@ typedef struct infobox_spell_effect {
 typedef struct infobox_spell_debuff {
     infobox_spell_base_t base;
     sfText *type;
-    my_vec_t boosts;
-    my_vec_t damages;
+    sfText *turn_removed;
 } infobox_spell_debuff_t;
+
+void infobox_spell_init(infobox_spell_base_t *info, spell_base_t *spell);
+void infobox_spell_set_spell(
+    infobox_spell_base_t **info_ptr, spell_base_t *spell);
+void infobox_spell_draw(infobox_spell_base_t *info, sfRenderWindow *window);
+void infobox_spell_destroy(infobox_spell_base_t *info);
+
+void infobox_spell_attack_init(
+    infobox_spell_attack_t *info, spell_attack_t *spell);
+void infobox_spell_attack_set_spell(
+    infobox_spell_attack_t *info, spell_attack_t *spell);
+void infobox_spell_attack_draw(
+    infobox_spell_attack_t *info, sfRenderWindow *window);
+void infobox_spell_attack_destroy_lines(infobox_spell_attack_t *info);
+void infobox_spell_attack_destroy(infobox_spell_attack_t *info);
+
+void infobox_spell_heal_init(infobox_spell_heal_t *info, spell_heal_t *spell);
+void infobox_spell_heal_set_spell(
+    infobox_spell_heal_t *info, spell_heal_t *spell);
+void infobox_spell_heal_draw(
+    infobox_spell_heal_t *info, sfRenderWindow *window);
+void infobox_spell_heal_destroy(infobox_spell_heal_t *info);
+
+void infobox_spell_debuff_init(
+    infobox_spell_debuff_t *info, spell_debuff_t *spell);
+void infobox_spell_debuff_set_spell(
+    infobox_spell_debuff_t *info, spell_debuff_t *spell);
+void infobox_spell_debuff_draw(
+    infobox_spell_debuff_t *info, sfRenderWindow *window);
+void infobox_spell_debuff_destroy(infobox_spell_debuff_t *info);
 
 #endif /* !INFOBOX_SPELL_H_ */

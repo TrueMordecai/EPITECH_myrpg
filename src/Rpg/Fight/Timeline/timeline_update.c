@@ -37,7 +37,8 @@ void timeline_update_hovered(timeline_t *timeline, float dt)
     if (mouse_pos_view.x < 0 || mouse_pos_view.y < 0
         || mouse_pos_view.y > FRAME_WIDTH
         || (hovered - (int)hovered)
-            >= FRAME_WIDTH / (FRAME_WIDTH + FRAME_SPACING)) {
+            >= FRAME_WIDTH / (FRAME_WIDTH + FRAME_SPACING)
+        || (int)hovered >= timeline->frames.length) {
         timeline->hovered = -1;
         timeline->time_hovered = 0;
         return;
@@ -45,7 +46,8 @@ void timeline_update_hovered(timeline_t *timeline, float dt)
     if (timeline->hovered != (int)hovered)
         timeline->time_hovered = 0;
     timeline->hovered = (int)hovered;
-    timeline->time_hovered += (timeline->time_hovered < INFO_WAIT * 2) ? dt : 0;
+    timeline->time_hovered +=
+        (timeline->time_hovered < INFO_WAIT * 2) ? dt : 0;
     return;
 }
 

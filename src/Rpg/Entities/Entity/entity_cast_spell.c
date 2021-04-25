@@ -61,8 +61,6 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
         cast_debuff(to, (spell_debuff_t *)spell);
     entity_update_alive(from);
     entity_update_alive(to);
-    stats_display(from->stats);
-    stats_display(to->stats);
 }
 
 void entity_cast_spell(entity_t *from, int to_cell)

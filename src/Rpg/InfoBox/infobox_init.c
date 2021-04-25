@@ -8,6 +8,7 @@
 #include "Rpg/InfoBox/infobox.h"
 #include "Rpg/rpg.h"
 #include "Rpg/InfoBox/infobox_entity.h"
+#include "Rpg/InfoBox/infobox_spell.h"
 
 static void init_view(infobox_base_t *base)
 {
@@ -41,15 +42,17 @@ static void init_rects(infobox_base_t *base)
         base->box, sfColor_fromRGBA(80, 80, 80, 190));
 }
 
-void infobox_init(infobox_base_t *base, void *data, char const *font_name)
+void infobox_init(infobox_base_t *base, void *data)
 {
-    base->font = get_font(&base->rpg->state->game_data->assets, font_name);
     init_view(base);
     init_rects(base);
     base->box_size = sfRectangleShape_getSize(base->box);
     switch (base->type) {
         case INFOBOX_ENTITY:
             infobox_entity_init((infobox_entity_t *)base, data);
+            break;
+        case INFOBOX_SPELL:
+            infobox_spell_init((infobox_spell_base_t *)base, data);
             break;
         default: break;
     }

@@ -7,13 +7,23 @@
 
 #include "Rpg/Fight/fight.h"
 
+static void draw_ui(fight_t *fight, sfRenderWindow *window)
+{
+    timeline_draw(&fight->timeline, window);
+    spells_bar_draw(&fight->spells_bar, window);
+    if (fight->timeline.time_hovered >= INFO_WAIT
+        || fight->spells_bar.time_hovered >= INFO_WAIT)
+        infobox_draw(fight->infobox, window);
+}
+
 void fight_draw(fight_t *fight, sfRenderWindow *wind)
 {
     sfUint32 transparent = sfColor_toInteger(sfTransparent);
     int i = 0;
 
-    while (sfColor_toInteger(sfRectangleShape_getFillColor(\
-    fight->rect_buffer[i])) != transparent) {
+    while (
+        sfColor_toInteger(sfRectangleShape_getFillColor(fight->rect_buffer[i]))
+        != transparent) {
         sfRenderWindow_drawRectangleShape(wind, fight->rect_buffer[i], NULL);
         i++;
     }
@@ -26,8 +36,5 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
             continue;
         entity_draw(fight->entities[e], wind);
     }
-    timeline_draw(&fight->timeline, wind);
-    spells_bar_draw(&fight->spells_bar, wind);
-    if (fight->timeline.time_hovered >= INFO_WAIT)
-        infobox_draw(fight->infobox, wind);
+    draw_ui(fight, wind);
 }

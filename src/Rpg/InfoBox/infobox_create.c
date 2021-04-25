@@ -41,6 +41,18 @@ infobox_base_t *infobox_create(
     base->rpg = rpg;
     base->type = type;
     base->font = get_font(&rpg->state->game_data->assets, font_name);
-    infobox_init(base, data, font_name);
+    infobox_init(base, data);
+    return base;
+}
+
+infobox_base_t *infobox_recreate(
+    enum infobox_type type, void *data, infobox_base_t *from)
+{
+    infobox_base_t *base = infobox_alloc(type, data);
+
+    base->rpg = from->rpg;
+    base->type = type;
+    base->font = from->font;
+    infobox_init(base, data);
     return base;
 }

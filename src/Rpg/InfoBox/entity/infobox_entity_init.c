@@ -5,10 +5,6 @@
 ** infobox_entity_init
 */
 
-#include <libmy/parsing/parsing.h>
-#include <libmy/printf/printf.h>
-#include <stdarg.h>
-
 #include "GameEngine/settings.h"
 #include "Rpg/rpg.h"
 #include "Rpg/InfoBox/infobox_entity.h"
@@ -36,5 +32,5 @@ void infobox_entity_init(infobox_entity_t *info, entity_t *entity)
 {
     info->entity = entity;
     create_texts(info);
-    infobox_entity_set_entity(info, entity);
+    infobox_entity_set_entity(&info, entity);
 }
