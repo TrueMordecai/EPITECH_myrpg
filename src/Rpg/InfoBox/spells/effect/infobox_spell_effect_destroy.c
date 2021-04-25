@@ -22,6 +22,8 @@ void infobox_spell_effect_clear_vecs(infobox_spell_effect_t *info)
 
 void infobox_spell_effect_destroy(infobox_spell_effect_t *info)
 {
+    my_vec_free(&info->boosts, &destroy_text);
+    my_vec_free(&info->damages, &destroy_text);
     sfText_destroy(info->lifetime);
     sfText_destroy(info->max_cumul);
     sfText_destroy(info->boost);

@@ -49,4 +49,5 @@ void infobox_create_text(
     sfText_setFont(*text, base->font);
     sfText_setCharacterSize(*text, char_size * SL(base->rpg));
     sfText_setFillColor(*text, color);
+    sfText_setOrigin(*text, (sfVector2f){0, 0});
 }

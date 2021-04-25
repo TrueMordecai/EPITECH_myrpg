@@ -8,6 +8,7 @@ set(SRC
     ${SRCROOT}/infobox_entity_destroy.c
     ${SRCROOT}/infobox_entity_draw.c
     ${SRCROOT}/infobox_entity_init.c
+    ${SRCROOT}/infobox_entity_update_effects.c
     ${SRCROOT}/infobox_entity_update.c
     PARENT_SCOPE
 )
