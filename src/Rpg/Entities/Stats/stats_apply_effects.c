@@ -10,6 +10,19 @@
 
 #include "Rpg/Entities/entity.h"
 
+void apply_effect_turn_start(stats_t *stats)
+{
+    effect_t *effect;
+
+    for (size_t i = 0; i < stats->effects.length; i++) {
+        effect = ((effect_t *)stats->effects.data) + i;
+        if (!(effect->spell->type & EFFECT_BOOST))
+            continue;
+        stats->current_pa += effect->spell->buff.pa;
+        stats->current_pm += effect->spell->buff.pm;
+    }
+}
+
 void apply_effect_turn_ends(stats_t *stats)
 {
     effect_t *effect;

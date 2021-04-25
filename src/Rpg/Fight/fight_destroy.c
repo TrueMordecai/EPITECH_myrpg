@@ -9,6 +9,7 @@
 
 void fight_destroy(fight_t *fight)
 {
+    infobox_destroy(fight->infobox);
     for (int i = 0; i < fight->nb_entities; i++) {
         if (fight->entities[i]->team == ENNEMIES)
             entity_destroy(fight->entities[i]);

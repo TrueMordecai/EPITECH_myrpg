@@ -29,6 +29,7 @@ typedef struct stats_t {
     int life;
     int pa;
     int pm;
+    int level;
     int elements[4];
     int resistances[4];
     my_vec_t effects;

@@ -13,7 +13,6 @@
 
 void entity_init_rect(entity_t *entity, sfColor color)
 {
-    sfVector2i loc_pos = fight_pos_to_vec(entity->fight, entity->pos, 0);
     sfVector2f pos = fight_pos_to_world_vec(entity->fight, entity->pos);
 
     entity->rect = sfRectangleShape_create();

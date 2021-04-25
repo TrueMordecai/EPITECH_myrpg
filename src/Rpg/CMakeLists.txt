@@ -3,6 +3,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg)
 
 add_subdirectory(Entities)
 add_subdirectory(Map)
+add_subdirectory(InfoBox)
 add_subdirectory(Fight)
 
 set(SRC

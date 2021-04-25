@@ -9,7 +9,7 @@
 
 void spells_bar_draw(spells_bar_t *bar, sfRenderWindow *window)
 {
-    const sfView *view = sfRenderWindow_getView(window);
+    const sfView *view = sfRenderWindow_getDefaultView(window);
 
     sfRenderWindow_setView(window, bar->view);
     sfRenderWindow_drawRectangleShape(window, bar->background, NULL);

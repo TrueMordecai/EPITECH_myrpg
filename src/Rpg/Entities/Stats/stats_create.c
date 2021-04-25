@@ -12,10 +12,11 @@ stats_t *stats_create(void)
 {
     stats_t *stats = malloc(sizeof(stats_t));
 
-    stats->life = 100;
+    stats->life = 50;
     stats->pa = 6;
     stats->pm = 3;
-    stats->current_life = 100;
+    stats->level = 1;
+    stats->current_life = 50;
     stats->current_pa = 6;
     stats->current_pm = 3;
     my_vec_init(&stats->effects, sizeof(effect_t));

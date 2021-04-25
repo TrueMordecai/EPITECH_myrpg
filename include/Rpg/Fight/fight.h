@@ -15,6 +15,7 @@
 #include "Rpg/Fight/spell.h"
 #include "Rpg/Fight/spells_bar.h"
 #include "Rpg/Fight/timeline.h"
+#include "Rpg/InfoBox/infobox.h"
 
 enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
 enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
@@ -47,6 +48,7 @@ typedef struct fight_t {
     timeline_t timeline;
     spells_bar_t spells_bar;
     sfRectangleShape **rect_buffer;
+    infobox_base_t *infobox;
 } fight_t;
 
 fight_t *fight_create(battle_t *battle, int nb_ennemies, \

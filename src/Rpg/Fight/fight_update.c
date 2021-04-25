@@ -65,6 +65,12 @@ void fight_update(fight_t *fight, float dt)
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
     if (!fight_rm_dead_entities(fight)) {
         timeline_update(&fight->timeline, dt);
+        if (fight->timeline.time_hovered >= INFO_WAIT
+            && fight->timeline.hovered >= 0)
+            infobox_update(&fight->infobox, INFOBOX_ENTITY,
+                ((frame_t *)fight->timeline.frames.data
+                    + fight->timeline.hovered)
+                    ->entity);
         spells_bar_update(
             &fight->spells_bar, fight->entities[fight->entity_turn]);
     }

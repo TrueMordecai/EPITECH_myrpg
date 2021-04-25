@@ -28,4 +28,6 @@ void fight_draw(fight_t *fight, sfRenderWindow *wind)
     }
     timeline_draw(&fight->timeline, wind);
     spells_bar_draw(&fight->spells_bar, wind);
+    if (fight->timeline.time_hovered >= INFO_WAIT)
+        infobox_draw(fight->infobox, wind);
 }

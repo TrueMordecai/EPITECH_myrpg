@@ -5,6 +5,8 @@
 ** spells_bar_update
 */
 
+#include <libmy/printf.h>
+
 #include "Rpg/Fight/fight.h"
 #include "Rpg/Fight/spells_bar.h"
 

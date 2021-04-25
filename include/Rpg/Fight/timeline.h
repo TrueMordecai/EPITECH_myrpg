@@ -32,6 +32,8 @@ typedef struct timeline {
     struct fight_t *fight;
     float time_past;
     int current;
+    int hovered;
+    float time_hovered;
     sfRectangleShape *time_rect;
     sfVector2i last_pos;
     /// vector of frame_t

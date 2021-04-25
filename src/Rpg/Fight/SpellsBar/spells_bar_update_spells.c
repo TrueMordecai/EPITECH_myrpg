@@ -9,7 +9,7 @@
 #include "Rpg/rpg.h"
 #include "Rpg/Fight/spells_bar.h"
 
-static void update_frame(spells_bar_t *bar, size_t i, spell_base_t *spell)
+static void update_frame(spells_bar_t *bar, int i, spell_base_t *spell)
 {
     sfIntRect rect;
     
@@ -25,8 +25,8 @@ void spells_bar_update_spells(spells_bar_t *bar)
 {
     entity_t *entity = bar->fight->entities[bar->fight->entity_turn];
 
-    for (size_t i = 0; i < bar->nb_frames; i++) {
-        if (i < entity->spells.length)
+    for (int i = 0; i < bar->nb_frames; i++) {
+        if ((size_t)i < entity->spells.length)
             update_frame(
             bar, i, MY_VEC_GET_ELEM(spell_base_t *, &entity->spells, i));
         else
