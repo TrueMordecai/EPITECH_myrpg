@@ -36,7 +36,10 @@ typedef struct infobox_spell_heal {
 
 typedef struct infobox_spell_effect {
     infobox_spell_base_t base;
-    sfText *type;
+    sfText *max_cumul;
+    sfText *lifetime;
+    sfText *boost;
+    sfText *damage;
     my_vec_t boosts;
     my_vec_t damages;
 } infobox_spell_effect_t;
@@ -76,5 +79,15 @@ void infobox_spell_debuff_set_spell(
 void infobox_spell_debuff_draw(
     infobox_spell_debuff_t *info, sfRenderWindow *window);
 void infobox_spell_debuff_destroy(infobox_spell_debuff_t *info);
+
+void infobox_spell_effect_init(
+    infobox_spell_effect_t *info, spell_effect_t *spell);
+void infobox_spell_effect_set_spell(
+    infobox_spell_effect_t *info, spell_effect_t *spell);
+void infobox_spell_effect_draw(
+    infobox_spell_effect_t *info, sfRenderWindow *window);
+void infobox_spell_effect_clear_vecs(infobox_spell_effect_t *info);
+void infobox_spell_effect_destroy(infobox_spell_effect_t *info);
+
 
 #endif /* !INFOBOX_SPELL_H_ */

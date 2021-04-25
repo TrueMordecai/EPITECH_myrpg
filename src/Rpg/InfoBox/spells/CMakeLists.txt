@@ -4,6 +4,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/InfoBox/spells)
 add_subdirectory(attack)
 add_subdirectory(heal)
 add_subdirectory(debuff)
+add_subdirectory(effect)
 
 set(SRC
     ${SRC}

@@ -24,6 +24,10 @@ static void init_sub_struct(infobox_spell_base_t *info, spell_base_t *spell)
             infobox_spell_debuff_init(
                 (infobox_spell_debuff_t *)info, (spell_debuff_t *)spell);
             break;
+        case SPELL_EFFECT:
+            infobox_spell_effect_init(
+                (infobox_spell_effect_t *)info, (spell_effect_t *)spell);
+            break;
         default: break;
     }
 }

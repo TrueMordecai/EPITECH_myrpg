@@ -7,7 +7,7 @@
 
 #include "Rpg/InfoBox/infobox_spell.h"
 
-void infobox_spell_destroy(infobox_spell_base_t *info)
+static void destroy_substruct(infobox_spell_base_t *info)
 {
     switch (info->spell->type) {
         case SPELL_ATTACK:
@@ -19,8 +19,16 @@ void infobox_spell_destroy(infobox_spell_base_t *info)
         case SPELL_DEBUFF:
             infobox_spell_debuff_destroy((infobox_spell_debuff_t *)info);
             break;
+        case SPELL_EFFECT:
+            infobox_spell_effect_destroy((infobox_spell_effect_t *)info);
+            break;
         default: break;
     }
+}
+
+void infobox_spell_destroy(infobox_spell_base_t *info)
+{
+    destroy_substruct(info);
     sfText_destroy(info->name);
     sfText_destroy(info->pa);
     sfText_destroy(info->po);
