@@ -12,14 +12,17 @@
 #include "Physics/physics.h"
 #include "Rpg/Entities/entity.h"
 
+struct rpg_t;
+
 typedef struct player_t {
     sfVector2f pos;
     sfVector2i dir;
     pe_body_t *body;
     entity_t *entity;
+    struct rpg_t *rpg;
 } player_t;
 
-player_t *player_create(void);
+player_t *player_create(struct rpg_t *rpg);
 pe_body_t *player_init_physic(player_t *player, pe_world_t *world);
 void player_handle_event(player_t *player, sfEvent event);
 void player_update(player_t *player, float dt);

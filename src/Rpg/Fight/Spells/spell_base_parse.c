@@ -77,12 +77,16 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
     spell->name = NULL;
     spell->pa = 1;
     spell->po = 0;
+    spell->texture_id = 0;
     spell->area = 1;
     spell->turn_limit = 3;
     spell->cast_left = 3;
     while (offset < filesize) {
         line_len = my_strlen_to(file_content + offset, '\n');
         parse_line(spell, file_content + offset);
+        if (my_strncmp("TEXTURE_ID=", file_content + offset, 11) == 0)
+            spell->texture_id = parse_value(
+                &offset, 11, file_content + offset, (sfVector2i){0, 7});
         offset += line_len + 1;
     }
     parse_types(spell, file_content, filesize);

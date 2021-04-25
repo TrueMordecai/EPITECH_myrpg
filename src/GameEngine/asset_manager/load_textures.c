@@ -18,8 +18,8 @@ void load_all_textures(asset_manager_t *manager)
     load_texture(manager, "buttons", "assets/Textures/buttons.png", 1);
     load_texture(manager, "spells", "assets/Textures/spells.png", 1);
     load_texture(
-        manager, "inspector", "assets/Textures/Characters/Inspector.png", 0);
+        manager, "Inspector", "assets/Textures/Characters/Inspector.png", 0);
     load_texture(
-        manager, "skeleton", "assets/Textures/Characters/skeleton.png", 0);
+        manager, "Skeleton", "assets/Textures/Characters/skeleton.png", 0);
     load_fonts(manager);
 }

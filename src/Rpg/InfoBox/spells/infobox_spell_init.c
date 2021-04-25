@@ -35,6 +35,8 @@ static void init_sub_struct(infobox_spell_base_t *info, spell_base_t *spell)
 void infobox_spell_init(infobox_spell_base_t *info, spell_base_t *spell)
 {
     info->spell = spell;
+    sfRectangleShape_setTexture(info->base.icon,
+        get_texture(&info->base.rpg->state->game_data->assets, "spells"), 1);
     infobox_create_text(&info->base, &info->name, sfWhite, 35);
     infobox_create_text(&info->base, &info->pa, sfWhite, 25);
     infobox_create_text(&info->base, &info->po, sfWhite, 25);

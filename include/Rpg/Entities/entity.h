@@ -44,6 +44,7 @@ typedef struct action {
 
 typedef struct entity_t {
     stats_t *stats;
+    char *name;
     enum entity_type_e type;
     enum team_e team;
     enum entity_state_e state;
@@ -66,7 +67,7 @@ typedef struct entity_t {
 entity_t *entity_create(
     void *datas, enum entity_type_e type, enum team_e team, int pos);
 void entity_init(entity_t *entity);
-void entity_init_rect(entity_t *entity, sfColor color);
+void entity_init_rect(entity_t *entity, char *name, sfColor color);
 void entity_move(entity_t *entity, int update_sprite);
 void entity_update_sprite_pos(entity_t *entity, sfVector2f pos);
 void entity_update(entity_t *entity, float dt, int playing);

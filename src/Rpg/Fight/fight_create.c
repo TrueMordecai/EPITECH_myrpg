@@ -65,11 +65,8 @@ static void init_ennemies(fight_t *fight, int nb_ennemies, int player_pos)
         entity_init_spells(fight->entities[i + 1], fight->rpg);
         fight->entities[i + 1]->stats = stats_create();
         fight->entities[i + 1]->fight = fight;
-        entity_init_rect(fight->entities[i + 1],
+        entity_init_rect(fight->entities[i + 1], "Skeleton",
             sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
-        sfRectangleShape_setTexture(fight->entities[i + 1]->rect,
-            get_texture(&fight->rpg->state->game_data->assets, "skeleton"),
-            true);
         animations_update_rect(&fight->entities[i + 1]->anim);
     }
 }

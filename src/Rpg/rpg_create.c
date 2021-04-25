@@ -17,11 +17,7 @@ rpg_t *rpg_create(state_t *state)
     spells_init(rpg);
     rpg->state = state;
     rpg->wind = state->game_data->window;
-    rpg->player = player_create();
-    sfRectangleShape_setTexture(rpg->player->entity->rect,
-        get_texture(&state->game_data->assets, "inspector"), true);
-    animations_reset(&rpg->player->entity->anim);
-    entity_init_spells(rpg->player->entity, rpg);
+    rpg->player = player_create(rpg);
     rpg->map = map_create(rpg);
     return rpg;
 }

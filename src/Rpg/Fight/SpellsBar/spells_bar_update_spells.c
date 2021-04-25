@@ -14,7 +14,7 @@ static void update_frame(spells_bar_t *bar, int i, spell_base_t *spell)
     sfIntRect rect;
     
     if (spell) {
-        rect = (sfIntRect){(spell->type - 1) * 64, 0, 64, 64};
+        rect = (sfIntRect){spell->texture_id * 64, 0, 64, 64};
         sfRectangleShape_setTextureRect(bar->frames[i], rect);
         sfRectangleShape_setFillColor(bar->frames[i], sfWhite);
     } else

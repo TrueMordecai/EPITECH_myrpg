@@ -82,5 +82,7 @@ void infobox_spell_set_spell(
     }
     infobox_reset_box_size(&(*info_ptr)->base);
     infobox_spell_set_spell_2(*info_ptr, spell);
+    sfRectangleShape_setTextureRect((*info_ptr)->base.icon,
+        (sfIntRect){64 * (*info_ptr)->spell->texture_id, 0, 64, 64});
     update_substruct(*info_ptr, spell);
 }

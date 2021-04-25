@@ -40,8 +40,8 @@ void infobox_entity_set_entity_2(infobox_entity_t *info, entity_t *entity)
     sfVector2f bs = info->base.box_size;
     stats_t *s = entity->stats;
 
-    infobox_init_text(
-        info->name, "Inspector", (sfVector3f){0.65 * bs.x, 0.07 * bs.y, 0});
+    infobox_init_text(info->name, "%s",
+        (sfVector3f){0.65 * bs.x, 0.07 * bs.y, 0}, entity->name);
     infobox_init_text(info->level, "Level: %d",
         (sfVector3f){0.35 * bs.x, 0.15 * bs.y, -1}, s->level);
     infobox_init_text(info->life, "%d/%d HP",
