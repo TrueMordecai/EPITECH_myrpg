@@ -9,12 +9,14 @@
 #define TIMELINE_H_
 
 #include <libmy/collections/vec.h>
+#include <sw/widget.h>
+#include <sw/widgets/button.h>
 #include <SFML/Graphics.h>
 
 #include "Rpg/Entities/entity.h"
 
 #define TURN_TIME 30.0
-#define FRAME_WIDTH 65.0
+#define FRAME_WIDTH 64.0
 #define FRAME_SPACING 5.0
 #define CIRCLE_RADIUS 50
 
@@ -28,6 +30,7 @@ typedef struct frame {
 } frame_t;
 
 typedef struct timeline {
+    sw_button_t turn_btn;
     sfView *view;
     struct fight_t *fight;
     float time_past;

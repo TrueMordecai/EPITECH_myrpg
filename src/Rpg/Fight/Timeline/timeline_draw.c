@@ -15,5 +15,6 @@ void timeline_draw(timeline_t *timeline, sfRenderWindow *window)
     sfRenderWindow_drawRectangleShape(window, timeline->time_rect, NULL);
     for (size_t i = 0; i < timeline->frames.length; i++)
         frame_draw(((frame_t *)timeline->frames.data) + i, window);
+    sw_button_draw(&timeline->turn_btn, window, NULL);
     sfRenderWindow_setView(window, view);
 }

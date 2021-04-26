@@ -34,7 +34,7 @@ static void correct_pos(timeline_t *timeline, sfRenderWindow *window)
 {
     sfVector2u win_size = sfRenderWindow_getSize(window);
     sfVector2i top_left = sfRenderWindow_mapCoordsToPixel(
-        window, (sfVector2f){0, -5}, timeline->view);
+        window, (sfVector2f){-FRAME_WIDTH, -5}, timeline->view);
     sfVector2i bottom_right = sfRenderWindow_mapCoordsToPixel(window,
         (sfVector2f){timeline->frames.length * (FRAME_WIDTH + FRAME_SPACING)
                 - FRAME_SPACING,
@@ -65,6 +65,29 @@ static void update_pos(
     correct_pos(timeline, window);
 }
 
+static void send_event_to_button(timeline_t *timeline, sfEvent *event)
+{
+    sfRenderWindow *window = timeline->fight->rpg->state->game_data->window;
+    sfVector2f pos;
+
+    if (event->type == sfEvtMouseMoved) {
+        pos = sfRenderWindow_mapPixelToCoords(window,
+            (sfVector2i){event->mouseMove.x, event->mouseMove.y},
+            timeline->view);
+        event->mouseMove.x = (int)pos.x;
+        event->mouseMove.y = (int)pos.y;
+    } else if (event->type == sfEvtMouseButtonPressed
+        || event->type == sfEvtMouseButtonReleased) {
+        pos = sfRenderWindow_mapPixelToCoords(window,
+            (sfVector2i){event->mouseButton.x, event->mouseButton.y},
+            timeline->view);
+        event->mouseButton.x = (int)pos.x;
+        event->mouseButton.y = (int)pos.y;
+    } else
+        return;
+    sw_send_event(&timeline->turn_btn, event);
+}
+
 void timeline_handle_events(timeline_t *timeline, sfEvent *event)
 {
     sfRenderWindow *window = timeline->fight->rpg->state->game_data->window;
@@ -77,4 +100,5 @@ void timeline_handle_events(timeline_t *timeline, sfEvent *event)
         timeline->grabbed = 0;
     if (event->type == sfEvtMouseMoved && timeline->grabbed)
         update_pos(timeline, event, window);
+    send_event_to_button(timeline, event);
 }
