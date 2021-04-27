@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** Game Engine
 ** File description:
 ** Game engine - settings
 */
@@ -28,11 +28,26 @@ struct settings {
 /// @ref settings_init_default is used to popolate the values.
 settings_t *settings_read(char const *path);
 
+/// Writes the current settings to the file at @c path.
+///
+/// @param settings The settings, must not be @c NULL.
+/// @param path The path to the settings file, must either not exist or point
+/// to a regular file (symlinks are OK).
+///
+/// @returns 0, on success.
+int settings_write(settings_t const *settings, char const *path);
+
+/// Writes the current settings to the file at @c stream.
+///
+/// @param settings The settings, must not be @c NULL.
+/// @param output The output stream, must not be @c NULL.
+///
+/// @returns 0, on success.
+int settings_write_to_stream(
+    settings_t const *settings, my_iostream_t *output);
+
 /// Sets the given settings to their default values.
 void settings_init_default(settings_t *settings);
-
-/// Writes the settings to the given path.
-int settings_write(settings_t *settings, char const *path);
 
 /// Frees the passed settings.
 void settings_destroy(settings_t *settings);
