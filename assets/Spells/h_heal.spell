@@ -1,0 +1,5 @@
+TYPE=HEAL
+NAME="Heal"
+PA=3
+PO=5
+HEAL=5

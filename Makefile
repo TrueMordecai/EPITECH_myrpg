@@ -1,47 +1,52 @@
-##
-## EPITECH PROJECT, 2020
-## Makefile
-## File description:
-## makefile
-##
+TARGET := my_rpg
+BUILD_DIR := build
 
-SRC	=	./src/main.c			\
-		./src/get_file_info.c	\
-		./src/quests.c			\
-		./src/setup.c			\
-		./src/parse_quests_info.c\
+CONFIG_FLAGS := -G"Unix Makefiles" -B$(BUILD_DIR)
 
-OBJ	=	$(SRC:.c=.o)
+CONFIG_FLAGS_RELEASE := -DCMAKE_BUILD_TYPE=Release $(CONFIG_FLAGS) -DSW_BUILD_DOC=TRUE -DLIBMY_BUILD_DOC=TRUE
+CONFIG_FLAGS_DEBUG := -DCMAKE_BUILD_TYPE=Debug $(CONFIG_FLAGS)
+CONFIG_FLAGS_TEST := -DBUILD_TEST_SUITE=TRUE -DLIBMY_USE_GCOV=TRUE $(CONFIG_FLAGS_DEBUG)
 
-NAME	=	quest
+BUILD_FLAGS_RELEASE := --config Release -j
+BUILD_FLAGS_DEBUG := --config Debug -j
+BUILD_FLAGS_TEST := --config Debug -j
 
-CFLAGS 	=	-Wshadow \
-			-Wall \
-			-Wextra \
-			-W \
-			-I includes \
-			-I ./lib/my
+all: $(TARGET)
 
-LDFLAGS = 	-Llib/my \
-			-lmy
-
-all:	$(NAME)
-
-$(NAME):	$(OBJ) ./lib/my/libmy.a
-	gcc -o $(NAME) $(OBJ) $(LDFLAGS)
-
-./lib/my/libmy.a:
-	make -C ./lib/my
+$(TARGET):
+	cmake $(CONFIG_FLAGS_RELEASE)
+	cmake --build $(BUILD_DIR) $(BUILD_FLAGS_RELEASE)
 
 clean:
-	make clean -C ./lib/my
-	rm -f $(OBJ)
+	rm -rf $(BUILD_DIR)/CMakeFiles
+	rm -rf $(BUILD_DIR)/src/CMakeFiles
+	rm -rf $(BUILD_DIR)/lib/my/src
+fclean: clean
+	rm -rf $(BUILD_DIR)
+	rm -f $(TARGET)
 
-fclean:	clean
-	make fclean -C ./lib/my
-	rm -f $(NAME)
-	rm -f ./lib/libmy.a
-	rm -f $(OBJ)
-	rm -f crypt
+docs: libmy_docs simple_widgets_docs
+libmy_docs:
+	(cd $(BUILD_DIR) && cmake --build . --target libmy-doc)
+simple_widgets_docs:
+	(cd $(BUILD_DIR) && cmake --build . --target simple-widgets-doc)
 
-re:	fclean	all
+debug:
+	cmake $(CONFIG_FLAGS_DEBUG)
+	cmake --build $(BUILD_DIR) $(BUILD_FLAGS_DEBUG)
+
+re: fclean all
+
+run_tests: fclean
+	cmake $(CONFIG_FLAGS_TEST) .
+	cmake --build $(BUILD_DIR) $(BUILD_FLAGS_TEST)
+	(cd build && ctest --verbose) || true
+
+run_test: run_tests
+tests_run: run_tests
+test_run: run_test
+
+coverage:
+	gcovr .
+
+.PHONY: all $(TARGET) clean fclean docs libmy_docs simple_widgets_docs debug re run_tests run_test tests_run test_run coverage

@@ -1,0 +1,6 @@
+TYPE=HEAL
+NAME="Heal Area"
+PA=3
+PO=3
+AREA=2
+HEAL=2

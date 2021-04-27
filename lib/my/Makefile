@@ -1,54 +1,45 @@
-##
-## EPITECH PROJECT, 2020
-## Makefile
-## File description:
-## makefile for my.h
-##
+BUILD_DIR := build
 
-SRC	=	my_compute_power_rec.c		\
-		my_compute_square_root.c	\
-		my_find_prime_sup.c		\
-		my_getnbr.c			\
-		my_isneg.c			\
-		my_is_prime.c			\
-		my_putchar.c			\
-		my_put_nbr.c			\
-		my_putstr.c			\
-		my_revstr.c			\
-		my_showmem.c			\
-		my_showstr.c			\
-		my_sort_int_array.c		\
-		my_strcapitalize.c		\
-		my_strcat.c			\
-		my_strcmp.c			\
-		my_strcpy.c			\
-		my_str_isalpha.c		\
-		my_str_islower.c		\
-		my_str_isnum.c			\
-		my_str_isprintable.c		\
-		my_str_isupper.c		\
-		my_strlen.c			\
-		my_strlowcase.c			\
-		my_strncat.c			\
-		my_strncmp.c			\
-		my_strncpy.c			\
-		my_strupcase.c			\
-		my_isalpha.c			\
-		my_swap.c			\
-		my_isnum.c			\
-		my_strdup.c			\
+CONFIG_FLAGS := -G"Unix Makefiles" -B$(BUILD_DIR) -DLIBMY_BUILD_DOC=TRUE
 
-OBJ	=	$(SRC:.c=.o)
+CONFIG_FLAGS_RELEASE := -DCMAKE_BUILD_TYPE=Release -DLIBMY_BUILD_TEST_SUITE=TRUE $(CONFIG_FLAGS)
+CONFIG_FLAGS_DEBUG := -DCMAKE_BUILD_TYPE=Debug -DLIBMY_BUILD_TEST_SUITE=TRUE -DLIBMY_USE_GCOV=TRUE $(CONFIG_FLAGS)
 
-NAME	=	libmy.a
+BUILD_FLAGS_RELEASE := --config Release -j
+BUILD_FLAGS_DEBUG := --config Debug -j
 
-all:	$(NAME)
-
-$(NAME):	$(OBJ)
-	ar rc $(NAME) $(OBJ)
+all:
+	cmake $(CONFIG_FLAGS_RELEASE)
+	cmake --build $(BUILD_DIR) $(BUILD_FLAGS_RELEASE)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(BUILD_DIR)/CMakeFiles
+	rm -rf $(BUILD_DIR)/src
+fclean: clean
+	rm -rf $(BUILD_DIR)
+	rm -rf doc/html doc/Doxyfile
+	rm -rf include/libmy/config.h
 
-fclean:	clean
-	rm -f $(NAME)
+debug:
+	cmake $(CONFIG_FLAGS_DEBUG)
+	cmake --build $(BUILD_DIR) $(BUILD_FLAGS_DEBUG)
+
+re: fclean all
+
+docs: all
+	(cd $(BUILD_DIR) && cmake --build . --target doc)
+open_docs:
+	xdg-open doc/html/index.html > /dev/null
+docs_open: open_docs
+
+run_tests: fclean debug
+	(cd build && ctest --verbose) || true
+run_test: run_tests
+tests_run: run_tests
+test_run: run_test
+
+coverage:
+	gcovr .
+	gcovr --branch .
+
+.PHONY: all clean fclean debug re docs open_docs docs_open run_tests run_test tests_run test_run coverage
