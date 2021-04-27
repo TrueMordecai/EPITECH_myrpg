@@ -17,8 +17,8 @@
 #define SL(rpg)    ((rpg)->state->game_data->settings->scale)
 
 struct settings {
-    sfVector2u wind_size;
-    unsigned int limit_framerate;
+    sfVector2u window_size;
+    unsigned int max_fps;
     float music_volume;
     float sound_volume;
     float scale;

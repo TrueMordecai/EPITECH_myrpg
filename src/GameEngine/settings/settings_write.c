@@ -20,8 +20,8 @@ int settings_write(settings_t *settings, char const *path)
             MY_STDERR, "Couldn't open settings file for writing: %s\n", path);
         return 1;
     }
-    if (my_fprintf(&output, "%ux%u\n%u\n%u\n%u\n%u", settings->wind_size.x,
-            settings->wind_size.y, settings->limit_framerate,
+    if (my_fprintf(&output, "%ux%u\n%u\n%u\n%u\n%u", settings->window_size.x,
+            settings->window_size.y, settings->max_framerate,
             (unsigned)settings->music_volume, (unsigned)settings->sound_volume)
         < 0) {
         my_fprintf(MY_STDERR, "Couldn't write settings file: %s\n", path);
