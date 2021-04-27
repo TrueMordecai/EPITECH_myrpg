@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** B-CPE-210-NAN-2-1-stumper2-paul-antoine.salmon
+** Quêtes
 ** File description:
 ** main.c
 */
