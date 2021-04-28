@@ -27,7 +27,7 @@ debug:
 re: fclean all
 
 docs: all
-	(cd $(BUILD_DIR) && cmake --build . --target doc)
+	(cd $(BUILD_DIR) && cmake --build . --target simple-widgets-doc)
 
 open_docs:
 	xdg-open doc/html/index.html > /dev/null
