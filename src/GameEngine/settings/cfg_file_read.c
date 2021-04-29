@@ -20,8 +20,9 @@ int cfg_file_read(cfg_file_t *cfg, char const *path, bool strict)
     int ret;
 
     assert(path != NULL);
-    if (my_fopen(path, "r", &input)
-        || my_fset_buffer(buffer, 256, NULL, &input)) {
+    if (my_fopen(path, "r", &input))
+        return -1;
+    if (my_fset_buffer(buffer, 256, NULL, &input)) {
         my_fclose(&input);
         return -1;
     }
