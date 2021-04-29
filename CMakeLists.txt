@@ -17,6 +17,8 @@ if (BUILD_TEST_SUITE)
     if (USE_GCOV)
         set(LIBMY_USE_CCOV TRUE)
     endif()
+    # disable assertions when running unit tests
+    add_compile_definitions(NDEBUG=1)
     enable_testing()
 endif()
 
