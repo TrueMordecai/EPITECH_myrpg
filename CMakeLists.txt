@@ -4,7 +4,21 @@ project(MyRPG C)
 
 # specify the C standard
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED True)
+set(CMAKE_C_STANDARD_REQUIRED TRUE)
+
+# Add ./cmake/modules to the module path
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+
+# Unit Testing
+if (BUILD_TEST_SUITE)
+    # Check for Criterion
+    find_package(Criterion REQUIRED)
+    set(LIBMY_BUILD_TEST_SUITE TRUE)
+    if (USE_GCOV)
+        set(LIBMY_USE_CCOV TRUE)
+    endif()
+    enable_testing()
+endif()
 
 if (CMAKE_COMPILER_IS_GNUCC)
     # Compile Options
@@ -54,11 +68,9 @@ add_subdirectory(lib/simple_widgets)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 find_package(CSFML 2.1 COMPONENTS system window graphics audio REQUIRED)
 
-# Unit Testing
-if (BUILD_TEST_SUITE)
-    set(LIBMY_BUILD_TEST_SUITE TRUE)
-    enable_testing()
-endif()
-
 # Main Target
 add_subdirectory(src)
+
+if (BUILD_TEST_SUITE)
+    add_subdirectory(tests)
+endif()
