@@ -16,6 +16,7 @@ struct rpg_t;
 
 typedef struct player_t {
     sfVector2f pos;
+    sfVector2i last_pos;
     sfVector2i dir;
     pe_body_t *body;
     entity_t *entity;

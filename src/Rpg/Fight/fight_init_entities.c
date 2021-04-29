@@ -111,5 +111,7 @@ void fight_init_entities(fight_t *fight, int nb_ennemies, player_t *player)
         fight->entities[i]->fight = fight;
         fight->grid[fight->entities[i]->pos].entity = fight->entities[i];
         entity_init(fight->entities[i]);
+        animations_set_animation(&fight->entities[i]->anim, 0);
+        animations_pause(&fight->entities[i]->anim);
     }
 }

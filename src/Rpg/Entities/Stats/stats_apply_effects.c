@@ -10,6 +10,14 @@
 
 #include "Rpg/Entities/entity.h"
 
+void stats_clear_effects(stats_t *stats)
+{
+    size_t length = stats->effects.length;
+
+    for (int i = 0; i < length; i++)
+        stats_remove_effect(stats, 0, 1);
+}
+
 void apply_effect_turn_start(stats_t *stats)
 {
     effect_t *effect;

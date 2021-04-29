@@ -7,6 +7,7 @@
 
 #include <libmy/printf.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "Rpg/Entities/player.h"
 #include "Rpg/Fight/fight.h"
@@ -62,5 +63,6 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
     init_rect_buff(fight, 10000);
     init_ui(fight);
     fight_new_turn(fight);
+    player->dir = (sfVector2i){0, 0};
     return fight;
 }
