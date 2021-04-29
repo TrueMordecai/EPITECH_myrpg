@@ -70,5 +70,12 @@ void player_update(player_t *player, float dt)
         player->body->velocity.y = offset.y;
     player->pos = (sfVector2f){
         player->body->pos.x * M_TO_PX, player->body->pos.y * M_TO_PX};
+    if (player->body
+        && ((int)player->body->pos.x != player->last_pos.x
+            || (int)player->body->pos.y != player->last_pos.y)) {
+        player->last_pos =
+            (sfVector2i){player->body->pos.x, player->body->pos.y};
+        zone_interract_move(player->rpg->map->current_zone);
+    }
     sfRectangleShape_setPosition(player->entity->rect, player->pos);
 }

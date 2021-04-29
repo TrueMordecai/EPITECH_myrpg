@@ -83,9 +83,14 @@ static void init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     init_ennemies(fight, nb_ennemies, fight->entities[0]->pos);
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
+        animations_set_animation(&fight->entities[i]->anim, 0);
+        animations_pause(&fight->entities[i]->anim);
         fight->entities[i]->fight = fight;
         fight->grid[fight->entities[i]->pos].entity = fight->entities[i];
         entity_init(fight->entities[i]);
+        player->dir = (sfVector2i){0, 0};
+        player->body->velocity = (pe_vec2f_t){0, 0};
+        player->body->force = (pe_vec2f_t){0, 0};
     }
 }
 

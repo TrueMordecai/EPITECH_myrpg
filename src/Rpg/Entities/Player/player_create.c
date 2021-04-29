@@ -15,6 +15,7 @@ player_t *player_create(rpg_t *rpg)
     sfRectangleShape *rect;
 
     player->pos = (sfVector2f){6 * M_TO_PX, 6 * M_TO_PX};
+    player->last_pos = (sfVector2i){6, 6};
     rect = sfRectangleShape_create();
     sfRectangleShape_setSize(rect, (sfVector2f){32, 32});
     player->entity = entity_create(player, PLAYER, ALLIES, 0);
