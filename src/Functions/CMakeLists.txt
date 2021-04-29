@@ -13,5 +13,6 @@ set(SRC
     ${SRCROOT}/my_strlen_to.c
     ${SRCROOT}/my_strndup.c
     ${SRCROOT}/read_file.c
+    ${SRCROOT}/trim_str.c
     PARENT_SCOPE
 )

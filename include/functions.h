@@ -81,4 +81,6 @@ int my_strlen_to(char *str, char end);
 char *my_strndup(char const *str, size_t n);
 char *read_file(char const *path, size_t *file_size);
 
+char *trim_str(char const **start, char const **end);
+
 #endif /* !FUNCTIONS_H */

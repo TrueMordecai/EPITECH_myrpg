@@ -22,9 +22,10 @@
 ///
 /// config file lines of key-value pairs formatted as follows
 /// <code>KEY = VALUE</code>
+/// <code>MULTI WORD KEY = VALUE WORD2 ...</code>
 ///
-/// @c KEY is a string of any characters except whitespace
-/// (see isspace(3)), the equal sign ('='), and the hash sign ('#').
+/// @c KEY is a string of any characters except equal ('='),
+/// and hash signs ('#').
 ///
 /// @c VALUE is a string comprising any character execpt the hash sign ('#'),
 //  it starts at the first non-whitespace character after the equals
