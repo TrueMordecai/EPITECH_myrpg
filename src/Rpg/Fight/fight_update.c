@@ -78,6 +78,9 @@ void fight_update(fight_t *fight, float dt)
     fight_reset_buff(fight);
     for (int i = 0; i < fight->nb_entities; i++)
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
+    if (fight->entities[fight->entity_turn]->team == ENNEMIES
+        && fight->entities[fight->entity_turn]->actions.length == 0)
+        fight_new_entity(fight);
     if (!fight_rm_dead_entities(fight)) {
         timeline_update(&fight->timeline, dt);
         spells_bar_update(

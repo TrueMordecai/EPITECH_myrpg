@@ -12,7 +12,7 @@
 #include "Rpg/Fight/timeline.h"
 #include "Rpg/rpg.h"
 
-static void update_grabbed(
+static int update_grabbed(
     timeline_t *timeline, sfEvent *event, sfRenderWindow *window)
 {
     sfVector2i mouse_pos = {event->mouseButton.x, event->mouseButton.y};
@@ -20,14 +20,16 @@ static void update_grabbed(
         sfRenderWindow_mapPixelToCoords(window, mouse_pos, timeline->view);
 
     if (timeline->grabbed)
-        return;
+        return 0;
     if (mouse_pos_view.x >= 0
         && mouse_pos_view.x
             <= (FRAME_WIDTH + FRAME_SPACING) * timeline->frames.length
         && mouse_pos_view.y >= 0 && mouse_pos_view.y <= FRAME_WIDTH + 5) {
         timeline->grabbed = 1;
         timeline->last_pos = mouse_pos;
+        return 1;
     }
+    return 0;
 }
 
 static void correct_pos(timeline_t *timeline, sfRenderWindow *window)
@@ -65,7 +67,7 @@ static void update_pos(
     correct_pos(timeline, window);
 }
 
-static void send_event_to_button(timeline_t *timeline, sfEvent *event)
+static int send_event_to_button(timeline_t *timeline, sfEvent *event)
 {
     sfRenderWindow *window = timeline->fight->rpg->state->game_data->window;
     sfVector2f pos;
@@ -84,21 +86,22 @@ static void send_event_to_button(timeline_t *timeline, sfEvent *event)
         event->mouseButton.x = (int)pos.x;
         event->mouseButton.y = (int)pos.y;
     } else
-        return;
-    sw_send_event(&timeline->turn_btn, event);
+        return SW_PASS;
+    return sw_send_event(&timeline->turn_btn, event);
 }
 
-void timeline_handle_events(timeline_t *timeline, sfEvent *event)
+int timeline_handle_events(timeline_t *timeline, sfEvent *event)
 {
     sfRenderWindow *window = timeline->fight->rpg->state->game_data->window;
 
     if (event->type == sfEvtMouseButtonPressed
-        && event->mouseButton.button == sfMouseLeft)
-        update_grabbed(timeline, event, window);
+        && event->mouseButton.button == sfMouseLeft
+        && update_grabbed(timeline, event, window))
+        return 1;
     if (event->type == sfEvtMouseButtonReleased
         && event->mouseButton.button == sfMouseLeft && timeline->grabbed)
         timeline->grabbed = 0;
     if (event->type == sfEvtMouseMoved && timeline->grabbed)
         update_pos(timeline, event, window);
-    send_event_to_button(timeline, event);
+    return (send_event_to_button(timeline, event) == SW_OK);
 }

@@ -51,7 +51,7 @@ void frame_destroy(frame_t *frame);
 void timeline_init(timeline_t *timeline, struct fight_t *fight);
 void timeline_update_time(timeline_t *timeline, float dt);
 void timeline_update(timeline_t *timeline, float dt);
-void timeline_handle_events(timeline_t *timeline, sfEvent *event);
+int timeline_handle_events(timeline_t *timeline, sfEvent *event);
 int timeline_get_entity_id(timeline_t *timeline, entity_t *entity);
 void timeline_new_turn(timeline_t *timeline, entity_t *playing_entity);
 void timeline_remove_entity(timeline_t *timeline, entity_t *entity);
