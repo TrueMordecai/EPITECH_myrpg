@@ -7,6 +7,7 @@
 
 #include <libmy/printf.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "Rpg/Entities/player.h"
 #include "Rpg/Fight/fight.h"

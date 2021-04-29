@@ -11,10 +11,12 @@
 
 void stats_reset(stats_t *stats, int only_pa_pm)
 {
-    stats->current_pa = stats->pa;
-    stats->current_pm = stats->pm;
-    if (!only_pa_pm)
+    if (!only_pa_pm) {
+        stats_clear_effects(stats);
         stats->current_life = stats->life;
+    }
+    stats->current_pa = stats->pa;
+    stats->current_pm = stats->pm;        
 }
 
 void stats_display(stats_t *stats)
