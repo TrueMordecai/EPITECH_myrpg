@@ -7,7 +7,6 @@
 
 #include "Rpg/InfoBox/infobox.h"
 #include "Rpg/rpg.h"
-#include "Rpg/InfoBox/infobox_effect.h"
 #include "Rpg/InfoBox/infobox_entity.h"
 #include "Rpg/InfoBox/infobox_spell.h"
 
@@ -27,7 +26,6 @@ static infobox_base_t *infobox_alloc(enum infobox_type type, void *data)
                     return malloc(sizeof(infobox_spell_debuff_t));
                 default: return NULL;
             }
-        case INFOBOX_EFFECT: return malloc(sizeof(infobox_effect_t));
         case INFOBOX_ENTITY: return malloc(sizeof(infobox_entity_t));
         default: return NULL; ;
     }

@@ -21,7 +21,7 @@ player_t *player_create(rpg_t *rpg)
     player->entity->rect = rect;
     player->entity->stats = stats_create();
     player->rpg = rpg;
-    player->entity->name = "Inspector";
+    player->entity->name = "Knight";
     sfRectangleShape_setTexture(player->entity->rect,
         get_texture(&rpg->state->game_data->assets, player->entity->name),
         true);

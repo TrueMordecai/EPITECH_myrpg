@@ -15,7 +15,6 @@
 
 #include "Rpg/Entities/entity.h"
 
-#define TURN_TIME 30.0
 #define FRAME_WIDTH 64.0
 #define FRAME_SPACING 5.0
 #define CIRCLE_RADIUS 50
@@ -33,11 +32,9 @@ typedef struct timeline {
     sw_button_t turn_btn;
     sfView *view;
     struct fight_t *fight;
-    float time_past;
     int current;
     int hovered;
     float time_hovered;
-    sfRectangleShape *time_rect;
     sfVector2i last_pos;
     /// vector of frame_t
     my_vec_t frames;

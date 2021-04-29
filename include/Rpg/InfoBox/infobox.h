@@ -10,8 +10,8 @@
 
 #include <SFML/Graphics.h>
 
-#define INFO_WAIT 0.1f
-enum infobox_type { INFOBOX_SPELL, INFOBOX_EFFECT, INFOBOX_ENTITY };
+#define INFO_WAIT 0.5f
+enum infobox_type { INFOBOX_SPELL, INFOBOX_ENTITY };
 
 struct rpg_t;
 

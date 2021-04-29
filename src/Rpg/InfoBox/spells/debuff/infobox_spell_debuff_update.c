@@ -14,7 +14,7 @@
 static void update_type(infobox_spell_debuff_t *info, spell_debuff_t *spell)
 {
     char *str = "Nothing";
-    switch (spell->type) {
+    switch ((int)spell->type) {
         case EFFECT_BOOST: str = "Boosts"; break;
         case EFFECT_DAMAGE: str = "Damages"; break;
         case (EFFECT_DAMAGE | EFFECT_BOOST): str = "Boosts and damages"; break;

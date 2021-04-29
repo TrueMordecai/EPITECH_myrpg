@@ -38,5 +38,4 @@ void timeline_remove_entity(timeline_t *timeline, entity_t *entity)
     if (timeline->current <= id)
         return;
     timeline->current--;
-    timeline_update_time(timeline, 0);
 }

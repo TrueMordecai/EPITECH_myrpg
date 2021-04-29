@@ -11,21 +11,6 @@
 #include "Rpg/Fight/timeline.h"
 #include "Rpg/rpg.h"
 
-void timeline_update_time(timeline_t *timeline, float dt)
-{
-    float new_height;
-
-    timeline->time_past += dt;
-    new_height = (timeline->time_past / TURN_TIME) * FRAME_WIDTH;
-    sfRectangleShape_setPosition(timeline->time_rect,
-        (sfVector2f){timeline->current * (FRAME_WIDTH + FRAME_SPACING),
-            FRAME_WIDTH - new_height - 5});
-    sfRectangleShape_setSize(
-        timeline->time_rect, (sfVector2f){FRAME_WIDTH, new_height});
-    if (timeline->time_past > TURN_TIME)
-        fight_new_entity(timeline->fight);
-}
-
 void timeline_update_hovered(timeline_t *timeline, float dt)
 {
     sfRenderWindow *window = timeline->fight->rpg->state->game_data->window;
@@ -54,7 +39,6 @@ void timeline_update_hovered(timeline_t *timeline, float dt)
 void timeline_update(timeline_t *timeline, float dt)
 {
     timeline_update_hovered(timeline, dt);
-    timeline_update_time(timeline, dt);
     for (size_t i = 0; i < timeline->frames.length; i++)
         frame_update(((frame_t *)timeline->frames.data) + i);
 }

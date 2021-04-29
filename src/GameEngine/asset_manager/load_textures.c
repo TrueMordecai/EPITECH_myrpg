@@ -19,7 +19,7 @@ void load_all_textures(asset_manager_t *manager)
     load_texture(manager, "turn_pass", "assets/Textures/turn_pass.png", 0);
     load_texture(manager, "spells", "assets/Textures/spells.png", 0);
     load_texture(
-        manager, "Inspector", "assets/Textures/Characters/Inspector.png", 0);
+        manager, "Knight", "assets/Textures/Characters/Knight.png", 0);
     load_texture(
         manager, "Skeleton", "assets/Textures/Characters/skeleton.png", 0);
     load_fonts(manager);
