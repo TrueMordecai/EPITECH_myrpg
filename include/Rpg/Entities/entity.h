@@ -76,7 +76,7 @@ void entity_handle_events(entity_t *entity, sfEvent event);
 void entity_draw(entity_t *entity, sfRenderWindow *wind);
 void entity_destroy(entity_t *entity);
 
-void entity_start_turn(entity_t *entity);
+void entity_start_turn(entity_t *entity, int first);
 void entity_end_turn(entity_t *entity);
 void entity_compute_move(entity_t *entity);
 

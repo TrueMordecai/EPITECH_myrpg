@@ -22,5 +22,7 @@ void load_all_textures(asset_manager_t *manager)
         manager, "Knight", "assets/Textures/Characters/Knight.png", 0);
     load_texture(
         manager, "Skeleton", "assets/Textures/Characters/skeleton.png", 0);
+    load_texture(
+        manager, "Green Man", "assets/Textures/Characters/Greenman.png", 0);
     load_fonts(manager);
 }

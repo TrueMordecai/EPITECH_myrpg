@@ -53,6 +53,7 @@ void entity_draw_spell_sight(entity_t *entity, int update)
 static void draw_spell_range(entity_t *entity, spell_base_t *spell, int tile)
 {
     int *area = fight_get_range(entity->fight, tile, spell->area, WALKABLE);
+
     if (!area)
         return;
     for (int i = 0; area[i] != END_ARRAY; i++)
@@ -68,8 +69,8 @@ void entity_draw_spell_cell(entity_t *entity)
     spell_base_t *spell =
         MY_VEC_GET_ELEM(spell_base_t *, &entity->spells, entity->spell_select);
 
-    entity->spell_cell = -1;
-    if (!entity->spell_sight || !entity->spell_range)
+    entity->spell_cell = INEXISTING;
+    if (!entity->spell_sight || !entity->spell_range || tile == INEXISTING)
         return;
     for (int i = 0; entity->spell_range[i] != END_ARRAY; i++)
         if (entity->spell_range[i] == tile) {

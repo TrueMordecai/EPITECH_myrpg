@@ -27,13 +27,17 @@ static void reset_spells_turn(entity_t *entity)
     }
 }
 
-void entity_start_turn(entity_t *entity)
+void entity_start_turn(entity_t *entity, int first)
 {
     reset_spells_turn(entity);
     stats_reset(entity->stats, 1);
     apply_effect_turn_start(entity->stats);
     entity_update_move_possibilities(entity);
     entity_update_spell_sight(entity);
+    if (entity->team == ALLIES || first)
+        return;
+    my_printf("%d pm\n", entity->stats->current_pm);
+    entity_compute_move(entity);
 }
 
 void entity_end_turn(entity_t *entity)

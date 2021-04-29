@@ -66,12 +66,13 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
 void entity_cast_spell(entity_t *from, int to_cell)
 {
     spell_base_t *spell = entity_get_select_spell(from);
-    entity_t *to = from->fight->grid[to_cell].entity;
+    entity_t *to;
     int *area;
 
-    if (!spell || from->spell_cell == -1 || from->stats->current_pa < spell->pa
+    if (!spell || to_cell == -1 || from->stats->current_pa < spell->pa
         || spell->cast_left-- <= 0)
         return;
+    to = from->fight->grid[to_cell].entity;
     from->stats->current_pa -= spell->pa;
     entity_add_action(from, ATTACK)->attack.cell = to_cell;
     if (spell->area > 1) {

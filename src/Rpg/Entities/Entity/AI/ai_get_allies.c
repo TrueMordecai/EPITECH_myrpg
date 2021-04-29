@@ -25,7 +25,7 @@ static sfVector2i get_allies_counts(entity_t *entity, int max_dist)
 int get_allies(fight_t *fight, entity_t *entity, \
 my_vec_t *allies)
 {
-    int po = 5;
+    int po = (*((spell_base_t **)entity->spells.data))->po;
     int max_dist = po + entity->stats->current_pm;
     sfVector2i counts = get_allies_counts(entity, max_dist);
 

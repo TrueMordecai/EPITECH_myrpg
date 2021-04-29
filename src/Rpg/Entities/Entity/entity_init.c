@@ -9,5 +9,5 @@
 
 void entity_init(entity_t *entity)
 {
-    entity_start_turn(entity);
+    entity_start_turn(entity, 1);
 }

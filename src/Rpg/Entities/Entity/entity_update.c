@@ -80,7 +80,7 @@ void entity_update(entity_t *entity, float dt, int playing)
         entity->alive -= dt * 250;
     if (!playing || entity->alive <= 0)
         return;
-    if (entity->state == IDLE) {
+    if (entity->state == IDLE && entity->team == ALLIES) {
         if (entity->spell_select < 0) {
             entity_draw_move_possibilities(entity, 0);
             entity_draw_move_path(entity, 1);

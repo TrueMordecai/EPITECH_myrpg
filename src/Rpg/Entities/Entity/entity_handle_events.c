@@ -15,8 +15,4 @@ void entity_handle_events(entity_t *entity, sfEvent event)
         else
             entity_cast_spell(entity, entity->spell_cell);
     }
-    if (event.type == sfEvtKeyPressed) {
-        if (event.key.code == sfKeyI && entity->team == ENNEMIES)
-            entity_compute_move(entity);
-    }
 }

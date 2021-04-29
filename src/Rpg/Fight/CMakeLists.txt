@@ -15,6 +15,7 @@ set(SRC
     ${SRCROOT}/fight_draw.c
     ${SRCROOT}/fight_get_tile.c
     ${SRCROOT}/fight_handle_events.c
+    ${SRCROOT}/fight_init_entities.c
     ${SRCROOT}/fight_pathfinding_2.c
     ${SRCROOT}/fight_pathfinding.c
     ${SRCROOT}/fight_pos_vec_conversions.c
