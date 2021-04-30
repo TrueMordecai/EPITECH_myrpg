@@ -33,11 +33,7 @@ void allies_add_random_ally(allies_t *allies)
     sfRectangleShape_setTexture(entity->rect,
         get_texture(&allies->rpg->state->game_data->assets, entity->name),
         true);
-    for (int i = 0; i < 4; i++) {
-        entity->stats->level = get_randi(1, 5);
-        entity->stats->elements[i] = get_randi(0, 20);
-        entity->stats->resistances[i] = get_randi(0, 20);
-    }
+    stats_init_from_level(entity->stats, get_randi(1, 5));
     entity_init_spells(entity, allies->rpg);
     allies_add_ally(allies, entity);
 }

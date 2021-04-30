@@ -40,8 +40,8 @@ void apply_effect_turn_ends(stats_t *stats)
         if (!(effect->spell->type & EFFECT_DAMAGE))
             continue;
         for (int j = 0; j < 4; j++)
-            stats->current_life -= effect->spell->damages[j]
-                * (1 + effect->from->stats->elements[j] / 30.f);
+            stats->current_life -= stats_compute_damages(
+                effect->from->stats, stats, j, effect->spell->damages[j]);
     }
 }
 

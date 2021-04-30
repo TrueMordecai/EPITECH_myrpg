@@ -6,6 +6,7 @@ set(SRC
     ${INCROOT}/stats.h
     ${SRCROOT}/stats_apply_effects_2.c
     ${SRCROOT}/stats_apply_effects.c
+    ${SRCROOT}/stats_compute_damages.c
     ${SRCROOT}/stats_create.c
     ${SRCROOT}/stats_destroy.c
     ${SRCROOT}/stats_init.c

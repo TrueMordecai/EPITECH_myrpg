@@ -12,7 +12,7 @@ void handle_aggro(zone_t *zone, int special)
 {
     if (special != AGGRO)
         return;
-    if (get_randi(0, 100) >= 20)
+    if (get_randi(0, 100) >= 10)
         return;
     battle_start(&zone->battle);
 }

@@ -48,6 +48,7 @@ static int init_ennemy(fight_t *fight, int pos, int *id)
     fight->entities[*id + 1]->fight = fight;
     entity_init_rect(fight->entities[*id + 1], "Skeleton",
         sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
+    stats_init_from_level(fight->entities[*id + 1]->stats, get_randi(1, 3));
     animations_update_rect(&fight->entities[*id + 1]->anim);
     return 0;
 }
@@ -103,8 +104,6 @@ void fight_init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     fight->entities[0] = player->entity;
     fight->entities[0]->pos = player->body->pos.x - fight->pos.x
         + (player->body->pos.y - fight->pos.y) * fight->size.x;
-    my_printf(
-        "%d entities, including %d allies\n", fight->nb_entities, nb_allies);
     fill_entities(fight, nb_ennemies, fight->entities[0]->pos, allies);
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);

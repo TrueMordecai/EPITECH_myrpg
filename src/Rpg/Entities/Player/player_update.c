@@ -47,23 +47,29 @@ static void update_dir(player_t *player, sfVector2f offset)
         player_update_anim_dir(player, offset, dir);
 }
 
+static void fill_offset(player_t *player, sfVector2f *offset)
+{
+    float amplitude = 6;
+
+    if (sfKeyboard_isKeyPressed(sfKeyZ))
+        offset->y = -amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyS))
+        offset->y = amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyQ))
+        offset->x = -amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyD))
+        offset->x = amplitude;
+    update_dir(player, *offset);
+}
+
 void player_update(player_t *player, float dt)
 {
     sfVector2f offset = {0, 0};
-    float amplitude = 6;
 
     animations_update(&player->entity->anim, dt);
     if (!player->body)
         return;
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        offset.y = -amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        offset.y = amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
-        offset.x = -amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyD))
-        offset.x = amplitude;
-    update_dir(player, offset);
+    fill_offset(player, &offset);
     if (offset.x != 0)
         player->body->velocity.x = offset.x;
     if (offset.y != 0)

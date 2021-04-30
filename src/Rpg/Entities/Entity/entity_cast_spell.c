@@ -49,8 +49,8 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
         return;
     if (spell->type == SPELL_ATTACK) {
         for (int i = 0; i < 4; i++)
-            to->stats->current_life -= ((spell_attack_t *)spell)->damages[i]
-                * (1 + from->stats->elements[i] / 30.f);
+            to->stats->current_life -= stats_compute_damages(from->stats,
+                to->stats, i, ((spell_attack_t *)spell)->damages[i]);
     }
     if (spell->type == SPELL_HEAL)
         to->stats->current_life += ((spell_heal_t *)spell)->heal
