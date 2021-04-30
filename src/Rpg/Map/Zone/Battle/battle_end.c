@@ -16,7 +16,9 @@ void battle_end(battle_t *battle)
     battle->zone->is_battle = 0;
     if (battle->player->entity->alive == 1) {
         stats_gain_xp(battle->player->entity->stats, 51);
-    }
+        play_sound(&battle->fight->rpg->state->game_data->audio, "fight_win");
+    } else
+        play_sound(&battle->fight->rpg->state->game_data->audio, "fight_lose");
     fight_destroy(battle->fight);
     battle->player->body->velocity = (pe_vec2f_t){0, 0};
     battle->player->body->force = (pe_vec2f_t){0, 0};

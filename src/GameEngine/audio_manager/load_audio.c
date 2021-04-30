@@ -10,6 +10,14 @@
 static void load_sounds(audio_manager_t *manager)
 {
     load_sound(manager, "click", "assets/Sounds/Menus/click.wav");
+    load_sound(manager, "pass_turn", "assets/Sounds/Fight/MiniImpact.wav");
+    load_sound(manager, "fight_lose", "assets/Sounds/Fight/GameOver.wav");
+    load_sound(manager, "fight_win", "assets/Sounds/Fight/Success3.wav");
+    load_sound(manager, "spell_attack", "assets/Sounds/Fight/Hit.wav");
+    load_sound(manager, "spell_heal", "assets/Sounds/Fight/Gold1.wav");
+    load_sound(manager, "spell_effect", "assets/Sounds/Fight/Bonus.wav");
+    load_sound(manager, "spell_debuff", "assets/Sounds/Fight/PowerUp1.wav");
+    load_sound(manager, "entity_death", "assets/Sounds/Fight/Spirit.wav");
 }
 
 static void load_music_tracks(audio_manager_t *manager)
