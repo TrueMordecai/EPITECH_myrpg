@@ -25,6 +25,7 @@ void stats_init_blank(stats_t *stats)
 
 void stats_init_from_level(stats_t *stats, int level)
 {
+    level = MAX(1, level);
     stats->level = level;
     for (int i = 0; i < 4; i++) {
         stats->elements[i] = level * 5 + get_randi(-5, 15);

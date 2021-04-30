@@ -37,6 +37,10 @@ static int get_pos(fight_t *fight, int player_pos)
 
 static int init_ennemy(fight_t *fight, int pos, int *id)
 {
+    zone_t *zone = fight->rpg->map->current_zone;
+    int zone_level =
+        2.5 * (1 + ((zone->mother_zone != -1) ? zone->mother_zone : zone->id));
+
     if (pos == -1) {
         (*id)--;
         return 1;
@@ -48,7 +52,8 @@ static int init_ennemy(fight_t *fight, int pos, int *id)
     fight->entities[*id + 1]->fight = fight;
     entity_init_rect(fight->entities[*id + 1], "Skeleton",
         sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
-    stats_init_from_level(fight->entities[*id + 1]->stats, get_randi(1, 3));
+    stats_init_from_level(fight->entities[*id + 1]->stats,
+        get_randi(zone_level - 2, zone_level + 2));
     animations_update_rect(&fight->entities[*id + 1]->anim);
     return 0;
 }

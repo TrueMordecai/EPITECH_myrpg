@@ -107,5 +107,6 @@ int zone_init_from_file(zone_t *zone, int id, int door, int mother)
     zone->id = id;
     zone->mother_zone = mother;
     zone_place_at_door(zone, door);
+    my_printf("Id %d, mother id %d\n", zone->id, zone->mother_zone);
     return 0;
 }
