@@ -14,6 +14,9 @@ void battle_end(battle_t *battle)
     battle->size = battle->zone->size;
     map_reset_zoom(battle->zone->map);
     battle->zone->is_battle = 0;
+    if (battle->player->entity->alive == 1) {
+        stats_gain_xp(battle->player->entity->stats, 51);
+    }
     fight_destroy(battle->fight);
     battle->player->body->velocity = (pe_vec2f_t){0, 0};
     battle->player->body->force = (pe_vec2f_t){0, 0};

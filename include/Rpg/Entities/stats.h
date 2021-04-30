@@ -10,6 +10,7 @@
 
 #include <libmy/collections/vec.h>
 
+#define XP_TO_LEVEL_UP 100
 enum elements { EARTH, FIRE, WATER, WIND };
 
 struct stats_t;
@@ -30,6 +31,7 @@ typedef struct stats_t {
     int pa;
     int pm;
     int level;
+    int xp;
     int elements[4];
     int resistances[4];
     my_vec_t effects;
@@ -42,6 +44,9 @@ void stats_init_pa_pm(stats_t *stats, int pa, int pm);
 void stats_init_from_level(stats_t *stats, int level);
 void stats_reset(stats_t *stats, int only_pa_pm);
 void stats_destroy(stats_t *stats);
+
+void stats_level_up(stats_t *stats);
+void stats_gain_xp(stats_t *stats, int xp);
 
 int stats_compute_damages(stats_t *from, stats_t *to, int element, int value);
 
