@@ -23,7 +23,7 @@ int zone_interract_move(zone_t *zone)
     sfVector2i pos = player->last_pos;
     int special;
 
-    if (!zone->player_body)
+    if (!zone->player_body || zone->is_battle)
         return 0;
     special = zone->special[pos.x + pos.y * zone->size.x];
     handle_aggro(zone, special);

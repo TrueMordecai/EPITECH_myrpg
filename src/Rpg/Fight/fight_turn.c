@@ -36,6 +36,7 @@ int fight_new_entity(fight_t *fight)
 {
     int next_entity = get_next_entity(fight, fight->entity_turn + 1);
 
+    play_sound(&fight->rpg->state->game_data->audio, "pass_turn");
     entity_end_turn(fight->entities[fight->entity_turn++]);
     if (next_entity == -1)
         return fight_new_turn(fight);

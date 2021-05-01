@@ -7,11 +7,14 @@
 
 #include <libmy/printf.h>
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 void entity_update_alive(entity_t *entity)
 {
     if (stats_update(entity->stats)) {
         entity->alive = 0;
+        play_sound(
+            &entity->fight->rpg->state->game_data->audio, "entity_death");
         sfRectangleShape_setTextureRect(
             entity->rect, (sfIntRect){0, 96, 16, 16});
     }

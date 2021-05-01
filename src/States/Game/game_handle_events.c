@@ -11,10 +11,23 @@
 
 state_t *pause_state_create(game_data_t *data);
 
+void game_state_handle_battle_music(
+    game_state_t *state, int was_battle, int is_battle)
+{
+    if (was_battle == is_battle)
+        return;
+    stop_music(&state->base.game_data->audio);
+    if (is_battle)
+        play_music(&state->base.game_data->audio, "fight", 1);
+    else
+        play_music(&state->base.game_data->audio, "game", 1);
+}
+
 int game_state_handle_events(game_state_t *state)
 {
     game_data_t *data = state->base.game_data;
     sfEvent event;
+    int was_battle = state->rpg->map->current_zone->is_battle;
 
     while (sfRenderWindow_pollEvent(data->window, &event)) {
         if (event.type == sfEvtClosed)
@@ -28,5 +41,7 @@ int game_state_handle_events(game_state_t *state)
                 state->base.game_data, &pause_state_create, false);
         rpg_handle_event(state->rpg, event);
     }
+    game_state_handle_battle_music(
+        state, was_battle, state->rpg->map->current_zone->is_battle);
     return 0;
 }

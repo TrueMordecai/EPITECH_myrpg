@@ -74,7 +74,7 @@ void entity_cast_spell(entity_t *from, int to_cell)
         return;
     to = from->fight->grid[to_cell].entity;
     from->stats->current_pa -= spell->pa;
-    entity_add_action(from, ATTACK)->attack.cell = to_cell;
+    entity_add_action(from, ATTACK, spell)->attack.cell = to_cell;
     if (spell->area > 1) {
         area = fight_get_range(from->fight, to_cell, spell->area, WALKABLE);
         if (!area)
