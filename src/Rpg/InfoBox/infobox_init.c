@@ -32,14 +32,14 @@ static void init_rects(infobox_base_t *base)
         base->icon, (sfVector2f){115 * SL(base->rpg), 115 * SL(base->rpg)});
     sfRectangleShape_setPosition(
         base->icon, (sfVector2f){30 * SL(base->rpg), 30 * SL(base->rpg)});
-    sfRectangleShape_setOutlineColor(base->icon, sfBlack);
-    sfRectangleShape_setOutlineThickness(base->icon, -1);
+    sfRectangleShape_setOutlineColor(base->icon, sfColor_fromRGB(72, 104, 89));
+    sfRectangleShape_setOutlineThickness(base->icon, 3);
     sfRectangleShape_setSize(base->box,
         (sfVector2f){base->window_size.x * 0.25, base->window_size.y * 0.7});
-    sfRectangleShape_setOutlineColor(base->box, sfBlack);
+    sfRectangleShape_setOutlineColor(base->box, sfColor_fromRGB(44, 59, 57));
     sfRectangleShape_setOutlineThickness(base->box, -3);
     sfRectangleShape_setFillColor(
-        base->box, sfColor_fromRGBA(80, 80, 80, 190));
+        base->box, sfColor_fromRGBA(141, 166, 152, 130));
 }
 
 void infobox_init(infobox_base_t *base, void *data)

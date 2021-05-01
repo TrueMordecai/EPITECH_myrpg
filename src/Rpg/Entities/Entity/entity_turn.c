@@ -36,7 +36,6 @@ void entity_start_turn(entity_t *entity, int first)
     entity_update_spell_sight(entity);
     if (entity->team == ALLIES || first)
         return;
-    my_printf("%d pm\n", entity->stats->current_pm);
     entity_compute_move(entity);
 }
 

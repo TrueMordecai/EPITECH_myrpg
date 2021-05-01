@@ -34,7 +34,7 @@ void spells_bar_update_outlines(spells_bar_t *bar)
     for (int i = 0; i < bar->nb_frames; i++)
         sfRectangleShape_setOutlineColor(bar->frames[i],
             (i == bar->current_frame) ? sfColor_fromRGB(252, 120, 0)
-                                      : sfBlack);
+                                      : sfColor_fromRGB(72, 104, 89));
 }
 
 static int update_selected(

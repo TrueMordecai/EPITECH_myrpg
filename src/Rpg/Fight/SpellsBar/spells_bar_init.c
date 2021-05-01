@@ -20,8 +20,8 @@ static void init_spell_frame(spells_bar_t *bar, int x, int y)
     sfRectangleShape_setPosition(
         rect, (sfVector2f){x * FRAME_WIDTH, y * FRAME_WIDTH});
     sfRectangleShape_setFillColor(rect, sfTransparent);
-    sfRectangleShape_setOutlineColor(rect, sfBlack);
-    sfRectangleShape_setOutlineThickness(rect, -1);
+    sfRectangleShape_setOutlineColor(rect, sfColor_fromRGB(72, 104, 89));
+    sfRectangleShape_setOutlineThickness(rect, -2);
     sfRectangleShape_setTexture(rect, get_texture(assets, "spells"), 1);
 }
 
@@ -31,13 +31,13 @@ static void init_rects(spells_bar_t *bar)
         (sfVector2f){
             FRAME_WIDTH * SPELLS_BAR_WIDTH, FRAME_WIDTH * SPELLS_BAR_HEIGHT});
     sfRectangleShape_setFillColor(
-        bar->background, sfColor_fromRGBA(100, 100, 100, 150));
+        bar->background, sfColor_fromRGBA(111, 131, 120, 150));
     sfRectangleShape_setPosition(
         bar->move_bar, (sfVector2f){0, -FRAME_WIDTH / 10 - 15});
     sfRectangleShape_setSize(bar->move_bar,
         (sfVector2f){FRAME_WIDTH * SPELLS_BAR_WIDTH, FRAME_WIDTH / 10 + 15});
     sfRectangleShape_setFillColor(
-        bar->move_bar, sfColor_fromRGBA(100, 100, 100, 255));
+        bar->move_bar, sfColor_fromRGBA(111, 131, 120, 255));
 }
 
 static void init_text(sfText *text, sfFont *font, char *str, sfVector2f pos)
@@ -64,9 +64,9 @@ static void init_life_pa_pm(spells_bar_t *bar)
     sfRectangleShape_setFillColor(bar->life_bg, sfTransparent);
     sfRectangleShape_setPosition(bar->life_bg, (sfVector2f){len * 0.2, -17.5});
     sfRectangleShape_setSize(bar->life_bg, (sfVector2f){len * 0.6, 15});
-    sfRectangleShape_setOutlineColor(bar->life_bg, sfBlack);
+    sfRectangleShape_setOutlineColor(bar->life_bg, sfColor_fromRGB(44, 59, 57));
     sfRectangleShape_setOutlineThickness(bar->life_bg, -1);
-    init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 20.0, -21});
+    init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 30.0, -21});
     sfText_setFillColor(bar->text_pa, sfBlue);
     init_text(
         bar->text_pm, font, "6/6 PM", (sfVector2f){16.5 * len / 20.0, -21});

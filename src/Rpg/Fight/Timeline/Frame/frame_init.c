@@ -17,8 +17,9 @@ static void init_entity_rect(frame_t *frame, entity_t *entity, int id)
         frame->entity_rect, (sfVector2f){FRAME_WIDTH, FRAME_WIDTH});
     sfRectangleShape_setFillColor(
         frame->entity_rect, sfRectangleShape_getFillColor(entity->rect));
-    sfRectangleShape_setOutlineColor(frame->entity_rect, sfBlack);
-    sfRectangleShape_setOutlineThickness(frame->entity_rect, -1);
+    sfRectangleShape_setOutlineColor(
+        frame->entity_rect, sfColor_fromRGB(44, 59, 57));
+    sfRectangleShape_setOutlineThickness(frame->entity_rect, -2);
     sfRectangleShape_setTexture(
         frame->entity_rect, sfRectangleShape_getTexture(entity->rect), 0);
     sfRectangleShape_setTextureRect(
