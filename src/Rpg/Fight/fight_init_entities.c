@@ -47,6 +47,7 @@ static int init_ennemy(fight_t *fight, int pos, int *id)
     }
     fight->entities[*id + 1] =
         entity_create(NULL, ENNEMY_CAC + get_randi(0, 1), ENNEMIES, pos);
+    fight->grid[pos].entity = fight->entities[*id + 1];
     entity_add_spell(fight->entities[*id + 1], get_spell(fight->rpg, "burn"));
     fight->entities[*id + 1]->stats = stats_create();
     fight->entities[*id + 1]->fight = fight;
@@ -64,6 +65,7 @@ static int init_ally(fight_t *fight, int pos, int *id, entity_t *ally)
         (*id)--;
         return 1;
     }
+    fight->grid[pos].entity = ally;
     fight->entities[*id + 1] = ally;
     fight->entities[*id + 1]->pos = pos;
     sfRectangleShape_setPosition(
@@ -110,10 +112,10 @@ void fight_init_entities(fight_t *fight, int nb_ennemies, player_t *player)
     fight->entities[0]->pos = player->body->pos.x - fight->pos.x
         + (player->body->pos.y - fight->pos.y) * fight->size.x;
     fill_entities(fight, nb_ennemies, fight->entities[0]->pos, allies);
+    fight->grid[player->entity->pos].entity = player->entity;
     for (int i = 0; i < fight->nb_entities; i++) {
         stats_reset(fight->entities[i]->stats, 0);
         fight->entities[i]->fight = fight;
-        fight->grid[fight->entities[i]->pos].entity = fight->entities[i];
         entity_init(fight->entities[i]);
         animations_set_animation(&fight->entities[i]->anim, 0);
         animations_pause(&fight->entities[i]->anim);

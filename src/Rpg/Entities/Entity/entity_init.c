@@ -9,5 +9,6 @@
 
 void entity_init(entity_t *entity)
 {
+    entity->spell_select = -1;
     entity_start_turn(entity, 1);
 }
