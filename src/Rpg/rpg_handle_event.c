@@ -20,6 +20,7 @@ static void debug_fight_start(rpg_t *rpg, sfEvent event)
 
 void rpg_handle_event(rpg_t *rpg, sfEvent event)
 {
+    inventory_handle_events(&rpg->inventory, &event);
     if (event.type == sfEvtKeyPressed) {
         switch (event.key.code) {
             case sfKeyAdd: map_zoom_up_down(rpg->map, 1); break;

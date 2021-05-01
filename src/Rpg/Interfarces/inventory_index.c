@@ -13,8 +13,6 @@
 extern void rpg_inventory_draw(rpg_t *game)
 {
     rpg_inventory_mouse_input(game);
-    if (sfKeyboard_isKeyPressed(sfKeyA))
-        game->inventory.is_open = !(game->inventory.is_open);
     if (game->inventory.is_open) {
         sfRenderWindow_drawSprite(game->wind, game->inventory.ui_inventory, 0);
         rpg_draw_equipement(game);
