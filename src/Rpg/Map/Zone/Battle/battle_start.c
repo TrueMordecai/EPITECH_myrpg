@@ -28,6 +28,8 @@ void battle_start(battle_t *battle)
     sfVector2i size = get_size(battle);
     sfVector2i pos = {player_pos.x - size.x / 2, player_pos.y - size.y / 2};
 
+    if (battle->zone->map->rpg->inventory.is_open)
+        inventory_open(&battle->zone->map->rpg->inventory, sfFalse);
     get_size(battle);
     pos.x += MAX(0, 0 - pos.x);
     pos.y += MAX(0, 0 - pos.y);

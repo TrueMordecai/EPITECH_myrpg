@@ -10,5 +10,6 @@
 void rpg_draw(rpg_t *rpg)
 {
     map_draw(rpg->map);
-    rpg_inventory_draw(rpg);
+    if (!rpg->map->current_zone->is_battle)
+        rpg_inventory_draw(rpg);
 }

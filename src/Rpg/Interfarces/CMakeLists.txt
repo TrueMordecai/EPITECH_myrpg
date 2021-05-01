@@ -10,6 +10,7 @@ set(SRC
     ${SRCROOT}/inventory_handle_events.c
     ${SRCROOT}/inventory_index.c
     ${SRCROOT}/inventory_input.c
+    ${SRCROOT}/inventory_open.c
     ${SRCROOT}/inventory_utils.c
     ${SRCROOT}/rpg_create_item.c
     ${SRCROOT}/rpg_create_item_name_gen.c
