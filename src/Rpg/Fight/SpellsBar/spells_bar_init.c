@@ -42,7 +42,7 @@ static void init_rects(spells_bar_t *bar)
 
 static void init_text(sfText *text, sfFont *font, char *str, sfVector2f pos)
 {
-    sfText_setCharacterSize(text, 18);
+    sfText_setCharacterSize(text, 15);
     sfText_setFont(text, font);
     sfText_setString(text, str);
     sfText_setPosition(text, pos);
@@ -52,7 +52,7 @@ static void init_life_pa_pm(spells_bar_t *bar)
 {
     float len = SPELLS_BAR_WIDTH * FRAME_WIDTH;
     sfFont *font =
-        get_font(&bar->fight->rpg->state->game_data->assets, "roboto_font");
+        get_font(&bar->fight->rpg->state->game_data->assets, "pixel2");
 
     bar->life = sfRectangleShape_create();
     bar->life_bg = sfRectangleShape_create();
@@ -66,11 +66,11 @@ static void init_life_pa_pm(spells_bar_t *bar)
     sfRectangleShape_setSize(bar->life_bg, (sfVector2f){len * 0.6, 15});
     sfRectangleShape_setOutlineColor(bar->life_bg, sfColor_fromRGB(44, 59, 57));
     sfRectangleShape_setOutlineThickness(bar->life_bg, -1);
-    init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 30.0, -21});
+    init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 30.0, -18});
     sfText_setFillColor(bar->text_pa, sfBlue);
     init_text(
-        bar->text_pm, font, "6/6 PM", (sfVector2f){16.5 * len / 20.0, -21});
-    sfText_setFillColor(bar->text_pm, sfGreen);
+        bar->text_pm, font, "6/6 PM", (sfVector2f){16.5 * len / 20.0, -18});
+    sfText_setFillColor(bar->text_pm, sfColor_fromRGB(0, 220, 0));
 }
 
 void spells_bar_init(spells_bar_t *bar, fight_t *fight)

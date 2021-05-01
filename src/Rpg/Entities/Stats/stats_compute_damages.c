@@ -12,6 +12,6 @@
 
 int stats_compute_damages(stats_t *from, stats_t *to, int element, int value)
 {
-    return (value * (1 + MAX(0, from->elements[element] / 20.f)))
-        * ((100 - (MIN(1000, to->resistances[element]))) / 100.0);
+    return (value * (1 + MAX(-0.5, from->elements[element] / 20.f)))
+        * ((100 - (MIN(100, to->resistances[element]))) / 100.0);
 }

@@ -38,13 +38,11 @@ extern void destroy_inventory(rpg_t *game)
         free(game->inventory.items[i].name);
     }
     free(game->inventory.items);
+    free(game->inventory.equipement);
     sfSprite_destroy(game->inventory.sprite);
+    sfSprite_destroy(game->inventory.ui_inventory);
+    sfSprite_destroy(game->inventory.container);
     sfSprite_destroy(game->inventory.tooltip);
-    sfTexture_destroy(game->inventory.texture);
     sfText_destroy(game->inventory.text);
-    sfTexture_destroy(game->inventory.texture_tooltip);
-    sfFont_destroy(game->inventory.font);
     sfText_destroy(game->inventory.stat_text);
-    sfFont_destroy(game->inventory.stat_font);
-    sfRenderWindow_destroy(game->wind);
 }

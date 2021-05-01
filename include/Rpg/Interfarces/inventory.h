@@ -19,7 +19,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "Rpg/Entities/stats.h"
-//#include "../rpg.h"
+
+struct rpg_t;
 
 typedef enum {
     COMMON = 0,
@@ -70,12 +71,13 @@ typedef struct inventory_s {
     item_t *equipement;
     sfSprite *container;
     key_state mouse_left;
+    struct rpg_t *rpg;
 }inventory_t;
 
 extern item_t rpg_create_blank_item();
 extern item_t rpg_create_item(unsigned char level, item_rarity_t rarity);
 item_t inventory_init_blanck_item(void);
-extern inventory_t inventory_init(void);
+extern inventory_t inventory_init(struct rpg_t *rpg);
 extern void rpg_create_item_name_generator(item_t *item, int level);
 extern sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w);
 extern void rpg_destroy_item(item_t *i);

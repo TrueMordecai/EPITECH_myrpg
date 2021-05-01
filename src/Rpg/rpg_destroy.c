@@ -10,6 +10,7 @@
 
 void rpg_destroy(rpg_t *rpg)
 {
+    destroy_inventory(rpg);
     map_destroy(rpg->map);
     player_destroy(rpg->player);
     my_hash_map_drop(&rpg->spells);

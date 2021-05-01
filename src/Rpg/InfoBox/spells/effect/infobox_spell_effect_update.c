@@ -70,7 +70,7 @@ void infobox_spell_effect_set_spell(
     bs = info->base.base.box_size;
     infobox_spell_effect_clear_vecs(info);
     update_vecs(info, spell);
-    infobox_init_text(info->lifetime, "Duration: %d turns",
+    infobox_init_text(info->lifetime, "Duration: %d",
         (sfVector3f){0.1 * bs.x, 0.45 * bs.y, -1}, spell->lifetime);
     infobox_init_text(info->max_cumul, "Max stack: %d",
         (sfVector3f){0.55 * bs.x, 0.45 * bs.y, -1}, spell->max_cumul);

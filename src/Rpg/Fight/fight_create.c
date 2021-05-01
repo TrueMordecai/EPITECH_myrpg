@@ -47,7 +47,7 @@ static void init_ui(fight_t *fight)
     timeline_init(&fight->timeline, fight);
     spells_bar_init(&fight->spells_bar, fight);
     fight->infobox =
-        infobox_create(fight->rpg, INFOBOX_ENTITY, NULL, "roboto_font");
+        infobox_create(fight->rpg, INFOBOX_ENTITY, NULL, "pixel2");
 }
 
 fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
