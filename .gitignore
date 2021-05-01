@@ -1,11 +1,21 @@
-include/My
-include/my_containers
-*.a
+# Binary files
 *.o
-.vscode*
-bin
+*.gcno
+*.gcda
+*.a
 my_rpg
 texture_workdir
 datas
 vgcore*
 *~
+# Documentation
+doc/html
+Doxyfile
+
+# CMake
+build
+CMakeFiles
+
+# VSCode
+.vscode/settings.json
+.vscode/launch.json

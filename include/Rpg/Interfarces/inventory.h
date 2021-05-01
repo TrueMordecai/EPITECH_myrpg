@@ -18,6 +18,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "Rpg/Entities/stats.h"
 //#include "../rpg.h"
 
 typedef enum {
@@ -30,13 +31,6 @@ typedef enum {
 } item_rarity_t;
 
 typedef enum {
-    EARTH = 0,
-    FIRE,
-    WATER,
-    WIND
-} item_element_t;
-
-typedef enum {
     NOTHING = 0,
     PRESS = 1,
     HOLD = 2
@@ -46,7 +40,7 @@ typedef struct item_s {
     char *name;
     unsigned char level;
     item_rarity_t rarity;
-    item_element_t elem;
+    enum elements elem;
     unsigned char life;
     unsigned char water;
     unsigned char wind;
@@ -82,7 +76,6 @@ extern item_t rpg_create_blank_item();
 extern item_t rpg_create_item(unsigned char level, item_rarity_t rarity);
 item_t inventory_init_blanck_item(void);
 extern inventory_t inventory_init(void);
-int my_strcpy(char *dest, char *src);
 extern void rpg_create_item_name_generator(item_t *item, int level);
 extern sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w);
 extern void rpg_destroy_item(item_t *i);

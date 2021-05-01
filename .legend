@@ -1,8 +1,8 @@
+Layers nb
 width
 height
-Layers nb
-LayerA posY
-LayerB posY
+LayerA pos size
+LayerB pos size
 Tile Format -> flags [0-3] = tile game specificities, [4-16] = tile id (texture)
 A-Tile(0,0)LayerA-B-Tile(0,0)LayerB A-Tile(1,0)LayerA-C-Tile(1,0)LayerC
 C-Tile(0,1)LayerC

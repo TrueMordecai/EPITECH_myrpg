@@ -1,0 +1,17 @@
+/*
+** EPITECH PROJECT, 2020
+** My runner
+** File description:
+** Physics - world add items
+*/
+
+#include "Physics/physics.h"
+
+int pe_world_add_body(pe_world_t *world, pe_body_t *body)
+{
+    pe_body_compute_aabb(body);
+    pe_body_compute_mass_datas(body);
+    pe_bin_tree_insert_body(world->tree, body);
+    my_vec_push(&world->bodies, &body);
+    return 1;
+}
