@@ -20,6 +20,8 @@ static void load_sounds(audio_manager_t *manager)
     load_sound(manager, "spell_debuff", "assets/Sounds/Fight/PowerUp1.wav");
     load_sound(manager, "entity_death", "assets/Sounds/Fight/Spirit.wav");
     load_sound(manager, "move", "assets/Sounds/Fight/Fx.wav");
+    load_sound(manager, "move_zone", "assets/Sounds/Strange.wav");
+    load_sound(manager, "interract", "assets/Sounds/Coin.wav");
 }
 
 static void load_music_tracks(audio_manager_t *manager)

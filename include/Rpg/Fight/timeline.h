@@ -46,7 +46,7 @@ void frame_update(frame_t *frame);
 void frame_update_id(frame_t *frame, int new_id);
 void frame_set_playing(frame_t *frame, int playing);
 void frame_draw(frame_t *frame, sfRenderWindow *window);
-void frame_destroy(frame_t *frame);
+void frame_destroy(void *frame_ptr);
 
 void timeline_init(timeline_t *timeline, struct fight_t *fight);
 void timeline_update_time(timeline_t *timeline, float dt);
