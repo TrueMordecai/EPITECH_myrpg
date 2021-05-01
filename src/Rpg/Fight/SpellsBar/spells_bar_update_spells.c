@@ -25,6 +25,8 @@ void spells_bar_update_spells(spells_bar_t *bar)
 {
     entity_t *entity = bar->fight->entities[bar->fight->entity_turn];
 
+    if (entity->team == ENNEMIES)
+        return;
     for (int i = 0; i < bar->nb_frames; i++) {
         if ((size_t)i < entity->spells.length)
             update_frame(

@@ -48,6 +48,7 @@ static int update_selected(
         bar->current_frame = -1;
     else
         bar->current_frame = id;
+    play_sound(&bar->fight->rpg->state->game_data->audio, "select");
     spells_bar_update_outlines(bar);
     spells_bar_update_entity_spell(bar);
     return 1;

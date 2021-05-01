@@ -40,6 +40,8 @@ void spells_bar_new_turn(spells_bar_t *bar)
 {
     entity_t *entity = bar->fight->entities[bar->fight->entity_turn];
 
+    if (entity->team == ENNEMIES)
+        return;
     spells_bar_set_selected(bar, entity->spell_select);
     spells_bar_update_spells(bar);
 }
