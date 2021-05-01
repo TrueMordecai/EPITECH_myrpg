@@ -54,6 +54,7 @@ fight_t *fight_create(battle_t *battle, int nb_ennemies, player_t *player)
 {
     fight_t *fight = malloc(sizeof(fight_t));
 
+    fight->end_timer = 0;
     fight->rpg = battle->zone->map->rpg;
     fight->size = battle->size;
     fight->pos = battle->pos;

@@ -42,6 +42,7 @@ typedef struct fight_t {
     cell_t *grid;
     sfVector2i size;
     sfVector2i pos;
+    float end_timer;
     int turn;
     int entity_turn;
     struct rpg_t *rpg;
@@ -57,7 +58,7 @@ void fight_init_entities(fight_t *fight, int nb_ennemies, struct player_t *playe
 void fight_update(fight_t *fight, float dt);
 void fight_handle_events(fight_t *fight, sfEvent event);
 void fight_draw(fight_t *fight, sfRenderWindow *wind);
-int fight_end(fight_t *fight);
+int fight_end(fight_t *fight, float dt);
 void fight_destroy(fight_t *fight);
 
 int fight_new_turn(fight_t *fight);

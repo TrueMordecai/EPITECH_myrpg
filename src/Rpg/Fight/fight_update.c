@@ -24,7 +24,7 @@ int fight_rm_dead_entity(fight_t *fight, int id)
     timeline_remove_entity(&fight->timeline, entity);
     if (id == fight->entity_turn && fight_new_entity(fight))
         return 1;
-    return fight_end(fight);
+    return fight_end(fight, 0);
 }
 
 int fight_rm_dead_entities(fight_t *fight)
@@ -40,7 +40,7 @@ int fight_rm_dead_entities(fight_t *fight)
     return 0;
 }
 
-int fight_end(fight_t *fight)
+int fight_end(fight_t *fight, float dt)
 {
     int ennemies = 0;
     int player = 0;
@@ -52,8 +52,14 @@ int fight_end(fight_t *fight)
             && fight->entities[i]->type == PLAYER);
     }
     if (!ennemies || !player) {
-        battle_end(&fight->rpg->map->current_zone->battle);
-        return 1;
+        fight->end_timer += dt;
+        if (fight->end_timer >= 1 && fight->end_timer - dt <= 1)
+            play_sound(&fight->rpg->state->game_data->audio,
+                (player) ? "fight_win" : "fight_lose");
+        if (fight->end_timer >= 2) {
+            battle_end(&fight->rpg->map->current_zone->battle);
+            return 1;
+        }
     }
     return 0;
 }
@@ -81,6 +87,8 @@ void fight_update(fight_t *fight, float dt)
     if (fight->entities[fight->entity_turn]->team == ENNEMIES
         && fight->entities[fight->entity_turn]->actions.length == 0)
         fight_new_entity(fight);
+    if (fight_end(fight, dt))
+        return;
     if (!fight_rm_dead_entities(fight)) {
         timeline_update(&fight->timeline, dt);
         spells_bar_update(
