@@ -93,4 +93,8 @@ extern void rpg_add_item_to_inventory(struct rpg_t *game, item_t item);
 extern void destroy_inventory(struct rpg_t *game);
 extern void set_item_texture_rect(sfSprite *s, item_t *i);
 extern void rpg_inventory_draw_items(struct rpg_t *game);
+
+void inventory_open(inventory_t *inv, sfBool open);
+void inventory_handle_events(inventory_t *inventory, sfEvent *event);
+
 #endif

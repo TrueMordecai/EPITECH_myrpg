@@ -5,15 +5,15 @@
 ** main loop of my hunter
 */
 
-#include "Rpg/rpg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Rpg/rpg.h"
 
 static inline bool is(sfSprite *s, rpg_t *game)
 {
-    if (sprite_is_hover(s, get_mouse_pos_vec2f(game->wind)) &&
-        game->inventory.mouse_left == PRESS)
+    if (sprite_is_hover(s, get_mouse_pos_vec2f(game->wind))
+        && game->inventory.mouse_left == PRESS)
         return (true);
     return (false);
 }
@@ -59,19 +59,19 @@ extern void rpg_draw_equipement(rpg_t *g)
     int tooltip = -1;
 
     for (unsigned int i = 0; i != 4; i++) {
-        sfSprite_setPosition(g->inventory.container, (sfVector2f){320 + i * 64,
-                    320});
-        sfSprite_setPosition(g->inventory.sprite, (sfVector2f){320 + i * 64,
-                    320});
+        sfSprite_setPosition(
+            g->inventory.container, (sfVector2f){320, 320 + i * 64});
+        sfSprite_setPosition(
+            g->inventory.sprite, (sfVector2f){320, 320 + i * 64});
         sfRenderWindow_drawSprite(g->wind, g->inventory.container, NULL);
         rpg_draw_equipemnt_on_click_behaviour(g, i);
         if (g->inventory.equipement[i].name != NULL) {
-            set_item_texture_rect(g->inventory.sprite,
-                                  &g->inventory.equipement[i]);
+            set_item_texture_rect(
+                g->inventory.sprite, &g->inventory.equipement[i]);
             sfRenderWindow_drawSprite(g->wind, g->inventory.sprite, NULL);
         }
-        if (sprite_is_hover(g->inventory.container,
-                            get_mouse_pos_vec2f(g->wind)))
+        if (sprite_is_hover(
+                g->inventory.container, get_mouse_pos_vec2f(g->wind)))
             tooltip = i;
     }
     if (tooltip != -1 && g->inventory.equipement[tooltip].name != NULL)

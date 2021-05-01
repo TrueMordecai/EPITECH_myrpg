@@ -9,6 +9,7 @@ set(SRC
     ${SRCROOT}/player_draw.c
     ${SRCROOT}/player_handle_event.c
     ${SRCROOT}/player_init_physic.c
+    ${SRCROOT}/player_update_equipement.c
     ${SRCROOT}/player_update.c
     PARENT_SCOPE
 )

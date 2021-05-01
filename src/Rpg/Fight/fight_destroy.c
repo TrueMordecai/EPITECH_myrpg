@@ -6,9 +6,12 @@
 */
 
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
+#include "Rpg/Entities/player.h"
 
 void fight_destroy(fight_t *fight)
 {
+    player_remove_equipment_stats(fight->rpg->player);
     infobox_destroy(fight->infobox);
     for (int i = 0; i < fight->nb_entities; i++) {
         if (fight->entities[i]->team == ENNEMIES)
