@@ -7,6 +7,19 @@
 
 #include "Rpg/Fight/fight.h"
 
+void fight_draw_line(fight_t *fight, int from, int to)
+{
+    int *line = fight_get_line(fight, from, to);
+    int i = 0;
+
+    if (!line)
+        return;
+    while (line[i] != END_ARRAY)
+        fight_place_rect(fight, line[i++], \
+        sfColor_fromRGBA(0, 255, 255, 50), C_EMPTY);
+    free(line);
+}
+
 static void draw_ui(fight_t *fight, sfRenderWindow *window)
 {
     timeline_draw(&fight->timeline, window);

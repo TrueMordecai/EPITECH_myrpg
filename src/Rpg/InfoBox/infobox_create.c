@@ -27,7 +27,7 @@ static infobox_base_t *infobox_alloc(enum infobox_type type, void *data)
                 default: return NULL;
             }
         case INFOBOX_ENTITY: return malloc(sizeof(infobox_entity_t));
-        default: return NULL; ;
+        default: return NULL;
     }
 }
 

@@ -36,11 +36,6 @@ int sign(int *ps, int axis)
     return 1;
 }
 
-float correct(float coeff)
-{
-    return 0.5f - (coeff == fabsf(coeff)) * 0.01;
-}
-
 float get_coeff(int *ps, int *deltabs, int *axis)
 {
     float coeff;
@@ -75,25 +70,12 @@ int *fight_get_line(fight_t *fight, int from, int to)
     coeff = get_coeff(ps, deltabs, &axis);
     line = malloc(sizeof(int) * (deltabs[!axis] + 2));
     for (int i = 0; i <= deltabs[!axis]; i++) {
-        p[0] = ps[0] + \
-        ((axis) ? i * (sign(ps, !axis)) : i * coeff) + correct(coeff);
-        p[1] = ps[1] + \
-        ((!axis) ? i * (sign(ps, !axis)) : i * coeff) + correct(coeff);
+        p[0] = ps[0] + ((axis) ? i * (sign(ps, !axis)) : i * coeff)
+            + (0.5f - (coeff == fabsf(coeff)) * 0.01);
+        p[1] = ps[1] + ((!axis) ? i * (sign(ps, !axis)) : i * coeff)
+            + (0.5f - (coeff == fabsf(coeff)) * 0.01);
         line[i] = fight_vec_to_pos(fight, (sfVector2i){p[0], p[1]});
     }
     line[deltabs[!axis] + 1] = END_ARRAY;
     return line;
-}
-
-void fight_draw_line(fight_t *fight, int from, int to)
-{
-    int *line = fight_get_line(fight, from, to);
-    int i = 0;
-
-    if (!line)
-        return;
-    while (line[i] != END_ARRAY)
-        fight_place_rect(fight, line[i++], \
-        sfColor_fromRGBA(0, 255, 255, 50), C_EMPTY);
-    free(line);
 }
