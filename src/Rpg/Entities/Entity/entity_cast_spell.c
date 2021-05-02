@@ -63,6 +63,13 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
     entity_update_alive(to);
 }
 
+static void update_pa(entity_t *from, spell_base_t *spell)
+{
+    from->stats->current_pa -= spell->pa;
+    if (from->stats->current_pa < spell->pa)
+        spells_bar_set_selected(&from->fight->spells_bar, -1);
+}
+
 void entity_cast_spell(entity_t *from, int to_cell)
 {
     spell_base_t *spell = entity_get_select_spell(from);
@@ -73,7 +80,7 @@ void entity_cast_spell(entity_t *from, int to_cell)
         || spell->cast_left-- <= 0)
         return;
     to = from->fight->grid[to_cell].entity;
-    from->stats->current_pa -= spell->pa;
+    update_pa(from, spell);
     entity_add_action(from, ATTACK, spell)->attack.cell = to_cell;
     if (spell->area > 1) {
         area = fight_get_range(from->fight, to_cell, spell->area, WALKABLE);

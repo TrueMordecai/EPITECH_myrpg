@@ -46,9 +46,17 @@ static int update_selected(
         return 0;
     if (bar->current_frame == id)
         bar->current_frame = -1;
-    else
-        bar->current_frame = id;
-    play_sound(&bar->fight->rpg->state->game_data->audio, "select");
+    else {
+        if (id == -1
+            || MY_VEC_GET_ELEM(spell_base_t *, &bar->last_entity->spells, id)
+                    ->pa
+                > bar->last_entity->stats->current_pa)
+            bar->current_frame = -1;
+        else {
+            bar->current_frame = id;
+            play_sound(&bar->fight->rpg->state->game_data->audio, "select");
+        }
+    }
     spells_bar_update_outlines(bar);
     spells_bar_update_entity_spell(bar);
     return 1;
