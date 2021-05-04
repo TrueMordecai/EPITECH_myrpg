@@ -44,7 +44,6 @@ int quests(char *filepath, int quest_id)
     if (setup_data(&quests_data) == -1)
         return (-1);
     setup_quest_by_id(&quests_data);
-    display_quest(&quests_data, quest_id);
     free_all(&quests_data);
     return 0;
 }

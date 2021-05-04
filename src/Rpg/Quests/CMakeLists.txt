@@ -6,6 +6,7 @@ set(SRC
     ${INCROOT}/quests.h.h
     ${SRCROOT}/quests_engine.c
     ${SRCROOT}/quests_setup.c
-    
+    ${SRCROOT}/quests_parse_quests_info.c
+    ${SRCROOT}/quests_get_file_info.c
     PARENT_SCOPE
 )
