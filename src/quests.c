@@ -18,11 +18,6 @@ void free_all(t_data *quests_data)
     free(quests_data->quests_list);
 }
 
-void display_quest(t_data *quests_data, int quest_id)
-{
-    my_putstr(quests_data->quest[quest_id].context);
-}
-
 void setup_quest_by_id(t_data *quests_data)
 {
     int nb_quest = 0;
@@ -36,7 +31,7 @@ void setup_quest_by_id(t_data *quests_data)
     }
 }
 
-int quests(char *filepath, int quest_id)
+quest_t *quests(char *filepath, int quest_id)
 {
     t_data quests_data;
 
@@ -45,5 +40,5 @@ int quests(char *filepath, int quest_id)
         return (-1);
     setup_quest_by_id(&quests_data);
     free_all(&quests_data);
-    return 0;
+    return (quests_data.quest);
 }
