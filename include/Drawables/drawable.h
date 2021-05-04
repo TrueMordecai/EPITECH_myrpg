@@ -9,6 +9,7 @@
 #define GE_DRAWABLES_H
 
 #include <SFML/Graphics/Types.h>
+#include <SFML/Graphics.h>
 #include <libmy/collections.h>
 
 typedef enum {
