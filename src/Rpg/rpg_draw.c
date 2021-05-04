@@ -10,4 +10,6 @@
 void rpg_draw(rpg_t *rpg)
 {
     map_draw(rpg->map);
+    if (!rpg->map->current_zone->is_battle)
+        rpg_inventory_draw(rpg);
 }

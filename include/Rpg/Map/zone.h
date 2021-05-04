@@ -17,7 +17,7 @@
 struct map_t;
 struct player_t;
 
-enum ZONE_SPECIAL { SUB_DOOR = 1, EXT_DOOR = 3 };
+enum ZONE_SPECIAL { SUB_DOOR = 1, AGGRO = 2, EXT_DOOR = 3 };
 extern const int ZONE_START;
 extern const int ZONE_HOUSE;
 
@@ -53,6 +53,7 @@ void zone_place_at_door(zone_t *zone, int door);
 int zone_init_from_file(zone_t *zone, int id, int door, int mother);
 void zone_sort_layers(zone_t *zone);
 int zone_interract(zone_t *zone);
+int zone_interract_move(zone_t *zone);
 void zone_draw(zone_t *zone, sfRenderWindow *wind);
 int zone_draw_battle(
     zone_t *zone, sfRenderWindow *wind, sfVector2i min, sfVector2i max);

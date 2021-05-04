@@ -20,6 +20,7 @@ static int parse_value(size_t *offset, int name_len, char *line_beg)
     *offset = name_len;
     nb = get_number_pass(line_beg, offset);
     (*offset)--;
+    CLAMP_ASSIGN(nb, 1, 100);
     return nb;
 }
 
@@ -45,5 +46,4 @@ void spell_heal_parse(spell_heal_t *spell, char *file_content, size_t filesize)
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Heal = %d\n", spell->heal);
 }

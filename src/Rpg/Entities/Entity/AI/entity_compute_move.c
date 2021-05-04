@@ -22,8 +22,6 @@ int *init_sight(entity_t *entity, my_vec_t *allies, int ally_po);
 
 static void get_reachable_sights(entity_t *entity, my_vec_t *allies)
 {
-    int po = 5;
-    fight_t *fight = entity->fight;
     int *sight = init_sight(entity, allies, 0);
     int sight_pos = 0;
 

@@ -5,18 +5,23 @@
 ** entity_create
 */
 
-#include <stdlib.h>
 #include <libmy/printf.h>
+#include <stdlib.h>
 
-#include "Rpg/Fight/fight.h"
 #include "Rpg/Entities/entity.h"
+#include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
+#include "GameEngine/game_head.h"
 
-void entity_init_rect(entity_t *entity, sfColor color)
+void entity_init_rect(entity_t *entity, char *name, sfColor color)
 {
-    sfVector2i loc_pos = fight_pos_to_vec(entity->fight, entity->pos, 0);
     sfVector2f pos = fight_pos_to_world_vec(entity->fight, entity->pos);
 
+    entity->name = name;
     entity->rect = sfRectangleShape_create();
+    sfRectangleShape_setTexture(entity->rect,
+        get_texture(&entity->fight->rpg->state->game_data->assets, name), 1);
+    sfRectangleShape_setTextureRect(entity->rect, (sfIntRect){0, 0, 16, 16});
     sfRectangleShape_setFillColor(entity->rect, color);
     sfRectangleShape_setPosition(entity->rect, pos);
     sfRectangleShape_setSize(entity->rect, (sfVector2f){32, 32});
@@ -39,8 +44,8 @@ static void init_animations(entity_t *entity)
     entity->anim.paused = 1;
 }
 
-entity_t *entity_create(void *datas, enum entity_type_e type, \
-enum team_e team, int pos)
+entity_t *entity_create(
+    void *datas, enum entity_type_e type, enum team_e team, int pos)
 {
     entity_t *entity = malloc(sizeof(entity_t));
 
