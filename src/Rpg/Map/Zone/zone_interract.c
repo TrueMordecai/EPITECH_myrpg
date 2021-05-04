@@ -89,5 +89,6 @@ int zone_interract(zone_t *zone)
         return 0;
     special = zone->special[it_pos.x + it_pos.y * zone->size.x];
     handle_doors(zone, it_pos, it_pos.x + it_pos.y * zone->size.x, special);
+    zone_interract_npc(zone, it_pos, special);
     return 1;
 }
