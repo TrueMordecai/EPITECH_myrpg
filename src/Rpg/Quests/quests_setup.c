@@ -5,7 +5,7 @@
 ** setup.c
 */
 
-#include "quests.h"
+#include "Rpg/Quests/quests.h"
 
 void dup_line(char **map, char *file_content, int line, int index)
 {

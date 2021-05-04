@@ -5,7 +5,10 @@
 ** get_file_info.c
 */
 
-#include "quests.h"
+#include <libmy/io.h>
+#include <libmy/ascii/ascii.h>
+
+#include "Rpg/Quests/quests.h"
 
 int get_file_id(char const *file_path)
 {

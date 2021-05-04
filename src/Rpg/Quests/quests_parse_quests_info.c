@@ -5,7 +5,8 @@
 ** parse_quests_info.c
 */
 
-#include "quests.h"
+#include <libmy/parsing.h>
+#include "Rpg/Quests/quests.h"
 
 void setup_kill_monster(quest_list_t *quest_data, int index_quest)
 {

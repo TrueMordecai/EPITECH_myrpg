@@ -3,7 +3,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Drawables)
 
 set(SRC
     ${SRC}
-    ${INCROOT}/drawable_create.h
+    ${INCROOT}/drawables_create.h
     ${INCROOT}/drawable.h
     ${INCROOT}/drawables_head.h
     ${SRCROOT}/drawable_create.c

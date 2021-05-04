@@ -5,7 +5,9 @@
 ** quests.c
 */
 
-#include "quests.h"
+#include <libmy/parsing.h>
+
+#include "Rpg/Quests/quests.h"
 
 void free_all(quest_list_t *quests_data)
 {
@@ -33,8 +35,6 @@ void setup_quest_by_id(quest_list_t *quests_data)
 
 int quests_init(quest_list_t quests_data, char *filepath, int quest_id)
 {
-    quest_list_t quests_data;
-
     quests_data.filepath = filepath;
     if (setup_data(&quests_data) == -1)
         return (-1);
