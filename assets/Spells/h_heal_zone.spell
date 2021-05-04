@@ -1,5 +1,6 @@
 TYPE=HEAL
 NAME="Heal Area"
+TEXTURE_ID=2
 PA=3
 PO=3
 AREA=2

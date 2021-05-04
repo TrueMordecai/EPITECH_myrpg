@@ -17,9 +17,11 @@ static void shortcuts(game_data_t *data, int key_code)
     switch (key_code) {
         case sfKeyEscape: sfRenderWindow_close(data->window); break;
         case sfKeyP:
+            play_sound(&data->audio, "click");
             game_data_push_state(data, &game_state_create, false);
             break;
         case sfKeyS:
+            play_sound(&data->audio, "click");
             game_data_push_state(data, &settings_state_create, false);
             break;
         default: break;

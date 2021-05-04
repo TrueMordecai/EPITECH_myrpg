@@ -20,34 +20,36 @@ static int is_player_btwn(zone_t *zone, float y_player, int i)
     return (y1 >= y_player && y_player >= y2);
 }
 
-static void get_min_max(zone_t *zone, sfRenderWindow *wind, \
-sfVector2i *min, sfVector2i *max)
+static void get_min_max(
+    zone_t *zone, sfRenderWindow *wind, sfVector2i *min, sfVector2i *max)
 {
     sfVector2f view_pos = zone->map->view_pos;
     sfVector2f view_size = zone->map->view_size;
     sfView *view = zone->map->view;
-    sfVector2f top_left = sfRenderWindow_mapPixelToCoords(wind, \
-    (sfVector2i){view_pos.x, view_pos.y}, view);
-    sfVector2f bottom_right = sfRenderWindow_mapPixelToCoords(wind, \
-    (sfVector2i){view_pos.x + view_size.x, \
-        view_pos.y + view_size.y}, view);
-    sfVector2i min_pos = {MAX(top_left.x / zone->tiles_size, 0), \
+    sfVector2f top_left = sfRenderWindow_mapPixelToCoords(
+        wind, (sfVector2i){view_pos.x, view_pos.y}, view);
+    sfVector2f bottom_right = sfRenderWindow_mapPixelToCoords(wind,
+        (sfVector2i){view_pos.x + view_size.x, view_pos.y + view_size.y},
+        view);
+    sfVector2i min_pos = {MAX(top_left.x / zone->tiles_size, 0),
         MAX(top_left.y / zone->tiles_size, 0)};
-    sfVector2i max_pos = {MIN(bottom_right.x / zone->tiles_size + 1, \
-        zone->size.x), MIN(bottom_right.y / \
-        zone->tiles_size + 1, zone->size.y)};
+    sfVector2i max_pos = {
+        MIN(bottom_right.x / zone->tiles_size + 1, zone->size.x),
+        MIN(bottom_right.y / zone->tiles_size + 1, zone->size.y)};
 
     *min = (sfVector2i){min_pos.x, min_pos.y};
     *max = (sfVector2i){max_pos.x, max_pos.y};
 }
 
-void zone_draw_layers(zone_t *zone, sfRenderWindow *wind, \
-sfVector2i min, sfVector2i max)
+void zone_draw_layers(
+    zone_t *zone, sfRenderWindow *wind, sfVector2i min, sfVector2i max)
 {
     player_t *player = zone->map->rpg->player;
     int i = 0;
-    float y_player = (player->pos.y + \
-    sfRectangleShape_getSize(player->entity->rect).y * 1.2) / (float)zone->tiles_size;
+    float y_player =
+        (player->pos.y
+            + sfRectangleShape_getSize(player->entity->rect).y * 1.2)
+        / (float)zone->tiles_size;
 
     sfRenderWindow_setView(wind, zone->map->view);
     do {

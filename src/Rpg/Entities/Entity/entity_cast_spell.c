@@ -26,6 +26,7 @@ static void cast_effect(entity_t *from, entity_t *to, spell_effect_t *spell)
 static void cast_debuff(entity_t *to, spell_debuff_t *spell)
 {
     effect_t *effect;
+    int pm = to->stats->current_pm;
 
     for (size_t i = 0; i < to->stats->effects.length; i++) {
         effect = ((effect_t *)to->stats->effects.data) + i;
@@ -36,8 +37,10 @@ static void cast_debuff(entity_t *to, spell_debuff_t *spell)
         else
             effect->lifetime -= spell->turns;
         if (effect->lifetime <= 0)
-            my_vec_remove(&to->stats->effects, NULL, i--);
+            stats_remove_effect(to->stats, i--, 1);
     }
+    if (pm != to->stats->current_pm)
+        entity_update_move_possibilities(to);
 }
 
 static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
@@ -46,8 +49,8 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
         return;
     if (spell->type == SPELL_ATTACK) {
         for (int i = 0; i < 4; i++)
-            to->stats->current_life -= ((spell_attack_t *)spell)->damages[i]
-                * (1 + from->stats->elements[i] / 30.f);
+            to->stats->current_life -= stats_compute_damages(from->stats,
+                to->stats, i, ((spell_attack_t *)spell)->damages[i]);
     }
     if (spell->type == SPELL_HEAL)
         to->stats->current_life += ((spell_heal_t *)spell)->heal
@@ -58,20 +61,27 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
         cast_debuff(to, (spell_debuff_t *)spell);
     entity_update_alive(from);
     entity_update_alive(to);
-    stats_display(from->stats);
-    stats_display(to->stats);
+}
+
+static void update_pa(entity_t *from, spell_base_t *spell)
+{
+    from->stats->current_pa -= spell->pa;
+    if (from->stats->current_pa < spell->pa)
+        spells_bar_set_selected(&from->fight->spells_bar, -1);
 }
 
 void entity_cast_spell(entity_t *from, int to_cell)
 {
     spell_base_t *spell = entity_get_select_spell(from);
-    entity_t *to = from->fight->grid[to_cell].entity;
+    entity_t *to;
     int *area;
 
-    if (!spell || from->spell_cell == -1
-        || from->stats->current_pa < spell->pa)
+    if (!spell || to_cell == -1 || from->stats->current_pa < spell->pa
+        || spell->cast_left-- <= 0)
         return;
-    from->stats->current_pa -= spell->pa;
+    to = from->fight->grid[to_cell].entity;
+    update_pa(from, spell);
+    entity_add_action(from, ATTACK, spell)->attack.cell = to_cell;
     if (spell->area > 1) {
         area = fight_get_range(from->fight, to_cell, spell->area, WALKABLE);
         if (!area)

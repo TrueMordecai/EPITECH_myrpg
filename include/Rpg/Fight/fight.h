@@ -13,6 +13,9 @@
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Map/physic.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/Fight/spells_bar.h"
+#include "Rpg/Fight/timeline.h"
+#include "Rpg/InfoBox/infobox.h"
 
 enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
 enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
@@ -39,24 +42,29 @@ typedef struct fight_t {
     cell_t *grid;
     sfVector2i size;
     sfVector2i pos;
+    float end_timer;
     int turn;
     int entity_turn;
     struct rpg_t *rpg;
+    timeline_t timeline;
+    spells_bar_t spells_bar;
     sfRectangleShape **rect_buffer;
+    infobox_base_t *infobox;
 } fight_t;
 
 fight_t *fight_create(battle_t *battle, int nb_ennemies, \
 struct player_t *player);
+void fight_init_entities(fight_t *fight, int nb_ennemies, struct player_t *player);
 void fight_update(fight_t *fight, float dt);
 void fight_handle_events(fight_t *fight, sfEvent event);
 void fight_draw(fight_t *fight, sfRenderWindow *wind);
-int fight_end(fight_t *fight);
+int fight_end(fight_t *fight, float dt);
 void fight_destroy(fight_t *fight);
 
 int fight_new_turn(fight_t *fight);
 int fight_new_entity(fight_t *fight);
 int fight_rm_dead_entity(fight_t *fight, int id);
-void fight_rm_dead_entities(fight_t *fight);
+int fight_rm_dead_entities(fight_t *fight);
 
 sfVector2i fight_pos_to_vec(fight_t *fight, int pos, int world);
 sfVector2f fight_pos_to_world_vec(fight_t *fight, int pos);

@@ -47,28 +47,41 @@ static void update_dir(player_t *player, sfVector2f offset)
         player_update_anim_dir(player, offset, dir);
 }
 
+static void fill_offset(player_t *player, sfVector2f *offset)
+{
+    float amplitude = 6;
+
+    if (sfKeyboard_isKeyPressed(sfKeyZ))
+        offset->y = -amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyS))
+        offset->y = amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyQ))
+        offset->x = -amplitude;
+    if (sfKeyboard_isKeyPressed(sfKeyD))
+        offset->x = amplitude;
+    update_dir(player, *offset);
+}
+
 void player_update(player_t *player, float dt)
 {
     sfVector2f offset = {0, 0};
-    float amplitude = 6;
 
     animations_update(&player->entity->anim, dt);
     if (!player->body)
         return;
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        offset.y = -amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        offset.y = amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
-        offset.x = -amplitude;
-    if (sfKeyboard_isKeyPressed(sfKeyD))
-        offset.x = amplitude;
-    update_dir(player, offset);
+    fill_offset(player, &offset);
     if (offset.x != 0)
         player->body->velocity.x = offset.x;
     if (offset.y != 0)
         player->body->velocity.y = offset.y;
     player->pos = (sfVector2f){
         player->body->pos.x * M_TO_PX, player->body->pos.y * M_TO_PX};
+    if (player->body
+        && ((int)player->body->pos.x != player->last_pos.x
+            || (int)player->body->pos.y != player->last_pos.y)) {
+        player->last_pos =
+            (sfVector2i){player->body->pos.x, player->body->pos.y};
+        zone_interract_move(player->rpg->map->current_zone);
+    }
     sfRectangleShape_setPosition(player->entity->rect, player->pos);
 }

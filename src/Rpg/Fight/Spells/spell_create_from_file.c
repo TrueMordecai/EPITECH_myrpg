@@ -6,6 +6,7 @@
 */
 
 #include <libmy/ascii.h>
+#include <libmy/printf.h>
 #include <libmy/io/iostream.h>
 #include <stdlib.h>
 

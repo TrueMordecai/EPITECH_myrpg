@@ -22,7 +22,7 @@ void audio_manager_drop(audio_manager_t *manager)
 
 void music_audio_drop(audio_t *audio)
 {
-    if (audio->music == NULL) {
+    if (audio->music != NULL) {
         sfMusic_destroy(audio->music);
         audio->music = NULL;
     }
@@ -30,7 +30,7 @@ void music_audio_drop(audio_t *audio)
 
 void sound_audio_drop(audio_t *audio)
 {
-    if (audio->sound == NULL) {
+    if (audio->sound != NULL) {
         sfSoundBuffer_destroy(audio->sound);
         audio->sound = NULL;
     }

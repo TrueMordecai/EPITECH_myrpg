@@ -36,30 +36,6 @@ int get_next_pos(fight_t *fight, int current, int dir)
     return current + diff;
 }
 
-int node_compare(node_t *na, node_t *nb)
-{
-    if (na->g_cost == nb->g_cost)
-        return na->l_cost > nb->l_cost;
-    return na->g_cost > nb->g_cost;
-}
-
-void sort_nodes(my_vec_t *nodes)
-{
-    node_t *node;
-    int j;
-
-    for (size_t i = 1; i < nodes->length; i++) {
-        node = MY_VEC_GET_ELEM(node_t *, nodes, i);
-        j = i - 1;
-        while (j >= 0
-            && node_compare(node, MY_VEC_GET_ELEM(node_t *, nodes, j))) {
-            my_vec_change_value(nodes, my_vec_get(nodes, j), j + 1);
-            j = j - 1;
-        }
-        my_vec_change_value(nodes, &node, j + 1);
-    }
-}
-
 int get_heuristic_cost(fight_t *fight, int pos_a, int pos_b)
 {
     int ax = pos_a % fight->size.x;
