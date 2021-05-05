@@ -36,6 +36,8 @@ SW_API sw_result_t sw_button_set_texture(sw_button_t *widget,
     sw_result_t res = SW_OK;
     sfSprite **sprites = widget->data.sprites;
 
+    if (!texture)
+        return SW_OK;
     if (reset_rect)
         tsize = sfTexture_getSize(texture);
     for (int i = state == SW_BUTTON_STATE_COUNT ? 0 : state; i < e; ++i) {

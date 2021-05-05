@@ -34,6 +34,8 @@ SW_API sw_result_t sw_set_background_texture(
 {
     sw_base_data_t *w = &((sw_base_t *)widget)->data;
 
+    if (!texture)
+        return SW_OK;
     if (reset_rect) {
         sw_vec2u_t t = sfTexture_getSize(texture);
 

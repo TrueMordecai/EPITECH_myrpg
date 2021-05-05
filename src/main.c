@@ -5,8 +5,12 @@
 ** main
 */
 
+#include <sys/types.h>
+
+#include <dirent.h>
 #include <libmy/ascii.h>
 #include <libmy/io/iostream.h>
+#include <libmy/printf.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -33,7 +37,13 @@ int my_rpg(int argc, char *argv[])
 {
     sfVideoMode mode = {0, 0, 32};
     game_data_t *data;
+    DIR *assets = opendir("assets");
 
+    if (!assets) {
+        my_fprintf(MY_STDERR, "%s: missing assets folder\n", argv[0]);
+        return 84;
+    } else
+        closedir(assets);
     srand((unsigned int)(((size_t)&mode)));
     if (argc == 2 && my_strcmp("-h", argv[1]) == 0) {
         show_usage();
