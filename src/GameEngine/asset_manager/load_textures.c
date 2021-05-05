@@ -22,6 +22,7 @@ void load_all_textures(asset_manager_t *manager)
         manager, "inv_menu", "assets/Inventory/inventory_menu.png", 0);
     load_texture(manager, "item_sheet", "assets/Inventory/items_sheet.png", 0);
     load_texture(manager, "atlas", "assets/Textures/tileset.png", 0);
+    load_texture(manager, "b_end", "assets/Battle_end/battle_end_victory_lose.png", 0);
     load_texture(manager, "buttons", "assets/Textures/buttons.png", 1);
     load_texture(manager, "turn_pass", "assets/Textures/turn_pass.png", 0);
     load_texture(manager, "spells", "assets/Textures/spells.png", 0);

@@ -39,7 +39,7 @@ static void inventory_init_2(inventory_t *inv)
         inv->equipement[i] = rpg_create_blank_item();
     inv->container = sfSprite_create();
     sfSprite_setTexture(inv->container, inv->ui_int_texture, sfFalse);
-    sfSprite_setTextureRect(inv->container, (sfIntRect){0, 0, 16, 16});
+    sfSprite_setTextureRect(inv->container, (sfIntRect){15, 15, 17, 17});
     sfSprite_setScale(inv->container, (sfVector2f){4, 4});
     inv->tooltip = sfSprite_create();
     inv->texture_tooltip =

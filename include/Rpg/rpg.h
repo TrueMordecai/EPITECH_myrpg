@@ -10,6 +10,7 @@
 
 #include "Rpg/Entities/player.h"
 #include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfarces/battle_end.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
@@ -27,6 +28,7 @@ typedef struct rpg_t {
     player_t *player;
     inventory_t inventory;
     allies_t allies;
+    battle_end_t battle_end;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);
