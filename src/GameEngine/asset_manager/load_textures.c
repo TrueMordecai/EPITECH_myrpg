@@ -6,8 +6,11 @@
 */
 
 #include <SFML/Graphics.h>
-#include "GameEngine/font_default.h"
+
 #include "GameEngine/asset_manager.h"
+#include "GameEngine/font_default.h"
+
+#include "default_font.h"
 
 static void init_pixels(sfUint32 *buffer)
 {
@@ -28,13 +31,13 @@ static void init_pixels(sfUint32 *buffer)
 sfTexture *get_null_texture(void)
 {
     static sfTexture *err_texture = NULL;
-    
+
     if (err_texture == NULL) {
         sfUint32 buffer[1024] = {0};
         sfImage *img;
 
         init_pixels(buffer);
-        img = sfImage_createFromPixels(32, 32, (sfUint8*)buffer);
+        img = sfImage_createFromPixels(32, 32, (sfUint8 *)buffer);
         err_texture = sfTexture_createFromImage(img, NULL);
         sfTexture_setRepeated(err_texture, 1);
         sfImage_destroy(img);
@@ -45,9 +48,9 @@ sfTexture *get_null_texture(void)
 sfFont *get_null_font(void)
 {
     static sfFont *err_font = NULL;
-    
+
     if (err_font == NULL) {
-        err_font = sfFont_createFromMemory(ERR_FONT, ERR_FONT_SIZE);
+        err_font = sfFont_createFromMemory(DEFAULT_FONT, DEFAULT_FONT_SIZE);
     }
     return err_font;
 }

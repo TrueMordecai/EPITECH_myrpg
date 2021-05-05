@@ -17,6 +17,9 @@
 #include "Rpg/Fight/spell.h"
 #include "GameEngine/game_head.h"
 
+sfTexture *get_null_texture(void);
+sfFont *get_null_font(void);
+
 static const size_t IO_BUF_SIZE = 512;
 
 static void show_usage(void)
@@ -71,5 +74,7 @@ int main(int argc, char *argv[])
     ret = my_rpg(argc, argv);
     my_free_stderr();
     my_free_stdout();
+    sfFont_destroy(get_null_font());
+    sfTexture_destroy(get_null_texture());
     return ret;
 }

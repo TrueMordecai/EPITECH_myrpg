@@ -6,6 +6,7 @@ set(SRC
     ${INCROOT}/asset_manager.h
     ${SRCROOT}/asset_manager_drop.c
     ${SRCROOT}/asset_manager.c
+    ${SRCROOT}/default_font.h
     ${SRCROOT}/load_textures.c
     PARENT_SCOPE
 )
