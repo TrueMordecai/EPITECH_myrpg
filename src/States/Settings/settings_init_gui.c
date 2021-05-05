@@ -36,6 +36,8 @@ void settings_init_gui(settings_state_t *state)
     state->gui.data.border = (sw_spacing_t){.values = {4, 4, 4, 4}};
     state->gui.data.border_color =
         (sw_color_t){.r = 100, .g = 100, .b = 100, .a = 255};
+    sw_set_background_texture(&state->gui, 
+        get_texture(&state->base.game_data->assets, "settings_bg"), 1);
     sw_set_size(
         &state->gui, (sw_vec2f_t){1900 * SCL(state), 1060 * SCL(state)});
     sw_set_position(
