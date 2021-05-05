@@ -11,5 +11,6 @@ int zone_interract_npc(zone_t *zone, sfVector2i pos, int special)
 {
     if (special != NPC)
         return 0;
+        
     return 1;
 }
