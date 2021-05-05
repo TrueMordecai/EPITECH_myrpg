@@ -20,7 +20,7 @@ static void run_2(
     game_data_t *data, float times[2], sfClock *clock, state_t **current_state)
 {
     float interpolation = 0;
-    float init_ms = (1 / (float)data->settings->limit_framerate) * 1000;
+    float init_ms = (1 / (float)data->settings->max_fps) * 1000;
     float ms_update = init_ms;
 
     times[0] = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));

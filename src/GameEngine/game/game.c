@@ -13,13 +13,12 @@
 #include "GameEngine/settings.h"
 #include "States/Menu/menu_state.h"
 
-static const char *SETTINGS_PATH = "data/settings.cfg";
+static const char *SETTINGS_PATH = "settings.cfg";
 
 static void init_window(game_data_t *data, sfVideoMode *mode, char const *name)
 {
     data->window = sfRenderWindow_create(*mode, name, sfClose, NULL);
-    sfRenderWindow_setFramerateLimit(
-        data->window, data->settings->limit_framerate);
+    sfRenderWindow_setFramerateLimit(data->window, data->settings->max_fps);
 }
 
 game_data_t *game_data_create(sfVideoMode *mode, char const *name)
@@ -33,8 +32,8 @@ game_data_t *game_data_create(sfVideoMode *mode, char const *name)
         free(data);
         return NULL;
     }
-    mode->width = data->settings->wind_size.x;
-    mode->height = data->settings->wind_size.y;
+    mode->width = data->settings->window_size.x;
+    mode->height = data->settings->window_size.y;
     asset_manager_init(&data->assets);
     audio_manager_init(&data->audio, data->settings);
     init_window(data, mode, name);
