@@ -11,15 +11,11 @@
 
 #include "GameEngine/settings.h"
 
-settings_t *settings_read(char const *path)
+void settings_read(settings_t *settings, char const *path)
 {
-    settings_t *settings;
     cfg_file_t cfg;
 
     assert(path != NULL);
-    settings = malloc(sizeof(*settings));
-    if (settings == NULL)
-        return NULL;
     cfg_file_init(&cfg);
     if (cfg_file_read(&cfg, path, false) == 0) {
         settings_parse(settings, &cfg);
@@ -28,5 +24,4 @@ settings_t *settings_read(char const *path)
         settings_init_default(settings);
     }
     cfg_file_drop(&cfg);
-    return settings;
 }
