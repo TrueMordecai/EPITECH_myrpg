@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** spells_bar_handle_events
 */

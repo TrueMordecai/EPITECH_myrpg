@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** spell_effect_parse
 */

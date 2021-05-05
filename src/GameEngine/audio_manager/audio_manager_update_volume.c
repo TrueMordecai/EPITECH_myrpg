@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** My runnger
 ** File description:
 ** Audio manager - update volumes

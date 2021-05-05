@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - aabb from shape
 */
@@ -42,14 +42,9 @@ pe_aabb_t *pe_aabb_from_shape(pe_aabb_t *buff, pe_shape_t *shape)
     if (box == NULL)
         box = malloc(sizeof(pe_aabb_t));
     switch (shape->shape_type) {
-    case CIRCLE:
-        from_circle(box, shape);
-        break;
-    case POLYGON:
-        from_polygon(box, shape);
-        break;
-    default:
-        break;
+        case CIRCLE: from_circle(box, shape); break;
+        case POLYGON: from_polygon(box, shape); break;
+        default: break;
     }
     box->size = VEC2F_SUB(box->max, box->min);
     return box;

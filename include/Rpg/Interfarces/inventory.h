@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** my_hunter include
 ** File description:
 ** all information for the my _hunter
@@ -7,16 +7,15 @@
 
 #ifndef _INVENTORY_H_
 #define _INVENTORY_H_
-#include <math.h>
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Export.h>
-#include <time.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Texture.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
 #include "Rpg/Entities/stats.h"
 
@@ -31,11 +30,7 @@ typedef enum {
     ITEM_RARITY_LIMIT,
 } item_rarity_t;
 
-typedef enum {
-    NOTHING = 0,
-    PRESS = 1,
-    HOLD = 2
-} key_state;
+typedef enum { NOTHING = 0, PRESS = 1, HOLD = 2 } key_state;
 
 typedef struct item_s {
     char *name;
@@ -72,7 +67,7 @@ typedef struct inventory_s {
     sfSprite *container;
     key_state mouse_left;
     struct rpg_t *rpg;
-}inventory_t;
+} inventory_t;
 
 extern item_t rpg_create_blank_item();
 extern item_t rpg_create_item(unsigned char level, item_rarity_t rarity);

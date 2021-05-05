@@ -1,14 +1,14 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** Drawable - create drawable
 */
 
 #include "Drawables/drawables_create.h"
 
-sfRectangleShape *create_rect_shape(sfTexture *texture, \
-sfVector2f size, sfVector2f pos, sfVector2f scale)
+sfRectangleShape *create_rect_shape(
+    sfTexture *texture, sfVector2f size, sfVector2f pos, sfVector2f scale)
 {
     sfRectangleShape *rect = sfRectangleShape_create();
 
@@ -19,8 +19,8 @@ sfVector2f size, sfVector2f pos, sfVector2f scale)
     return rect;
 }
 
-sfText *create_text(sfFont *font, wchar_t const *str, \
-unsigned int character_size, sfVector2f pos)
+sfText *create_text(sfFont *font, wchar_t const *str,
+    unsigned int character_size, sfVector2f pos)
 {
     sfText *text = sfText_create();
 

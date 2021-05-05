@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** B-CPE-210-NAN-2-1-stumper2-paul-antoine.salmon
 ** File description:
 ** setup.c
@@ -11,8 +11,8 @@ void dup_line(char **map, char *file_content, int line, int index)
 {
     int j = 0;
 
-    for (; file_content[index] != '\n' && \
-    file_content[index] != '\0'; j++, index++) {
+    for (; file_content[index] != '\n' && file_content[index] != '\0';
+         j++, index++) {
         map[line][j] = file_content[index];
     }
     map[line][j] = '\0';
@@ -44,8 +44,8 @@ int setup_data(t_data *file_info)
     char *file_content = my_file_content_to_str(file_info->filepath);
 
     file_info->file_size = get_file_size(file_info->filepath);
-    file_info->quests_list = \
-    str_file_to_array(file_info->quests_list, file_content);
+    file_info->quests_list =
+        str_file_to_array(file_info->quests_list, file_content);
     free(file_content);
     return (0);
 }

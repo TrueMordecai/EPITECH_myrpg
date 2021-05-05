@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - world
 */
@@ -25,8 +25,8 @@ typedef struct pe_world_t {
     pe_bin_tree_t *tree;
 } pe_world_t;
 
-pe_world_t *pe_world_init(pe_vec2f_t gravity, \
-unsigned short bodies_initial_capacity);
+pe_world_t *pe_world_init(
+    pe_vec2f_t gravity, unsigned short bodies_initial_capacity);
 void pe_world_destroy(pe_world_t *world);
 
 int pe_world_add_body(pe_world_t *world, pe_body_t *body);

@@ -1,19 +1,19 @@
 /*
-** EPITECH PROJECT, 2020
-** Quêtes
+** EPITECH PROJECT, 2021
+** MyRPG - Quests
 ** File description:
 ** quests.h
 */
 
-#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
 
 #ifndef INCLUDE_H_
-#define INCLUDE_H_
+    #define INCLUDE_H_
 
 typedef struct talk_to_pnj {
     int pnj_id;
@@ -44,7 +44,6 @@ typedef struct quest {
     };
     int state;
 } quest_t;
-
 
 typedef struct quests {
     char *filepath;

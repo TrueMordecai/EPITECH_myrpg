@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** entity_init
 */
 
-#include "Rpg/Interfarces/inventory.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/Interfarces/inventory.h"
 #include "Rpg/rpg.h"
 
 void entity_init(entity_t *entity)

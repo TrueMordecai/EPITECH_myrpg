@@ -6,8 +6,8 @@
 */
 
 #include <assert.h>
-#include <stdlib.h>
 #include <libmy/collections.h>
+#include <stdlib.h>
 
 #include "GameEngine/state.h"
 

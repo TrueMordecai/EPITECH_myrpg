@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - AABB union
 */
@@ -23,8 +23,8 @@ pe_aabb_t *pe_aabb_union(pe_aabb_t *res, pe_aabb_t *a, pe_aabb_t *b)
     return res;
 }
 
-pe_aabb_t *pe_aabb_union_shape(pe_aabb_t *res, pe_aabb_t *a, \
-pe_shape_t *shape, pe_vec2f_t offset)
+pe_aabb_t *pe_aabb_union_shape(
+    pe_aabb_t *res, pe_aabb_t *a, pe_shape_t *shape, pe_vec2f_t offset)
 {
     pe_aabb_t tempo;
 

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight_create
 */

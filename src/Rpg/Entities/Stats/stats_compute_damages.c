@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** stats_compute_damages
 */
 
 #include <stdio.h>
 #include "Rpg/Entities/stats.h"
-#include "Rpg/InfoBox/infobox_entity.h"
 #include "functions.h"
+#include "Rpg/InfoBox/infobox_entity.h"
 
 int stats_compute_damages(stats_t *from, stats_t *to, int element, int value)
 {

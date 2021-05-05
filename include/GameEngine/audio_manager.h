@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
-** GameEngine - sound manager
+** Game Engine - sound manager
 */
 
 #ifndef GE_AUDIO_MANAGER_H

@@ -1,20 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-<<<<<<< HEAD
-<<<<<<< HEAD
-** rpg
-** File description:
-** my_vec_clear
-=======
 ** LibMy - collections module
 ** File description:
 ** Flushes the elements of a vector
->>>>>>> bb5f890 (libmy: update to 0.3.8)
-=======
-** LibMy - collections module
-** File description:
-** Flushes the elements of a vector
->>>>>>> origin/master
 */
 
 #include "libmy/collections/vec.h"

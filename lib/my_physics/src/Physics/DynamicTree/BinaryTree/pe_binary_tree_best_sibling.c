@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - binary tree pick best sibling
 */
 
-#include <stdio.h>
 #include <libmy/collections/vec.h>
+#include <stdio.h>
 
 #include "Physics/DynamicTree/binary_tree.h"
 
@@ -17,12 +17,12 @@ static float get_direct_cost(pe_tree_node_t *node, pe_tree_node_t *new_node)
     return pe_aabb_area(pe_aabb_union(&buffer, &node->box, &new_node->box));
 }
 
-static float get_inherited_cost(pe_bin_tree_t *tree, pe_tree_node_t *node, \
-pe_tree_node_t *new_node, int include_node)
+static float get_inherited_cost(pe_bin_tree_t *tree, pe_tree_node_t *node,
+    pe_tree_node_t *new_node, int include_node)
 {
     float area = pe_aabb_area(&node->box);
-    float inherited = \
-    (include_node) ? get_direct_cost(node, new_node) - area : 0;
+    float inherited =
+        (include_node) ? get_direct_cost(node, new_node) - area : 0;
     pe_tree_node_t *current = node;
 
     while (current->parent_id != -1) {
@@ -33,14 +33,14 @@ pe_tree_node_t *new_node, int include_node)
     return inherited;
 }
 
-static void push_childs(pe_bin_tree_t *tree, my_vec_t *queue, float *costs, \
-pe_tree_node_t *new_node)
+static void push_childs(pe_bin_tree_t *tree, my_vec_t *queue, float *costs,
+    pe_tree_node_t *new_node)
 {
     int head = MY_VEC_GET_ELEM(int, queue, 0);
 
-    costs[1] = costs[2] + (costs[1] - (costs[2] + \
-    pe_aabb_area(&tree->nodes[head]->box))) + \
-    pe_aabb_area(&new_node->box);
+    costs[1] = costs[2]
+        + (costs[1] - (costs[2] + pe_aabb_area(&tree->nodes[head]->box)))
+        + pe_aabb_area(&new_node->box);
     if (costs[1] < costs[0] && !tree->nodes[head]->is_leaf) {
         my_vec_push(queue, &tree->nodes[head]->child1_id);
         my_vec_push(queue, &tree->nodes[head]->child2_id);
@@ -53,7 +53,8 @@ pe_tree_node_t *new_node)
 ** 1 : current
 ** 2 : inherited
 */
-int pe_bin_tree_find_best_sibling(pe_bin_tree_t *tree, pe_tree_node_t *new_node)
+int pe_bin_tree_find_best_sibling(
+    pe_bin_tree_t *tree, pe_tree_node_t *new_node)
 {
     float costs[3] = {get_direct_cost(tree->nodes[tree->root_id], new_node)};
     int best = tree->root_id;
