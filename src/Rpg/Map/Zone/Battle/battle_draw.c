@@ -14,7 +14,6 @@ sfVector2i min, sfVector2i max)
     sfRenderWindow_setView(wind, battle->zone->map->view);
     layer_draw(battle->layer, wind, min, max);
     fight_draw(battle->fight, wind);
-    player_draw(battle->player, wind);
 }
 
 void battle_draw(battle_t *battle, sfRenderWindow *wind, \

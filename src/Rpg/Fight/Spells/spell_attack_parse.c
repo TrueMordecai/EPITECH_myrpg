@@ -20,6 +20,7 @@ static int parse_value(size_t *offset, int name_len, char *line_beg)
     *offset = name_len;
     nb = get_number_pass(line_beg, offset);
     (*offset)--;
+    CLAMP_ASSIGN(nb, -100, 100);
     return nb;
 }
 
@@ -53,7 +54,4 @@ void spell_attack_parse(
         parse_line(spell, file_content + offset);
         offset += line_len + 1;
     }
-    my_printf("   Earth = %d\n   Fire = %d\n   Water = %d\n   Wind = %d\n",
-        spell->damages[EARTH], spell->damages[FIRE], spell->damages[WATER],
-        spell->damages[WIND]);
 }

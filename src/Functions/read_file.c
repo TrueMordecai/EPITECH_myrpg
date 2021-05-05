@@ -6,6 +6,7 @@
 */
 
 #include <libmy/io.h>
+#include <libmy/printf.h>
 #include <stdlib.h>
 
 char *read_file(char const *path, size_t *file_size)

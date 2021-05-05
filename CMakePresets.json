@@ -5,7 +5,10 @@
             "name": "unix_makefiles",
             "hidden": true,
             "generator": "Unix Makefiles",
-            "binaryDir": "${sourceDir}/build/${presetName}"
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc"
+            }
         },
         {
             "name": "debug",
@@ -14,8 +17,14 @@
             "inherits": "unix_makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "BUILD_TEST_SUITE": true,
-                "USE_GCOV": true
+                "BUILD_TEST_SUITE": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                },
+                "USE_GCOV": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
             }
         },
         {
@@ -25,9 +34,18 @@
             "inherits": "unix_makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "BUILD_TEST_SUITE": true,
-                "SW_BUILD_DOC": true,
-                "LIBMY_BUILD_DOC": true
+                "BUILD_TEST_SUITE": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                },
+                "SW_BUILD_DOC": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                },
+                "LIBMY_BUILD_DOC": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
             }
         }
     ],

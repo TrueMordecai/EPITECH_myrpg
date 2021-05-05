@@ -39,8 +39,7 @@ void action_move_update(entity_t *entity, float dt, action_t *act)
         act->move.progress = MIN(act->move.progress, 1);
         action_move_update(entity, 0, act);
         act->move.progress = 0;
-        act->move.i++;
-        if (act->move.i == act->move.len_path) {
+        if ((++act->move.i) == act->move.len_path) {
             my_vec_free(&act->move.path, NULL);
             my_vec_remove(&entity->actions, NULL, 0);
             animations_pause(&entity->anim);
@@ -50,7 +49,16 @@ void action_move_update(entity_t *entity, float dt, action_t *act)
 
 void action_attack_update(entity_t *entity, float dt, action_t *act)
 {
+    sfIntRect rect;
+
+    if (act->attack.progress == 0)
+        entity_attack(entity, act);
     act->attack.progress += dt * 3;
+    if (act->attack.progress > 0.5) {
+        rect = sfRectangleShape_getTextureRect(entity->rect);
+        rect.top = 0;
+        sfRectangleShape_setTextureRect(entity->rect, rect);
+    }
     if (act->attack.progress > 1.0)
         my_vec_remove(&entity->actions, NULL, 0);
 }
@@ -68,9 +76,11 @@ void entity_update_actions(entity_t *entity, float dt)
 void entity_update(entity_t *entity, float dt, int playing)
 {
     animations_update(&entity->anim, dt);
-    if (!playing || !entity->alive)
+    if (entity->alive <= 0 && entity->alive > -256)
+        entity->alive -= dt * 250;
+    if (!playing || entity->alive <= 0)
         return;
-    if (entity->state == IDLE) {
+    if (entity->state == IDLE && entity->team == ALLIES) {
         if (entity->spell_select < 0) {
             entity_draw_move_possibilities(entity, 0);
             entity_draw_move_path(entity, 1);

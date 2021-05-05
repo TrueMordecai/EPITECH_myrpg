@@ -13,13 +13,15 @@
 #include "Rpg/Fight/spell.h"
 #include "functions.h"
 
-static int parse_value(size_t *offset, int name_len, char *line_beg)
+static int parse_value(
+    size_t *offset, int name_len, char *line_beg, sfVector2i min_max)
 {
     int nb;
 
     *offset = name_len;
     nb = get_number_pass(line_beg, offset);
     (*offset)--;
+    CLAMP_ASSIGN(nb, min_max.x, min_max.y);
     return nb;
 }
 
@@ -35,11 +37,14 @@ static int parse_line(spell_base_t *spell, char *line_beg)
         return 0;
     }
     if (my_strncmp("PO=", line_beg, 3) == 0)
-        spell->po = parse_value(&offset, 3, line_beg);
+        spell->po = parse_value(&offset, 3, line_beg, (sfVector2i){0, 30});
     if (my_strncmp("PA=", line_beg, 3) == 0)
-        spell->pa = parse_value(&offset, 3, line_beg);
+        spell->pa = parse_value(&offset, 3, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("AREA=", line_beg, 5) == 0)
-        spell->area = parse_value(&offset, 5, line_beg);
+        spell->area = parse_value(&offset, 5, line_beg, (sfVector2i){0, 10});
+    if (my_strncmp("TURN_LIMIT=", line_beg, 11) == 0)
+        spell->turn_limit =
+            parse_value(&offset, 11, line_beg, (sfVector2i){1, 6});
     if (offset == 0 || line_beg[offset] != '\n')
         return 1;
     return 0;
@@ -72,13 +77,17 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
     spell->name = NULL;
     spell->pa = 1;
     spell->po = 0;
-    spell->area = 0;
+    spell->texture_id = 0;
+    spell->area = 1;
+    spell->turn_limit = 3;
+    spell->cast_left = 3;
     while (offset < filesize) {
         line_len = my_strlen_to(file_content + offset, '\n');
         parse_line(spell, file_content + offset);
+        if (my_strncmp("TEXTURE_ID=", file_content + offset, 11) == 0)
+            spell->texture_id = parse_value(
+                &offset, 11, file_content + offset, (sfVector2i){0, 7});
         offset += line_len + 1;
     }
-    my_printf("Name = %#s\n   Pa = %d\n   Po = %d\n   Area = %d\n",
-        spell->name, spell->pa, spell->po, spell->area);
     parse_types(spell, file_content, filesize);
 }

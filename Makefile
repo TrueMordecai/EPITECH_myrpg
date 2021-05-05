@@ -4,7 +4,7 @@ BUILD_DIR := build
 BUILD_DIR_RELEASE := $(BUILD_DIR)/release
 BUILD_DIR_DEBUG := $(BUILD_DIR)/debug
 
-CONFIG_FLAGS := -G"Unix Makefiles" 
+CONFIG_FLAGS := -G"Unix Makefiles"
 
 CONFIG_FLAGS_RELEASE := \
 	-DCMAKE_BUILD_TYPE=Release -DBUILD_TEST_SUITE=TRUE \
@@ -53,6 +53,7 @@ test_run: run_test
 # Display Code Coverage
 coverage:
 	gcovr .
+	gcovr --branch .
 
 .PHONY: \
 	all $(TARGET) \

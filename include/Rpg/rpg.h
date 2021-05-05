@@ -9,9 +9,11 @@
 #define MY_RPG_H
 
 #include "Rpg/Entities/player.h"
+#include "Rpg/Interfarces/inventory.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
+#include "Rpg/Entities/allies.h"
 
 #define M_TO_PX 32.f
 
@@ -23,6 +25,8 @@ typedef struct rpg_t {
     sfRenderWindow *wind;
     map_t *map;
     player_t *player;
+    inventory_t inventory;
+    allies_t allies;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);

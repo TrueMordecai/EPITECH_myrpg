@@ -60,6 +60,4 @@ void spell_debuff_parse(
             spell->turns = get_number_pass(file_content + offset + 6, NULL);
         offset += line_len + 1;
     }
-    my_printf("   Debuff boosts = %R\n   Debuff Damages = %R\n   Turns = %d\n",
-        spell->type & EFFECT_BOOST, spell->type & EFFECT_DAMAGE, spell->turns);
 }

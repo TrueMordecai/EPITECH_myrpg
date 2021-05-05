@@ -57,7 +57,7 @@ void entity_move(entity_t *entity, int update_sprite)
     if (update_sprite)
         entity_update_sprite_pos(entity, (sfVector2f){-1, -1});
     else
-        entity_add_action(entity, MOVE);
+        entity_add_action(entity, MOVE, NULL);
     entity->stats->current_pm -= size_move;
     entity_update_move_possibilities(entity);
 }

@@ -4,7 +4,10 @@
 *.gcda
 *.a
 my_rpg
-
+texture_workdir
+datas
+vgcore*
+*~
 # Documentation
 doc/html
 Doxyfile
