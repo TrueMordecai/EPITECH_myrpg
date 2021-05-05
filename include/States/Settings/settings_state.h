@@ -36,6 +36,8 @@ typedef struct settings_adjust_button {
         sw_button_t button;
     };
     sw_on_event_t base_on_event;
+    int offset;
+    sw_vec2u_t bounds;
 } settings_adjust_button_t;
 
 settings_adjust_button_t *settings_adjust_button_create(
@@ -45,5 +47,8 @@ void settings_adjust_button_drop(settings_adjust_button_t *button);
 
 sw_result_t settings_adjust_button_on_event(
     settings_adjust_button_t *button, sfEvent const *event);
+
+void settings_adjust_button_on_click(
+    settings_adjust_button_t *button, unsigned *value);
 
 #endif // !defined(__SETTINGS_STATE_H__)
