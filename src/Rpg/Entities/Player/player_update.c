@@ -60,6 +60,8 @@ static void fill_offset(player_t *player, sfVector2f *offset)
     if (sfKeyboard_isKeyPressed(sfKeyD))
         offset->x = amplitude;
     update_dir(player, *offset);
+    if (offset->x || offset->y && player->rpg->battle_end.is_on)
+        player->rpg->battle_end.is_on = false;
 }
 
 void player_update(player_t *player, float dt)
