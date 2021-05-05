@@ -19,6 +19,8 @@ void menu_init_gui(menu_state_t *state)
     sw_base_t *base = sw_base_create(NULL);
     sw_vlayout_t *layout = sw_vlayout_create(base);
 
+    sw_set_background_texture(base, 
+        get_texture(&state->base.game_data->assets, "menu_bg"), 1);
     sw_set_size(base, (sw_vec2f_t){1920 * SCL(state), 1080 * SCL(state)});
     sw_vlayout_update(layout);
     sw_vlayout_add(layout,
