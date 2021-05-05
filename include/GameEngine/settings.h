@@ -1,11 +1,6 @@
 /*
-<<<<<<< HEAD
-** EPITECH PROJECT, 2020
-** Game Engine
-=======
 ** EPITECH PROJECT, 2021
 ** MyRPG
->>>>>>> master
 ** File description:
 ** Game engine - settings
 */
@@ -116,8 +111,8 @@ bool cfg_file_get_uint_value(
 struct settings {
     sfVector2u window_size;
     unsigned int max_fps;
-    float music_volume;
-    float sound_volume;
+    unsigned int music_volume;
+    unsigned int sound_volume;
     float scale;
 };
 

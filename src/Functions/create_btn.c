@@ -39,7 +39,7 @@ sw_button_t *create_btn(
         sw_button_set_texture_rect(
             button, (sw_irect_t){0, i * 80, 195, 80}, i);
     }
-    sw_button_set_size(button, size);
+    sw_set_size(button, size);
     sw_button_set_text(
         button, text, get_font(&state->game_data->assets, "roboto_font"));
     sfText_setFillColor(button->data.text, sfBlack);
