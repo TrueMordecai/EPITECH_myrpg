@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - binary tree insert leaf
 */
@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include "Physics/DynamicTree/binary_tree.h"
 
-void pe_bin_tree_create_parent(pe_bin_tree_t *tree, pe_tree_node_t *sibling, \
-pe_tree_node_t *new_node)
+void pe_bin_tree_create_parent(
+    pe_bin_tree_t *tree, pe_tree_node_t *sibling, pe_tree_node_t *new_node)
 {
     pe_tree_node_t *node = pe_tree_node_init(tree, &sibling->box, NULL);
 
@@ -24,17 +24,17 @@ pe_tree_node_t *new_node)
     pe_bin_tree_update_parents_box(tree, node);
 }
 
-void pe_bin_tree_update_parents_box(pe_bin_tree_t *tree, \
-pe_tree_node_t *from_node)
+void pe_bin_tree_update_parents_box(
+    pe_bin_tree_t *tree, pe_tree_node_t *from_node)
 {
     pe_tree_node_t *current = from_node;
 
-    pe_aabb_union(&current->box, &tree->nodes[current->child1_id]->box, \
-    &tree->nodes[current->child2_id]->box);
+    pe_aabb_union(&current->box, &tree->nodes[current->child1_id]->box,
+        &tree->nodes[current->child2_id]->box);
     while (current->parent_id != -1) {
         current = tree->nodes[current->parent_id];
-        pe_aabb_union(&current->box, &tree->nodes[current->child1_id]->box, \
-        &tree->nodes[current->child2_id]->box);
+        pe_aabb_union(&current->box, &tree->nodes[current->child1_id]->box,
+            &tree->nodes[current->child2_id]->box);
     }
 }
 
@@ -43,7 +43,7 @@ void pe_bin_tree_insert_body(pe_bin_tree_t *tree, pe_body_t *body)
     int best_sibling = 0;
     pe_tree_node_t *node = pe_tree_node_init(tree, &body->aabb, body);
 
-    if (tree->nb_nodes_set == 1){
+    if (tree->nb_nodes_set == 1) {
         tree->root_id = node->id;
         return;
     }

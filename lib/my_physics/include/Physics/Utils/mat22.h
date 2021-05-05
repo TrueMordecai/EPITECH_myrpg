@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - Rotation Matrix 2-2
 */
@@ -27,8 +27,8 @@ typedef struct pe_mat22_t {
 
 pe_mat22_t *pe_mat22_init(void);
 pe_mat22_t *pe_mat22_init_from_angle(pe_mat22_t *matrix, float rad_angle);
-pe_mat22_t *pe_mat22_init_from_vec2(pe_mat22_t *matrix, \
-pe_vec2f_t x_row, pe_vec2f_t y_row);
+pe_mat22_t *pe_mat22_init_from_vec2(
+    pe_mat22_t *matrix, pe_vec2f_t x_row, pe_vec2f_t y_row);
 
 void pe_mat22_rotate(pe_mat22_t *mat, float rad_angle);
 void pe_mat22_rotate_point(pe_mat22_t *mat, pe_vec2f_t *point);

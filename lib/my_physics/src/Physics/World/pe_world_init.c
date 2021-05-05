@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - world init
 */
 
 #include "Physics/physics.h"
 
-pe_world_t *pe_world_init(pe_vec2f_t gravity, \
-unsigned short bodies_initial_capacity)
+pe_world_t *pe_world_init(
+    pe_vec2f_t gravity, unsigned short bodies_initial_capacity)
 {
     pe_world_t *world = malloc(sizeof(pe_world_t));
 

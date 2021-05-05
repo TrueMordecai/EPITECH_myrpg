@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - update body
 */
@@ -32,9 +32,8 @@ void pe_body_set_awake(pe_body_t *body, char awake)
 void pe_body_try_sleep(pe_body_t *body, float dt)
 {
     float bias = powf(0.8, dt);
-    float current_motion = \
-    pe_vec2f_dot_product(body->velocity, body->velocity) + \
-    powf(body->angular_velocity, 2);
+    float current_motion = pe_vec2f_dot_product(body->velocity, body->velocity)
+        + powf(body->angular_velocity, 2);
 
     if (!body->can_sleep)
         return;

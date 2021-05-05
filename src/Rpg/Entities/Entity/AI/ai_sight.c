@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** ai_sight
 */
@@ -48,10 +48,10 @@ int *init_sight(entity_t *entity, my_vec_t *allies, int ally_po)
         entity_update_move_possibilities(entity);
     for (size_t i = 0; i < allies->length; i++) {
         po = (ally_po) ? get_ally_max_po(allies, i) : po_entity;
-        sight_tmp = fight_get_sight(fight, (sfVector2i)\
-        {MY_VEC_GET_ELEM(entity_t *, allies, i)->pos, \
-            entity->stats->current_pm}, \
-        (sfVector2i){po, 0}, &entity->move_possibilities);
+        sight_tmp = fight_get_sight(fight,
+            (sfVector2i){MY_VEC_GET_ELEM(entity_t *, allies, i)->pos,
+                entity->stats->current_pm},
+            (sfVector2i){po, 0}, &entity->move_possibilities);
         union_sights(&sight, sight_tmp);
     }
     return sight;

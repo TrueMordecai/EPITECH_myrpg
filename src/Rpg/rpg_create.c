@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2021
 ** My rpg
 ** File description:
-** Rpg create
+** MyRPG create
 */
 
 #include <libmy/memory/alloc.h>
 
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/rpg.h"
 
 rpg_t *rpg_create(state_t *state)
 {

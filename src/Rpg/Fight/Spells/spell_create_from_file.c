@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** spell_create_from_file
 */
 
 #include <libmy/ascii.h>
-#include <libmy/printf.h>
 #include <libmy/io/iostream.h>
+#include <libmy/printf.h>
 #include <stdlib.h>
 
 #include "Rpg/Fight/spell.h"

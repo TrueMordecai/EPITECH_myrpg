@@ -1,14 +1,14 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** my_hunter
 ** File description:
 ** main loop of my hunter
 */
 
-#include "Rpg/rpg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Rpg/rpg.h"
 
 extern void rpg_inventory_draw(rpg_t *game)
 {
@@ -26,7 +26,8 @@ extern void rpg_add_item_to_inventory(rpg_t *game, item_t item)
 {
     unsigned int i = 0;
 
-    for (; game->inventory.items[i].name != NULL; i++);
+    for (; game->inventory.items[i].name != NULL; i++)
+        ;
     game->inventory.items[i] = item;
 }
 

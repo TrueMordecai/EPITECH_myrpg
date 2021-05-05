@@ -1,13 +1,13 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** Draw game
 */
 
 #include "Drawables/drawable.h"
-#include "States/GamePause/pause_state.h"
 #include "GameEngine/game_head.h"
+#include "States/GamePause/pause_state.h"
 
 int pause_state_draw(pause_state_t *state, float dt)
 {

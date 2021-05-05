@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physiscs constants
 */
@@ -9,17 +9,17 @@
 #define PHYSICS_CONSTANTS_H
 
 #ifndef MIN
-#define MIN(a, b) (((a) <= (b)) ? (a) : (b))
+    #define MIN(a, b) (((a) <= (b)) ? (a) : (b))
 #endif
 #ifndef MAX
-#define MAX(a, b) (((a) >= (b)) ? (a) : (b))
+    #define MAX(a, b) (((a) >= (b)) ? (a) : (b))
 #endif
 #ifndef CLAMP
-#define CLAMP(a, min, max) (MIN(MAX((a), min), max))
+    #define CLAMP(a, min, max) (MIN(MAX((a), min), max))
 #endif
-#define SIGN(a) (((a) >= 0) ? 1 : -1)
-#define TO_RAD(a) ((a) * (PE_PI / 180.f))
-#define TO_DEG(a) ((a) * (180 / PE_PI))
+#define SIGN(a)        (((a) >= 0) ? 1 : -1)
+#define TO_RAD(a)      ((a) * (PE_PI / 180.f))
+#define TO_DEG(a)      ((a) * (180 / PE_PI))
 #define SHAPE_POS(fix) (VEC2F_ADD(fix->body->pos, fix->shape.pos))
 
 extern const double PE_PI;

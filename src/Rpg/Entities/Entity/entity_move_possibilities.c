@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** ally_draw_move
 */
@@ -48,8 +48,8 @@ void entity_draw_move_possibilities(entity_t *entity, int update)
     for (int i = 0; cells[i] != END_ARRAY; i++) {
         if (cells[i] == entity->pos)
             continue;
-        fight_place_rect(fight, cells[i], \
-        sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
+        fight_place_rect(
+            fight, cells[i], sfColor_fromRGBA(0, 255, 0, 60), WALKABLE);
     }
 }
 
@@ -59,8 +59,8 @@ void entity_update_move_path(entity_t *entity, my_vec_t *new_path)
 
     free_tmp_path(entity->move_path);
     if (!new_path)
-        new_path = fight_get_path(fight, entity->pos, \
-        fight_get_mouse_tile(fight));
+        new_path =
+            fight_get_path(fight, entity->pos, fight_get_mouse_tile(fight));
     entity->move_path = new_path;
     if (!entity->move_path)
         return;
@@ -77,7 +77,7 @@ void entity_draw_move_path(entity_t *entity, int update)
     if (!entity->move_path)
         return;
     for (size_t i = 1; i < entity->move_path->length; i++)
-        fight_place_rect(entity->fight, \
-        MY_VEC_GET_ELEM(int, entity->move_path, i), \
-        sfColor_fromRGBA(0, 255, 0, 120), WALKABLE);
+        fight_place_rect(entity->fight,
+            MY_VEC_GET_ELEM(int, entity->move_path, i),
+            sfColor_fromRGBA(0, 255, 0, 120), WALKABLE);
 }

@@ -5,8 +5,8 @@
 ** get random number
 */
 
-#include <stdlib.h>
 #include <limits.h>
+#include <stdlib.h>
 #include "functions.h"
 
 float get_rand(float min, float max)

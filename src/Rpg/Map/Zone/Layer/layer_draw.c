@@ -17,8 +17,8 @@ static void draw_pos(layer_t *layer, int x, int y, sfRenderWindow *wind)
     sfRenderWindow_drawRectangleShape(wind, rect, NULL);
 }
 
-void layer_draw(layer_t *layer, sfRenderWindow *wind, \
-sfVector2i min, sfVector2i max)
+void layer_draw(
+    layer_t *layer, sfRenderWindow *wind, sfVector2i min, sfVector2i max)
 {
     min.x = MAX(0, min.x - layer->pos.x);
     min.y = MAX(0, min.y - layer->pos.y);

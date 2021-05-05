@@ -1,19 +1,19 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** my_hunter
 ** File description:
 ** main loop of my hunter
 */
 
-#include "Rpg/rpg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Rpg/rpg.h"
 
 static inline bool is_scrolling_deep(inventory_t *inv, unsigned int i)
 {
-    return ((bool)((i < (unsigned int)40
-                   + inv->scroll * 4) && (inv->scroll < 39)));
+    return ((
+        bool)((i < (unsigned int)40 + inv->scroll * 4) && (inv->scroll < 39)));
 }
 
 static inline int get_scroll(rpg_t *g)
@@ -24,9 +24,9 @@ static inline int get_scroll(rpg_t *g)
 extern void item_clicked(rpg_t *game, item_t *item, sfVector2f pos)
 {
     item_t tmp;
-    if (sprite_is_hover(game->inventory.sprite, pos) &&
-        game->inventory.mouse_left == PRESS &&
-        item->name && game->inventory.item_selected.name != NULL) {
+    if (sprite_is_hover(game->inventory.sprite, pos)
+        && game->inventory.mouse_left == PRESS && item->name
+        && game->inventory.item_selected.name != NULL) {
         rpg_copy_item(&tmp, game->inventory.item_selected);
         rpg_destroy_item(&game->inventory.item_selected);
         rpg_copy_item(&game->inventory.item_selected, *item);
@@ -34,8 +34,8 @@ extern void item_clicked(rpg_t *game, item_t *item, sfVector2f pos)
         rpg_destroy_item(&tmp);
         return;
     }
-    if (sprite_is_hover(game->inventory.sprite, pos) &&
-        game->inventory.mouse_left == PRESS && item->name) {
+    if (sprite_is_hover(game->inventory.sprite, pos)
+        && game->inventory.mouse_left == PRESS && item->name) {
         rpg_copy_item(&game->inventory.item_selected, *item);
         rpg_destroy_item(item);
         game->inventory.mouse_left = HOLD;

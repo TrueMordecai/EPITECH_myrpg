@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** infobox_spell_update
 */
@@ -41,7 +41,6 @@ void infobox_spell_attack_set_spell_2(
 {
     int line = 0;
     sfVector2f bs = info->base.base.box_size;
-
 
     infobox_init_text(
         info->damages, "Damages:", (sfVector3f){0.05 * bs.x, 0.44 * bs.y, -1});

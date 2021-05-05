@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** rpg_destroy
+** MyRPG_destroy
 */
 
 #include <stdlib.h>

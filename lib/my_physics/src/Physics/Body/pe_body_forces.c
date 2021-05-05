@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - force on bodies
 */
@@ -29,9 +29,11 @@ void pe_body_integrate_forces(pe_body_t *body, float dt)
 {
     if (body->body_type == STATIC)
         return;
-    body->velocity = VEC2F_MUL1(VEC2F_ADD(body->velocity, \
-    VEC2F_MUL1(body->force, 0.5 * dt * body->mass.inv_mass)), \
-    CLAMP(1 - (dt * body->linear_damping * 0.5f), 0, 1));
-    body->angular_velocity += 0.5f * dt * body->torque * body->mass.inv_inertia;
+    body->velocity = VEC2F_MUL1(
+        VEC2F_ADD(body->velocity,
+            VEC2F_MUL1(body->force, 0.5 * dt * body->mass.inv_mass)),
+        CLAMP(1 - (dt * body->linear_damping * 0.5f), 0, 1));
+    body->angular_velocity +=
+        0.5f * dt * body->torque * body->mass.inv_inertia;
     body->angular_velocity *= powf(0.1, dt);
 }

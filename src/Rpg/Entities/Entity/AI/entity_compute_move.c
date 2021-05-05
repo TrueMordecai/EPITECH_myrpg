@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** entity_compute_move
 */
@@ -10,13 +10,11 @@
 #include "Rpg/Fight/fight.h"
 #include "functions.h"
 
-int get_allies(fight_t *fight, entity_t *entity, \
-my_vec_t *allies);
-my_vec_t *get_nearest_side_path(fight_t *fight, int from, \
-int to, size_t *min_len);
+int get_allies(fight_t *fight, entity_t *entity, my_vec_t *allies);
+my_vec_t *get_nearest_side_path(
+    fight_t *fight, int from, int to, size_t *min_len);
 void move_forward(entity_t *entity, my_vec_t *allies);
-void move_to_reachable_sights(entity_t *entity, int *sight, \
-my_vec_t *allies);
+void move_to_reachable_sights(entity_t *entity, int *sight, my_vec_t *allies);
 void flee_away(entity_t *entity, my_vec_t *allies);
 int *init_sight(entity_t *entity, my_vec_t *allies, int ally_po);
 
