@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - specific init
 */
@@ -22,16 +22,16 @@ static pe_vec2f_t *compute_face_normals(pe_vec2f_t *vertices, int nb_vertices)
     pe_vec2f_t face = vertices[nb_vertices - 1];
 
     for (int i = 0; i < nb_vertices; i++) {
-        face = \
-        VEC2F_SUB(vertices[((i + 1) < nb_vertices) ? i + 1 : 0], vertices[i]);
+        face = VEC2F_SUB(
+            vertices[((i + 1) < nb_vertices) ? i + 1 : 0], vertices[i]);
         normals[i] = VEC2F(face.y, -face.x);
         pe_vec2f_normalize(&normals[i]);
     }
     return normals;
 }
 
-void pe_shape_init_polygon(pe_shape_t *shape, pe_vec2f_t pos, \
-pe_vec2f_t *vertices, int nb_vertices)
+void pe_shape_init_polygon(
+    pe_shape_t *shape, pe_vec2f_t pos, pe_vec2f_t *vertices, int nb_vertices)
 {
     pe_shape_reset(shape);
     shape->pos = pos;

@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** GameEngine
+** EPITECH PROJECT, 2021
+** Game Engine
 ** File description:
 ** audio manager functions
 */

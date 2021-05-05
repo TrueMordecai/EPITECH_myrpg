@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - Tree node init
 */
@@ -9,8 +9,8 @@
 #include "Physics/DynamicTree/binary_tree.h"
 #include "Physics/DynamicTree/tree_node.h"
 
-pe_tree_node_t *pe_tree_node_init(pe_bin_tree_t *tree, \
-pe_aabb_t *box, pe_body_t *body)
+pe_tree_node_t *pe_tree_node_init(
+    pe_bin_tree_t *tree, pe_aabb_t *box, pe_body_t *body)
 {
     pe_tree_node_t *node;
 

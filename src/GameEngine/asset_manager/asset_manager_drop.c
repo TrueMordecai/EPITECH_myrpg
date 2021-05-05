@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** Game Engine - uninitializes the asset manager
 */

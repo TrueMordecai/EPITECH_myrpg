@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** timeline_remove_frame
 */
 
-#include "Rpg/Fight/timeline.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/Fight/timeline.h"
 
 int timeline_get_entity_id(timeline_t *timeline, entity_t *entity)
 {

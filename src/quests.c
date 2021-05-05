@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** Quêtes
+** EPITECH PROJECT, 2021
+** MyRPG - Quests
 ** File description:
 ** quests.c
 */
@@ -27,11 +27,12 @@ void setup_quest_by_id(t_data *quests_data)
 {
     int nb_quest = 0;
 
-    for (; quests_data->quests_list[nb_quest] != NULL; nb_quest++);
+    for (; quests_data->quests_list[nb_quest] != NULL; nb_quest++)
+        ;
     quests_data->quest = malloc(sizeof(t_quest) * nb_quest);
     for (int i = 0; quests_data->quests_list[i] != NULL; i++) {
-        quests_data->quest[i].quest_type = \
-        my_getnbr(quests_data->quests_list[i]);
+        quests_data->quest[i].quest_type =
+            my_getnbr(quests_data->quests_list[i]);
         parse_quest_info(quests_data, i);
     }
 }

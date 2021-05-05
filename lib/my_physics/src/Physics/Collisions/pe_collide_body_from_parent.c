@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - detect collisions
 */
@@ -9,17 +9,16 @@
 
 #include "Physics/physics.h"
 
-static void collide_leaf(pe_bin_tree_t *tree, int node_index, \
-pe_body_t *body)
+static void collide_leaf(pe_bin_tree_t *tree, int node_index, pe_body_t *body)
 {
-    if (tree->nodes[node_index]->tested == 0 && node_index != body->id && \
-    pe_collide_aabbs(&tree->nodes[node_index]->box, &body->aabb)){
+    if (tree->nodes[node_index]->tested == 0 && node_index != body->id
+        && pe_collide_aabbs(&tree->nodes[node_index]->box, &body->aabb)) {
         pe_collide_bodies(tree->nodes[node_index]->body, body);
     }
 }
 
-void pe_collide_body_from_parent(pe_bin_tree_t *tree, \
-int parent_box_id, pe_body_t *body)
+void pe_collide_body_from_parent(
+    pe_bin_tree_t *tree, int parent_box_id, pe_body_t *body)
 {
     my_vec_t stack;
     int index;

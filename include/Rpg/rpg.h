@@ -2,18 +2,18 @@
 ** EPITECH PROJECT, 2021
 ** My rpg
 ** File description:
-** rpg struct
+** MyRPG struct
 */
 
 #ifndef MY_RPG_H
 #define MY_RPG_H
 
+#include "Rpg/Entities/allies.h"
 #include "Rpg/Entities/player.h"
 #include "Rpg/Interfarces/inventory.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
-#include "Rpg/Entities/allies.h"
 
 #define M_TO_PX 32.f
 

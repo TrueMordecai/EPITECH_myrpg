@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** spells_bar
 */
@@ -11,7 +11,7 @@
 #include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
 
-#define SPELLS_BAR_WIDTH 6
+#define SPELLS_BAR_WIDTH  6
 #define SPELLS_BAR_HEIGHT 2
 
 struct fight_t;

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight_draw
 */
@@ -15,8 +15,8 @@ void fight_draw_line(fight_t *fight, int from, int to)
     if (!line)
         return;
     while (line[i] != END_ARRAY)
-        fight_place_rect(fight, line[i++], \
-        sfColor_fromRGBA(0, 255, 255, 50), C_EMPTY);
+        fight_place_rect(
+            fight, line[i++], sfColor_fromRGBA(0, 255, 255, 50), C_EMPTY);
     free(line);
 }
 

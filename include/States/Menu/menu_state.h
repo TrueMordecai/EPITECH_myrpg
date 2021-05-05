@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** menu state
 */
@@ -8,10 +8,10 @@
 #ifndef MENU_STATE_H
 #define MENU_STATE_H
 
-#include "GameEngine/state.h"
-#include <sw/widget.h>
 #include <sw/layouts/vertical.h>
+#include <sw/widget.h>
 #include <sw/widgets/button.h>
+#include "GameEngine/state.h"
 
 #include "menu_cst.h"
 

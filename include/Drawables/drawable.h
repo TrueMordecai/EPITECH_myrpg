@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** Game Engine
 ** File description:
 ** Drawables lists
@@ -8,8 +8,8 @@
 #ifndef GE_DRAWABLES_H
 #define GE_DRAWABLES_H
 
-#include <SFML/Graphics/Types.h>
 #include <SFML/Graphics.h>
+#include <SFML/Graphics/Types.h>
 #include <libmy/collections.h>
 
 typedef enum {

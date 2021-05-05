@@ -6,8 +6,8 @@
 */
 
 #include <stdlib.h>
-#include "Rpg/Map/zone.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/Map/zone.h"
 
 void zone_destroy(zone_t *zone)
 {

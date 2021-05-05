@@ -1,24 +1,24 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** entity_move
 */
 
 #include <libmy/printf.h>
 
-#include "Rpg/rpg.h"
-#include "Rpg/Entities/player.h"
 #include "Rpg/Entities/entity.h"
+#include "Rpg/Entities/player.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 static void move_player(player_t *player, sfVector2f pos)
 {
     sfVector2i vec_i;
 
     if ((int)pos.x == -1 && (int)pos.y == -1) {
-        vec_i = fight_pos_to_vec(player->entity->fight, \
-        player->entity->pos, 1);
+        vec_i =
+            fight_pos_to_vec(player->entity->fight, player->entity->pos, 1);
         pos = (sfVector2f){vec_i.x, vec_i.y};
     } else {
         pos.x /= M_TO_PX;
@@ -49,8 +49,8 @@ void entity_move(entity_t *entity, int update_sprite)
 
     if (!entity->move_path)
         return;
-    size_move = MIN(entity->move_path->length - 1, \
-    (size_t)entity->stats->current_pm);
+    size_move =
+        MIN(entity->move_path->length - 1, (size_t)entity->stats->current_pm);
     entity->fight->grid[entity->pos].entity = NULL;
     entity->pos = MY_VEC_GET_ELEM(int, entity->move_path, size_move);
     entity->fight->grid[entity->pos].entity = entity;

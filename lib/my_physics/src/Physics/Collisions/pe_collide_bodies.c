@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - search collide btwn 2 bodies (when aabb's overlap)
 */
@@ -18,8 +18,8 @@ static void push_manifold(pe_manifold_t *m, int collided)
 
 static int pe_fill_manifold(pe_manifold_t *m)
 {
-    return pe_collide_table[m->af->shape.shape_type]\
-        [m->bf->shape.shape_type](m);
+    return pe_collide_table[m->af->shape.shape_type][m->bf->shape.shape_type](
+        m);
 }
 
 void pe_collide_bodies(pe_body_t *b1, pe_body_t *b2)

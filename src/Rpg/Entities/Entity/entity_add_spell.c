@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** entity_add_spell
 */
 
 #include <libmy/printf.h>
 
-#include "Rpg/rpg.h"
 #include "Rpg/Entities/entity.h"
+#include "Rpg/rpg.h"
 
 void entity_add_spell(entity_t *entity, spell_base_t *spell)
 {

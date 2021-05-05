@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - vec2f compute length
 */
 
-#include "Physics/physics.h"
 #include <math.h>
+#include "Physics/physics.h"
 
 float pe_vec2f_length(pe_vec2f_t v)
 {

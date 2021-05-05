@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - Body
 */
@@ -8,14 +8,14 @@
 #ifndef PHYSICS_BODY_H
 #define PHYSICS_BODY_H
 
-#include <stddef.h>
 #include <libmy/collections/vec.h>
+#include <stddef.h>
 
 #include "Physics/Utils/utils.h"
 #include "Physics/MassData/mass_data.h"
 #include "Physics/Shapes/aabb_shape.h"
 
-enum BODY_TYPE {STATIC, DYNAMIC};
+enum BODY_TYPE { STATIC, DYNAMIC };
 
 struct pe_move_t;
 struct pe_fixture_t;
@@ -61,8 +61,8 @@ typedef struct pe_body_t {
     int id;
 } pe_body_t;
 
-pe_body_t *pe_body_init(char body_type, int fixture_init_capacity, \
-int moves_init_capacity);
+pe_body_t *pe_body_init(
+    char body_type, int fixture_init_capacity, int moves_init_capacity);
 void pe_body_add_fixture(pe_body_t *body, struct pe_fixture_t *fixture);
 void pe_body_destroy(pe_body_t *body);
 
@@ -83,13 +83,14 @@ void pe_body_add_force(pe_body_t *body, pe_vec2f_t force);
 void pe_body_add_torque(pe_body_t *body, float torque);
 
 void pe_body_apply_impulse(pe_body_t *body, pe_vec2f_t impulse);
-void pe_body_apply_impulse_on_point(pe_body_t *body, \
-pe_vec2f_t impulse, pe_vec2f_t point);
+void pe_body_apply_impulse_on_point(
+    pe_body_t *body, pe_vec2f_t impulse, pe_vec2f_t point);
 
 void pe_body_try_sleep(pe_body_t *body, float dt);
 void pe_body_set_awake(pe_body_t *body, char awake);
 
 /// Convenience macro for obtaning the i-th fixture from the body 'b'.
-#define PE_BODY_FIXTURE(b, i) (MY_VEC_GET_ELEM(pe_fixture_t *, &b->fixtures, i))
+#define PE_BODY_FIXTURE(b, i) \
+    (MY_VEC_GET_ELEM(pe_fixture_t *, &b->fixtures, i))
 
 #endif /* !PHYSICS_BODY_H */

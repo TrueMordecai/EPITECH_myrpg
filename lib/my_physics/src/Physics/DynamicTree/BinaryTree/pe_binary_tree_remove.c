@@ -1,22 +1,22 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - remove node
 */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "Physics/DynamicTree/binary_tree.h"
 
-static void reassign_ids(pe_bin_tree_t *tree, pe_tree_node_t *ending_node, \
-pe_tree_node_t *parent)
+static void reassign_ids(
+    pe_bin_tree_t *tree, pe_tree_node_t *ending_node, pe_tree_node_t *parent)
 {
     int sibling_id;
     pe_tree_node_t *sibling;
 
-    sibling_id = ((parent->child1_id != ending_node->id) ? \
-parent->child1_id : parent->child2_id);
+    sibling_id = ((parent->child1_id != ending_node->id) ? parent->child1_id
+                                                         : parent->child2_id);
     sibling = tree->nodes[sibling_id];
     sibling->parent_id = parent->parent_id;
     if (parent->parent_id != -1) {
@@ -33,13 +33,13 @@ parent->child1_id : parent->child2_id);
     pe_tree_node_destroy(parent);
 }
 
-pe_tree_node_t *pe_bin_tree_remove_node(pe_bin_tree_t *tree, \
-int id, int destroy)
+pe_tree_node_t *pe_bin_tree_remove_node(
+    pe_bin_tree_t *tree, int id, int destroy)
 {
     pe_tree_node_t *node = tree->nodes[id];
     int parent_id = node->parent_id;
-    int grandparent_id = \
-    (parent_id != -1) ? tree->nodes[parent_id]->parent_id : -1;
+    int grandparent_id =
+        (parent_id != -1) ? tree->nodes[parent_id]->parent_id : -1;
 
     if (parent_id != -1)
         reassign_ids(tree, node, tree->nodes[parent_id]);

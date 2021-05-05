@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** infobox_entity
 */
@@ -8,8 +8,8 @@
 #ifndef INFOBOX_ENTITY_H_
 #define INFOBOX_ENTITY_H_
 
-#include "Rpg/InfoBox/infobox.h"
 #include "Rpg/Entities/entity.h"
+#include "Rpg/InfoBox/infobox.h"
 
 typedef struct infobox_entity {
     infobox_base_t base;
@@ -21,7 +21,7 @@ typedef struct infobox_entity {
     sfText *pm;
     sfText *damage;
     sfText *resistance;
-    ///Elements Texts (NAME, DAMAGE, RESISTANCE)
+    /// Elements Texts (NAME, DAMAGE, RESISTANCE)
     sfText *elements[3][4];
     sfText *effects;
     my_vec_t effect_names;

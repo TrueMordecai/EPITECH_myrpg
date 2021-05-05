@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** spells_bar_update_spells
 */
@@ -12,7 +12,7 @@
 static void update_frame(spells_bar_t *bar, int i, spell_base_t *spell)
 {
     sfIntRect rect;
-    
+
     if (spell) {
         rect = (sfIntRect){spell->texture_id * 64, 0, 64, 64};
         sfRectangleShape_setTextureRect(bar->frames[i], rect);
@@ -30,7 +30,7 @@ void spells_bar_update_spells(spells_bar_t *bar)
     for (int i = 0; i < bar->nb_frames; i++) {
         if ((size_t)i < entity->spells.length)
             update_frame(
-            bar, i, MY_VEC_GET_ELEM(spell_base_t *, &entity->spells, i));
+                bar, i, MY_VEC_GET_ELEM(spell_base_t *, &entity->spells, i));
         else
             update_frame(bar, i, NULL);
     }

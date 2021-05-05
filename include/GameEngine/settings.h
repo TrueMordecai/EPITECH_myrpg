@@ -1,6 +1,11 @@
 /*
+<<<<<<< HEAD
 ** EPITECH PROJECT, 2020
 ** Game Engine
+=======
+** EPITECH PROJECT, 2021
+** MyRPG
+>>>>>>> master
 ** File description:
 ** Game engine - settings
 */

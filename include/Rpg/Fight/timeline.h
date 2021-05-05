@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** timeline
 */
@@ -8,14 +8,14 @@
 #ifndef TIMELINE_H_
 #define TIMELINE_H_
 
+#include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
 #include <sw/widget.h>
 #include <sw/widgets/button.h>
-#include <SFML/Graphics.h>
 
 #include "Rpg/Entities/entity.h"
 
-#define FRAME_WIDTH 64.0
+#define FRAME_WIDTH   64.0
 #define FRAME_SPACING 5.0
 #define CIRCLE_RADIUS 50
 

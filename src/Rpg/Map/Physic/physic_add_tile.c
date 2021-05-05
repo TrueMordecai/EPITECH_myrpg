@@ -17,8 +17,8 @@ void physic_add_tile(pe_world_t *world, pe_vec2f_t pos)
     pe_world_add_body(world, body);
 }
 
-static void init_shape_rect(pe_shape_t *shape, pe_vec2f_t pos, \
-pe_vec2f_t size, int dir)
+static void init_shape_rect(
+    pe_shape_t *shape, pe_vec2f_t pos, pe_vec2f_t size, int dir)
 {
     float c = cosf(dir * PE_PI / 2.f);
     float s = sinf(dir * PE_PI / 2.f);
@@ -50,17 +50,15 @@ static pe_body_t *init_body(sfVector2i pos, int tile)
     pe_fixture_t *fixture = pe_fixture_init();
 
     switch ((tile % 16) / 4) {
-    case HALF:
-        init_shape_rect(&fixture->shape, \
-        VEC2F(-0.125f, 0), VEC2F(0.5f, 1), tile % 4);
-        break;
-    case QUARTER:
-        init_shape_rect(&fixture->shape, \
-        VEC2F(-0.125f, -0.125f), VEC2F(0.5f, 0.5f), tile % 4 - 1);
-        break;
-    case TRI:
-        init_shape_tri(&fixture->shape, tile % 4);
-        break;
+        case HALF:
+            init_shape_rect(
+                &fixture->shape, VEC2F(-0.125f, 0), VEC2F(0.5f, 1), tile % 4);
+            break;
+        case QUARTER:
+            init_shape_rect(&fixture->shape, VEC2F(-0.125f, -0.125f),
+                VEC2F(0.5f, 0.5f), tile % 4 - 1);
+            break;
+        case TRI: init_shape_tri(&fixture->shape, tile % 4); break;
     }
     body->pos = VEC2F(pos.x, pos.y);
     pe_body_add_fixture(body, fixture);

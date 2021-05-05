@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight_rect_buff
 */
@@ -12,8 +12,9 @@ void fight_reset_buff(fight_t *fight)
     sfUint32 transparent = sfColor_toInteger(sfTransparent);
     int i = 0;
 
-    while (sfColor_toInteger(sfRectangleShape_getFillColor(\
-    fight->rect_buffer[i])) != transparent) {
+    while (
+        sfColor_toInteger(sfRectangleShape_getFillColor(fight->rect_buffer[i]))
+        != transparent) {
         sfRectangleShape_setFillColor(fight->rect_buffer[i], sfTransparent);
         i++;
     }
@@ -24,8 +25,9 @@ static int get_first_i_unused(fight_t *fight)
     sfUint32 transparent = sfColor_toInteger(sfTransparent);
     int i = 0;
 
-    while (sfColor_toInteger(sfRectangleShape_getFillColor(\
-        fight->rect_buffer[i])) != transparent)
+    while (
+        sfColor_toInteger(sfRectangleShape_getFillColor(fight->rect_buffer[i]))
+        != transparent)
         i++;
     return i;
 }
