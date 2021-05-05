@@ -15,8 +15,8 @@
 
 #include "types.h"
 
-#define SCL(state) (state->base.game_data->settings->scale)
-#define SL(rpg)    ((rpg)->state->game_data->settings->scale)
+#define SCL(state) (state->base.game_data->settings.scale)
+#define SL(rpg)    ((rpg)->state->game_data->settings.scale)
 
 /// A runtime representation of a config file.
 ///
@@ -111,14 +111,15 @@ bool cfg_file_get_uint_value(
 struct settings {
     sfVector2u window_size;
     unsigned int max_fps;
-    float music_volume;
-    float sound_volume;
+    unsigned int music_volume;
+    unsigned int sound_volume;
     float scale;
 };
 
-/// Creates and read settings from the given path, if @c path cannot be opened,
-/// @ref settings_init_default is used to popolate the values.
-settings_t *settings_read(char const *path);
+/// Initalizes and read settings from the given path,
+/// if @c path cannot be opened, @ref settings_init_default
+/// is used to popolate the values.
+void settings_read(settings_t *settings, char const *path);
 
 /// Writes the current settings to the file at @c path.
 ///
@@ -140,9 +141,6 @@ int settings_write_to_stream(
 
 /// Sets the given settings to their default values.
 void settings_init_default(settings_t *settings);
-
-/// Frees the passed settings.
-void settings_destroy(settings_t *settings);
 
 /// Parses the settings from the key-value store.
 /// Any missing or invalid key-value pair is set to its default value,
