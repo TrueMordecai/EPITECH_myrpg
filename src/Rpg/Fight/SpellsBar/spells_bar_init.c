@@ -64,8 +64,7 @@ static void init_life_pa_pm(spells_bar_t *bar)
     sfRectangleShape_setFillColor(bar->life_bg, sfTransparent);
     sfRectangleShape_setPosition(bar->life_bg, (sfVector2f){len * 0.2, -17.5});
     sfRectangleShape_setSize(bar->life_bg, (sfVector2f){len * 0.6, 15});
-    sfRectangleShape_setOutlineColor(
-        bar->life_bg, sfColor_fromRGB(44, 59, 57));
+    sfRectangleShape_setOutlineColor(bar->life_bg, sfColor_fromRGB(44, 59, 57));
     sfRectangleShape_setOutlineThickness(bar->life_bg, -1);
     init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 30.0, -18});
     sfText_setFillColor(bar->text_pa, sfBlue);

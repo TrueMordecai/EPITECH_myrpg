@@ -12,5 +12,6 @@ set(SRC
     ${SRCROOT}/is_in_bounds.c
     ${SRCROOT}/my_strlen_to.c
     ${SRCROOT}/read_file.c
+    ${SRCROOT}/trim_str.c
     PARENT_SCOPE
 )

@@ -22,6 +22,21 @@ if (BUILD_TEST_SUITE)
     enable_testing()
 endif()
 
+if (CMAKE_COMPILER_IS_GNUCC)
+    # Compile Options
+    add_compile_options(
+       "-Wall" "-Wextra" "-Wshadow"
+       "$<$<CONFIG:RELEASE>:-O3;-fno-builtin>"
+       "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
+    )
+
+    # Enable test coverage
+    if (USE_GCOV)
+        add_link_options("-lgcov" "--coverage")
+        add_compile_options("--coverage" "-fprofile-arcs" "-ftest-coverage")
+    endif()
+endif()
+
 set(BUILD_SHARED_LIBS FALSE)
 set(LIBMY_LIBRARIES $<TARGET_FILE:my-memory> $<TARGET_FILE:my-collections>)
 set(LIBMY_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/lib/my/include")

@@ -32,13 +32,13 @@ enum effect_type_e parse_effect_type(char *line)
             && is_end_char_ok(line, offset, 5)) {
             found = 1;
             type |= EFFECT_BOOST;
-            offset += 5 + (line[offset + 6] != 0);
+            offset += 5 + (line[offset + 5] != 0);
         }
         if (my_strncmp("DAMAGE", line + offset, 6) == 0
             && is_end_char_ok(line, offset, 6)) {
             found = 1;
             type |= EFFECT_DAMAGE;
-            offset += 6 + (line[offset + 7] != 0);
+            offset += 6 + (line[offset + 6] != 0);
         }
     }
     return type;

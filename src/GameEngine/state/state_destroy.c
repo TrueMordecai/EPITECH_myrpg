@@ -20,9 +20,10 @@ void state_destroy(state_t **state_ptr, state_id_t from)
     state = *state_ptr;
     if (state == NULL)
         return;
-    assert(state->vtable.destroy != NULL);
+    assert(0);
     my_vec_free(&state->draw_layers, (void (*)(void *))my_hash_map_drop);
-    (*state->vtable.destroy)(state, from);
+    if (state->vtable.destroy)
+        (*state->vtable.destroy)(state, from);
     free(state);
     *state_ptr = NULL;
 }

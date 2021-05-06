@@ -56,6 +56,7 @@ fight_t *fight_create(
     battle_t *battle, int nb_ennemies, struct player_t *player);
 void fight_init_entities(
     fight_t *fight, int nb_ennemies, struct player_t *player);
+int fight_init_enemy(fight_t *fight, int pos, int *id);
 void fight_update(fight_t *fight, float dt);
 void fight_handle_events(fight_t *fight, sfEvent event);
 void fight_draw(fight_t *fight, sfRenderWindow *wind);

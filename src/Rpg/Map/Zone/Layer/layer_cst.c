@@ -5,6 +5,6 @@
 ** layer cst
 */
 
-const int TILE_SIZE = 48;
-const int SET_WIDTH = 49;
-const int SET_HEIGHT = 45;
+const int TILE_SIZE = 16;
+const int SET_WIDTH = 38;
+const int SET_HEIGHT = 52;

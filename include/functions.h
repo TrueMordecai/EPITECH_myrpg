@@ -80,4 +80,6 @@ void cb_pause_menu(sw_button_t *btn, void *data);
 int my_strlen_to(char *str, char end);
 char *read_file(char const *path, size_t *file_size);
 
+char *trim_str(char const **start, char const **end);
+
 #endif /* !FUNCTIONS_H */

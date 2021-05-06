@@ -25,6 +25,19 @@ static int parse_value(
     return nb;
 }
 
+static void parse_line2(spell_base_t *spell, char *line_beg)
+{
+    size_t offset = 0;
+    int diff;
+
+    if (my_strncmp("TURN_LIMIT=", line_beg, 11) == 0)
+        spell->turn_limit =
+            parse_value(&offset, 11, line_beg, (sfVector2i){1, 6});
+    if (my_strncmp("TEXTURE_ID=", line_beg, 11) == 0)
+        spell->texture_id =
+            parse_value(&offset, 11, line_beg, (sfVector2i){0, 7});
+}
+
 static int parse_line(spell_base_t *spell, char *line_beg)
 {
     size_t offset = 0;
@@ -42,9 +55,7 @@ static int parse_line(spell_base_t *spell, char *line_beg)
         spell->pa = parse_value(&offset, 3, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("AREA=", line_beg, 5) == 0)
         spell->area = parse_value(&offset, 5, line_beg, (sfVector2i){0, 10});
-    if (my_strncmp("TURN_LIMIT=", line_beg, 11) == 0)
-        spell->turn_limit =
-            parse_value(&offset, 11, line_beg, (sfVector2i){1, 6});
+    parse_line2(spell, line_beg);
     if (offset == 0 || line_beg[offset] != '\n')
         return 1;
     return 0;
@@ -84,9 +95,6 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
     while (offset < filesize) {
         line_len = my_strlen_to(file_content + offset, '\n');
         parse_line(spell, file_content + offset);
-        if (my_strncmp("TEXTURE_ID=", file_content + offset, 11) == 0)
-            spell->texture_id = parse_value(
-                &offset, 11, file_content + offset, (sfVector2i){0, 7});
         offset += line_len + 1;
     }
     parse_types(spell, file_content, filesize);

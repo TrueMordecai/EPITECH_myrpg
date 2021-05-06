@@ -6,10 +6,14 @@
 */
 
 #include <stdalign.h>
+#include <libmy/printf.h>
 #include <libmy/collections/hash_map.h>
 
 #include "Rpg/Fight/spell.h"
 #include "Rpg/rpg.h"
+
+spell_base_t *get_null_spell(void);
+void set_null_spell(void);
 
 static void spell_drop(spell_base_t **spell)
 {
@@ -43,7 +47,10 @@ static void load_spell(rpg_t *rpg, char const *name, char *path)
 
 static void load_spells(rpg_t *rpg)
 {
+    load_spell(rpg, "scratch", "assets/Spells/a_scratch.spell");
     load_spell(rpg, "punch", "assets/Spells/a_punch.spell");
+    load_spell(rpg, "dist", "assets/Spells/a_dist.spell");
+    load_spell(rpg, "dist2", "assets/Spells/a_dist2.spell");
     load_spell(rpg, "spit_fire", "assets/Spells/a_spit_fire.spell");
     load_spell(rpg, "spit", "assets/Spells/a_spit.spell");
     load_spell(rpg, "debuff_all", "assets/Spells/d_debuff_all.spell");
@@ -59,11 +66,14 @@ spell_base_t *get_spell(rpg_t *rpg, char const *name)
 {
     spell_base_t **spell = my_hash_map_get(&rpg->spells, &name);
 
-    return (spell == NULL) ? NULL : (*spell);
+    if (spell == NULL)
+        return get_null_spell();
+    return *spell;
 }
 
 void spells_init(rpg_t *rpg)
 {
     my_hash_map_init(&rpg->spells, &SPELLS_KVTYPES);
+    set_null_spell();
     load_spells(rpg);
 }
