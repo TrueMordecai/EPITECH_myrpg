@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** destroy menu
 */
@@ -10,7 +10,6 @@
 // Does nothing since the menu state doesn't have any extra data yet.
 void menu_state_destroy(menu_state_t *state, state_id_t from)
 {
-    (void)state;
     (void)from;
     sw_destroy(state->gui_base);
 }

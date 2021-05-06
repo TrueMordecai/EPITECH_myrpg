@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** stats_reset
 */
@@ -16,7 +16,7 @@ void stats_reset(stats_t *stats, int only_pa_pm)
         stats->current_life = stats->life;
     }
     stats->current_pa = stats->pa;
-    stats->current_pm = stats->pm;        
+    stats->current_pm = stats->pm;
 }
 
 void stats_display(stats_t *stats)

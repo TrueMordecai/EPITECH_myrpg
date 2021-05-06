@@ -43,6 +43,6 @@ void map_draw(map_t *map);
 void map_destroy(map_t *map);
 
 zone_t *map_get_zone(map_t *map, int id);
-void map_load_zone(map_t *map, int id, int door, int mother);
+int map_load_zone(map_t *map, int id, int door, int mother);
 
 #endif /* !MAP_H */

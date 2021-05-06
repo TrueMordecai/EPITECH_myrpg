@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** rpg draw
+** MyRPG draw
 */
 
 #include "Rpg/rpg.h"

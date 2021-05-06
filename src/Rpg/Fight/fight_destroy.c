@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight_destroy
 */
 
+#include "Rpg/Entities/player.h"
 #include "Rpg/Fight/fight.h"
 #include "Rpg/rpg.h"
-#include "Rpg/Entities/player.h"
 
 void fight_destroy(fight_t *fight)
 {

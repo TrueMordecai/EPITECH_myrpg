@@ -1,14 +1,14 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** my_hunter
 ** File description:
 ** main loop of my hunter
 */
 
-#include "Rpg/rpg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Rpg/rpg.h"
 
 static char *int_to_str(int i)
 {
@@ -20,8 +20,8 @@ static char *int_to_str(int i)
     return (str);
 }
 
-static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line\
-(rpg_t *game, char *name, unsigned char stat, unsigned char drawed_line)
+static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+    rpg_t *game, char *name, unsigned char stat, unsigned char drawed_line)
 {
     char *numeric_stat = int_to_str((int)stat);
 
@@ -30,10 +30,10 @@ static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line\
         return 0;
     }
     sfText_setString(game->inventory.stat_text, name);
-    sfText_setPosition(game->inventory.stat_text,
-                       get_mouse_pos_vec2f(game->wind));
-    sfText_move(game->inventory.stat_text,
-                (sfVector2f){70, 140 + drawed_line * 50});
+    sfText_setPosition(
+        game->inventory.stat_text, get_mouse_pos_vec2f(game->wind));
+    sfText_move(
+        game->inventory.stat_text, (sfVector2f){70, 140 + drawed_line * 50});
     sfRenderWindow_drawText(game->wind, game->inventory.stat_text, NULL);
     sfText_move(game->inventory.stat_text, (sfVector2f){200, 0});
     sfText_setString(game->inventory.stat_text, numeric_stat);
@@ -42,29 +42,29 @@ static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line\
     return (1);
 }
 
-static void rpg_inventory_draw_items_tooltip_draw_stats(rpg_t *game,
-                                                        item_t *items)
+static void rpg_inventory_draw_items_tooltip_draw_stats(
+    rpg_t *game, item_t *items)
 {
     int drawed_line = 0;
 
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Earth : ", items->earth, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Fire : ", items->fire, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Water : ", items->water, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Wind : ", items->wind, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Life : ", items->life, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Res Earth : ", items->res_earth, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Res Fire: ", items->res_fire, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Res Water : ", items->res_water, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line
-        (game, "Res Wind : ", items->res_wind, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Earth : ", items->earth, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Fire : ", items->fire, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Water : ", items->water, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Wind : ", items->wind, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Life : ", items->life, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Res Earth : ", items->res_earth, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Res Fire: ", items->res_fire, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Res Water : ", items->res_water, drawed_line);
+    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+        game, "Res Wind : ", items->res_wind, drawed_line);
 }
 
 extern void rpg_inventory_draw_items_tooltip(rpg_t *game, item_t *item)
@@ -76,12 +76,14 @@ extern void rpg_inventory_draw_items_tooltip(rpg_t *game, item_t *item)
         return;
     sfText_setPosition(game->inventory.text, new_vec);
     sfText_setString(game->inventory.text, item->name);
-    sfSprite_setTextureRect(game->inventory.tooltip, (sfIntRect)
-                                 {64 * item->rarity, 0, 64, 64});
-    sfSprite_setPosition(game->inventory.tooltip,
-                         get_mouse_pos_vec2f(game->wind));
-    sfText_move(game->inventory.text, (sfVector2f)
-    {(576 - sfText_getLocalBounds(game->inventory.text).width) / 2, 70});
+    sfSprite_setTextureRect(
+        game->inventory.tooltip, (sfIntRect){64 * item->rarity, 0, 64, 64});
+    sfSprite_setPosition(
+        game->inventory.tooltip, get_mouse_pos_vec2f(game->wind));
+    sfText_move(game->inventory.text,
+        (sfVector2f){
+            (576 - sfText_getLocalBounds(game->inventory.text).width) / 2,
+            70});
     sfRenderWindow_drawSprite(game->wind, game->inventory.tooltip, NULL);
     rpg_inventory_draw_items_tooltip_draw_stats(game, item);
     sfRenderWindow_drawText(game->wind, game->inventory.text, NULL);

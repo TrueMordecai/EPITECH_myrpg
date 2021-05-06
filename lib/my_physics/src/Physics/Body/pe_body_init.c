@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - body init
 */
@@ -18,8 +18,8 @@ static void pe_body_init_zeros(pe_body_t *body)
     body->motion = 1.1 * PE_SLEEP_EPSILON;
 }
 
-pe_body_t *pe_body_init(char body_type, int fixture_init_capacity, \
-int moves_init_capacity)
+pe_body_t *pe_body_init(
+    char body_type, int fixture_init_capacity, int moves_init_capacity)
 {
     pe_body_t *body = my_calloc(1, sizeof(pe_body_t));
 
@@ -43,5 +43,6 @@ void pe_body_add_fixture(pe_body_t *body, pe_fixture_t *fixture)
     fixture->body = body;
     fixture->shape.body_pos = &body->pos;
     pe_body_compute_mass_datas(body);
-    pe_aabb_union_shape(&body->aabb, &body->aabb, &fixture->shape, VEC2F(0, 0));
+    pe_aabb_union_shape(
+        &body->aabb, &body->aabb, &fixture->shape, VEC2F(0, 0));
 }

@@ -24,6 +24,7 @@ typedef struct audio_manager audio_manager_t;
 typedef struct game_data game_data_t;
 
 // settings.h
+typedef struct cfg_file cfg_file_t;
 typedef struct settings settings_t;
 
 // state.h

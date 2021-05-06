@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight_get_tile
 */
 
 #include <stdlib.h>
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 static int get_cell(fight_t *fight, int x, int y, int test)
 {
@@ -47,8 +47,8 @@ int *fight_get_range(fight_t *fight, int from, int range, int test)
 int fight_get_mouse_tile(fight_t *fight)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(fight->rpg->wind);
-    sfVector2f world_pos = sfRenderWindow_mapPixelToCoords(fight->rpg->wind, \
-    mouse_pos, fight->rpg->map->view);
+    sfVector2f world_pos = sfRenderWindow_mapPixelToCoords(
+        fight->rpg->wind, mouse_pos, fight->rpg->map->view);
 
     return fight_world_vec_to_pos(fight, world_pos);
 }

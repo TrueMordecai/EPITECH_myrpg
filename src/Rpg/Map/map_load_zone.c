@@ -20,23 +20,37 @@ zone_t *map_get_zone(map_t *map, int id)
     return NULL;
 }
 
-void map_load_zone(map_t *map, int id, int door, int mother)
+static zone_t *try_load_zone(map_t *map, int id, int door, int mother)
 {
+    zone_t *cur_zone = map->current_zone;
     zone_t *zone = map_get_zone(map, id);
 
-    if (zone)
+    if (zone) {
         map->current_zone = zone;
-    else {
-        zone = zone_create(map);
-        map->current_zone = zone;
-        zone_init_from_file(zone, id, door, mother);
-        my_vec_push(&map->zones, &zone);
+        return zone;
     }
-    if (!zone->world)
-        return;
+    zone = zone_create(map);
+    map->current_zone = zone;
+    if (zone_init_from_file(zone, id, door, mother)) {
+        zone_destroy(zone);
+        map->current_zone = cur_zone;
+        return NULL;
+    }
+    my_vec_push(&map->zones, &zone);
+    return zone;
+}
+
+int map_load_zone(map_t *map, int id, int door, int mother)
+{
+    zone_t *zone = try_load_zone(map, id, door, mother);
+
+    if (!zone || !zone->world)
+        return -1;
+        map->current_zone = zone;
     map->rpg->player->body = zone->player_body;
     player_update(map->rpg->player, 1);
     map->rpg->player->body->velocity = VEC2F(0, 0);
     move_view_to_player(map, 1);
     map_reset_zoom(map);
+    return 0;
 }

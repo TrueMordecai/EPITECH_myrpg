@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** Game Engine
 ** File description:
 ** Game struct
@@ -24,7 +24,7 @@ struct game_data {
     sfRenderWindow *window;
     asset_manager_t assets;
     audio_manager_t audio;
-    settings_t *settings;
+    settings_t settings;
 };
 
 void run(game_data_t *data);

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** create items
 */
@@ -26,8 +26,8 @@ extern item_t rpg_create_blank_item(void)
     return (new);
 }
 
-static void rpg_create_item_add_offense(item_t *item, unsigned char level,
-                                        bool apply_element)
+static void rpg_create_item_add_offense(
+    item_t *item, unsigned char level, bool apply_element)
 {
     int i = rand() % 4;
     int formula_res = rand() % (level * 2) + (level * 2);

@@ -5,8 +5,8 @@
 ** map update
 */
 
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 static sfVector2f coord_to_px_float(sfVector2f pos, map_t *map)
 {

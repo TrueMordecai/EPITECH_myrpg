@@ -21,9 +21,9 @@ static void set_border(zone_t *zone, pe_vec2f_t size, pe_vec2f_t pos)
 void physic_add_zone_border(zone_t *zone)
 {
     set_border(zone, VEC2F(zone->size.x, 1), VEC2F(zone->size.x / 2, -1));
-    set_border(zone, VEC2F(zone->size.x, 1), \
-    VEC2F(zone->size.x / 2, zone->size.y));
+    set_border(
+        zone, VEC2F(zone->size.x, 1), VEC2F(zone->size.x / 2, zone->size.y));
     set_border(zone, VEC2F(1, zone->size.y), VEC2F(-1, zone->size.y / 2));
-    set_border(zone, VEC2F(1, zone->size.y), \
-    VEC2F(zone->size.x, zone->size.y / 2));
+    set_border(
+        zone, VEC2F(1, zone->size.y), VEC2F(zone->size.x, zone->size.y / 2));
 }

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - manifold fcts
 */
@@ -17,9 +17,9 @@ void pe_manifold_swap_bodies(pe_manifold_t *m)
 
 static void awake_bodies(pe_body_t *a, pe_body_t *b)
 {
-    if (((!a->is_awake || !b->is_awake) && \
-        (a->body_type == STATIC || b->body_type == STATIC)) || \
-        (!a->is_awake && !b->is_awake))
+    if (((!a->is_awake || !b->is_awake)
+            && (a->body_type == STATIC || b->body_type == STATIC))
+        || (!a->is_awake && !b->is_awake))
         return;
     if (!a->is_awake)
         pe_body_set_awake(a, 1);
@@ -42,12 +42,13 @@ void pe_manifold_init(pe_manifold_t *m, float dt, pe_vec2f_t gravity)
     for (int i = 0; i < m->nb_contacts; i++) {
         ra = VEC2F_SUB(m->contacts[i], pe_body_com(a, 1));
         rb = VEC2F_SUB(m->contacts[i], pe_body_com(b, 1));
-        rv = VEC2F_SUB(VEC2F_ADD(b->velocity, \
-        pe_vec2f_cross_product_scalar_vec(b->angular_velocity, rb)), \
-        VEC2F_SUB(a->velocity, \
-        pe_vec2f_cross_product_scalar_vec(a->angular_velocity, ra)));
-        if (pe_vec2f_length_squared(rv) < \
-            pe_vec2f_length_squared(VEC2F_MUL1(gravity, dt)) + PE_EPSILON)
+        rv = VEC2F_SUB(
+            VEC2F_ADD(b->velocity,
+                pe_vec2f_cross_product_scalar_vec(b->angular_velocity, rb)),
+            VEC2F_SUB(a->velocity,
+                pe_vec2f_cross_product_scalar_vec(a->angular_velocity, ra)));
+        if (pe_vec2f_length_squared(rv)
+            < pe_vec2f_length_squared(VEC2F_MUL1(gravity, dt)) + PE_EPSILON)
             m->e = 0.0f;
     }
 }

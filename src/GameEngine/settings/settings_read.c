@@ -6,28 +6,22 @@
 */
 
 #include <assert.h>
+#include <libmy/memory/alloc.h>
 #include <stdlib.h>
 
 #include "GameEngine/settings.h"
 
-settings_t *settings_read(char const *path)
+void settings_read(settings_t *settings, char const *path)
 {
-    settings_t *settings = malloc(sizeof(*settings));
-    my_iostream_t input;
-    char buffer[256];
-    int ret = 42;
+    cfg_file_t cfg;
 
     assert(path != NULL);
-    if (settings == NULL)
-        return NULL;
-    if (my_fopen(path, "r", &input) == 0
-        && my_fset_buffer(buffer, 256, NULL, &input) == 0) {
-        ret = settings_parse(settings, &input);
-        my_fclose(&input);
-    }
-    if (ret != 0)
-        settings_init_default(settings);
-    else
+    cfg_file_init(&cfg);
+    if (cfg_file_read(&cfg, path, false) == 0) {
+        settings_parse(settings, &cfg);
         settings_check(settings);
-    return settings;
+    } else {
+        settings_init_default(settings);
+    }
+    cfg_file_drop(&cfg);
 }

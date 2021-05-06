@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** Rpg handle input
+** MyRPG handle input
 */
 
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/fight.h"
+#include "Rpg/rpg.h"
 
 static void debug_fight_start(rpg_t *rpg, sfEvent event)
 {
@@ -28,9 +28,7 @@ void rpg_handle_event(rpg_t *rpg, sfEvent event)
             case sfKeyT:
                 battle_set_tactical(&rpg->map->current_zone->battle);
                 break;
-            case sfKeyB:
-                debug_fight_start(rpg, event);
-                break;
+            case sfKeyB: debug_fight_start(rpg, event); break;
             case sfKeyE: zone_interract(rpg->map->current_zone); break;
             default: break;
         }

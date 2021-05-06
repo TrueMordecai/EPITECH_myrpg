@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** fight
 */
@@ -11,14 +11,14 @@
 #include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
 #include "Rpg/Entities/entity.h"
-#include "Rpg/Map/physic.h"
 #include "Rpg/Fight/spell.h"
-#include "Rpg/Fight/spells_bar.h"
 #include "Rpg/Fight/timeline.h"
 #include "Rpg/InfoBox/infobox.h"
+#include "Rpg/Map/physic.h"
+#include "Rpg/Fight/spells_bar.h"
 
-enum cell_tests {WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4};
-enum cell_flags {INEXISTING = -1, END_ARRAY = -2};
+enum cell_tests { WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4 };
+enum cell_flags { INEXISTING = -1, END_ARRAY = -2 };
 
 struct player_t;
 
@@ -52,9 +52,10 @@ typedef struct fight_t {
     infobox_base_t *infobox;
 } fight_t;
 
-fight_t *fight_create(battle_t *battle, int nb_ennemies, \
-struct player_t *player);
-void fight_init_entities(fight_t *fight, int nb_ennemies, struct player_t *player);
+fight_t *fight_create(
+    battle_t *battle, int nb_ennemies, struct player_t *player);
+void fight_init_entities(
+    fight_t *fight, int nb_ennemies, struct player_t *player);
 int fight_init_enemy(fight_t *fight, int pos, int *id);
 void fight_update(fight_t *fight, float dt);
 void fight_handle_events(fight_t *fight, sfEvent event);
@@ -81,8 +82,8 @@ void fight_place_rect(fight_t *fight, int pos, sfColor color, int test);
 
 int *fight_get_range(fight_t *fight, int from, int range, int test);
 int *fight_get_line(fight_t *fight, int from, int to);
-int *fight_get_sight(fight_t *fight, sfVector2i from_range, \
-sfVector2i max_range_need_free, int **spell_range);
+int *fight_get_sight(fight_t *fight, sfVector2i from_range,
+    sfVector2i max_range_need_free, int **spell_range);
 my_vec_t *fight_get_path(fight_t *fight, int from, int to);
 
 int get_heuristic_cost(fight_t *fight, int pos_a, int pos_b);

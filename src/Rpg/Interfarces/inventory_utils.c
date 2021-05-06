@@ -1,14 +1,14 @@
 /*
-** EPITECH PROJECT, 2020
+** EPITECH PROJECT, 2021
 ** my_hunter
 ** File description:
 ** main loop of my hunter
 */
 
-#include "Rpg/rpg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Rpg/rpg.h"
 
 extern sfVector2f get_mouse_pos_vec2f(sfRenderWindow *w)
 {
@@ -65,12 +65,11 @@ extern bool sprite_is_hover(sfSprite *s, sfVector2f m_pos)
         }
     }
     return (false);
-
 }
 
 extern void set_item_texture_rect(sfSprite *sprite, item_t *i)
 {
     if (i->name != NULL)
-        sfSprite_setTextureRect(sprite, (sfIntRect){i->rarity * 16,
-                    i->elem * 16, 16, 16});
+        sfSprite_setTextureRect(
+            sprite, (sfIntRect){i->rarity * 16, i->elem * 16, 16, 16});
 }

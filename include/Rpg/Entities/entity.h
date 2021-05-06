@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** entity
 */
@@ -87,7 +87,8 @@ void entity_add_spell(entity_t *entity, spell_base_t *spell);
 spell_base_t *entity_get_select_spell(entity_t *entity);
 void entity_cast_spell(entity_t *from, int to_cell);
 
-action_t *entity_add_action(entity_t *entity, enum actions_e action_type, void *data);
+action_t *entity_add_action(
+    entity_t *entity, enum actions_e action_type, void *data);
 void entity_force_end_action(entity_t *entity, action_t *act);
 
 void entity_update_move_possibilities(entity_t *entity);

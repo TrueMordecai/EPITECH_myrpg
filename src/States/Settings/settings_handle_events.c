@@ -1,11 +1,12 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** handle settings events
 */
 
 #include <SFML/Window/Keyboard.h>
+#include <sw/widget.h>
 
 #include "GameEngine/game.h"
 #include "States/Settings/settings_state.h"
@@ -30,6 +31,7 @@ int settings_state_handle_events(settings_state_t *state)
             sfRenderWindow_close(data->window);
         if (event.type == sfEvtKeyReleased && handle_key(event, &state->base))
             return 1;
+        sw_send_event(&state->gui, &event);
     }
     return 1;
 }

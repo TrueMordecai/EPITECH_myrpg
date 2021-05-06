@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - shape
 */
@@ -14,9 +14,9 @@
 #include "Physics/Shapes/circle_shape.h"
 #include "Physics/Shapes/polygon_shape.h"
 
-enum PE_SHAPE_TYPE {CIRCLE, POLYGON};
+enum PE_SHAPE_TYPE { CIRCLE, POLYGON };
 
-typedef union pe_shape_u{
+typedef union pe_shape_u {
     struct pe_circle_shape_t circle;
     struct pe_polygon_shape_t polygon;
 } pe_shape_u;
@@ -42,6 +42,5 @@ typedef struct pe_shape_t {
 void pe_shape_init_default(pe_shape_t *shape);
 float pe_shape_compute_mass_datas(pe_shape_t *shape, float density);
 void pe_shape_reset(pe_shape_t *shape);
-
 
 #endif /* !PHYSICS_SHAPE_H */

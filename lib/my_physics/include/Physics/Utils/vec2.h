@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - vec2
 */
@@ -8,17 +8,21 @@
 #ifndef PHYSICS_VEC2_H
 #define PHYSICS_VEC2_H
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
-enum OPERATIONS {ADD, SUBSTRACT, MULTIPLY, DIVIDE, MODULO};
+enum OPERATIONS { ADD, SUBSTRACT, MULTIPLY, DIVIDE, MODULO };
 
-#define VEC2F(x, y) (pe_vec2f_t){x, y}
-#define VEC2F_ADD(a, b) pe_vec2f_operate(a, b, ADD)
-#define VEC2F_SUB(a, b) pe_vec2f_operate(a, b, SUBSTRACT)
-#define VEC2F_MUL(a, b) pe_vec2f_operate(a, b, MULTIPLY)
-#define VEC2F_DIV(a, b) pe_vec2f_operate(a, b, DIVIDE)
-#define VEC2F_MOD(a, b) pe_vec2f_operate(a, b, MODULO)
+#define VEC2F(x, y) \
+    (pe_vec2f_t)    \
+    {               \
+        x, y        \
+    }
+#define VEC2F_ADD(a, b)  pe_vec2f_operate(a, b, ADD)
+#define VEC2F_SUB(a, b)  pe_vec2f_operate(a, b, SUBSTRACT)
+#define VEC2F_MUL(a, b)  pe_vec2f_operate(a, b, MULTIPLY)
+#define VEC2F_DIV(a, b)  pe_vec2f_operate(a, b, DIVIDE)
+#define VEC2F_MOD(a, b)  pe_vec2f_operate(a, b, MODULO)
 #define VEC2F_ADD1(a, b) pe_vec2f_operate_one(a, b, ADD)
 #define VEC2F_SUB1(a, b) pe_vec2f_operate_one(a, b, SUBSTRACT)
 #define VEC2F_MUL1(a, b) pe_vec2f_operate_one(a, b, MULTIPLY)

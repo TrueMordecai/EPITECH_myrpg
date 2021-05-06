@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** GameEngine
+** EPITECH PROJECT, 2021
+** Game Engine
 ** File description:
 ** asset manager functions
 */
@@ -11,6 +11,9 @@
 
 #include "functions.h"
 #include "GameEngine/asset_manager.h"
+
+sfTexture *get_null_texture(void);
+sfFont *get_null_font(void);
 
 static const my_map_kvtypes_t FONTS_KVTYPES = {
     .key_size = sizeof(char *),
@@ -70,6 +73,8 @@ sfTexture *get_texture(asset_manager_t *asset_manager, char const *name)
 {
     asset_t *asset = my_hash_map_get(&asset_manager->textures, &name);
 
+    if (asset == NULL || asset->texture == NULL)
+        return get_null_texture();
     return asset == NULL ? NULL : asset->texture;
 }
 
@@ -77,5 +82,7 @@ sfFont *get_font(asset_manager_t *asset_manager, char const *name)
 {
     asset_t *asset = my_hash_map_get(&asset_manager->fonts, &name);
 
+    if (asset == NULL || asset->font == NULL)
+        return get_null_font();
     return asset == NULL ? NULL : asset->font;
 }

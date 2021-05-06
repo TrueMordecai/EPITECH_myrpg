@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** infobox_spell_update
 */
@@ -80,6 +80,6 @@ void infobox_spell_effect_set_spell(
         (sfVector3f){
             ((info->boosts.length) ? 0.59 : 0.02) * bs.x, 0.5 * bs.y, -1});
     infobox_set_box_size((infobox_base_t *)&info->base,
-        (sfVector2f){bs.x, bs.y * (0.55 + 0.05 * \
-        MAX(info->boosts.length, info->damages.length))}, 1);
+        (sfVector2f){bs.x, bs.y * (0.55 + 0.05 *
+            MAX(info->boosts.length, info->damages.length))}, 1);
 }

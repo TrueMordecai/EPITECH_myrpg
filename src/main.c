@@ -1,17 +1,24 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
 ** main
 */
 
+#include <sys/types.h>
+
+#include <dirent.h>
 #include <libmy/ascii.h>
 #include <libmy/io/iostream.h>
+#include <libmy/printf.h>
 #include <stdlib.h>
 #include <time.h>
 
 #include "Rpg/Fight/spell.h"
 #include "GameEngine/game_head.h"
+
+sfTexture *get_null_texture(void);
+sfFont *get_null_font(void);
 
 static const size_t IO_BUF_SIZE = 512;
 
@@ -33,7 +40,13 @@ int my_rpg(int argc, char *argv[])
 {
     sfVideoMode mode = {0, 0, 32};
     game_data_t *data;
+    DIR *assets = opendir("assets");
 
+    if (!assets) {
+        my_fprintf(MY_STDERR, "%s: missing assets folder\n", argv[0]);
+        return 84;
+    } else
+        closedir(assets);
     srand((unsigned int)(((size_t)&mode)));
     if (argc == 2 && my_strcmp("-h", argv[1]) == 0) {
         show_usage();
@@ -61,5 +74,7 @@ int main(int argc, char *argv[])
     ret = my_rpg(argc, argv);
     my_free_stderr();
     my_free_stdout();
+    sfFont_destroy(get_null_font());
+    sfTexture_destroy(get_null_texture());
     return ret;
 }

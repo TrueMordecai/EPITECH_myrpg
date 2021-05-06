@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** rpg
+** MyRPG
 ** File description:
 ** infobox_spell
 */
@@ -88,6 +88,5 @@ void infobox_spell_effect_draw(
     infobox_spell_effect_t *info, sfRenderWindow *window);
 void infobox_spell_effect_clear_vecs(infobox_spell_effect_t *info);
 void infobox_spell_effect_destroy(infobox_spell_effect_t *info);
-
 
 #endif /* !INFOBOX_SPELL_H_ */

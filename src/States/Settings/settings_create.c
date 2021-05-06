@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** My runner
+** EPITECH PROJECT, 2021
+** MyRPG
 ** File description:
-** Create settings state
+** Creates the settings state
 */
 
 #include <stdlib.h>
@@ -23,5 +23,6 @@ state_t *settings_state_create(game_data_t *data)
         .draw = (state_draw_t)&settings_state_draw,
         .destroy = (state_destroy_t)&settings_state_destroy,
     };
+    settings_init_gui(state);
     return &state->base;
 }

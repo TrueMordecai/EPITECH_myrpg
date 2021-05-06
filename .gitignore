@@ -19,3 +19,6 @@ CMakeFiles
 # VSCode
 .vscode/settings.json
 .vscode/launch.json
+
+# MyRPG local files
+settings.cfg

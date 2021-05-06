@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2021
 ** My rpg
 ** File description:
-** Rpg create
+** MyRPG create
 */
 
 #include <libmy/memory/alloc.h>
 
-#include "Rpg/rpg.h"
 #include "Rpg/Fight/spell.h"
+#include "Rpg/rpg.h"
 
 rpg_t *rpg_create(state_t *state)
 {
@@ -18,8 +18,12 @@ rpg_t *rpg_create(state_t *state)
     rpg->state = state;
     rpg->wind = state->game_data->window;
     rpg->player = player_create(rpg);
-    rpg->map = map_create(rpg);
     rpg->inventory = inventory_init(rpg);
     allies_init(&rpg->allies, rpg);
+    rpg->map = map_create(rpg);
+    if (!rpg->map) {
+        rpg_destroy(rpg);
+        return NULL;
+    }
     return rpg;
 }

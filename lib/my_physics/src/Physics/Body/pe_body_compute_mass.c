@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** My runner
+** MyPhysics
 ** File description:
 ** Physics - body mass compute
 */
@@ -17,9 +17,9 @@ void pe_body_compute_mass_datas(pe_body_t *body)
         pe_fixture_update_mass_datas(PE_BODY_FIXTURE(body, i));
         body->mass.mass += PE_BODY_FIXTURE(body, i)->mass;
         body->mass.inertia += PE_BODY_FIXTURE(body, i)->shape.inertia;
-        com = VEC2F_ADD(com, \
-        VEC2F_MUL1(PE_BODY_FIXTURE(body, i)->shape.mass_center, \
-        PE_BODY_FIXTURE(body, i)->mass));
+        com = VEC2F_ADD(com,
+            VEC2F_MUL1(PE_BODY_FIXTURE(body, i)->shape.mass_center,
+                PE_BODY_FIXTURE(body, i)->mass));
     }
     pe_mass_data_update(&body->mass, body->body_type == STATIC);
     body->mass.center = VEC2F_MUL1(com, body->mass.inv_mass);
