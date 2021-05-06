@@ -46,11 +46,12 @@ int map_load_zone(map_t *map, int id, int door, int mother)
 
     if (!zone || !zone->world)
         return -1;
-        map->current_zone = zone;
+    map->current_zone = zone;
     map->rpg->player->body = zone->player_body;
     player_update(map->rpg->player, 1);
     map->rpg->player->body->velocity = VEC2F(0, 0);
     move_view_to_player(map, 1);
     map_reset_zoom(map);
+    zone_place_at_door(zone, door);
     return 0;
 }
