@@ -12,6 +12,9 @@
 #include "Rpg/Fight/spell.h"
 #include "Rpg/rpg.h"
 
+spell_base_t *get_null_spell(void);
+void set_null_spell(void);
+
 static void spell_drop(spell_base_t **spell)
 {
     if (!(*spell))
@@ -63,11 +66,14 @@ spell_base_t *get_spell(rpg_t *rpg, char const *name)
 {
     spell_base_t **spell = my_hash_map_get(&rpg->spells, &name);
 
-    return (spell == NULL) ? NULL : (*spell);
+    if (spell == NULL)
+        return get_null_spell();
+    return *spell;
 }
 
 void spells_init(rpg_t *rpg)
 {
     my_hash_map_init(&rpg->spells, &SPELLS_KVTYPES);
+    set_null_spell();
     load_spells(rpg);
 }

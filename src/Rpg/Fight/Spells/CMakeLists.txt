@@ -12,5 +12,6 @@ set(SRC
     ${SRCROOT}/spell_effect_parse.c
     ${SRCROOT}/spell_heal_parse.c
     ${SRCROOT}/spells_init.c
+    ${SRCROOT}/spells_null_spell.c
     PARENT_SCOPE
 )
