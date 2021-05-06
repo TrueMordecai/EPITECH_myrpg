@@ -53,7 +53,7 @@ int get_nb_line(char *filecontent)
 {
     int count = 0;
 
-    for (int i = 0; i < (my_strlen(filecontent) + 1); i++) {
+    for (size_t i = 0; i < (my_strlen(filecontent) + 1); i++) {
         if (filecontent[i] == '\n' || filecontent[i] == '\0')
             count++;
     }

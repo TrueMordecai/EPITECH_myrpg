@@ -16,5 +16,6 @@ void rpg_destroy(rpg_t *rpg)
     player_destroy(rpg->player);
     my_hash_map_drop(&rpg->spells);
     allies_destroy(&rpg->allies);
+    quests_destroy(&rpg->quests);
     free(rpg);
 }

@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/Quests/quests.h"
+#include "functions.h"
 
 void dup_line(char **map, char *file_content, int line, int index)
 {
@@ -41,9 +42,10 @@ char **str_file_to_array(char **map, char *file_content)
 
 int setup_data(quest_list_t *file_info)
 {
-    char *file_content = my_file_content_to_str(file_info->filepath);
+    char *file_content = read_file(file_info->filepath, &file_info->file_size);
 
-    file_info->file_size = get_file_size(file_info->filepath);
+    if (file_content == NULL)
+        return -1;
     file_info->list = str_file_to_array(file_info->list, file_content);
     free(file_content);
     return (0);

@@ -31,14 +31,16 @@ void setup_quest_by_id(quest_list_t *quests_data)
         quests_data->quests[i].quest_type = my_getnbr(quests_data->list[i]);
         parse_quest_info(quests_data, i);
     }
+    quests_data->nb_quests = nb_quest;
 }
 
-int quests_init(quest_list_t quests_data, char *filepath, int quest_id)
+int quests_init(quest_list_t *quests_data, char *filepath)
 {
-    quests_data.filepath = filepath;
-    if (setup_data(&quests_data) == -1)
+    quests_data->filepath = filepath;
+    if (setup_data(quests_data) == -1)
         return (-1);
-    setup_quest_by_id(&quests_data);
-    free_all(&quests_data);
+    setup_quest_by_id(quests_data);
+    free_all(quests_data);
+    quests_data->current_quest = 0;
     return 0;
 }

@@ -15,6 +15,13 @@
 #ifndef INCLUDE_H_
     #define INCLUDE_H_
 
+enum quest_type_e {
+    QUEST_KILL = 1,
+    QUEST_GO = 2,
+    QUEST_TALK = 3,
+    QUEST_GET = 4
+};
+
 typedef struct talk_to_pnj {
     int pnj_id;
 } talk_to_pnj_t;
@@ -49,7 +56,9 @@ typedef struct quests {
     char *filepath;
     char **list;
     quest_t *quests;
-    int file_size;
+    size_t nb_quests;
+    size_t file_size;
+    size_t current_quest;
 } quest_list_t;
 
 int get_file_id(char const *file_path);
@@ -62,8 +71,10 @@ int get_nb_line(char *filecontent);
 
 int setup_data(quest_list_t *file_info);
 
-int quests(char *filepath, int iteration);
-
+int quests_init(quest_list_t *quests_data, char *filepath);
+quest_t *quests_get_current(quest_list_t *list);
+int quests_validate(quest_list_t *quest_list);
+void quests_destroy(quest_list_t *quests);
 void parse_quest_info(quest_list_t *quest_data, int index_quest);
 
 #endif

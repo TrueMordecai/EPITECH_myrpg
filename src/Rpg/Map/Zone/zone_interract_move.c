@@ -10,9 +10,9 @@
 
 void handle_aggro(zone_t *zone, int special)
 {
-    int percentage;
+    int percentage = 0;
 
-    if (special != AGGRO_10 && special < AGGRO_100 && special > AGGRO_5)
+    if (special != AGGRO_10 && (special < AGGRO_100 || special > AGGRO_5))
         return;
     switch (special) {
         case AGGRO_5: percentage = 5; break;

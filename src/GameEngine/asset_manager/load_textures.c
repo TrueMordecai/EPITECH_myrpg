@@ -82,6 +82,7 @@ void load_all_textures(asset_manager_t *manager)
     load_texture(manager, "Dog", "assets/Textures/Characters/Dog.png", 0);
     load_texture(manager, "Lion", "assets/Textures/Characters/Lion.png", 0);
     load_texture(manager, "Frog", "assets/Textures/Characters/Frog.png", 0);
+    load_texture(manager, "Boss", "assets/Textures/Characters/Master.png", 0);
     load_texture(
         manager, "Green Man", "assets/Textures/Characters/Greenman.png", 0);
     load_fonts(manager);

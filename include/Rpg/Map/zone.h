@@ -32,8 +32,8 @@ enum ZONE_SPECIAL {
 extern const int ZONE_START;
 
 extern const char *ALL_ZONE_NAMES[5];
-extern const sfVector2i *ZONES_LINKS[2];
-extern const int *SUB_ZONES_IDS[2];
+extern const sfVector2i *ZONES_LINKS[3];
+extern const int *SUB_ZONES_IDS[3];
 
 typedef struct zone_t {
     int nb_layers;

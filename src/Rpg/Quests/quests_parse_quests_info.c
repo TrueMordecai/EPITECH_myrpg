@@ -5,13 +5,13 @@
 ** parse_quests_info.c
 */
 
+#include <libmy/ascii.h>
 #include <libmy/parsing.h>
 #include "Rpg/Quests/quests.h"
 
-void setup_kill_monster(quest_list_t *quest_data, int index_quest)
+int setup_kill_monster(quest_list_t *quest_data, int index_quest)
 {
     int i = 2;
-    int save;
 
     quest_data->quests[index_quest].state = 0;
     quest_data->quests[index_quest].quest_type = 1;
@@ -24,12 +24,10 @@ void setup_kill_monster(quest_list_t *quest_data, int index_quest)
         my_getnbr(&quest_data->list[index_quest][2]);
     for (; quest_data->list[index_quest][i] != ' '; i++)
         ;
-    i++;
-    quest_data->quests[index_quest].context =
-        &quest_data->list[index_quest][i];
+    return i + 1;
 }
 
-void setup_go_zone(quest_list_t *quest_data, int index_quest)
+int setup_go_zone(quest_list_t *quest_data, int index_quest)
 {
     int i = 2;
 
@@ -39,12 +37,10 @@ void setup_go_zone(quest_list_t *quest_data, int index_quest)
         my_getnbr(&quest_data->list[index_quest][2]);
     for (; quest_data->list[index_quest][i] != ' '; i++)
         ;
-    i++;
-    quest_data->quests[index_quest].context =
-        &quest_data->list[index_quest][i];
+    return i + 1;
 }
 
-void setup_talk_to_pnj(quest_list_t *quest_data, int index_quest)
+int setup_talk_to_pnj(quest_list_t *quest_data, int index_quest)
 {
     int i = 2;
 
@@ -54,15 +50,12 @@ void setup_talk_to_pnj(quest_list_t *quest_data, int index_quest)
         my_getnbr(&quest_data->list[index_quest][2]);
     for (; quest_data->list[index_quest][i] != ' '; i++)
         ;
-    i++;
-    quest_data->quests[index_quest].context =
-        &quest_data->list[index_quest][i];
+    return i + 1;
 }
 
-void setup_get_item(quest_list_t *quest_data, int index_quest)
+int setup_get_item(quest_list_t *quest_data, int index_quest)
 {
     int i = 2;
-    int save;
 
     quest_data->quests[index_quest].state = 0;
     quest_data->quests[index_quest].quest_type = 4;
@@ -75,19 +68,24 @@ void setup_get_item(quest_list_t *quest_data, int index_quest)
         my_getnbr(&quest_data->list[index_quest][i]);
     for (; quest_data->list[index_quest][i] != ' '; i++)
         ;
-    i++;
-    quest_data->quests[index_quest].context =
-        &quest_data->list[index_quest][i];
+    return i + 1;
 }
 
 void parse_quest_info(quest_list_t *quest_data, int index_quest)
 {
+    int i = 0;
+
+    if (quest_data->quests[index_quest].quest_type < 1
+        || quest_data->quests[index_quest].quest_type > 4)
+        return;
     if (quest_data->quests[index_quest].quest_type == 1)
-        setup_kill_monster(quest_data, index_quest);
+        i = setup_kill_monster(quest_data, index_quest);
     if (quest_data->quests[index_quest].quest_type == 2)
-        setup_go_zone(quest_data, index_quest);
+        i = setup_go_zone(quest_data, index_quest);
     if (quest_data->quests[index_quest].quest_type == 3)
-        setup_talk_to_pnj(quest_data, index_quest);
+        i = setup_talk_to_pnj(quest_data, index_quest);
     if (quest_data->quests[index_quest].quest_type == 4)
-        setup_get_item(quest_data, index_quest);
+        i = setup_get_item(quest_data, index_quest);
+    quest_data->quests[index_quest].context =
+        my_strdup(quest_data->list[index_quest] + i);
 }

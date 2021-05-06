@@ -16,6 +16,8 @@ rpg_t *rpg_create(state_t *state)
 
     spells_init(rpg);
     rpg->state = state;
+    rpg->quests.nb_quests = 0;
+    rpg->quests.quests = NULL;
     rpg->wind = state->game_data->window;
     rpg->player = player_create(rpg);
     rpg->inventory = inventory_init(rpg);
@@ -25,5 +27,6 @@ rpg_t *rpg_create(state_t *state)
         rpg_destroy(rpg);
         return NULL;
     }
+    quests_init(&rpg->quests, "assets/list_quests");
     return rpg;
 }

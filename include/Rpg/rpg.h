@@ -14,6 +14,7 @@
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
+#include "Quests/quests.h"
 
 #define M_TO_PX 32.f
 
@@ -27,6 +28,7 @@ typedef struct rpg_t {
     player_t *player;
     inventory_t inventory;
     allies_t allies;
+    quest_list_t quests;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);

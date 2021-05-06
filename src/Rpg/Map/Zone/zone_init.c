@@ -35,6 +35,16 @@ void zone_init(zone_t *zone, int nb_layers, sfVector2i size)
     map_zoom(zone->map, zone->map->zoom_goal / zone->map->current_zoom);
 }
 
+static void update_quests(zone_t *zone, quest_list_t *quests)
+{
+    quest_t *current = quests_get_current(quests);
+
+    if (current->quest_type != QUEST_GO)
+        return;
+    if (current->go_zone.zone_id == zone->id)
+        quests_validate(quests);
+}
+
 void zone_place_at_door(zone_t *zone, int door)
 {
     pe_vec2f_t pos;
@@ -46,4 +56,5 @@ void zone_place_at_door(zone_t *zone, int door)
     pos.x = id % zone->size.x;
     pos.y = id / zone->size.x;
     pe_body_set_pos(zone->player_body, pos);
+    update_quests(zone, &zone->map->rpg->quests);
 }

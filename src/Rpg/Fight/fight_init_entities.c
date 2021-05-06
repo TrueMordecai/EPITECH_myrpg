@@ -53,7 +53,7 @@ static int init_ally(fight_t *fight, int pos, int *id, entity_t *ally)
 static void fill_entities(
     fight_t *fight, int nb_ennemies, int player_pos, allies_t *allies)
 {
-    int nb_allies = CLAMP(allies->allies.length, 0, MAX_ALLIES_IN_FIGHT);
+    int nb_allies = MIN(allies->allies.length, MAX_ALLIES_IN_FIGHT);
     int nb_entities = nb_ennemies + nb_allies;
     int id_ally = 0;
 
@@ -78,7 +78,7 @@ static void fill_entities(
 void fight_init_entities(fight_t *fight, int nb_ennemies, player_t *player)
 {
     allies_t *allies = &fight->rpg->allies;
-    int nb_allies = CLAMP(allies->allies.length, 0, MAX_ALLIES_IN_FIGHT);
+    int nb_allies = MIN(allies->allies.length, MAX_ALLIES_IN_FIGHT);
 
     player->entity->alive = 1;
     fight->entity_turn = 0;

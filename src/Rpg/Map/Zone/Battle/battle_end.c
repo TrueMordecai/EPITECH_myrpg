@@ -22,15 +22,23 @@ static void remove_dead_allies(battle_t *battle)
     }
 }
 
+static void validate_boss_kill(battle_t *battle)
+{
+    if (battle->zone->id != 2)
+        return;
+    quests_validate(&battle->fight->rpg->quests);
+}
+
 void battle_end(battle_t *battle)
 {
     battle->pos = (sfVector2i){0, 0};
     battle->size = battle->zone->size;
     map_reset_zoom(battle->zone->map);
     battle->zone->is_battle = 0;
-    if (battle->player->entity->alive == 1)
+    if (battle->player->entity->alive == 1) {
         stats_gain_xp(battle->player->entity->stats, 51);
-    else
+        validate_boss_kill(battle);
+    } else
         sfRectangleShape_setFillColor(battle->player->entity->rect, sfWhite);
     fight_destroy(battle->fight);
     remove_dead_allies(battle);

@@ -14,7 +14,8 @@
 #include "Rpg/rpg.h"
 #include "functions.h"
 
-static void set_texture_and_spells(fight_t *fight, entity_t *entity)
+static void set_texture_and_spells(
+    fight_t *fight, entity_t *entity, int zone_level)
 {
     int texture = get_randi(0, 1);
     int spell = get_randi(0, 1);
@@ -32,6 +33,15 @@ static void set_texture_and_spells(fight_t *fight, entity_t *entity)
         entity_add_spell(
             entity, get_spell(fight->rpg, (spell) ? "dist" : "dist2"));
     }
+    stats_init_from_level(entity->stats, get_randi(zone_level - 2, zone_level + 2));
+}
+
+static void init_boss(fight_t *fight, entity_t *entity)
+{
+    entity->type = ENNEMY_CAC;
+    entity_init_rect(entity, "Boss", sfWhite);
+    entity_add_spell(entity, get_spell(fight->rpg, "dist"));
+    stats_init_from_level(entity->stats, 10);
 }
 
 int fight_init_enemy(fight_t *fight, int pos, int *id)
@@ -49,9 +59,10 @@ int fight_init_enemy(fight_t *fight, int pos, int *id)
     fight->grid[pos].entity = fight->entities[*id + 1];
     fight->entities[*id + 1]->stats = stats_create();
     fight->entities[*id + 1]->fight = fight;
-    set_texture_and_spells(fight, fight->entities[*id + 1]);
-    stats_init_from_level(fight->entities[*id + 1]->stats,
-        get_randi(zone_level - 2, zone_level + 2));
+    if (*id == 0 && fight->rpg->map->current_zone->id == 2)
+        init_boss(fight, fight->entities[*id + 1]);
+    else
+        set_texture_and_spells(fight, fight->entities[*id + 1], zone_level);
     animations_update_rect(&fight->entities[*id + 1]->anim);
     return 0;
 }
