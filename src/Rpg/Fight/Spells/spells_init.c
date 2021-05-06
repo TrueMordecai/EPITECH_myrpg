@@ -6,6 +6,7 @@
 */
 
 #include <stdalign.h>
+#include <libmy/printf.h>
 #include <libmy/collections/hash_map.h>
 
 #include "Rpg/Fight/spell.h"
@@ -43,7 +44,10 @@ static void load_spell(rpg_t *rpg, char const *name, char *path)
 
 static void load_spells(rpg_t *rpg)
 {
+    load_spell(rpg, "scratch", "assets/Spells/a_scratch.spell");
     load_spell(rpg, "punch", "assets/Spells/a_punch.spell");
+    load_spell(rpg, "dist", "assets/Spells/a_dist.spell");
+    load_spell(rpg, "dist2", "assets/Spells/a_dist2.spell");
     load_spell(rpg, "spit_fire", "assets/Spells/a_spit_fire.spell");
     load_spell(rpg, "spit", "assets/Spells/a_spit.spell");
     load_spell(rpg, "debuff_all", "assets/Spells/d_debuff_all.spell");

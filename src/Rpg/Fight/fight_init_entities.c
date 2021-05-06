@@ -35,30 +35,6 @@ static int get_pos(fight_t *fight, int player_pos)
     return -1;
 }
 
-static int init_ennemy(fight_t *fight, int pos, int *id)
-{
-    zone_t *zone = fight->rpg->map->current_zone;
-    int zone_level =
-        2.5 * (1 + ((zone->mother_zone != -1) ? zone->mother_zone : zone->id));
-
-    if (pos == -1) {
-        (*id)--;
-        return 1;
-    }
-    fight->entities[*id + 1] =
-        entity_create(NULL, ENNEMY_CAC + get_randi(0, 1), ENNEMIES, pos);
-    fight->grid[pos].entity = fight->entities[*id + 1];
-    entity_add_spell(fight->entities[*id + 1], get_spell(fight->rpg, "burn"));
-    fight->entities[*id + 1]->stats = stats_create();
-    fight->entities[*id + 1]->fight = fight;
-    entity_init_rect(fight->entities[*id + 1], "Skeleton",
-        sfColor_fromInteger((get_randi(0, 16777215) << 8) + 255));
-    stats_init_from_level(fight->entities[*id + 1]->stats,
-        get_randi(zone_level - 2, zone_level + 2));
-    animations_update_rect(&fight->entities[*id + 1]->anim);
-    return 0;
-}
-
 static int init_ally(fight_t *fight, int pos, int *id, entity_t *ally)
 {
     if (pos == -1) {
@@ -85,7 +61,7 @@ static void fill_entities(
         int pos = get_pos(fight, player_pos);
 
         if (nb_ennemies > 0 && (i % 2 == 0 || nb_allies == 0)) {
-            fight->nb_entities -= init_ennemy(fight, pos, &i);
+            fight->nb_entities -= fight_init_enemy(fight, pos, &i);
             nb_ennemies--;
             continue;
         }

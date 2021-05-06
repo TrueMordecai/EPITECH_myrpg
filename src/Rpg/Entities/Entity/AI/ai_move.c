@@ -72,7 +72,8 @@ static void attack(entity_t *entity, my_vec_t *allies)
     if (ally == -1)
         return;
     entity->spell_select = 0;
-    while (spell->base.pa <= entity->stats->current_pa) {
+    while (
+        spell->base.pa <= entity->stats->current_pa && spell->base.cast_left) {
         entity_cast_spell(
             entity, MY_VEC_GET_ELEM(entity_t *, allies, ally)->pos);
     }
