@@ -10,9 +10,21 @@
 
 void handle_aggro(zone_t *zone, int special)
 {
-    if (special != AGGRO)
+    int percentage;
+
+    if (special != AGGRO_10 && special < AGGRO_100 && special > AGGRO_5)
         return;
-    if (get_randi(0, 100) >= 10)
+    switch (special) {
+        case AGGRO_5: percentage = 5; break;
+        case AGGRO_10: percentage = 10; break;
+        case AGGRO_20: percentage = 20; break;
+        case AGGRO_30: percentage = 30; break;
+        case AGGRO_50: percentage = 50; break;
+        case AGGRO_75: percentage = 75; break;
+        case AGGRO_100: percentage = 100; break;
+        default: break;
+    }
+    if (get_randi(1, 100) > percentage)
         return;
     battle_start(&zone->battle);
 }
