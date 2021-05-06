@@ -25,7 +25,6 @@ typedef struct player_t {
 
 player_t *player_create(struct rpg_t *rpg);
 pe_body_t *player_init_physic(player_t *player, pe_world_t *world);
-void player_handle_event(player_t *player, sfEvent event);
 void player_update(player_t *player, float dt);
 void player_remove_equipment_stats(player_t *player);
 void player_set_equipment_stats(player_t *player);

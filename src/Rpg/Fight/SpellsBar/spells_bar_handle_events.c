@@ -37,8 +37,7 @@ void spells_bar_update_outlines(spells_bar_t *bar)
                                       : sfColor_fromRGB(72, 104, 89));
 }
 
-static int update_selected(
-    spells_bar_t *bar, sfEvent *event, sfRenderWindow *window)
+static int update_selected(spells_bar_t *bar)
 {
     int id = spells_bar_get_hovered(bar);
 
@@ -70,7 +69,7 @@ int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event)
         return 1;
     if (event->type == sfEvtMouseButtonPressed
         && event->mouseButton.button == sfMouseLeft
-        && update_selected(bar, event, window))
+        && update_selected(bar))
         return 1;
     return 0;
 }

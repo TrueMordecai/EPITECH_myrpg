@@ -16,5 +16,6 @@ int zone_interract_npc(zone_t *zone, sfVector2i pos, int special)
     if (current_quest->quest_type == QUEST_TALK
         && current_quest->talk_to_pnj.pnj_id == zone->id)
         quests_validate(&zone->map->rpg->quests);
+    (void)pos;
     return 1;
 }

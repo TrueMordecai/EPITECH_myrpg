@@ -14,7 +14,7 @@ void stats_clear_effects(stats_t *stats)
 {
     size_t length = stats->effects.length;
 
-    for (int i = 0; i < length; i++)
+    for (size_t i = 0; i < length; i++)
         stats_remove_effect(stats, 0, 1);
 }
 

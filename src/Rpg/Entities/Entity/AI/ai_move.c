@@ -41,7 +41,7 @@ void move_after_attack(entity_t *entity, my_vec_t *allies)
         move_forward(entity, allies);
 }
 
-static int get_ally(entity_t *entity, int *sight, int *range, my_vec_t *allies)
+static int get_ally(int *sight, int *range, my_vec_t *allies)
 {
     size_t j;
 
@@ -67,7 +67,7 @@ static void attack(entity_t *entity, my_vec_t *allies)
     int *sight = fight_get_sight(entity->fight,
         (sfVector2i){entity->pos, spell->base.po}, (sfVector2i){-1, 0},
         &range);
-    int ally = get_ally(entity, sight, range, allies);
+    int ally = get_ally(sight, range, allies);
 
     if (ally == -1)
         return;

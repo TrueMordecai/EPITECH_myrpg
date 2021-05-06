@@ -9,5 +9,7 @@
 
 int pause_state_update(pause_state_t *state, float dt)
 {
+    (void)state;
+    (void)dt;
     return 0;
 }

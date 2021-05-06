@@ -46,6 +46,7 @@ void cb_pause_resume(sw_button_t *btn, void *data)
 
     play_sound(&state->base.game_data->audio, "click");
     game_data_pop_state(state->base.game_data, GAME_PAUSE_STATE);
+    sw_button_set_state(btn, SW_BUTTON_IDLE);
 }
 
 void cb_pause_menu(sw_button_t *btn, void *data)
@@ -54,5 +55,6 @@ void cb_pause_menu(sw_button_t *btn, void *data)
 
     play_sound(&game_data->audio, "click");
     game_data_pop_state(game_data, GAME_PAUSE_STATE);
+    sw_button_set_state(btn, SW_BUTTON_IDLE);
     game_data_pop_state(game_data, GAME_PAUSE_STATE);
 }

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "Rpg/Fight/fight.h"
 
-void update_anim(entity_t *entity, float dt, sfVector2f delta)
+void update_anim(entity_t *entity, sfVector2f delta)
 {
     int anim_id = 0;
 
@@ -32,7 +32,7 @@ void action_move_update(entity_t *entity, float dt, action_t *act)
     sfVector2f pos = {start.x + delta.x * act->move.progress,
         start.y + delta.y * act->move.progress};
 
-    update_anim(entity, dt, delta);
+    update_anim(entity, delta);
     act->move.progress += dt * 5;
     entity_update_sprite_pos(entity, pos);
     if (act->move.progress > 1.0) {
@@ -91,4 +91,5 @@ void entity_update(entity_t *entity, float dt, int playing)
     }
     if (entity->actions.length)
         entity_update_actions(entity, dt);
+    (void)dt;
 }

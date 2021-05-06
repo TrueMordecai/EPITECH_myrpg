@@ -7,7 +7,6 @@ set(SRC
     ${SRCROOT}/player_create.c
     ${SRCROOT}/player_destroy.c
     ${SRCROOT}/player_draw.c
-    ${SRCROOT}/player_handle_event.c
     ${SRCROOT}/player_init_physic.c
     ${SRCROOT}/player_update_equipement.c
     ${SRCROOT}/player_update.c

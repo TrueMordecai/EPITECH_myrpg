@@ -28,7 +28,6 @@ static int parse_value(
 static void parse_line2(spell_base_t *spell, char *line_beg)
 {
     size_t offset = 0;
-    int diff;
 
     if (my_strncmp("TURN_LIMIT=", line_beg, 11) == 0)
         spell->turn_limit =

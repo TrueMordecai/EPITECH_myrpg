@@ -23,7 +23,7 @@ void timeline_update_hovered(timeline_t *timeline, float dt)
         || mouse_pos_view.y > FRAME_WIDTH
         || (hovered - (int)hovered)
             >= FRAME_WIDTH / (FRAME_WIDTH + FRAME_SPACING)
-        || (int)hovered >= timeline->frames.length) {
+        || (size_t)hovered >= timeline->frames.length) {
         timeline->hovered = -1;
         timeline->time_hovered = 0;
         return;
