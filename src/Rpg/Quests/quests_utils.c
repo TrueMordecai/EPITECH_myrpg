@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/Quests/quests.h"
+#include "Rpg/rpg.h"
 
 quest_t *quests_get_current(quest_list_t *list)
 {
@@ -21,6 +22,7 @@ int quests_validate(quest_list_t *quest_list)
         return 2;
     }
     quest_list->current_quest++;
+    stats_gain_xp(quest_list->rpg->player->entity->stats, XP_TO_LEVEL_UP);
     if (quest_list->current_quest >= quest_list->nb_quests) {
         my_printf("Validate all quests\n");
         return 1;

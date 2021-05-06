@@ -17,6 +17,7 @@ rpg_t *rpg_create(state_t *state)
     spells_init(rpg);
     rpg->state = state;
     rpg->quests.nb_quests = 0;
+    rpg->quests.rpg = rpg;
     rpg->quests.quests = NULL;
     rpg->wind = state->game_data->window;
     rpg->player = player_create(rpg);

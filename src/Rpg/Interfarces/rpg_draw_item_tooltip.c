@@ -32,10 +32,12 @@ static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line(
     sfText_setString(game->inventory.stat_text, name);
     sfText_setPosition(
         game->inventory.stat_text, get_mouse_pos_vec2f(game->wind));
-    sfText_move(
-        game->inventory.stat_text, (sfVector2f){70, 140 + drawed_line * 50});
+    sfText_move(game->inventory.stat_text,
+        (sfVector2f){
+            (int)(70 * SL(game)), (int)((140 + drawed_line * 50) * SL(game))});
     sfRenderWindow_drawText(game->wind, game->inventory.stat_text, NULL);
-    sfText_move(game->inventory.stat_text, (sfVector2f){200, 0});
+    sfText_move(
+        game->inventory.stat_text, (sfVector2f){(int)(200 * SL(game)), 0});
     sfText_setString(game->inventory.stat_text, numeric_stat);
     sfRenderWindow_drawText(game->wind, game->inventory.stat_text, NULL);
     free(numeric_stat);
@@ -81,9 +83,10 @@ extern void rpg_inventory_draw_items_tooltip(rpg_t *game, item_t *item)
     sfSprite_setPosition(
         game->inventory.tooltip, get_mouse_pos_vec2f(game->wind));
     sfText_move(game->inventory.text,
-        (sfVector2f){
-            (576 - sfText_getLocalBounds(game->inventory.text).width) / 2,
-            70});
+        (sfVector2f){(int)((576 * SL(game))
+                         - sfText_getLocalBounds(game->inventory.text).width)
+                / 2,
+            (int)(70 * SL(game))});
     sfRenderWindow_drawSprite(game->wind, game->inventory.tooltip, NULL);
     rpg_inventory_draw_items_tooltip_draw_stats(game, item);
     sfRenderWindow_drawText(game->wind, game->inventory.text, NULL);

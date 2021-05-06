@@ -59,10 +59,10 @@ extern void rpg_draw_equipement(rpg_t *g)
     int tooltip = -1;
 
     for (unsigned int i = 0; i != 4; i++) {
-        sfSprite_setPosition(
-            g->inventory.container, (sfVector2f){320, 320 + i * 64});
-        sfSprite_setPosition(
-            g->inventory.sprite, (sfVector2f){320, 320 + i * 64});
+        sfSprite_setPosition(g->inventory.container,
+            (sfVector2f){320 * SL(g), (320 + i * 64) * SL(g)});
+        sfSprite_setPosition(g->inventory.sprite,
+            (sfVector2f){320 * SL(g), (320 + i * 64) * SL(g)});
         sfRenderWindow_drawSprite(g->wind, g->inventory.container, NULL);
         rpg_draw_equipemnt_on_click_behaviour(g, i);
         if (g->inventory.equipement[i].name != NULL) {

@@ -33,7 +33,8 @@ static void set_texture_and_spells(
         entity_add_spell(
             entity, get_spell(fight->rpg, (spell) ? "dist" : "dist2"));
     }
-    stats_init_from_level(entity->stats, get_randi(zone_level - 2, zone_level + 2));
+    stats_init_from_level(
+        entity->stats, get_randi(zone_level - 2, zone_level + 2));
 }
 
 static void init_boss(fight_t *fight, entity_t *entity)

@@ -12,8 +12,8 @@
 
 static inline bool is_scrolling_deep(inventory_t *inv, unsigned int i)
 {
-    return ((
-        bool)((i < (unsigned int)40 + inv->scroll * 4) && (inv->scroll < 39)));
+    return (
+        (bool)((i < (unsigned int)40 + inv->scroll * 4) && (inv->scroll < 39)));
 }
 
 static inline int get_scroll(rpg_t *g)
@@ -42,11 +42,12 @@ extern void item_clicked(rpg_t *game, item_t *item, sfVector2f pos)
     }
 }
 
-static void rpg_inventory_draw_items_move_sprite(sfVector2f *pos, sfSprite *s)
+static void rpg_inventory_draw_items_move_sprite(
+    float sl, sfVector2f *pos, sfSprite *s)
 {
     pos->x++;
     if (pos->x == 4) {
-        sfSprite_move(s, (sfVector2f){-320 + 64, 64});
+        sfSprite_move(s, (sfVector2f){(-320 + 64) * sl, 64 * sl});
         pos->x = 0;
         pos->y++;
     }
@@ -66,8 +67,8 @@ extern void rpg_inventory_draw_items(rpg_t *g)
         if (sprite_is_hover(g->inventory.sprite, get_mouse_pos_vec2f(g->wind)))
             save = i;
         item_clicked(g, &g->inventory.items[i], get_mouse_pos_vec2f(g->wind));
-        sfSprite_move(g->inventory.sprite, (sfVector2f){64, 0});
-        rpg_inventory_draw_items_move_sprite(&pos, g->inventory.sprite);
+        sfSprite_move(g->inventory.sprite, (sfVector2f){64 * SL(g), 0});
+        rpg_inventory_draw_items_move_sprite(SL(g), &pos, g->inventory.sprite);
     }
     if (save != -1)
         rpg_inventory_draw_items_tooltip(g, &g->inventory.items[save]);

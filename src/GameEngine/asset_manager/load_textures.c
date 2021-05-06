@@ -61,6 +61,10 @@ static void load_fonts(asset_manager_t *manager)
     load_font(manager, "pixel", "assets/Fonts/pixel.ttf");
     load_font(manager, "pixel2", "assets/Fonts/pixel2.ttf");
     get_null_font();
+    load_texture(manager, "Dog", "assets/Textures/Characters/Dog.png", 0);
+    load_texture(manager, "Lion", "assets/Textures/Characters/Lion.png", 0);
+    load_texture(manager, "Frog", "assets/Textures/Characters/Frog.png", 0);
+    load_texture(manager, "Boss", "assets/Textures/Characters/Master.png", 0);
 }
 
 void load_all_textures(asset_manager_t *manager)
@@ -79,10 +83,6 @@ void load_all_textures(asset_manager_t *manager)
     load_texture(manager, "Knight", "assets/Textures/Characters/Knight.png", 0);
     load_texture(
         manager, "Skeleton", "assets/Textures/Characters/Skeleton.png", 0);
-    load_texture(manager, "Dog", "assets/Textures/Characters/Dog.png", 0);
-    load_texture(manager, "Lion", "assets/Textures/Characters/Lion.png", 0);
-    load_texture(manager, "Frog", "assets/Textures/Characters/Frog.png", 0);
-    load_texture(manager, "Boss", "assets/Textures/Characters/Master.png", 0);
     load_texture(
         manager, "Green Man", "assets/Textures/Characters/Greenman.png", 0);
     load_fonts(manager);

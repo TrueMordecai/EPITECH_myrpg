@@ -59,6 +59,7 @@ typedef struct quests {
     size_t nb_quests;
     size_t file_size;
     size_t current_quest;
+    struct rpg_t *rpg;
 } quest_list_t;
 
 int get_file_id(char const *file_path);
