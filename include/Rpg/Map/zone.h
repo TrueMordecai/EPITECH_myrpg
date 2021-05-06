@@ -19,7 +19,6 @@ struct player_t;
 
 enum ZONE_SPECIAL { SUB_DOOR = 1, AGGRO = 2, EXT_DOOR = 3 , NPC = 4};
 extern const int ZONE_START;
-extern const int ZONE_HOUSE;
 
 extern const char *ALL_ZONE_NAMES[5];
 extern const sfVector2i *ZONES_LINKS[2];

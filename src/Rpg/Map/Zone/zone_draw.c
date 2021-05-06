@@ -48,7 +48,7 @@ void zone_draw_layers(
     int i = 0;
     float y_player =
         (player->pos.y
-            + sfRectangleShape_getSize(player->entity->rect).y * 1.2)
+            + sfRectangleShape_getSize(player->entity->rect).y * 1.95)
         / (float)zone->tiles_size;
 
     sfRenderWindow_setView(wind, zone->map->view);
