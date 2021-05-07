@@ -26,8 +26,8 @@ extern void rpg_add_item_to_inventory(rpg_t *game, item_t item)
 {
     unsigned int i = 0;
 
-    for (; game->inventory.items[i].name != NULL; i++)
-        ;
+    while (game->inventory.items[i].name)
+        i++;
     game->inventory.items[i] = item;
 }
 

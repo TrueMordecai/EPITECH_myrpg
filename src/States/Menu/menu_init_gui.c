@@ -36,7 +36,7 @@ void menu_init_gui(menu_state_t *state)
     sw_layout_update((sw_layout_t *)layout);
     sw_vlayout_add(layout,
         create_btn(&state->base, "Play",
-            (sw_spacing_t){{400 * SCL(state), 0, 75 * SCL(state), 0}},
+            (sw_spacing_t){{400 * SCL(state), 0, 50 * SCL(state), 0}},
             (sw_vec2f_t){225 * SCL(state), 75 * SCL(state)}));
     sw_vlayout_add(layout,
         create_btn(&state->base, "Settings",

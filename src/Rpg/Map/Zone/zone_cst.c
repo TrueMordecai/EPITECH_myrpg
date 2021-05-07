@@ -10,8 +10,7 @@
 const int ZONE_START = 0;
 
 const int NB_MAIN_ZONES = 3;
-const char *ALL_ZONE_NAMES[5] = {
-    "assets/Zones/zone_village", //"../../Tek1/B-MUL/map-editor/res/Map/zone_test",
+const char *ALL_ZONE_NAMES[5] = {"assets/Zones/zone_village",
     "assets/Zones/zone_cave", "assets/Zones/zone_boss",
     "assets/Zones/zone_prison"};
 

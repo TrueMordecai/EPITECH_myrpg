@@ -41,5 +41,6 @@ void battle_start(battle_t *battle)
     pe_body_set_pos(battle->player->body, VEC2F(player_pos.x, player_pos.y));
     battle->player->body->velocity = VEC2F(0, 0);
     battle->zone->is_battle = 1;
-    battle->fight = fight_create(battle, get_randi(1, 6), battle->player);
+    battle->fight = fight_create(battle, get_randi(1, 1 +
+    battle->zone->map->rpg->allies.allies.length), battle->player);
 }

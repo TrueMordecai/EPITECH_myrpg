@@ -24,8 +24,8 @@ void setup_quest_by_id(quest_list_t *quests_data)
 {
     int nb_quest = 0;
 
-    for (; quests_data->list[nb_quest] != NULL; nb_quest++)
-        ;
+    while (quests_data->list[nb_quest])
+        nb_quest++;
     quests_data->quests = malloc(sizeof(quest_t) * nb_quest);
     for (int i = 0; quests_data->list[i] != NULL; i++) {
         quests_data->quests[i].quest_type = my_getnbr(quests_data->list[i]);

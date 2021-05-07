@@ -22,12 +22,12 @@ enum ZONE_SPECIAL {
     AGGRO_10 = 2,
     EXT_DOOR = 3,
     NPC = 4,
-    AGGRO_100 = 6,
-    AGGRO_75 = 7,
-    AGGRO_50 = 8,
-    AGGRO_30 = 9,
-    AGGRO_20 = 10,
-    AGGRO_5 = 11
+    AGGRO_100 = 7,
+    AGGRO_75 = 8,
+    AGGRO_50 = 9,
+    AGGRO_30 = 10,
+    AGGRO_20 = 11,
+    AGGRO_5 = 12
 };
 extern const int ZONE_START;
 

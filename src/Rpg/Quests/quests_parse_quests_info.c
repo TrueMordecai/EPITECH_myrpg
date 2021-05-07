@@ -17,13 +17,13 @@ int setup_kill_monster(quest_list_t *quest_data, int index_quest)
     quest_data->quests[index_quest].quest_type = 1;
     quest_data->quests[index_quest].kill_monster.type_id =
         my_getnbr(&quest_data->list[index_quest][2]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     i++;
     quest_data->quests[index_quest].kill_monster.type_id =
         my_getnbr(&quest_data->list[index_quest][2]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     return i + 1;
 }
 
@@ -35,8 +35,8 @@ int setup_go_zone(quest_list_t *quest_data, int index_quest)
     quest_data->quests[index_quest].quest_type = 2;
     quest_data->quests[index_quest].go_zone.zone_id =
         my_getnbr(&quest_data->list[index_quest][2]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     return i + 1;
 }
 
@@ -48,8 +48,8 @@ int setup_talk_to_pnj(quest_list_t *quest_data, int index_quest)
     quest_data->quests[index_quest].quest_type = 3;
     quest_data->quests[index_quest].talk_to_pnj.pnj_id =
         my_getnbr(&quest_data->list[index_quest][2]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     return i + 1;
 }
 
@@ -61,13 +61,13 @@ int setup_get_item(quest_list_t *quest_data, int index_quest)
     quest_data->quests[index_quest].quest_type = 4;
     quest_data->quests[index_quest].get_item.type_id =
         my_getnbr(&quest_data->list[index_quest][2]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     i++;
     quest_data->quests[index_quest].get_item.count =
         my_getnbr(&quest_data->list[index_quest][i]);
-    for (; quest_data->list[index_quest][i] != ' '; i++)
-        ;
+    while (quest_data->list[index_quest][i] != ' ')
+        i++;
     return i + 1;
 }
 
