@@ -23,6 +23,7 @@ int quests_validate(quest_list_t *quest_list)
     }
     quest_list->current_quest++;
     stats_gain_xp(quest_list->rpg->player->entity->stats, XP_TO_LEVEL_UP);
+    play_sound(&quest_list->rpg->state->game_data->audio, "quest_success");
     if (quest_list->current_quest >= quest_list->nb_quests) {
         my_printf("Validate all quests\n");
         return 1;

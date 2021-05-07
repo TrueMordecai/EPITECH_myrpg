@@ -22,6 +22,8 @@ static void load_sounds(audio_manager_t *manager)
     load_sound(manager, "move", "assets/Sounds/Fight/Fx.wav");
     load_sound(manager, "move_zone", "assets/Sounds/Strange.wav");
     load_sound(manager, "interract", "assets/Sounds/Coin.wav");
+    load_sound(manager, "talk", "assets/Sounds/Voice3.wav");
+    load_sound(manager, "quest_success", "assets/Sounds/Success1.wav");
 }
 
 static void load_music_tracks(audio_manager_t *manager)
