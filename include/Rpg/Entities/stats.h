@@ -47,6 +47,7 @@ void stats_destroy(stats_t *stats);
 
 void stats_level_up(stats_t *stats);
 void stats_gain_xp(stats_t *stats, int xp);
+void stats_lose_xp(stats_t *stats, int xp);
 
 int stats_compute_damages(stats_t *from, stats_t *to, int element, int value);
 

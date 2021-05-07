@@ -29,6 +29,24 @@ static void validate_boss_kill(battle_t *battle)
     quests_validate(&battle->fight->rpg->quests);
 }
 
+static void apply_lose_malus(battle_t *battle)
+{
+    unsigned int i = 0;
+    unsigned int last = -1;
+    inventory_t *inv = &battle->fight->rpg->inventory;
+
+    for (int i = 0; i < 200; i++) {
+        if (inv->items[i].name)
+            last = i;
+    }
+    if (last == -1)
+        stats_lose_xp(battle->player->entity->stats, 20);
+    else {
+        free(inv->items[last].name);
+        inv->items[last].name = NULL;
+    }
+}
+
 void battle_end(battle_t *battle)
 {
     battle->pos = (sfVector2i){0, 0};
@@ -38,8 +56,10 @@ void battle_end(battle_t *battle)
     if (battle->player->entity->alive == 1) {
         stats_gain_xp(battle->player->entity->stats, 51);
         validate_boss_kill(battle);
-    } else
+    } else {
+        apply_lose_malus(battle);
         sfRectangleShape_setFillColor(battle->player->entity->rect, sfWhite);
+    }
     fight_destroy(battle->fight);
     remove_dead_allies(battle);
     battle->player->body->velocity = (pe_vec2f_t){0, 0};

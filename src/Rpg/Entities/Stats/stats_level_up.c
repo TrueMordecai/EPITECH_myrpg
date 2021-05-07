@@ -54,3 +54,19 @@ void stats_gain_xp(stats_t *stats, int xp)
     while (stats->xp >= XP_TO_LEVEL_UP)
         stats_level_up(stats);
 }
+
+void stats_lose_xp(stats_t *stats, int xp)
+{
+    stats->xp -= xp;
+    while (stats->xp < 0 && stats->level > 1) {
+        stats->xp += XP_TO_LEVEL_UP;
+        stats->level--;
+        stats->life -= 10;
+        for (int i = 0; i < 4; i++) {
+            stats->elements[i] -= 5;
+            stats->resistances[i] -= 3;
+        }
+    }
+    if (stats->xp < 0 && stats->level == 1)
+        stats->xp = 0;
+}
