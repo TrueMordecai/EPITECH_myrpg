@@ -13,14 +13,15 @@
 #include "GameEngine/game_head.h"
 #include "States/Menu/menu_state.h"
 
+void menu_set_tutorial(menu_state_t *state, int set);
+
 static void cb_menu_tutorial(sw_button_t *btn, void *data)
 {
     menu_state_t *state = (menu_state_t *)data;
 
     play_sound(&state->base.game_data->audio, "click");
-    sw_button_set_state(btn, SW_BUTTON_DISABLED);
-    sw_set_background_texture(state->gui_base,
-        get_texture(&state->base.game_data->assets, "tutorial"), 0);
+    menu_set_tutorial(state, 1);
+    (void)btn;
 }
 
 static sw_button_on_click_t get_callback(char *text)
