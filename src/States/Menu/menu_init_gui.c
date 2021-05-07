@@ -28,11 +28,15 @@ void menu_init_gui(menu_state_t *state)
             (sw_vec2f_t){225 * SCL(state), 75 * SCL(state)}));
     sw_vlayout_add(layout,
         create_btn(&state->base, "Settings",
-            (sw_spacing_t){{75 * SCL(state), 0, 75 * SCL(state), 0}},
+            (sw_spacing_t){{50 * SCL(state), 0, 50 * SCL(state), 0}},
+            (sw_vec2f_t){225 * SCL(state), 75 * SCL(state)}));
+    sw_vlayout_add(layout,
+        create_btn(&state->base, "Tutorial",
+            (sw_spacing_t){{50 * SCL(state), 0, 50 * SCL(state), 0}},
             (sw_vec2f_t){225 * SCL(state), 75 * SCL(state)}));
     sw_vlayout_add(layout,
         create_btn(&state->base, "Quit",
-            (sw_spacing_t){{75 * SCL(state), 0, 0, 0}},
+            (sw_spacing_t){{50 * SCL(state), 0, 0, 0}},
             (sw_vec2f_t){225 * SCL(state), 75 * SCL(state)}));
     state->gui_base = base;
 }

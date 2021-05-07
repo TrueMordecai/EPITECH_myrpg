@@ -11,6 +11,17 @@
 
 #include "functions.h"
 #include "GameEngine/game_head.h"
+#include "States/Menu/menu_state.h"
+
+static void cb_menu_tutorial(sw_button_t *btn, void *data)
+{
+    menu_state_t *state = (menu_state_t *)data;
+
+    play_sound(&state->base.game_data->audio, "click");
+    sw_button_set_state(btn, SW_BUTTON_DISABLED);
+    sw_set_background_texture(state->gui_base,
+        get_texture(&state->base.game_data->assets, "tutorial"), 0);
+}
 
 static sw_button_on_click_t get_callback(char *text)
 {
@@ -24,6 +35,8 @@ static sw_button_on_click_t get_callback(char *text)
         return &cb_pause_resume;
     if (my_strcmp(text, "Menu") == 0)
         return &cb_pause_menu;
+    if (my_strcmp(text, "Tutorial") == 0)
+        return &cb_menu_tutorial;
     return NULL;
 }
 
@@ -34,10 +47,9 @@ sw_button_t *create_btn(
 
     sw_button_set_user_data(button, state);
     for (int i = 0; i < 3; i++) {
-        sw_button_set_texture(button,
-            get_texture(&state->game_data->assets, "buttons"), i, true);
-        sw_button_set_texture_rect(
-            button, (sw_irect_t){0, i * 80, 195, 80}, i);
+        sw_button_set_texture(
+            button, get_texture(&state->game_data->assets, "buttons"), i, true);
+        sw_button_set_texture_rect(button, (sw_irect_t){0, i * 80, 195, 80}, i);
     }
     sw_set_size(button, size);
     sw_button_set_text(
