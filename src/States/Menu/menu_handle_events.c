@@ -51,7 +51,9 @@ int menu_state_handle_events(menu_state_t *state)
             sfRenderWindow_close(data->window);
         if (event.type == sfEvtKeyPressed)
             shortcuts(data, event.key.code, state);
-        sw_send_event(state->gui_base, &event);
+        if (sw_button_get_state(sw_get_children(state->gui_base, NULL)[2])
+            != SW_BUTTON_DISABLED)
+            sw_send_event(state->gui_base, &event);
     }
     return 0;
 }
