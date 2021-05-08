@@ -29,5 +29,7 @@ int quests_validate(quest_list_t *quest_list)
     }
     my_printf("Next quest %#s\n",
         quest_list->quests[quest_list->current_quest].context);
+    sfText_setString(quest_list->dialogue.text, \
+        quest_list->quests[quest_list->current_quest].context);
     return 0;
 }

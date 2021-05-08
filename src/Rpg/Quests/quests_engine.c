@@ -7,6 +7,7 @@
 
 #include <libmy/parsing.h>
 
+#include <SFML/Graphics.h>
 #include "Rpg/Quests/quests.h"
 
 void free_all(quest_list_t *quests_data)
@@ -34,6 +35,33 @@ void setup_quest_by_id(quest_list_t *quests_data)
     quests_data->nb_quests = nb_quest;
 }
 
+void create_dialogue_bg(dialogue_bg_t *dialogue)
+{
+    sfVector2f center = {933 / 2, 166 / 2};
+    sfTexture *bg_texture;
+    sfVector2f shift = {640, 720 / 1.2};
+
+    bg_texture = sfTexture_createFromFile(\
+        "./assets/Textures/dialogue_bg.png", NULL);
+    dialogue->bg = sfSprite_create();
+    sfSprite_setTexture(dialogue->bg, bg_texture, sfTrue);
+    sfSprite_setOrigin(dialogue->bg, center);
+    sfSprite_setPosition(dialogue->bg, shift);
+}
+
+void create_dialogue_font(dialogue_bg_t *dialogue)
+{
+    sfFont *font;
+
+    font = sfFont_createFromFile("./assets/Fonts/pixel2.ttf");
+    dialogue->text = sfText_create();
+    sfText_setFont(dialogue->text, font);
+    sfText_setOrigin(dialogue->text, (sfVector2f){50, 50});
+    sfText_setCharacterSize(dialogue->text, 20);
+    sfText_setFillColor(dialogue->text, (sfColor){0, 0, 0, 255});
+    sfText_setPosition(dialogue->text, (sfVector2f){300, 720 / 1.2});
+}
+
 int quests_init(quest_list_t *quests_data, char *filepath)
 {
     quests_data->filepath = filepath;
@@ -42,5 +70,7 @@ int quests_init(quest_list_t *quests_data, char *filepath)
     setup_quest_by_id(quests_data);
     free_all(quests_data);
     quests_data->current_quest = 0;
+    create_dialogue_bg(&quests_data->dialogue);
+    create_dialogue_font(&quests_data->dialogue);
     return 0;
 }
