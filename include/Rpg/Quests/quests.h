@@ -10,10 +10,15 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <SFML/System/Time.h>
+#include <SFML/Graphics.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-#ifndef INCLUDE_H_
-    #define INCLUDE_H_
+#ifndef QUESTS_H_
+    #define QUESTS_H_
+
+struct rpg_t;
 
 enum quest_type_e {
     QUEST_KILL = 1,
@@ -52,9 +57,17 @@ typedef struct quest {
     int state;
 } quest_t;
 
+typedef struct dialogue_bg {
+    bool is_talking;
+    sfSprite *bg;
+    sfFont *font;
+    sfText *text;
+} dialogue_bg_t;
+
 typedef struct quests {
     char *filepath;
     char **list;
+    dialogue_bg_t dialogue;
     quest_t *quests;
     size_t nb_quests;
     size_t file_size;
@@ -78,4 +91,5 @@ int quests_validate(quest_list_t *quest_list);
 void quests_destroy(quest_list_t *quests);
 void parse_quest_info(quest_list_t *quest_data, int index_quest);
 
+void quests_draw(struct rpg_t *rpg);
 #endif

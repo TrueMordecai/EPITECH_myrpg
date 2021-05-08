@@ -28,6 +28,6 @@ rpg_t *rpg_create(state_t *state)
         rpg_destroy(rpg);
         return NULL;
     }
-    quests_init(&rpg->quests, "assets/list_quests");
+    quests_init(&rpg->quests, "assets/Quests/list_quests");
     return rpg;
 }
