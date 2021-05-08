@@ -11,6 +11,7 @@
 #include "Rpg/Entities/allies.h"
 #include "Rpg/Entities/player.h"
 #include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfarces/general_ui.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
@@ -29,6 +30,7 @@ typedef struct rpg_t {
     inventory_t inventory;
     allies_t allies;
     quest_list_t quests;
+    general_ui_t ui;
 } rpg_t;
 
 rpg_t *rpg_create(state_t *state);

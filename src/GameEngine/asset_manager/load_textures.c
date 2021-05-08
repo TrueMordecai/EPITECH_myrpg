@@ -85,6 +85,7 @@ void load_all_textures(asset_manager_t *manager)
         manager, "Skeleton", "assets/Textures/Characters/Skeleton.png", 0);
     load_texture(
         manager, "Green Man", "assets/Textures/Characters/Greenman.png", 0);
+    load_texture(manager, "gen_ui", "assets/Inventory/general_ui.png", 0);
     load_fonts(manager);
     get_null_texture();
 }
