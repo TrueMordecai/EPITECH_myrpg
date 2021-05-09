@@ -14,18 +14,19 @@
 extern battle_end_t battle_end_init(rpg_t *rpg)
 {
     battle_end_t b;
-    sfVector2u w_size = sfRenderWindow_getSize(rpg->wind);
 
     b.rpg = rpg;
     b.menu_sprite = sfSprite_create();
     b.menu_texture = get_texture(&rpg->state->game_data->assets, "b_end");
     sfSprite_setTexture(b.menu_sprite, b.menu_texture, sfFalse);
-    sfSprite_setScale(b.menu_sprite, (sfVector2f){4, 4});
-    sfSprite_setPosition(b.menu_sprite, (sfVector2f){(w_size.x - 448) / 2, 99});
+    sfSprite_setScale(b.menu_sprite, (sfVector2f){6 * SL(rpg), 6 * SL(rpg)});
+    sfSprite_setPosition(
+        b.menu_sprite, (sfVector2f){624 * SL(rpg), 150 * SL(rpg)});
     b.item_sprite = sfSprite_create();
     sfSprite_setTexture(b.item_sprite, rpg->inventory.texture, sfFalse);
-    sfSprite_setPosition(b.item_sprite, (sfVector2f){(w_size.x - 64) / 2, 230});
-    sfSprite_setScale(b.item_sprite, (sfVector2f){4, 4});
+    sfSprite_setPosition(
+        b.item_sprite, (sfVector2f){912 * SL(rpg), 345 * SL(rpg)});
+    sfSprite_setScale(b.item_sprite, (sfVector2f){4 * SL(rpg), 4 * SL(rpg)});
     b.is_on = false;
     b.is_win = false;
     b.is_item_add = false;

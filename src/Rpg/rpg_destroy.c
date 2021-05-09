@@ -17,5 +17,7 @@ void rpg_destroy(rpg_t *rpg)
     my_hash_map_drop(&rpg->spells);
     allies_destroy(&rpg->allies);
     quests_destroy(&rpg->quests);
+    sfSprite_destroy(rpg->battle_end.item_sprite);
+    sfSprite_destroy(rpg->battle_end.menu_sprite);
     free(rpg);
 }

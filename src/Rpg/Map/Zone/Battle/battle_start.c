@@ -30,6 +30,16 @@ static void set_pos(battle_t *battle, sfVector2i *pos, sfVector2i size)
     pos->y -= MAX(0, pos->y + size.y - battle->size.y);
 }
 
+static void close_ui(battle_t *battle)
+{
+    if (battle->zone->map->rpg->inventory.is_open)
+        inventory_open(&battle->zone->map->rpg->inventory, sfFalse);
+    if (battle->zone->map->rpg->quests.dialogue.is_talking)
+        battle->zone->map->rpg->quests.dialogue.is_talking = false;
+    if (battle->zone->map->rpg->battle_end.is_on)
+        battle->zone->map->rpg->battle_end.is_on = false;
+}
+
 void battle_start(battle_t *battle)
 {
     sfVector2i player_pos = {
@@ -38,8 +48,7 @@ void battle_start(battle_t *battle)
     sfVector2i pos = {player_pos.x - size.x / 2, player_pos.y - size.y / 2};
 
     particle_manager_clear(battle->player->rpg->state->game_data->particles);
-    if (battle->zone->map->rpg->inventory.is_open)
-        inventory_open(&battle->zone->map->rpg->inventory, sfFalse);
+    close_ui(battle);
     get_size(battle);
     set_pos(battle, &pos, size);
     battle->pos = pos;
