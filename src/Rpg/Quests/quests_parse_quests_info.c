@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG - Quests
 ** File description:
-** parse_quests_info.c
+** parse quests information
 */
 
 #include <libmy/ascii.h>

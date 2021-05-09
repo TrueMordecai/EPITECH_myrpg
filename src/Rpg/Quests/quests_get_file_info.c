@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-CPE-210-NAN-2-1-stumper2-paul-antoine.salmon
+** MyRPG - Quests
 ** File description:
-** get_file_info.c
+** get file information
 */
 
 #include <fcntl.h>

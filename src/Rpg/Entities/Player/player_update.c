@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** player update.c
+** update the player
 */
 
 #include <libmy/printf.h>

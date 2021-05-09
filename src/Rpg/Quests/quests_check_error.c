@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** B-MUL-200-NAN-2-1-myrpg-andreas.leroux
+** MyRPG Check error quests
 ** File description:
-** quests_check_error.c
+** check quests file error
 */
 
 #include <stddef.h>
