@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_base_draw
+** Draws a generic infobox
 */
 
 #include "Rpg/InfoBox/infobox.h"

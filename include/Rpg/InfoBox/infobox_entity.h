@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity
+** An infobox that describes an entity
 */
 
 #ifndef INFOBOX_ENTITY_H_

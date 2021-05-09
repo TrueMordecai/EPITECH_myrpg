@@ -13,7 +13,7 @@
 
 #include "Rpg/Map/zone.h"
 
-struct rpg_t;
+typedef struct rpg rpg_t;
 
 typedef struct map_t {
     int nb_zones;
@@ -27,10 +27,10 @@ typedef struct map_t {
     sfVector2f view_size;
     /// Element Type: zone_t *
     my_vec_t zones;
-    struct rpg_t *rpg;
+    rpg_t *rpg;
 } map_t;
 
-map_t *map_create(struct rpg_t *rpg);
+map_t *map_create(rpg_t *rpg);
 void map_update_zoom(map_t *map, float dt);
 void map_zoom(map_t *map, float value);
 void map_zoom_up_down(map_t *map, int zoom_up);

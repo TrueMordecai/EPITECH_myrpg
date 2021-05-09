@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** Game Engine
 ** File description:
-** Asset manager struct
+** The asset manager
 */
 
 #ifndef GE_ASSET_MANAGER_H
@@ -31,8 +31,7 @@ void load_all_textures(asset_manager_t *manager);
 
 void load_texture(asset_manager_t *asset_manager, char const *name,
     char const *filepath, int smooth);
-struct sfTexture *get_texture(
-    asset_manager_t *asset_manager, char const *name);
+struct sfTexture *get_texture(asset_manager_t *asset_manager, char const *name);
 
 void load_font(
     asset_manager_t *asset_manager, char const *name, char const *filepath);

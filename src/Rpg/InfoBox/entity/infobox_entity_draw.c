@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_draw
+** Draws an entity info box
 */
 
 #include "Rpg/InfoBox/infobox_entity.h"

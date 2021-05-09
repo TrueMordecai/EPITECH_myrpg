@@ -8,7 +8,6 @@
 #include <SFML/Graphics.h>
 
 #include "GameEngine/asset_manager.h"
-#include "GameEngine/font_default.h"
 
 #include "default_font.h"
 

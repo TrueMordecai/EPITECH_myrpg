@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_text
+** Changes the text contents of a generic infobox
 */
 
 #include <libmy/parsing/parsing.h>

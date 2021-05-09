@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** btns_callbacks
+** Button Callbacks
 */
 
 #include <sw/widgets/button.h>

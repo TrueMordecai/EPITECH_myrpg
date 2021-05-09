@@ -34,7 +34,7 @@ static void parse_line2(spell_base_t *spell, char *line_beg)
             parse_value(&offset, 11, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("TEXTURE_ID=", line_beg, 11) == 0)
         spell->texture_id =
-            parse_value(&offset, 11, line_beg, (sfVector2i){0, 7});
+            parse_value(&offset, 11, line_beg, (sfVector2i){0, 8});
 }
 
 static int parse_line(spell_base_t *spell, char *line_beg)

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG - Quests
 ** File description:
-** quests.c
+** Random mashup of quest functions
 */
 
 #include <SFML/Graphics.h>

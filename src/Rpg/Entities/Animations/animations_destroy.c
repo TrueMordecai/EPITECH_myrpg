@@ -5,6 +5,7 @@
 ** animations_destroy
 */
 
+#include <SFML/Graphics/RectangleShape.h>
 #include <stdlib.h>
 
 #include "Rpg/Entities/animations.h"

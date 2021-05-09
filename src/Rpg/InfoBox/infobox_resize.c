@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_shrink
+** Sets the size of a generic infobox
 */
 
 #include "Rpg/InfoBox/infobox.h"

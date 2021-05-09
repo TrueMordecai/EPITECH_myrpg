@@ -7,7 +7,7 @@
 
 #include "Rpg/Entities/allies.h"
 
-void allies_init(allies_t *allies, struct rpg_t *rpg)
+void allies_init(allies_t *allies, rpg_t *rpg)
 {
     allies->rpg = rpg;
     for (int i = 0; i < MAX_ALLIES_IN_FIGHT; i++)

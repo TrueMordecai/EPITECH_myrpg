@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** my_hunter
+** MyRPG
 ** File description:
-** init game
+** Initializes the inventory
 */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include "Rpg/rpg.h"
 #include "dirent.h"
 
-item_t inventory_init_blanck_item(void)
+item_t inventory_init_blank_item(void)
 {
     item_t i;
 
@@ -80,7 +80,7 @@ extern inventory_t inventory_init(rpg_t *rpg)
     i.sprite = sfSprite_create();
     i.texture = get_texture(&rpg->state->game_data->assets, "item_sheet");
     i.items = malloc(sizeof(item_t) * 200);
-    for (uint j = 0; j != 200; j++)
+    for (unsigned j = 0; j != 200; j++)
         i.items[j] = rpg_create_blank_item();
     i.ui_inventory = sfSprite_create();
     i.ui_int_texture = get_texture(&rpg->state->game_data->assets, "inv_menu");

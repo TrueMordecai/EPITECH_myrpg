@@ -1,10 +1,12 @@
 /*
 ** EPITECH PROJECT, 2021
-** Untitled (Workspace)
+** MyRPG - Quests
 ** File description:
 ** quests_engine_destroy
 */
 
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Text.h>
 #include <stdlib.h>
 
 #include "Rpg/Quests/quests.h"

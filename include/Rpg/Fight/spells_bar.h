@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** spells_bar
+** The spell bar
 */
 
 #ifndef SPELLS_BAR_H_

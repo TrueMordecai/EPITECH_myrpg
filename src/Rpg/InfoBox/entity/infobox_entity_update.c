@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_update
+** Updates an entity infobox
 */
 
 #include <libmy/ascii.h>
@@ -22,8 +22,7 @@ void infobox_entity_set_entity_3(infobox_entity_t *info, entity_t *entity)
     info->entity = entity;
     sfRectangleShape_setTexture(
         info->base.icon, sfRectangleShape_getTexture(entity->rect), 0);
-    sfRectangleShape_setTextureRect(
-        info->base.icon, (sfIntRect){0, 0, 16, 16});
+    sfRectangleShape_setTextureRect(info->base.icon, (sfIntRect){0, 0, 16, 16});
     sfRectangleShape_setFillColor(
         info->base.icon, sfRectangleShape_getFillColor(entity->rect));
     infobox_init_text(info->effects, "%d Effect%s",

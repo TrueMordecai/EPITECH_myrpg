@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** battle_stat
+** Battle statistics
 */
 
 #ifndef BATTLE_STAT_H_

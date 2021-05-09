@@ -5,7 +5,7 @@ add_subdirectory(Entities)
 add_subdirectory(Map)
 add_subdirectory(InfoBox)
 add_subdirectory(Fight)
-add_subdirectory(Interfarces)
+add_subdirectory(Interfaces)
 add_subdirectory(Quests)
 
 set(SRC

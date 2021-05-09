@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** Game Engine
 ** File description:
-** Drawables lists
+** Drawable objects
 */
 
 #ifndef GE_DRAWABLES_H

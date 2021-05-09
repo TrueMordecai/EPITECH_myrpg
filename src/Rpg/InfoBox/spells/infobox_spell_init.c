@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_init
+** Initializes a spell infobox
 */
 
 #include "GameEngine/settings.h"

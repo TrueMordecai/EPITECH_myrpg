@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** get_line_len
+** strchr, but jankier
 */
 
 int my_strlen_to(char *str, char end)

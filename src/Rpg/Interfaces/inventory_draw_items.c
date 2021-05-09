@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** my_hunter
+** MyRPG
 ** File description:
-** main loop of my hunter
+** Draws the items of the inventory
 */
 
 #include <stdio.h>

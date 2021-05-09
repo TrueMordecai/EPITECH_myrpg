@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** inventory_handle_input
+** Handle events in the inventory
 */
 
-#include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfaces/inventory.h"
 #include "Rpg/rpg.h"
 
 void inventory_handle_events(inventory_t *inventory, sfEvent *event)

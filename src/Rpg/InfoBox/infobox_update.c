@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_update
+** Updates a generic infobox
 */
 
 #include <libmy/printf.h>

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_init
+** Initializes an entity info box
 */
 
 #include "GameEngine/settings.h"
