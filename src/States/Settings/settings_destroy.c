@@ -13,7 +13,8 @@
 void settings_state_destroy(settings_state_t *state, state_id_t from)
 {
     (void)from;
+    state->is_running = false;
+    settings_state_update(state, 0);
     sw_drop(&state->gui);
     state->base.game_data->settings = state->old_settings;
-    settings_state_update(state, 0);
 }

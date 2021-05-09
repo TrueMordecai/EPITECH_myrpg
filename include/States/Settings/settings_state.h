@@ -20,6 +20,7 @@ typedef struct settings_state {
     state_t base;
     sw_base_t gui;
     settings_t old_settings;
+    bool is_running;
 } settings_state_t;
 
 state_t *settings_state_create(game_data_t *data);

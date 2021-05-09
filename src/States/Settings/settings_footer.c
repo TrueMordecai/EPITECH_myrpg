@@ -36,7 +36,7 @@ static void settings_footer_button_on_click(
 {
     if (((settings_footer_t *)SW_PARENT(button))->back_button == button) {
         play_sound(&state->base.game_data->audio, "click");
-        game_data_pop_state(state->base.game_data, SETTINGS_STATE);
+        state->is_running = false;
     } else if (((settings_footer_t *)SW_PARENT(button))->apply_button
         == button) {
         play_sound(&state->base.game_data->audio, "move_zone");

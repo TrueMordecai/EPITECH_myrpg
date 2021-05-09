@@ -26,5 +26,6 @@ state_t *settings_state_create(game_data_t *data)
     };
     state->old_settings = data->settings;
     settings_init_gui(state);
+    state->is_running = true;
     return &state->base;
 }
