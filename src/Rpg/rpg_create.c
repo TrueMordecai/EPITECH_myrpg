@@ -28,6 +28,9 @@ rpg_t *rpg_create(state_t *state)
         rpg_destroy(rpg);
         return NULL;
     }
-    quests_init(&rpg->quests, "assets/Quests/list_quests");
+    if (quests_init(&rpg->quests, "assets/Quests/list_quests") == -1) {
+        my_eputs("Error: quest file invalid or corrupt, please check \
+for modifications in the file\n");
+    }
     return rpg;
 }

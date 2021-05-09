@@ -92,4 +92,6 @@ void quests_destroy(quest_list_t *quests);
 void parse_quest_info(quest_list_t *quest_data, int index_quest);
 
 void quests_draw(struct rpg_t *rpg);
+
+int check_file_error(char **quests_list);
 #endif

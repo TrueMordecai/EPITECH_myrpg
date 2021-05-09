@@ -64,6 +64,8 @@ int quests_init(quest_list_t *quests_data, char *filepath)
     quests_data->filepath = filepath;
     if (setup_data(quests_data) == -1)
         return (-1);
+    if (check_file_error(quests_data->list) == -1)
+        return (-1);
     setup_quest_by_id(quests_data);
     free_all(quests_data);
     quests_data->current_quest = 0;
