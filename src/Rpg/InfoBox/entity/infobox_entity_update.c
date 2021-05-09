@@ -51,8 +51,8 @@ void infobox_entity_set_entity_2(infobox_entity_t *info, entity_t *entity)
         (sfVector3f){0.35 * bs.x, 0.25 * bs.y, 1}, s->current_life, s->life);
     infobox_init_text(info->ap, "%d/%d AP",
         (sfVector3f){0.6 * bs.x, 0.25 * bs.y, 1}, s->current_pa, s->ap);
-    infobox_init_text(info->pm, "%d/%d PM",
-        (sfVector3f){0.9 * bs.x, 0.25 * bs.y, 1}, s->current_pm, s->pm);
+    infobox_init_text(info->mp, "%d/%d MP",
+        (sfVector3f){0.9 * bs.x, 0.25 * bs.y, 1}, s->current_pm, s->mp);
     infobox_init_text(
         info->damage, "Damage", (sfVector3f){0.4 * bs.x, 0.35 * bs.y, 0});
     infobox_init_text(info->resistance, "Resistance",

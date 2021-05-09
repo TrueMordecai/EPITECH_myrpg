@@ -11,7 +11,7 @@
 void stats_init_blank(stats_t *stats)
 {
     stats->life = 0;
-    stats->pm = 0;
+    stats->mp = 0;
     stats->ap = 0;
     stats->current_life = 0;
     stats->current_pa = 0;
@@ -33,8 +33,8 @@ void stats_init(stats_t *stats, int *elements, int *resistances, int life)
     stats->life = life;
 }
 
-void stats_init_pa_pm(stats_t *stats, int ap, int pm)
+void stats_init_pa_pm(stats_t *stats, int ap, int mp)
 {
     stats->ap = ap;
-    stats->pm = pm;
+    stats->mp = mp;
 }

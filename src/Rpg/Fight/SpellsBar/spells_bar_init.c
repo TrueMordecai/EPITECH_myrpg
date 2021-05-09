@@ -69,7 +69,7 @@ static void init_life_pa_pm(spells_bar_t *bar)
     init_text(bar->text_pa, font, "6/6 AP", (sfVector2f){len / 30.0, -18});
     sfText_setFillColor(bar->text_pa, sfBlue);
     init_text(
-        bar->text_pm, font, "6/6 PM", (sfVector2f){16.5 * len / 20.0, -18});
+        bar->text_pm, font, "6/6 MP", (sfVector2f){16.5 * len / 20.0, -18});
     sfText_setFillColor(bar->text_pm, sfColor_fromRGB(0, 220, 0));
 }
 

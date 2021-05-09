@@ -18,7 +18,7 @@ typedef struct infobox_entity {
     sfText *level;
     sfText *life;
     sfText *ap;
-    sfText *pm;
+    sfText *mp;
     sfText *damage;
     sfText *resistance;
     /// Elements Texts (NAME, DAMAGE, RESISTANCE)

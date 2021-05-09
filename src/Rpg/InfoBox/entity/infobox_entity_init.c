@@ -15,7 +15,7 @@ static void create_texts(infobox_entity_t *info)
     infobox_create_text(&info->base, &info->level, sfWhite, 25);
     infobox_create_text(&info->base, &info->life, sfWhite, 25);
     infobox_create_text(&info->base, &info->ap, sfWhite, 25);
-    infobox_create_text(&info->base, &info->pm, sfWhite, 25);
+    infobox_create_text(&info->base, &info->mp, sfWhite, 25);
     infobox_create_text(&info->base, &info->damage, sfWhite, 25);
     infobox_create_text(&info->base, &info->resistance, sfWhite, 25);
     infobox_create_text(&info->base, &info->effects, sfWhite, 30);

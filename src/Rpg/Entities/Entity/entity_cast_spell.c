@@ -13,20 +13,20 @@
 static void cast_effect(entity_t *from, entity_t *to, spell_effect_t *spell)
 {
     effect_t effect;
-    int pm = to->stats->current_pm;
+    int mp = to->stats->current_pm;
 
     effect.lifetime = spell->lifetime;
     effect.spell = spell;
     effect.from = from;
     stats_add_effect(to->stats, &effect);
-    if (pm != to->stats->current_pm)
+    if (mp != to->stats->current_pm)
         entity_update_move_possibilities(to);
 }
 
 static void cast_debuff(entity_t *to, spell_debuff_t *spell)
 {
     effect_t *effect;
-    int pm = to->stats->current_pm;
+    int mp = to->stats->current_pm;
 
     for (size_t i = 0; i < to->stats->effects.length; i++) {
         effect = ((effect_t *)to->stats->effects.data) + i;
@@ -39,7 +39,7 @@ static void cast_debuff(entity_t *to, spell_debuff_t *spell)
         if (effect->lifetime <= 0)
             stats_remove_effect(to->stats, i--, 1);
     }
-    if (pm != to->stats->current_pm)
+    if (mp != to->stats->current_pm)
         entity_update_move_possibilities(to);
 }
 

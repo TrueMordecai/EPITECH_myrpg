@@ -47,8 +47,8 @@ static void update_vecs(infobox_spell_effect_t *info, spell_effect_t *spell)
         add_text(info, "%d HP", 1, spell->buff.life);
     if (spell->buff.ap)
         add_text(info, "%d AP", 1, spell->buff.ap);
-    if (spell->buff.pm)
-        add_text(info, "%d PM", 1, spell->buff.pm);
+    if (spell->buff.mp)
+        add_text(info, "%d MP", 1, spell->buff.mp);
     for (int i = 0; i < 4; i++) {
         if (spell->buff.elements[i])
             add_text(
