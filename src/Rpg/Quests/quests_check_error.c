@@ -23,7 +23,9 @@ int check_file_error(char **quests_list)
         if (my_strlen(quests_list[i]) < 5)
             return (-1);
         if (isnum(quests_list[i][0]) == 0 || \
-            isnum(quests_list[i][2]) == 0)
+            isnum(quests_list[i][2]) == 0 || \
+            quests_list[i][1] != ' ' || \
+            quests_list[i][3] != ' ')
             return (-1);
     }
     return (0);
