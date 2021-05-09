@@ -29,7 +29,7 @@ static sw_result_t settings_adjust_button_on_event(
             (sw_color_t){.r = 200, .g = 100, .b = 100, .a = 255};
     } else {
         button->base.data.border_color =
-            (sw_color_t){.r = 100, .g = 100, .b = 100, .a = 255};
+            (sw_color_t){.r = 150, .g = 150, .b = 150, .a = 255};
     }
     return res;
 }
@@ -40,6 +40,7 @@ static void settings_adjust_button_on_click(
     int result;
 
     assert(value != NULL);
+    play_sound(&button->game_data->audio, "click");
     if (sfKeyboard_isKeyPressed(sfKeyLControl))
         result = (int)*value + button->offset * 20;
     else if (sfKeyboard_isKeyPressed(sfKeyLShift))
@@ -55,8 +56,6 @@ settings_adjust_button_t *settings_adjust_button_create(
 {
     settings_adjust_button_t *button = malloc(sizeof(*button));
 
-    if (button == NULL)
-        return NULL;
     sw_button_init(&button->button, NULL,
         (sw_button_on_click_t)&settings_adjust_button_on_click);
     button->base_on_event = button->base.vtable.on_event;
@@ -71,7 +70,8 @@ settings_adjust_button_t *settings_adjust_button_create(
     button->base.data.border = (sw_spacing_t){.values = {4, 4, 4, 4}};
     button->base.data.margin = (sw_spacing_t){.values = {4, 4, 4, 4}};
     button->base.data.border_color =
-        (sw_color_t){.r = 100, .g = 100, .b = 100, .a = 255};
+        (sw_color_t){.r = 150, .g = 150, .b = 150, .a = 255};
     sw_set_size(button, (sw_vec2f_t){35, 35});
+    button->game_data = data;
     return button;
 }

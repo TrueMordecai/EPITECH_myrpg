@@ -50,6 +50,7 @@ typedef struct settings_adjust_button {
     sw_on_event_t base_on_event;
     int offset;
     sw_vec2u_t bounds;
+    game_data_t *game_data;
 } settings_adjust_button_t;
 
 settings_adjust_button_t *settings_adjust_button_create(

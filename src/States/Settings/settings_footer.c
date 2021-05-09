@@ -18,11 +18,15 @@ static sw_result_t settings_footer_button_on_event(
     sw_result_t res = sw_button_on_event(button, event);
 
     if (sw_button_get_state(button) == SW_BUTTON_HOVERED) {
-        button->base.data.border_color =
-            (sw_color_t){.r = 200, .g = 100, .b = 100, .a = 255};
+        if (((settings_footer_t *)SW_PARENT(button))->apply_button == button)
+            button->base.data.border_color =
+                (sw_color_t){.r = 100, .g = 200, .b = 100, .a = 255};
+        else
+            button->base.data.border_color =
+                (sw_color_t){.r = 200, .g = 100, .b = 100, .a = 255};
     } else {
         button->base.data.border_color =
-            (sw_color_t){.r = 100, .g = 100, .b = 100, .a = 255};
+            (sw_color_t){.r = 150, .g = 150, .b = 150, .a = 255};
     }
     return res;
 }
@@ -31,9 +35,11 @@ static void settings_footer_button_on_click(
     sw_button_t *button, settings_state_t *state)
 {
     if (((settings_footer_t *)SW_PARENT(button))->back_button == button) {
+        play_sound(&state->base.game_data->audio, "click");
         game_data_pop_state(state->base.game_data, SETTINGS_STATE);
     } else if (((settings_footer_t *)SW_PARENT(button))->apply_button
         == button) {
+        play_sound(&state->base.game_data->audio, "move_zone");
         state->old_settings = state->base.game_data->settings;
         settings_write(&state->base.game_data->settings, SETTINGS_PATH);
     }
@@ -53,7 +59,7 @@ static sw_button_t *settings_footer_button_create(
     button->base.data.border = (sw_spacing_t){.values = {4, 4, 4, 4}};
     button->base.data.margin = (sw_spacing_t){.values = {4, 4, 4, 4}};
     button->base.data.border_color =
-        (sw_color_t){.r = 100, .g = 100, .b = 100, .a = 255};
+        (sw_color_t){.r = 150, .g = 150, .b = 150, .a = 255};
     sw_set_size(button, (sw_vec2f_t){0, 35});
     return button;
 }
