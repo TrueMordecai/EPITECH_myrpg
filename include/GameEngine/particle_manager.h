@@ -63,4 +63,6 @@ void particle_manager_update(particle_manager_t *manager, float dt);
 void particle_manager_draw(
     particle_manager_t const *manager, sfRenderWindow *window);
 
+void particle_manager_clear(particle_manager_t *manager);
+
 #endif // !defined(__GE_PARTICLE_MANAGER_H__)

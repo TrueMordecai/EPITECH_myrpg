@@ -23,6 +23,7 @@ set(SRC
     ${SRCROOT}/fight_pos_vec_conversions.c
     ${SRCROOT}/fight_rect_buff.c
     ${SRCROOT}/fight_show_sight.c
+    ${SRCROOT}/fight_spawn_particles.c
     ${SRCROOT}/fight_turn.c
     ${SRCROOT}/fight_update.c
     PARENT_SCOPE

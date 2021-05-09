@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
+#include "GameEngine/state.h"
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Fight/spell.h"
 #include "Rpg/Fight/timeline.h"
@@ -94,5 +95,7 @@ int fight_is_pos_in(fight_t *fight, int pos);
 int cell_is_walkable(cell_t *cell);
 int cell_is_occupied(cell_t *cell);
 int cell_is_empty(cell_t *cell);
+
+void fight_spawn_particles(entity_t *entity, state_t *state);
 
 #endif /* !FIGHT_H_ */

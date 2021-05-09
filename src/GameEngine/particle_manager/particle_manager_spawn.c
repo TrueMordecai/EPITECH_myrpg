@@ -36,4 +36,5 @@ void particle_manager_spawn(particle_manager_t *manager, particle_t particle)
     manager->speeds[id] = particle.speed;
     manager->elapsed[id] = 0;
     manager->durations[id] = particle.duration;
+    ++manager->count;
 }

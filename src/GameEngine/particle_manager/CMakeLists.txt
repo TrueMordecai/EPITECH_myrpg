@@ -9,5 +9,6 @@ set(SRC
     ${SRCROOT}/particle_manager_draw.c
     ${SRCROOT}/particle_manager_spawn.c
     ${SRCROOT}/particle_manager_update.c
+    ${SRCROOT}/particle_manager_clear.c
     PARENT_SCOPE
 )

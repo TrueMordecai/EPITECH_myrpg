@@ -8,8 +8,6 @@
 #include <libmy/printf.h>
 
 #include "Rpg/rpg.h"
-#include "functions.h"
-#include "GameEngine/particle_manager.h"
 
 static void player_update_anim_dir(
     player_t *player, sfVector2f offset, sfVector2i start_dir)
@@ -47,41 +45,6 @@ static void update_dir(player_t *player, sfVector2f offset)
     }
     if (player->entity->fight == NULL)
         player_update_anim_dir(player, offset, dir);
-}
-
-// I Know...
-static void spawn_boost_particles(player_t *player)
-{
-    bool has_boost = false;
-    effect_t *effects = player->entity->stats->effects.data;
-    size_t len = player->entity->stats->effects.length;
-
-    if (get_randi(0, 100) > 5)
-        return;
-    for (size_t i = 0; i < len; ++i) {
-        if (effects[i].spell->type & EFFECT_BOOST) {
-            has_boost = true;
-            break;
-        }
-    }
-    if (has_boost) {
-        sfFloatRect bounds =
-            sfRectangleShape_getGlobalBounds(player->entity->rect);
-        sfFloatRect dims = sfSprite_getGlobalBounds(
-            player->rpg->state->game_data->particles->sprites[PARTICLE_BOOST]);
-        sfVector2f center = {bounds.left + bounds.width / 2 - dims.width / 2,
-            bounds.top + bounds.height / 2 - dims.height / 2};
-
-        particle_manager_spawn(player->rpg->state->game_data->particles,
-            (particle_t){
-                .position = (sfVector2f){get_rand(center.x - bounds.width / 2,
-                                             center.x + bounds.width / 2),
-                    get_rand(center.y - bounds.height / 2, center.y)},
-                .color = sfColor_fromRGBA(255, 255, 255, 100),
-                .duration = 0.8,
-                .speed = 40,
-                .type = PARTICLE_BOOST});
-    }
 }
 
 static void fill_offset(player_t *player, sfVector2f *offset)
@@ -123,5 +86,4 @@ void player_update(player_t *player, float dt)
         zone_interract_move(player->rpg->map->current_zone);
     }
     sfRectangleShape_setPosition(player->entity->rect, player->pos);
-    spawn_boost_particles(player);
 }

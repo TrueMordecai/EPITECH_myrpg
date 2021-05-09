@@ -82,8 +82,10 @@ static void update_infobox(fight_t *fight)
 void fight_update(fight_t *fight, float dt)
 {
     fight_reset_buff(fight);
-    for (int i = 0; i < fight->nb_entities; i++)
+    for (int i = 0; i < fight->nb_entities; i++) {
         entity_update(fight->entities[i], dt, i == fight->entity_turn);
+        fight_spawn_particles(fight->entities[i], fight->rpg->state);
+    }
     if (fight->entities[fight->entity_turn]->team == ENNEMIES
         && fight->entities[fight->entity_turn]->actions.length == 0)
         fight_new_entity(fight);

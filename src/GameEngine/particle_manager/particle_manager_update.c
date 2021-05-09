@@ -17,6 +17,7 @@ static void particle_manager_update_at(
     if (manager->elapsed[pos] >= manager->durations[pos]) {
         manager->active[i] &=
             ~(PARTICLE_GROUP_C(1) << (PARTICLES_PER_GROUP - j - 1));
+        --manager->count;
         return;
     }
     rem_percent = 1 - (manager->elapsed[pos] / manager->durations[pos]);
