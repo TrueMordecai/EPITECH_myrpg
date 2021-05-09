@@ -53,8 +53,8 @@ void cb_pause_menu(sw_button_t *btn, void *data)
 {
     game_data_t *game_data = ((state_t *)data)->game_data;
 
+    (void)btn;
     play_sound(&game_data->audio, "click");
     game_data_pop_state(game_data, GAME_PAUSE_STATE);
-    sw_button_set_state(btn, SW_BUTTON_IDLE);
     game_data_pop_state(game_data, GAME_PAUSE_STATE);
 }

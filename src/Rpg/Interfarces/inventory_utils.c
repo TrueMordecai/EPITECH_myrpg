@@ -24,8 +24,8 @@ extern void rpg_destroy_item(item_t *i)
     i->fire = 0;
     i->life = 0;
     i->level = 0;
-    i->name = NULL;
     free(i->name);
+    i->name = NULL;
     i->rarity = 0;
     i->res_earth = 0;
     i->res_fire = 0;

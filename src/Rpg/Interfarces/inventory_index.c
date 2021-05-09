@@ -33,10 +33,13 @@ extern void rpg_add_item_to_inventory(rpg_t *game, item_t item)
 
 extern void destroy_inventory(rpg_t *game)
 {
-    for (uint i = 0; game->inventory.items[i].name; i++) {
+    for (uint i = 0; i < 200; i++) {
         free(game->inventory.items[i].name);
     }
     free(game->inventory.items);
+    for (uint i = 0; i < 4; i++) {
+        free(game->inventory.equipement[i].name);
+    }
     free(game->inventory.equipement);
     sfSprite_destroy(game->inventory.sprite);
     sfSprite_destroy(game->inventory.ui_inventory);
