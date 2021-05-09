@@ -59,7 +59,6 @@ void zone_draw_layers(
     player_draw(player, wind);
     for (int layer = i; layer < zone->nb_layers; layer++)
         layer_draw(zone->layers[layer], wind, min, max);
-    particle_manager_draw(zone->map->rpg->state->game_data->particles, wind);
 }
 
 void zone_draw(zone_t *zone, sfRenderWindow *wind)

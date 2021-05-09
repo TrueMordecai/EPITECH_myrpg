@@ -22,6 +22,14 @@ static sfVector2i get_size(battle_t *battle)
     return size;
 }
 
+static void set_pos(battle_t *battle, sfVector2i *pos, sfVector2i size)
+{
+    pos->x += MAX(0, 0 - pos->x);
+    pos->y += MAX(0, 0 - pos->y);
+    pos->x -= MAX(0, pos->x + size.x - battle->size.x);
+    pos->y -= MAX(0, pos->y + size.y - battle->size.y);
+}
+
 void battle_start(battle_t *battle)
 {
     sfVector2i player_pos = {
@@ -33,10 +41,7 @@ void battle_start(battle_t *battle)
     if (battle->zone->map->rpg->inventory.is_open)
         inventory_open(&battle->zone->map->rpg->inventory, sfFalse);
     get_size(battle);
-    pos.x += MAX(0, 0 - pos.x);
-    pos.y += MAX(0, 0 - pos.y);
-    pos.x -= MAX(0, pos.x + size.x - battle->size.x);
-    pos.y -= MAX(0, pos.y + size.y - battle->size.y);
+    set_pos(battle, &pos, size);
     battle->pos = pos;
     battle->size = size;
     map_reset_zoom(battle->zone->map);

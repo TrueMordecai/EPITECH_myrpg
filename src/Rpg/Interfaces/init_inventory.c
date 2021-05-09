@@ -32,8 +32,6 @@ item_t inventory_init_blank_item(void)
 
 static void inventory_init_3(inventory_t *inv)
 {
-    sfText_setColor(inv->text, sfWhite);
-    sfText_setCharacterSize(inv->text, 37);
     inv->equipement = malloc(sizeof(item_t) * 4);
     for (int i = 0; i != 4; i++)
         inv->equipement[i] = rpg_create_blank_item();
@@ -64,7 +62,6 @@ static void inventory_init_2(inventory_t *inv, rpg_t *rpg)
     sfSprite_setTexture(inv->sprite, inv->texture, sfFalse);
     sfSprite_setTextureRect(inv->sprite, (sfIntRect){0, 0, 16, 16});
     sfSprite_setScale(inv->sprite, (sfVector2f){4 * SL(rpg), 4 * SL(rpg)});
-    inv->text = sfText_create();
     inv->font = get_font(&rpg->state->game_data->assets, "pixel");
     sfText_setFont(inv->text, inv->font);
     sfText_setColor(inv->text, sfWhite);
@@ -93,6 +90,9 @@ extern inventory_t inventory_init(rpg_t *rpg)
         i.items[j] = rpg_create_blank_item();
     i.ui_inventory = sfSprite_create();
     i.ui_int_texture = get_texture(&rpg->state->game_data->assets, "inv_menu");
+    i.text = sfText_create();
+    sfText_setColor(i.text, sfWhite);
+    sfText_setCharacterSize(i.text, 37);
     inventory_init_2(&i, rpg);
     return (i);
 }
