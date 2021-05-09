@@ -41,7 +41,7 @@ typedef struct go {
 
 typedef struct quest {
     char *context;
-    int quest_type;
+    enum quest_type_e quest_type;
     union {
         kill_monster_t kill_monster;
         go_t go_zone;
