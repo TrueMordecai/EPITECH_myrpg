@@ -8,6 +8,7 @@
 #include "Rpg/Fight/fight.h"
 #include "Rpg/rpg.h"
 #include "GameEngine/particle_manager.h"
+#include "Rpg/Interfaces/battle_end.h"
 
 static void remove_dead_allies(battle_t *battle)
 {

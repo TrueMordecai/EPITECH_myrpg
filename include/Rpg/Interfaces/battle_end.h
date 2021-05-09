@@ -22,6 +22,7 @@
 
 struct rpg;
 struct item_t;
+struct battle_t;
 
 typedef struct battle_end_s {
     rpg_t *rpg;
@@ -37,4 +38,5 @@ typedef struct battle_end_s {
 }battle_end_t;
 extern battle_end_t battle_end_init(rpg_t *rpg);
 extern void battle_end_draw(rpg_t *rpg);
+extern void battle_end_setup(struct battle_t *battle);
 #endif
