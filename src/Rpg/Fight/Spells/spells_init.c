@@ -52,12 +52,10 @@ static void load_spells(rpg_t *rpg)
     load_spell(rpg, "dist", "assets/Spells/a_dist.spell");
     load_spell(rpg, "dist2", "assets/Spells/a_dist2.spell");
     load_spell(rpg, "spit_fire", "assets/Spells/a_spit_fire.spell");
-    load_spell(rpg, "spit", "assets/Spells/a_spit.spell");
     load_spell(rpg, "debuff_all", "assets/Spells/d_debuff_all.spell");
     load_spell(rpg, "debuff_boost", "assets/Spells/d_debuff_boost.spell");
     load_spell(rpg, "debuff_damage", "assets/Spells/d_debuff_damage.spell");
     load_spell(rpg, "burn", "assets/Spells/e_burn.spell");
-    load_spell(rpg, "jump", "assets/Spells/e_jump.spell");
     load_spell(rpg, "heal_zone", "assets/Spells/h_heal_zone.spell");
     load_spell(rpg, "heal", "assets/Spells/h_heal.spell");
 }
