@@ -14,4 +14,6 @@ void rpg_draw(rpg_t *rpg)
         rpg_inventory_draw(rpg);
     if (rpg->quests.dialogue.is_talking == true)
         quests_draw(rpg);
+    if (rpg->battle_end.is_on)
+        battle_end_draw(rpg);
 }

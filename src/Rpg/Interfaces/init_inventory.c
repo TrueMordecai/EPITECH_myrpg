@@ -32,6 +32,15 @@ item_t inventory_init_blank_item(void)
 
 static void inventory_init_3(inventory_t *inv)
 {
+    sfText_setColor(inv->text, sfWhite);
+    sfText_setCharacterSize(inv->text, 37);
+    inv->equipement = malloc(sizeof(item_t) * 4);
+    for (int i = 0; i != 4; i++)
+        inv->equipement[i] = rpg_create_blank_item();
+    inv->container = sfSprite_create();
+    sfSprite_setTexture(inv->container, inv->ui_int_texture, sfFalse);
+    sfSprite_setTextureRect(inv->container, (sfIntRect){15, 15, 17, 17});
+    sfSprite_setScale(inv->container, (sfVector2f){4, 4});
     inv->tooltip = sfSprite_create();
     inv->texture_tooltip =
         get_texture(&inv->rpg->state->game_data->assets, "items_tooltip");

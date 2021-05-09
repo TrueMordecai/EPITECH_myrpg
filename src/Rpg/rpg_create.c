@@ -22,6 +22,7 @@ rpg_t *rpg_create(state_t *state)
     rpg->wind = state->game_data->window;
     rpg->player = player_create(rpg);
     rpg->inventory = inventory_init(rpg);
+    rpg->battle_end = battle_end_init(rpg);
     allies_init(&rpg->allies, rpg);
     rpg->map = map_create(rpg);
     if (!rpg->map) {

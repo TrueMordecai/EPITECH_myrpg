@@ -65,6 +65,7 @@ void battle_end(battle_t *battle)
         apply_lose_malus(battle);
         sfRectangleShape_setFillColor(battle->player->entity->rect, sfWhite);
     }
+    battle_end_setup(battle);
     fight_destroy(battle->fight);
     remove_dead_allies(battle);
     battle->player->body->velocity = (pe_vec2f_t){0, 0};
