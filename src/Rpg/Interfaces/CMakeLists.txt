@@ -1,5 +1,5 @@
-set(INCROOT ${PROJECT_SOURCE_DIR}/include/Rpg/Interfarces)
-set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Interfarces)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/Rpg/Interfaces)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Interfaces)
 
 set(SRC
     ${SRC}

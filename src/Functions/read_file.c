@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** read_file
+** Reads the contents of a file
 */
 
 #include <libmy/io.h>

@@ -5,8 +5,12 @@
 ** get_file_info.c
 */
 
+#include <fcntl.h>
 #include <libmy/ascii/ascii.h>
-#include <libmy/io.h>
+#include <libmy/printf/printf.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "Rpg/Quests/quests.h"
 
@@ -16,7 +20,7 @@ int get_file_id(char const *file_path)
 
     file_id = open(file_path, O_RDONLY);
     if (file_id == -1) {
-        my_putstr("Error : this file doesn't exist");
+        my_fprintf(MY_STDERR, "%s: no such file\n");
         return (-1);
     }
     return (file_id);
@@ -27,7 +31,7 @@ int get_file_size(char const *file_path)
     struct stat file;
 
     if (stat(file_path, &file) == -1) {
-        my_putstr("Error : stat fail");
+        my_fprintf(MY_STDERR, "%s: cannot stat\n");
         return (-1);
     }
     return (file.st_size);
@@ -43,7 +47,7 @@ char *my_file_content_to_str(char const *file_path)
         return (NULL);
     file_content[size] = '\0';
     if (read(file_id, file_content, size) == -1) {
-        my_putstr("Error : read fail");
+        my_fprintf(MY_STDERR, "%s: failed to read\n");
         return (NULL);
     }
     return (file_content);

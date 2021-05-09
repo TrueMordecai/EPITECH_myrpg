@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** fight
+** Fight data
 */
 
 #ifndef RPG_FIGHT_H
@@ -21,6 +21,8 @@ enum cell_tests { WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4 };
 enum cell_flags { INEXISTING = -1, END_ARRAY = -2 };
 
 struct player_t;
+
+typedef struct rpg rpg_t;
 
 typedef struct node_t {
     int pos;
@@ -45,7 +47,7 @@ typedef struct fight_t {
     float end_timer;
     int turn;
     int entity_turn;
-    struct rpg_t *rpg;
+    rpg_t *rpg;
     timeline_t timeline;
     spells_bar_t spells_bar;
     sfRectangleShape **rect_buffer;

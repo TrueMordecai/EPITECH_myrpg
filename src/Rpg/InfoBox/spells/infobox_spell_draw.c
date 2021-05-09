@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_draw
+** Draws a spell infobox
 */
 
 #include "Rpg/InfoBox/infobox_spell.h"

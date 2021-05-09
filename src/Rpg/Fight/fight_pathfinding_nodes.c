@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** Untitled (Workspace)
+** MyRPG
 ** File description:
 ** fight_pathfinding_2
 */
@@ -46,8 +46,8 @@ void sort_nodes(my_vec_t *nodes)
     for (size_t i = 1; i < nodes->length; i++) {
         node = MY_VEC_GET_ELEM(node_t *, nodes, i);
         j = i - 1;
-        while (j >= 0
-            && node_compare(node, MY_VEC_GET_ELEM(node_t *, nodes, j))) {
+        while (
+            j >= 0 && node_compare(node, MY_VEC_GET_ELEM(node_t *, nodes, j))) {
             my_vec_change_value(nodes, my_vec_get(nodes, j), j + 1);
             j = j - 1;
         }

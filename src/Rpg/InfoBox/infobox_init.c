@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_base_init
+** Initializes a generic infobox
 */
 
 #include "Rpg/InfoBox/infobox.h"

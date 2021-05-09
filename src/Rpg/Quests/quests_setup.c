@@ -5,6 +5,8 @@
 ** setup.c
 */
 
+#include <stdlib.h>
+
 #include "Rpg/Quests/quests.h"
 #include "functions.h"
 

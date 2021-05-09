@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_update
+** Updates a spell infobox
 */
 
 #include "functions.h"

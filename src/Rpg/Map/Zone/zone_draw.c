@@ -29,8 +29,7 @@ static void get_min_max(
     sfVector2f top_left = sfRenderWindow_mapPixelToCoords(
         wind, (sfVector2i){view_pos.x, view_pos.y}, view);
     sfVector2f bottom_right = sfRenderWindow_mapPixelToCoords(wind,
-        (sfVector2i){view_pos.x + view_size.x, view_pos.y + view_size.y},
-        view);
+        (sfVector2i){view_pos.x + view_size.x, view_pos.y + view_size.y}, view);
     sfVector2i min_pos = {MAX(top_left.x / zone->tiles_size, 0),
         MAX(top_left.y / zone->tiles_size, 0)};
     sfVector2i max_pos = {

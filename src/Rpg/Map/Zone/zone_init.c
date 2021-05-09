@@ -56,5 +56,6 @@ void zone_place_at_door(zone_t *zone, int door)
     pos.x = id % zone->size.x;
     pos.y = id / zone->size.x;
     pe_body_set_pos(zone->player_body, pos);
-    update_quests(zone, &zone->map->rpg->quests);
+    if (zone->map->rpg->quests.current_quest < zone->map->rpg->quests.nb_quests)
+        update_quests(zone, &zone->map->rpg->quests);
 }

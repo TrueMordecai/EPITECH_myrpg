@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** name_gen
+** Item name generator
 */
 
 #include "Rpg/rpg.h"
@@ -52,7 +52,7 @@ extern void rpg_create_item_name_generator(item_t *item, int level)
     item->name = malloc(sizeof(char) * 70);
     int index = 0;
 
-    for (uint i = 0; i != 70; i++)
+    for (unsigned i = 0; i != 70; i++)
         item->name[i] = '\0';
     if (level == 10 && item->rarity == LEGENDARY) {
         rpg_create_item_name_copy(

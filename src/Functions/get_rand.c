@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My world
 ** File description:
-** get random number
+** Get random number
 */
 
 #include <limits.h>

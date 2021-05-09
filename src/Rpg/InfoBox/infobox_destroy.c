@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_destroy
+** Destroys a generic infobox
 */
 
 #include <stdlib.h>

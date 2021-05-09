@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_destroy
+** Destroys an entity info box
 */
 
 #include "Rpg/InfoBox/infobox_entity.h"

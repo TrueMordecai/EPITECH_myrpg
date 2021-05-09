@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** Game Engine
 ** File description:
-** Drawables lists fcts
+** Drawables lists functions
 */
 
 #include <stdlib.h>

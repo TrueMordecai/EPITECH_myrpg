@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2021
-** Untitled (Workspace)
+** MyRPG
 ** File description:
 ** fight_pathfinding_2
 */

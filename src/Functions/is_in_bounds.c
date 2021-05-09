@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My editor
 ** File description:
-** is in bounds
+** Checks whether pos is in bounds
 */
 
 #include <SFML/Graphics.h>

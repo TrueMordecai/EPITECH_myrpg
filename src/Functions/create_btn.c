@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** create_btn
+** Creates buttons
 */
 
 #include <libmy/ascii.h>

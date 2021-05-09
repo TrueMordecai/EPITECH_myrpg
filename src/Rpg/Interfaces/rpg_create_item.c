@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** create items
+** Create items
 */
 
 #include "Rpg/rpg.h"

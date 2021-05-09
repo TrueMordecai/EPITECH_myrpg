@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2020
-** B-MUL-200-NAN-2-1-myrpg-andreas.leroux
+** MyRPG
 ** File description:
-** quests_draw.c
+** Draws quest dialogue
 */
 
-#include "Rpg/rpg.h"
 #include <stddef.h>
+#include "Rpg/rpg.h"
 
 void quests_draw(rpg_t *game)
 {

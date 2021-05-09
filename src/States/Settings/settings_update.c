@@ -12,6 +12,8 @@
 int settings_state_update(settings_state_t *state, float dt)
 {
     audio_manager_update_volume(&state->base.game_data->audio);
+    sfRenderWindow_setFramerateLimit(
+        state->base.game_data->window, SETTINGS(state).max_fps);
     (void)dt;
     return 0;
 }

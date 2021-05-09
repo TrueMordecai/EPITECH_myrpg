@@ -2,13 +2,14 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** animations
+** Entity animations
 */
 
 #ifndef ANIMATIONS_H_
 #define ANIMATIONS_H_
 
-#include <SFML/Graphics.h>
+#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Types.h>
 
 typedef struct animations animations_t;
 typedef void (*on_animation_end)(animations_t *);

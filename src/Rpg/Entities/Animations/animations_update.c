@@ -4,6 +4,8 @@
 ** File description:
 ** animation_update
 */
+
+#include <SFML/Graphics/RectangleShape.h>
 #include <stdio.h>
 
 #include "Rpg/Entities/animations.h"

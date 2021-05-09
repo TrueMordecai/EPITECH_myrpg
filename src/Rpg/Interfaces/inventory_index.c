@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** my_hunter
+** MyRPG
 ** File description:
-** main loop of my hunter
+** Random functions releated to the inventory
 */
 
 #include <stdio.h>
@@ -33,11 +33,11 @@ extern void rpg_add_item_to_inventory(rpg_t *game, item_t item)
 
 extern void destroy_inventory(rpg_t *game)
 {
-    for (uint i = 0; i < 200; i++) {
+    for (unsigned i = 0; i < 200; i++) {
         free(game->inventory.items[i].name);
     }
     free(game->inventory.items);
-    for (uint i = 0; i < 4; i++) {
+    for (unsigned i = 0; i < 4; i++) {
         free(game->inventory.equipement[i].name);
     }
     free(game->inventory.equipement);

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** functions
+** A bunch of useful functions
 */
 
 #ifndef FUNCTIONS_H

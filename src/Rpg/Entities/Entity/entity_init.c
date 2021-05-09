@@ -6,7 +6,7 @@
 */
 
 #include "Rpg/Fight/fight.h"
-#include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfaces/inventory.h"
 #include "Rpg/rpg.h"
 
 void entity_init(entity_t *entity)

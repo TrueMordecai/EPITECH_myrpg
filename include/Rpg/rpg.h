@@ -8,17 +8,17 @@
 #ifndef MY_RPG_H
 #define MY_RPG_H
 
+#include "Quests/quests.h"
 #include "Rpg/Entities/allies.h"
 #include "Rpg/Entities/player.h"
-#include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfaces/inventory.h"
 #include "Rpg/Map/map.h"
 #include "Rpg/Map/physic.h"
 #include "GameEngine/game_head.h"
-#include "Quests/quests.h"
 
 #define M_TO_PX 32.f
 
-typedef struct rpg_t {
+typedef struct rpg {
     /// key type: 'char *'
     /// Value value: 'spell_base_t *'
     my_hash_map_t spells;

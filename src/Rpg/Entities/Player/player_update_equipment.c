@@ -7,7 +7,7 @@
 
 #include "Rpg/Entities/player.h"
 #include "Rpg/Fight/fight.h"
-#include "Rpg/Interfarces/inventory.h"
+#include "Rpg/Interfaces/inventory.h"
 #include "Rpg/rpg.h"
 
 void player_remove_equipment_stats(player_t *player)
