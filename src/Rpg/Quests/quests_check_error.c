@@ -1,12 +1,13 @@
 /*
 ** EPITECH PROJECT, 2020
-** MyRPG Check error quests
+** MyRPG
 ** File description:
-** check quests file error
+** Quest error handling
 */
 
+#include <libmy/ascii.h>
 #include <stddef.h>
-#include "libmy/ascii.h"
+
 #include "Rpg/rpg.h"
 
 int isnum(char c)
@@ -24,13 +25,13 @@ int verify_kill_quest(char *quest)
     return (0);
 }
 
-int check_file_error(char **quests_list)
+int check_file_error(char *quests_list[])
 {
     for (int i = 0; quests_list[i] != NULL; i++) {
         if (my_strlen(quests_list[i]) < 5)
             return (-1);
-        if (isnum(quests_list[i][0]) == 0 || isnum(quests_list[i][2]) == 0 || \
-            quests_list[i][1] != ' ' || quests_list[i][3] != ' ')
+        if (isnum(quests_list[i][0]) == 0 || isnum(quests_list[i][2]) == 0
+            || quests_list[i][1] != ' ' || quests_list[i][3] != ' ')
             return (-1);
         if (quests_list[i][0] < '1' || quests_list[i][0] > '4')
             return (-1);
