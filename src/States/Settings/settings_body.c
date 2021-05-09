@@ -58,12 +58,12 @@ static void settings_add_body_rows(
         sw_glayout_set(layout, settings_create_label(data, row->label),
             (sw_vec2u_t){0, r});
         sw_glayout_set(layout,
-            settings_adjust_button_create(data, row->bounds, 1, value),
+            settings_adjust_button_create(data, row->bounds, -1, value),
             (sw_vec2u_t){1, r});
         sw_glayout_set(layout, settings_display_button_create(data, value),
             (sw_vec2u_t){2, r});
         sw_glayout_set(layout,
-            settings_adjust_button_create(data, row->bounds, -1, value),
+            settings_adjust_button_create(data, row->bounds, +1, value),
             (sw_vec2u_t){3, r});
     }
     sw_layout_update((sw_layout_t *)layout);
