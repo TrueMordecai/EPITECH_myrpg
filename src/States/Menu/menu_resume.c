@@ -12,7 +12,6 @@
 
 int menu_state_resume(menu_state_t *state, state_id_t last_state)
 {
-    my_puts("Menu State\n");
     my_fflush(MY_STDOUT);
     if (last_state == GAME_STATE || last_state == GAME_PAUSE_STATE
         || last_state == NULL_STATE) {
