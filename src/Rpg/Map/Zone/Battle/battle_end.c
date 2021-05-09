@@ -26,7 +26,9 @@ static void validate_boss_kill(battle_t *battle)
 {
     if (battle->zone->id != 2)
         return;
-    quests_validate(&battle->fight->rpg->quests);
+    if (battle->fight->rpg->quests.quests[ \
+        battle->fight->rpg->quests.current_quest].quest_type == QUEST_KILL)
+        quests_validate(&battle->fight->rpg->quests);
 }
 
 static void apply_lose_malus(battle_t *battle)
