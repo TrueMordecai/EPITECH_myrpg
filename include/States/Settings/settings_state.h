@@ -43,12 +43,17 @@ typedef struct settings_adjust_button {
 settings_adjust_button_t *settings_adjust_button_create(
     game_data_t *data, sw_vec2u_t bounds, int offset, unsigned *location);
 
-void settings_adjust_button_drop(settings_adjust_button_t *button);
+typedef struct settings_display_button {
+    union {
+        sw_base_t base;
+        sw_button_t button;
+    };
+    unsigned *value;
+} settings_display_button_t;
 
-sw_result_t settings_adjust_button_on_event(
-    settings_adjust_button_t *button, sfEvent const *event);
+settings_display_button_t *settings_display_button_create(
+    game_data_t *data, unsigned *location);
 
-void settings_adjust_button_on_click(
-    settings_adjust_button_t *button, unsigned *value);
+#define SETTINGS(state) ((state)->base.game_data->settings)
 
 #endif // !defined(__SETTINGS_STATE_H__)

@@ -7,6 +7,7 @@ set(SRC
     ${SRCROOT}/settings_adjust_button.c
     ${SRCROOT}/settings_create.c
     ${SRCROOT}/settings_destroy.c
+    ${SRCROOT}/settings_display_button.c
     ${SRCROOT}/settings_draw.c
     ${SRCROOT}/settings_handle_events.c
     ${SRCROOT}/settings_init_gui.c
