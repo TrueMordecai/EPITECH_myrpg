@@ -25,13 +25,11 @@ rpg_t *rpg_create(state_t *state)
     rpg->battle_end = battle_end_init(rpg);
     allies_init(&rpg->allies, rpg);
     rpg->map = map_create(rpg);
-    if (!rpg->map) {
+    if (!rpg->map || quests_init(&rpg->quests, "assets/Quests/list_quests")) {
+        if (rpg->map)
+            my_eputs("Error: quest file invalid or corrupted\n");
         rpg_destroy(rpg);
         return NULL;
-    }
-    if (quests_init(&rpg->quests, "assets/Quests/list_quests") == -1) {
-        my_eputs("Error: quest file invalid or corrupt, please check \
-for modifications in the file\n");
     }
     return rpg;
 }

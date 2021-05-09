@@ -29,7 +29,7 @@ static void draw_container(rpg_t *r)
 {
     sfSprite_setPosition(r->inventory.container,
                          sfSprite_getPosition(r->battle_end.item_sprite));
-    sfSprite_move(r->inventory.container, (sfVector2f){-4, -4});
+    sfSprite_move(r->inventory.container, (sfVector2f){-6 * SL(r), -6 * SL(r)});
     sfRenderWindow_drawSprite(r->wind, r->inventory.container, NULL);
 }
 
