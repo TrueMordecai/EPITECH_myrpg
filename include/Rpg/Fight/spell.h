@@ -24,7 +24,7 @@ enum effect_type_e { EFFECT_NONE, EFFECT_DAMAGE, EFFECT_BOOST };
 typedef struct spell_base {
     char *name;
     int texture_id;
-    int po;
+    int op;
     int ap;
     int area;
     int cast_left;

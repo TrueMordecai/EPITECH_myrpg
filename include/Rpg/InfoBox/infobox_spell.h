@@ -16,7 +16,7 @@ typedef struct infobox_spell_base {
     spell_base_t *spell;
     sfText *name;
     sfText *ap;
-    sfText *po;
+    sfText *op;
     sfText *turn_limit;
     sfText *area;
     sfText *type;

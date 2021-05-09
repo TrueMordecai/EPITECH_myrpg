@@ -30,7 +30,7 @@ void infobox_spell_draw(infobox_spell_base_t *info, sfRenderWindow *window)
 {
     sfRenderWindow_drawText(window, info->name, NULL);
     sfRenderWindow_drawText(window, info->ap, NULL);
-    sfRenderWindow_drawText(window, info->po, NULL);
+    sfRenderWindow_drawText(window, info->op, NULL);
     sfRenderWindow_drawText(window, info->turn_limit, NULL);
     sfRenderWindow_drawText(window, info->area, NULL);
     sfRenderWindow_drawText(window, info->type, NULL);

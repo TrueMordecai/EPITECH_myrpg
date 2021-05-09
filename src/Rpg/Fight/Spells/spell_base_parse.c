@@ -48,8 +48,8 @@ static int parse_line(spell_base_t *spell, char *line_beg)
             my_strlen_to(line_beg + diff, ((diff == 6) ? '"' : '\n')));
         return 0;
     }
-    if (my_strncmp("PO=", line_beg, 3) == 0)
-        spell->po = parse_value(&offset, 3, line_beg, (sfVector2i){0, 30});
+    if (my_strncmp("OP=", line_beg, 3) == 0)
+        spell->op = parse_value(&offset, 3, line_beg, (sfVector2i){0, 30});
     if (my_strncmp("AP=", line_beg, 3) == 0)
         spell->ap = parse_value(&offset, 3, line_beg, (sfVector2i){1, 6});
     if (my_strncmp("AREA=", line_beg, 5) == 0)
@@ -86,7 +86,7 @@ void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize)
 
     spell->name = NULL;
     spell->ap = 1;
-    spell->po = 0;
+    spell->op = 0;
     spell->texture_id = 0;
     spell->area = 1;
     spell->turn_limit = 3;

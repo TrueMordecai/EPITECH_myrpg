@@ -2,7 +2,7 @@ TYPE=[ATTACK|HEAL|EFFECT|DEBUFF]
 ARG=ARG_VALUE[+ARG_VALUE2]
 
 ARGs list:
-Common: AP(int), PO(int), AREA(int), NAME(str)
+Common: AP(int), OP(int), AREA(int), NAME(str)
 
 Attack: EARTH(int), FIRE(int), WATER(int), WIND(int) -> Damage in elements
 
