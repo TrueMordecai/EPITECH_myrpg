@@ -10,7 +10,7 @@
 #include "Rpg/rpg.h"
 #include "dirent.h"
 
-static item_rarity_t random_rarity()
+static item_rarity_t random_rarity(void)
 {
     item_rarity_t r = rand() % 100;
 
@@ -52,7 +52,7 @@ extern void battle_end_draw(rpg_t *r)
     if (r->battle_end.is_win) {
         draw_container(r);
         sfRenderWindow_drawSprite(r->wind, r->battle_end.item_sprite, NULL);
-        if(sprite_is_hover(r->battle_end.item_sprite,
+        if (sprite_is_hover(r->battle_end.item_sprite,
                            get_mouse_pos_vec2f(r->wind)))
             rpg_inventory_draw_items_tooltip(r, &r->battle_end.item_to_add);
     }

@@ -21,8 +21,7 @@ int menu_state_draw(menu_state_t *state, float dt)
         != SW_BUTTON_DISABLED)
         sw_draw(state->gui_base, window, NULL);
     else
-        sfRenderWindow_drawSprite(
-            window, state->gui_base->data.background, NULL);
+        sfRenderWindow_drawRectangleShape(window, state->tutorial, NULL);
     sfRenderWindow_display(window);
     (void)dt;
     return 0;
