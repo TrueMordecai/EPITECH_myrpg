@@ -2,7 +2,6 @@ set(SRCROOT "${PROJECT_SOURCE_DIR}/tests")
 
 add_subdirectory(Functions)
 add_subdirectory(GameEngine)
-add_subdirectory(Rpg)
 
 add_executable(test_my_rpg ${SRC})
 

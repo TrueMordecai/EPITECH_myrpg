@@ -11,7 +11,6 @@
 
 int pause_state_resume(pause_state_t *state, state_id_t last_state)
 {
-    my_puts("Pause State\n");
     my_fflush(MY_STDOUT);
     (void)state;
     (void)last_state;
