@@ -4,6 +4,7 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/GameEngine)
 add_subdirectory(asset_manager)
 add_subdirectory(audio_manager)
 add_subdirectory(game)
+add_subdirectory(particle_manager)
 add_subdirectory(settings)
 add_subdirectory(state)
 

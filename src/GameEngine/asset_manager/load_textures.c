@@ -8,7 +8,6 @@
 #include <SFML/Graphics.h>
 
 #include "GameEngine/asset_manager.h"
-#include "GameEngine/font_default.h"
 
 #include "default_font.h"
 
@@ -87,6 +86,7 @@ void load_all_textures(asset_manager_t *manager)
         manager, "Skeleton", "assets/Textures/Characters/Skeleton.png", 0);
     load_texture(
         manager, "Green Man", "assets/Textures/Characters/Greenman.png", 0);
+    load_texture(manager, "particles", "assets/Textures/particles.png", 0);
     load_fonts(manager);
     get_null_texture();
 }

@@ -25,6 +25,7 @@ struct game_data {
     asset_manager_t assets;
     audio_manager_t audio;
     settings_t settings;
+    particle_manager_t *particles;
 };
 
 void run(game_data_t *data);
