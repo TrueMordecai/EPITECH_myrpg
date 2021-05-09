@@ -64,7 +64,9 @@ static void load_fonts(asset_manager_t *manager)
     load_texture(manager, "Dog", "assets/Textures/Characters/Dog.png", 0);
     load_texture(manager, "Lion", "assets/Textures/Characters/Lion.png", 0);
     load_texture(manager, "Frog", "assets/Textures/Characters/Frog.png", 0);
-    load_texture(manager, "Boss", "assets/Textures/Characters/Master.png", 0);
+    load_texture(
+        manager, "Mountain Master", "assets/Textures/Characters/Master.png", 0);
+    load_texture(manager, "dialogue_bg", "assets/Textures/dialogue_bg.png", 0);
 }
 
 void load_all_textures(asset_manager_t *manager)

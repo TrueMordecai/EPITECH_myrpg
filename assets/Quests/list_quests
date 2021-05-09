@@ -1,7 +1,7 @@
-3 0 Parlez à la femme dans le village.
-2 3 Femme du village: Explorez le puit afin de retrouver mon mari disparu.
-3 3 Parlez à l'homme emprisonné
-3 0 Homme emprisonne: Retournez expliquer la situation a ma femme.
-2 2 Femme du village: Gravissez la montagne jusqu'au repère du méchant.
-1 5 Tuez le boss pour récuperer la cle.
-3 3 Allez libérer l'homme.
+3 0 Talk to the village woman.
+2 3 Village woman: Hello! I haven't seen my husband since a week now. I've heard voices in the well but I'm scared of heights...  Can you check the well for me please ? -> Explore the well and find the village woman's lost husband
+3 3 Talk to the prisonner.
+3 0 Prisonner: HELP! Oh... finally, someone. The Mountain master has trapped me here because I tried to steal him some jewels for my wife... And he is the only one to have the prison key. Go tell my situation to my wife, she will know what to do. ->  Go back to the village woman and tell her why is her husband in the well.
+2 2 Village woman: Hello again, have you found him ? [You explain the situation] Ok... I don't know if my husband is romantic or just a fool... Whatever, the only way to get him back (and maybe some jewels...) is to climb the mountains and defeat the Mountain master. But beware of the monsters, the master is a well trained man, you should train yourself in the grass in the village or later in the cave, and take our 3 sons to help you. -> Climb up the mountains to the Mountain master.
+1 5 1 Kill the Mountain master to get the prison key.
+3 3 Release the prisonner in the well.

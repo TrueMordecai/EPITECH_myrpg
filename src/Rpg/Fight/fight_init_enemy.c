@@ -40,7 +40,7 @@ static void set_texture_and_spells(
 static void init_boss(fight_t *fight, entity_t *entity)
 {
     entity->type = ENNEMY_CAC;
-    entity_init_rect(entity, "Boss", sfWhite);
+    entity_init_rect(entity, "Mountain Master", sfWhite);
     entity_add_spell(entity, get_spell(fight->rpg, "dist"));
     stats_init_from_level(entity->stats, 10);
 }

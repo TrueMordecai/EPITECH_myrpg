@@ -5,10 +5,10 @@
 ** quests.c
 */
 
-#include <libmy/parsing.h>
-
 #include <SFML/Graphics.h>
+#include <libmy/parsing.h>
 #include "Rpg/Quests/quests.h"
+#include "Rpg/rpg.h"
 
 void free_all(quest_list_t *quests_data)
 {
@@ -35,31 +35,28 @@ void setup_quest_by_id(quest_list_t *quests_data)
     quests_data->nb_quests = nb_quest;
 }
 
-void create_dialogue_bg(dialogue_bg_t *dialogue)
+void create_dialogue_bg(rpg_t *rpg, dialogue_bg_t *dialogue)
 {
-    sfVector2f center = {933 / 2, 166 / 2};
-    sfTexture *bg_texture;
-    sfVector2f shift = {640, 720 / 1.2};
-
-    bg_texture = sfTexture_createFromFile(\
-        "./assets/Textures/dialogue_bg.png", NULL);
     dialogue->bg = sfSprite_create();
-    sfSprite_setTexture(dialogue->bg, bg_texture, sfTrue);
-    sfSprite_setOrigin(dialogue->bg, center);
-    sfSprite_setPosition(dialogue->bg, shift);
+    sfSprite_setScale(
+        dialogue->bg, (sfVector2f){SL(rpg) / (2 / 3.f), SL(rpg) / (2 / 3.f)});
+    sfSprite_setTexture(dialogue->bg,
+        get_texture(&rpg->state->game_data->assets, "dialogue_bg"), sfTrue);
+    sfSprite_setPosition(
+        dialogue->bg, (sfVector2f){260.25 * SL(rpg), 765 * SL(rpg)});
 }
 
-void create_dialogue_font(dialogue_bg_t *dialogue)
+void create_dialogue_font(rpg_t *rpg, dialogue_bg_t *dialogue)
 {
     sfFont *font;
 
-    font = sfFont_createFromFile("./assets/Fonts/pixel2.ttf");
+    font = get_font(&rpg->state->game_data->assets, "pixel2");
     dialogue->text = sfText_create();
     sfText_setFont(dialogue->text, font);
-    sfText_setOrigin(dialogue->text, (sfVector2f){50, 50});
-    sfText_setCharacterSize(dialogue->text, 20);
-    sfText_setFillColor(dialogue->text, (sfColor){0, 0, 0, 255});
-    sfText_setPosition(dialogue->text, (sfVector2f){300, 720 / 1.2});
+    sfText_setCharacterSize(dialogue->text, 30 * SL(rpg));
+    sfText_setFillColor(dialogue->text, sfBlack);
+    sfText_setPosition(dialogue->text,
+        (sfVector2f){(int)(368.25 * SL(rpg)), (int)(802.5 * SL(rpg))});
 }
 
 int quests_init(quest_list_t *quests_data, char *filepath)
@@ -70,7 +67,7 @@ int quests_init(quest_list_t *quests_data, char *filepath)
     setup_quest_by_id(quests_data);
     free_all(quests_data);
     quests_data->current_quest = 0;
-    create_dialogue_bg(&quests_data->dialogue);
-    create_dialogue_font(&quests_data->dialogue);
+    create_dialogue_bg(quests_data->rpg, &quests_data->dialogue);
+    create_dialogue_font(quests_data->rpg, &quests_data->dialogue);
     return 0;
 }
