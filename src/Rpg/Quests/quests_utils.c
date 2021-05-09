@@ -6,6 +6,7 @@
 */
 
 #include <libmy/ascii.h>
+#include <libmy/printf.h>
 
 #include "Rpg/Quests/quests.h"
 #include "Rpg/rpg.h"
