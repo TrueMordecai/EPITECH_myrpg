@@ -25,6 +25,14 @@ static item_rarity_t random_rarity()
     return (LEGENDARY);
 }
 
+static void draw_container(rpg_t *r)
+{
+    sfSprite_setPosition(r->inventory.container,
+                         sfSprite_getPosition(r->battle_end.item_sprite));
+    sfSprite_move(r->inventory.container, (sfVector2f){-4, -4});
+    sfRenderWindow_drawSprite(r->wind, r->inventory.container, NULL);
+}
+
 extern void battle_end_draw(rpg_t *r)
 {
     int level = r->battle_end.average_level - 1;
@@ -35,14 +43,17 @@ extern void battle_end_draw(rpg_t *r)
         level = 1;
     if (!r->battle_end.is_item_add && r->battle_end.is_win) {
         r->battle_end.item_to_add = rpg_create_item(level, random_rarity());
-        set_item_texture_rect(r->battle_end.item_sprite, &r->battle_end.item_to_add);
+        set_item_texture_rect(r->battle_end.item_sprite,
+                              &r->battle_end.item_to_add);
         rpg_add_item_to_inventory(r, r->battle_end.item_to_add);
         r->battle_end.is_item_add = true;
     }
     sfRenderWindow_drawSprite(r->wind, r->battle_end.menu_sprite, NULL);
     if (r->battle_end.is_win) {
-        if (sprite_is_hover(r->battle_end.item_sprite, get_mouse_pos_vec2f(r->wind)))
+        draw_container(r);
+        sfRenderWindow_drawSprite(r->wind, r->battle_end.item_sprite, NULL);
+        if(sprite_is_hover(r->battle_end.item_sprite,
+                           get_mouse_pos_vec2f(r->wind)))
             rpg_inventory_draw_items_tooltip(r, &r->battle_end.item_to_add);
-        sfRenderWindow_drawSprite(r->wind , r->battle_end.item_sprite, NULL);
     }
 }

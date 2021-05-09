@@ -23,7 +23,7 @@ extern battle_end_t battle_end_init(rpg_t *rpg)
     sfSprite_setPosition(b.menu_sprite, (sfVector2f){(w_size.x - 448) / 2, 99});
     b.item_sprite = sfSprite_create();
     sfSprite_setTexture(b.item_sprite, rpg->inventory.texture, sfFalse);
-    sfSprite_setPosition(b.item_sprite, (sfVector2f){(w_size.x - 64) / 2, 163});
+    sfSprite_setPosition(b.item_sprite, (sfVector2f){(w_size.x - 64) / 2, 230});
     sfSprite_setScale(b.item_sprite, (sfVector2f){4, 4});
     b.is_on = false;
     b.is_win = false;
