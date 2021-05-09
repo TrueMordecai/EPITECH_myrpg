@@ -30,6 +30,15 @@ void settings_state_destroy(settings_state_t *state, state_id_t from);
 
 void settings_init_gui(settings_state_t *state);
 
+sw_widget_t *settings_title_create(settings_state_t *state);
+sw_widget_t *settings_body_create(settings_state_t *state);
+
+typedef struct settings_row {
+    char const *label;
+    sw_vec2u_t bounds;
+    size_t value_offset;
+} settings_row_t;
+
 typedef struct settings_adjust_button {
     union {
         sw_base_t base;
@@ -54,6 +63,7 @@ typedef struct settings_display_button {
 settings_display_button_t *settings_display_button_create(
     game_data_t *data, unsigned *location);
 
-#define SETTINGS(state) ((state)->base.game_data->settings)
+#define SETTINGS(state)    ((state)->base.game_data->settings)
+#define WINDOW_SIZE(state) (SETTINGS(state).window_size)
 
 #endif // !defined(__SETTINGS_STATE_H__)

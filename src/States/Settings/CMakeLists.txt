@@ -5,6 +5,7 @@ set(SRC
     ${SRC}
     ${INCROOT}/settings_state.h
     ${SRCROOT}/settings_adjust_button.c
+    ${SRCROOT}/settings_body.c
     ${SRCROOT}/settings_create.c
     ${SRCROOT}/settings_destroy.c
     ${SRCROOT}/settings_display_button.c
@@ -13,6 +14,7 @@ set(SRC
     ${SRCROOT}/settings_init_gui.c
     ${SRCROOT}/settings_pause.c
     ${SRCROOT}/settings_resume.c
+    ${SRCROOT}/settings_title.c
     ${SRCROOT}/settings_update.c
     PARENT_SCOPE
 )

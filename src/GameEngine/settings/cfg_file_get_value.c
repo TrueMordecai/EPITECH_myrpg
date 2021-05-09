@@ -31,8 +31,8 @@ bool cfg_file_get_uint_value(cfg_file_t *cfg, char const *key, unsigned *value)
     unsigned tmp;
 
     assert(value != NULL);
-    cfg_file_get_str_value(cfg, key, &str_value);
-    if (my_next_uint(&str_value, &tmp))
+    if (!cfg_file_get_str_value(cfg, key, &str_value)
+        || my_next_uint(&str_value, &tmp))
         return false;
     *value = tmp;
     return true;
