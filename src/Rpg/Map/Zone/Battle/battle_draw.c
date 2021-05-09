@@ -13,6 +13,8 @@ void battle_draw_tactical(
 {
     sfRenderWindow_setView(wind, battle->zone->map->view);
     layer_draw(battle->layer, wind, min, max);
+    particle_manager_draw(
+        battle->zone->map->rpg->state->game_data->particles, wind);
     fight_draw(battle->fight, wind);
 }
 
