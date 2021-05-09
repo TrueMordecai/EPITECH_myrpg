@@ -8,9 +8,9 @@
 #include "Rpg/rpg.h"
 
 static char *const NAME[] = {" Pebble", " Stone", " Jade", " Amber", " Jewel",
-    " Papyrus", " Scroll", " Book", " Manuscipt", " Grimoire", " Pebble",
-    " Stone", " Jade", " Amber", " Jewel", " Papyrus", " Scroll", " Book",
-    " Manuscipt", " Grimoire"};
+    " Papyrus", " Scroll", " Book", " Manuscipt", " Grimoire", " Round Flask",
+    " Tube Flask", " Buchner Flask", " Erlenmeyer", " Bucket", " Ring",
+    " Earing", " Bracelet", " Collar", " Crown"};
 
 static char *const PREFIX[] = {"Boring", "Vicious", "Bloody", "Magical",
     "Intense", "Mysterious", "Sweet", "Painful", "Lucky", "Corrupted",
