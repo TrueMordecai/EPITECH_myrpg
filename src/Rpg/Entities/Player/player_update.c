@@ -62,7 +62,7 @@ static void fill_offset(player_t *player, sfVector2f *offset)
     update_dir(player, *offset);
     if ((offset->x || offset->y) && player->rpg->quests.dialogue.is_talking)
         player->rpg->quests.dialogue.is_talking = false;
-    if (offset->x || offset->y && player->rpg->battle_end.is_on)
+    if ((offset->x || offset->y) && player->rpg->battle_end.is_on)
         player->rpg->battle_end.is_on = false;
 }
 
