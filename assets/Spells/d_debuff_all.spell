@@ -1,5 +1,5 @@
 TYPE=DEBUFF
-NAME=Debuff All
+NAME=Disenchantment
 TEXTURE_ID=3
 AP=4
 OP=0
