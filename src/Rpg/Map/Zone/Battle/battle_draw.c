@@ -7,6 +7,7 @@
 
 #include "Rpg/Fight/fight.h"
 #include "Rpg/rpg.h"
+#include "GameEngine/particle_manager.h"
 
 void battle_draw_tactical(
     battle_t *battle, sfRenderWindow *wind, sfVector2i min, sfVector2i max)

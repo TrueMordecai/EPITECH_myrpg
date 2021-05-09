@@ -2,7 +2,7 @@ TYPE=[ATTACK|HEAL|EFFECT|DEBUFF]
 ARG=ARG_VALUE[+ARG_VALUE2]
 
 ARGs list:
-Common: PA(int), PO(int), AREA(int), NAME(str)
+Common: AP(int), OP(int), AREA(int), NAME(str)
 
 Attack: EARTH(int), FIRE(int), WATER(int), WIND(int) -> Damage in elements
 
@@ -10,7 +10,7 @@ Heal: HEAL -> heal value
 
 EFFECT: LIFETIME(int) -> duration (in turns) of the effect
     EFFECT('BOOST', 'DAMAGE') -> which type of effect will be applied
-    Boost: PA_BOOST(int), PM(int), LIFE(int), EARTH(int), FIRE(int), WATER(int), WIND(int), EARTH_RES(int), FIRE_RES(int), WATER_RES(int), WIND_RES(int) -> boost to apply
+    Boost: PA_BOOST(int), MP(int), LIFE(int), EARTH(int), FIRE(int), WATER(int), WIND(int), EARTH_RES(int), FIRE_RES(int), WATER_RES(int), WIND_RES(int) -> boost to apply
     Damage: EARTH_DMG(int), FIRE_DMG(int), WATER_DMG(int), WIND_DMG(int) -> damages to apply
 
 DEBUFF: DEBUFF('BOOST', 'DAMAGE') -> which effect(s) will be removed

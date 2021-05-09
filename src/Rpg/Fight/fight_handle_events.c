@@ -11,6 +11,8 @@ void fight_handle_events(fight_t *fight, sfEvent event)
 {
     if (fight->end_timer)
         return;
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyEnter)
+        fight_new_entity(fight);
     if (spells_bar_handle_events(&fight->spells_bar, &event))
         return;
     if (timeline_handle_events(&fight->timeline, &event))

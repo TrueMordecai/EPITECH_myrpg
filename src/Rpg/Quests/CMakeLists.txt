@@ -4,6 +4,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/Rpg/Quests)
 set(SRC
     ${SRC}
     ${INCROOT}/quests.h
+    ${SRCROOT}/quests_draw.c
+    ${SRCROOT}/quests_check_error.c
     ${SRCROOT}/quests_engine_destroy.c
     ${SRCROOT}/quests_engine.c
     ${SRCROOT}/quests_setup.c

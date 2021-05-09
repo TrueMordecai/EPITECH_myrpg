@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** My Rpg
 ** File description:
-** player
+** The player entity
 */
 
 #ifndef RPG_PLAYER_H
@@ -12,7 +12,7 @@
 #include "Physics/physics.h"
 #include "Rpg/Entities/entity.h"
 
-struct rpg_t;
+typedef struct rpg rpg_t;
 
 typedef struct player_t {
     sfVector2f pos;
@@ -20,10 +20,10 @@ typedef struct player_t {
     sfVector2i dir;
     pe_body_t *body;
     entity_t *entity;
-    struct rpg_t *rpg;
+    rpg_t *rpg;
 } player_t;
 
-player_t *player_create(struct rpg_t *rpg);
+player_t *player_create(rpg_t *rpg);
 pe_body_t *player_init_physic(player_t *player, pe_world_t *world);
 void player_update(player_t *player, float dt);
 void player_remove_equipment_stats(player_t *player);

@@ -19,15 +19,10 @@ void menu_set_tutorial(menu_state_t *state, int set)
     if ((set && sw_button_get_state(btn) == SW_BUTTON_DISABLED)
         || (!set && sw_button_get_state(btn) != SW_BUTTON_DISABLED))
         return;
-    if (set) {
+    if (set)
         sw_button_set_state(btn, SW_BUTTON_DISABLED);
-        sw_set_background_texture(state->gui_base,
-            get_texture(&state->base.game_data->assets, "tutorial"), 0);
-    } else {
+    else
         sw_button_set_state(btn, SW_BUTTON_IDLE);
-        sw_set_background_texture(state->gui_base,
-            get_texture(&state->base.game_data->assets, "menu_bg"), 0);
-    }
 }
 
 static void escape(game_data_t *data, menu_state_t *state)

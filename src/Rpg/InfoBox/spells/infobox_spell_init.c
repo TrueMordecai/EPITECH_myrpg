@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_init
+** Initializes a spell infobox
 */
 
 #include "GameEngine/settings.h"
@@ -39,8 +39,8 @@ void infobox_spell_init(infobox_spell_base_t *info, spell_base_t *spell)
     sfRectangleShape_setTexture(info->base.icon,
         get_texture(&info->base.rpg->state->game_data->assets, "spells"), 1);
     infobox_create_text(&info->base, &info->name, sfWhite, 35);
-    infobox_create_text(&info->base, &info->pa, sfWhite, 25);
-    infobox_create_text(&info->base, &info->po, sfWhite, 25);
+    infobox_create_text(&info->base, &info->ap, sfWhite, 25);
+    infobox_create_text(&info->base, &info->op, sfWhite, 25);
     infobox_create_text(&info->base, &info->turn_limit, sfWhite, 25);
     infobox_create_text(&info->base, &info->type, sfWhite, 25);
     infobox_create_text(&info->base, &info->area, sfWhite, 25);

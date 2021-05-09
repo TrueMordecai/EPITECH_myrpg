@@ -83,10 +83,10 @@ static void parse_line(spell_effect_t *spell, char *line_beg)
         spell->buff.life =
             parse_value(&offset, 5, line_beg, (sfVector2i){-100, 100});
     if (my_strncmp("PA_BOOST=", line_beg, 9) == 0)
-        spell->buff.pa =
+        spell->buff.ap =
             parse_value(&offset, 9, line_beg, (sfVector2i){-10, 10});
-    if (my_strncmp("PM=", line_beg, 3) == 0)
-        spell->buff.pm =
+    if (my_strncmp("MP=", line_beg, 3) == 0)
+        spell->buff.mp =
             parse_value(&offset, 3, line_beg, (sfVector2i){-10, 10});
     if (my_strncmp("EARTH_DMG=", line_beg, 10) == 0)
         spell->damages[EARTH] =

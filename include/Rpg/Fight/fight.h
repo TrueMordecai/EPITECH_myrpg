@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** fight
+** Fight data
 */
 
 #ifndef RPG_FIGHT_H
@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.h>
 #include <libmy/collections/vec.h>
+#include "GameEngine/state.h"
 #include "Rpg/Entities/entity.h"
 #include "Rpg/Fight/spell.h"
 #include "Rpg/Fight/timeline.h"
@@ -21,6 +22,8 @@ enum cell_tests { WALKABLE = 1, OCCUPIED = 2, C_EMPTY = 4 };
 enum cell_flags { INEXISTING = -1, END_ARRAY = -2 };
 
 struct player_t;
+
+typedef struct rpg rpg_t;
 
 typedef struct node_t {
     int pos;
@@ -45,7 +48,7 @@ typedef struct fight_t {
     float end_timer;
     int turn;
     int entity_turn;
-    struct rpg_t *rpg;
+    rpg_t *rpg;
     timeline_t timeline;
     spells_bar_t spells_bar;
     sfRectangleShape **rect_buffer;
@@ -92,5 +95,7 @@ int fight_is_pos_in(fight_t *fight, int pos);
 int cell_is_walkable(cell_t *cell);
 int cell_is_occupied(cell_t *cell);
 int cell_is_empty(cell_t *cell);
+
+void fight_spawn_particles(entity_t *entity, state_t *state);
 
 #endif /* !FIGHT_H_ */

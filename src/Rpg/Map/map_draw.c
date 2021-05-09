@@ -6,6 +6,7 @@
 */
 
 #include "Rpg/rpg.h"
+#include "GameEngine/particle_manager.h"
 
 void map_draw(map_t *map)
 {

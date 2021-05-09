@@ -5,6 +5,8 @@
 ** fight_draw
 */
 
+#include "GameEngine/particle_manager.h"
+#include "Rpg/rpg.h"
 #include "Rpg/Fight/fight.h"
 
 void fight_draw_line(fight_t *fight, int from, int to)
@@ -22,6 +24,8 @@ void fight_draw_line(fight_t *fight, int from, int to)
 
 static void draw_ui(fight_t *fight, sfRenderWindow *window)
 {
+    particle_manager_draw(
+        fight->rpg->state->game_data->particles, window);
     timeline_draw(&fight->timeline, window);
     spells_bar_draw(&fight->spells_bar, window);
     if (fight->timeline.time_hovered >= INFO_WAIT

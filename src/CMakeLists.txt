@@ -8,7 +8,6 @@ add_subdirectory(Drawables)
 add_subdirectory(Functions)
 add_subdirectory(GameEngine)
 add_subdirectory(Rpg)
-add_subdirectory(Settings)
 add_subdirectory(States)
 
 source_group("" FILES ${SRC})

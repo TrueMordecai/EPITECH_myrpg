@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity
+** An infobox that describes an entity
 */
 
 #ifndef INFOBOX_ENTITY_H_
@@ -17,8 +17,8 @@ typedef struct infobox_entity {
     sfText *name;
     sfText *level;
     sfText *life;
-    sfText *pa;
-    sfText *pm;
+    sfText *ap;
+    sfText *mp;
     sfText *damage;
     sfText *resistance;
     /// Elements Texts (NAME, DAMAGE, RESISTANCE)

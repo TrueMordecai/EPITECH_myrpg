@@ -20,15 +20,16 @@ static void init_frames(timeline_t *timeline, fight_t *fight)
     }
 }
 
-void on_button_click(sw_button_t *button, void *fight_ptr)
+void on_button_click(sw_button_t *button, fight_t *fight)
 {
     (void)button;
-    fight_new_entity((fight_t *)fight_ptr);
+    fight_new_entity(fight);
 }
 
 static void init_button(timeline_t *timeline, fight_t *fight)
 {
-    sw_button_init(&timeline->turn_btn, NULL, &on_button_click);
+    sw_button_init(
+        &timeline->turn_btn, NULL, (sw_button_on_click_t)&on_button_click);
     sw_button_set_texture(&timeline->turn_btn,
         get_texture(&fight->rpg->state->game_data->assets, "turn_pass"),
         SW_BUTTON_STATE_COUNT, 1);

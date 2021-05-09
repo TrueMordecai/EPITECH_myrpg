@@ -61,10 +61,10 @@ void spells_bar_update(spells_bar_t *bar, entity_t *entity, float dt)
     life_ratio = stats->current_life / (float)stats->life;
     bar->last_entity = testing;
     my_snprintf(
-        buff, 9, "%d/%d PA", testing->stats->current_pa, testing->stats->pa);
+        buff, 9, "%d/%d AP", testing->stats->current_pa, testing->stats->ap);
     sfText_setString(bar->text_pa, buff);
     my_snprintf(
-        buff, 9, "%d/%d PM", testing->stats->current_pm, testing->stats->pm);
+        buff, 9, "%d/%d MP", testing->stats->current_pm, testing->stats->mp);
     sfText_setString(bar->text_pm, buff);
     sfRectangleShape_setSize(bar->life,
         (sfVector2f){life_ratio * FRAME_WIDTH * SPELLS_BAR_WIDTH * 0.6, 15});

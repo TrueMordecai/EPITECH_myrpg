@@ -66,10 +66,10 @@ static void init_life_pa_pm(spells_bar_t *bar)
     sfRectangleShape_setSize(bar->life_bg, (sfVector2f){len * 0.6, 15});
     sfRectangleShape_setOutlineColor(bar->life_bg, sfColor_fromRGB(44, 59, 57));
     sfRectangleShape_setOutlineThickness(bar->life_bg, -1);
-    init_text(bar->text_pa, font, "6/6 PA", (sfVector2f){len / 30.0, -18});
+    init_text(bar->text_pa, font, "6/6 AP", (sfVector2f){len / 30.0, -18});
     sfText_setFillColor(bar->text_pa, sfBlue);
     init_text(
-        bar->text_pm, font, "6/6 PM", (sfVector2f){16.5 * len / 20.0, -18});
+        bar->text_pm, font, "6/6 MP", (sfVector2f){16.5 * len / 20.0, -18});
     sfText_setFillColor(bar->text_pm, sfColor_fromRGB(0, 220, 0));
 }
 

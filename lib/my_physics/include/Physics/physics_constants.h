@@ -12,7 +12,7 @@
     #define MIN(a, b) (((a) <= (b)) ? (a) : (b))
 #endif
 #ifndef MAX
-    #define MAX(a, b) (((a) >= (b)) ? (a) : (b))
+    #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #endif
 #ifndef CLAMP
     #define CLAMP(a, min, max) (MIN(MAX((a), min), max))

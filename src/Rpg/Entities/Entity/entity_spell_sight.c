@@ -31,7 +31,7 @@ void entity_update_spell_sight(entity_t *entity)
         return;
     my_printf("Spell %#s, type %d\n", spell->name, spell->type);
     entity->spell_sight =
-        fight_get_sight(fight, (sfVector2i){entity->pos, spell->po},
+        fight_get_sight(fight, (sfVector2i){entity->pos, spell->op},
             (sfVector2i){-1, 0}, &entity->spell_range);
 }
 
@@ -57,8 +57,8 @@ static void draw_spell_range(entity_t *entity, spell_base_t *spell, int tile)
     if (!area)
         return;
     for (int i = 0; area[i] != END_ARRAY; i++)
-        fight_place_rect(entity->fight, area[i],
-            sfColor_fromRGBA(0, 0, 255, 120), WALKABLE);
+        fight_place_rect(
+            entity->fight, area[i], sfColor_fromRGBA(0, 0, 255, 120), WALKABLE);
     free(area);
 }
 

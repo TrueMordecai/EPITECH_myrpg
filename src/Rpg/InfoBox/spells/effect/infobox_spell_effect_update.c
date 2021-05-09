@@ -45,10 +45,10 @@ static void update_vecs(infobox_spell_effect_t *info, spell_effect_t *spell)
         return;
     if (spell->buff.life)
         add_text(info, "%d HP", 1, spell->buff.life);
-    if (spell->buff.pa)
-        add_text(info, "%d PA", 1, spell->buff.pa);
-    if (spell->buff.pm)
-        add_text(info, "%d PM", 1, spell->buff.pm);
+    if (spell->buff.ap)
+        add_text(info, "%d AP", 1, spell->buff.ap);
+    if (spell->buff.mp)
+        add_text(info, "%d MP", 1, spell->buff.mp);
     for (int i = 0; i < 4; i++) {
         if (spell->buff.elements[i])
             add_text(
@@ -80,6 +80,6 @@ void infobox_spell_effect_set_spell(
         (sfVector3f){
             ((info->boosts.length) ? 0.59 : 0.02) * bs.x, 0.5 * bs.y, -1});
     infobox_set_box_size((infobox_base_t *)&info->base,
-        (sfVector2f){bs.x, bs.y * (0.55 + 0.05 *
+        (sfVector2f){bs.x, bs.y * (0.55 + 0.05 * 
             MAX(info->boosts.length, info->damages.length))}, 1);
 }

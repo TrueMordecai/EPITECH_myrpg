@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell
+** An infobox that describes a spell
 */
 
 #ifndef INFOBOX_SPELL_H_
@@ -15,8 +15,8 @@ typedef struct infobox_spell_base {
     infobox_base_t base;
     spell_base_t *spell;
     sfText *name;
-    sfText *pa;
-    sfText *po;
+    sfText *ap;
+    sfText *op;
     sfText *turn_limit;
     sfText *area;
     sfText *type;

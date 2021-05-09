@@ -9,7 +9,7 @@
 
 #include "Rpg/rpg.h"
 
-void player_update_anim_dir(
+static void player_update_anim_dir(
     player_t *player, sfVector2f offset, sfVector2i start_dir)
 {
     if (offset.x == 0 && offset.y == 0) {
@@ -60,6 +60,10 @@ static void fill_offset(player_t *player, sfVector2f *offset)
     if (sfKeyboard_isKeyPressed(sfKeyD))
         offset->x = amplitude;
     update_dir(player, *offset);
+    if ((offset->x || offset->y) && player->rpg->quests.dialogue.is_talking)
+        player->rpg->quests.dialogue.is_talking = false;
+    if (offset->x || offset->y && player->rpg->battle_end.is_on)
+        player->rpg->battle_end.is_on = false;
 }
 
 void player_update(player_t *player, float dt)

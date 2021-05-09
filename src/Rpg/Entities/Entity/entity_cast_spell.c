@@ -13,20 +13,20 @@
 static void cast_effect(entity_t *from, entity_t *to, spell_effect_t *spell)
 {
     effect_t effect;
-    int pm = to->stats->current_pm;
+    int mp = to->stats->current_pm;
 
     effect.lifetime = spell->lifetime;
     effect.spell = spell;
     effect.from = from;
     stats_add_effect(to->stats, &effect);
-    if (pm != to->stats->current_pm)
+    if (mp != to->stats->current_pm)
         entity_update_move_possibilities(to);
 }
 
 static void cast_debuff(entity_t *to, spell_debuff_t *spell)
 {
     effect_t *effect;
-    int pm = to->stats->current_pm;
+    int mp = to->stats->current_pm;
 
     for (size_t i = 0; i < to->stats->effects.length; i++) {
         effect = ((effect_t *)to->stats->effects.data) + i;
@@ -39,7 +39,7 @@ static void cast_debuff(entity_t *to, spell_debuff_t *spell)
         if (effect->lifetime <= 0)
             stats_remove_effect(to->stats, i--, 1);
     }
-    if (pm != to->stats->current_pm)
+    if (mp != to->stats->current_pm)
         entity_update_move_possibilities(to);
 }
 
@@ -65,8 +65,8 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
 
 static void update_pa(entity_t *from, spell_base_t *spell)
 {
-    from->stats->current_pa -= spell->pa;
-    if (from->stats->current_pa < spell->pa)
+    from->stats->current_pa -= spell->ap;
+    if (from->stats->current_pa < spell->ap)
         spells_bar_set_selected(&from->fight->spells_bar, -1);
 }
 
@@ -76,7 +76,7 @@ void entity_cast_spell(entity_t *from, int to_cell)
     entity_t *to;
     int *area;
 
-    if (!spell || to_cell == -1 || from->stats->current_pa < spell->pa
+    if (!spell || to_cell == -1 || from->stats->current_pa < spell->ap
         || spell->cast_left-- <= 0)
         return;
     to = from->fight->grid[to_cell].entity;

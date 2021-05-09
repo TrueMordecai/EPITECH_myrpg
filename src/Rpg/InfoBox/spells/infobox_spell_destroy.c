@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_destroy
+** Destroys a spell infobox
 */
 
 #include "Rpg/InfoBox/infobox_spell.h"
@@ -30,8 +30,8 @@ void infobox_spell_destroy(infobox_spell_base_t *info)
 {
     destroy_substruct(info);
     sfText_destroy(info->name);
-    sfText_destroy(info->pa);
-    sfText_destroy(info->po);
+    sfText_destroy(info->ap);
+    sfText_destroy(info->op);
     sfText_destroy(info->area);
     sfText_destroy(info->type);
     sfText_destroy(info->turn_limit);

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG - Functions
 ** File description:
-** parsing utilities
+** Parsing utilities
 */
 
 #include <libmy/ascii.h>

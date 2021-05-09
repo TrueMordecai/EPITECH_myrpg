@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_draw
+** Draws an entity info box
 */
 
 #include "Rpg/InfoBox/infobox_entity.h"
@@ -12,8 +12,8 @@ void infobox_entity_draw(infobox_entity_t *info, sfRenderWindow *window)
     sfRenderWindow_drawText(window, info->name, NULL);
     sfRenderWindow_drawText(window, info->level, NULL);
     sfRenderWindow_drawText(window, info->life, NULL);
-    sfRenderWindow_drawText(window, info->pa, NULL);
-    sfRenderWindow_drawText(window, info->pm, NULL);
+    sfRenderWindow_drawText(window, info->ap, NULL);
+    sfRenderWindow_drawText(window, info->mp, NULL);
     sfRenderWindow_drawText(window, info->damage, NULL);
     sfRenderWindow_drawText(window, info->resistance, NULL);
     for (int i = 0; i < 4; i++) {

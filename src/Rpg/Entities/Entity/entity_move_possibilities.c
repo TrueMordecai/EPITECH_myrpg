@@ -9,13 +9,13 @@
 
 void free_tmp_path(my_vec_t *path);
 
-static void verif_cells(fight_t *fight, int from, int *cells, size_t pm)
+static void verif_cells(fight_t *fight, int from, int *cells, size_t mp)
 {
     my_vec_t *tmp;
 
     for (int i = 0; cells[i] != END_ARRAY; i++) {
         tmp = fight_get_path(fight, from, cells[i]);
-        if (!tmp || tmp->length > pm + 1)
+        if (!tmp || tmp->length > mp + 1)
             cells[i] = -1;
         free_tmp_path(tmp);
     }
@@ -24,14 +24,14 @@ static void verif_cells(fight_t *fight, int from, int *cells, size_t pm)
 void entity_update_move_possibilities(entity_t *entity)
 {
     fight_t *fight = entity->fight;
-    size_t pm = entity->stats->current_pm;
+    size_t mp = entity->stats->current_pm;
     int *cells;
 
     free(entity->move_possibilities);
-    cells = fight_get_range(fight, entity->pos, pm, WALKABLE);
+    cells = fight_get_range(fight, entity->pos, mp, WALKABLE);
     if (!cells)
         return;
-    verif_cells(fight, entity->pos, cells, pm);
+    verif_cells(fight, entity->pos, cells, mp);
     entity->move_possibilities = cells;
 }
 

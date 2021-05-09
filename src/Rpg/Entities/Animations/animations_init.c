@@ -5,6 +5,8 @@
 ** animation_init
 */
 
+#include <stddef.h>
+
 #include "Rpg/Entities/animations.h"
 
 void animations_init(animations_t *anim, int anim_count, int *anims_lengths,

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_update
+** Updates an entity infobox
 */
 
 #include <libmy/ascii.h>
@@ -22,8 +22,7 @@ void infobox_entity_set_entity_3(infobox_entity_t *info, entity_t *entity)
     info->entity = entity;
     sfRectangleShape_setTexture(
         info->base.icon, sfRectangleShape_getTexture(entity->rect), 0);
-    sfRectangleShape_setTextureRect(
-        info->base.icon, (sfIntRect){0, 0, 16, 16});
+    sfRectangleShape_setTextureRect(info->base.icon, (sfIntRect){0, 0, 16, 16});
     sfRectangleShape_setFillColor(
         info->base.icon, sfRectangleShape_getFillColor(entity->rect));
     infobox_init_text(info->effects, "%d Effect%s",
@@ -50,10 +49,10 @@ void infobox_entity_set_entity_2(infobox_entity_t *info, entity_t *entity)
         (sfVector3f){0.35 * bs.x, 0.15 * bs.y, -1}, s->level);
     infobox_init_text(info->life, "%d/%d HP",
         (sfVector3f){0.35 * bs.x, 0.25 * bs.y, 1}, s->current_life, s->life);
-    infobox_init_text(info->pa, "%d/%d PA",
-        (sfVector3f){0.6 * bs.x, 0.25 * bs.y, 1}, s->current_pa, s->pa);
-    infobox_init_text(info->pm, "%d/%d PM",
-        (sfVector3f){0.9 * bs.x, 0.25 * bs.y, 1}, s->current_pm, s->pm);
+    infobox_init_text(info->ap, "%d/%d AP",
+        (sfVector3f){0.6 * bs.x, 0.25 * bs.y, 1}, s->current_pa, s->ap);
+    infobox_init_text(info->mp, "%d/%d MP",
+        (sfVector3f){0.9 * bs.x, 0.25 * bs.y, 1}, s->current_pm, s->mp);
     infobox_init_text(
         info->damage, "Damage", (sfVector3f){0.4 * bs.x, 0.35 * bs.y, 0});
     infobox_init_text(info->resistance, "Resistance",

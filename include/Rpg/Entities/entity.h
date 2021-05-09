@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** entity
+** Generic entity definitipns
 */
 
 #ifndef ENTITY_H
@@ -15,7 +15,7 @@
 #include "Rpg/Fight/spell.h"
 
 struct fight_t;
-struct rpg_t;
+typedef struct rpg rpg_t;
 
 enum entity_state_e { IDLE, MOVING, CASTING_SPELL };
 enum entity_type_e { PLAYER, ALLY, ENNEMY_CAC, ENNEMY_DIST };
@@ -82,7 +82,7 @@ void entity_end_turn(entity_t *entity);
 void entity_compute_move(entity_t *entity);
 
 void entity_attack(entity_t *entity, action_t *action);
-void entity_init_spells(entity_t *entity, struct rpg_t *rpg);
+void entity_init_spells(entity_t *entity, rpg_t *rpg);
 void entity_add_spell(entity_t *entity, spell_base_t *spell);
 spell_base_t *entity_get_select_spell(entity_t *entity);
 void entity_cast_spell(entity_t *from, int to_cell);

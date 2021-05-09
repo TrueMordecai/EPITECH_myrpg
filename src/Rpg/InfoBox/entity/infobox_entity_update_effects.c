@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_entity_update_effects
+** Updates the status effects
 */
 
 #include <libmy/ascii.h>

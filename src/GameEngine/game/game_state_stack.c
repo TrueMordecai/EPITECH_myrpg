@@ -9,6 +9,7 @@
 
 #include "GameEngine/game.h"
 #include "GameEngine/state.h"
+#include "GameEngine/particle_manager.h"
 
 static int game_data_push_to_states(
     game_data_t *data, state_t *new_state, bool replace)
@@ -36,8 +37,7 @@ int game_data_push_state(
     assert(data != NULL);
     assert(create_state != NULL);
     new_state = (*create_state)(data);
-    if (new_state == NULL
-        || game_data_push_to_states(data, new_state, replace))
+    if (new_state == NULL || game_data_push_to_states(data, new_state, replace))
         return 1;
     state_resume(new_state, NULL_STATE);
     return 0;
@@ -49,6 +49,7 @@ void game_data_pop_state(game_data_t *data, state_id_t from)
     state_id_t last_id;
 
     assert(data != NULL);
+    particle_manager_clear(data->particles);
     if (data->states.length == 0)
         return;
     my_vec_pop(&data->states, (void *)&top_state);

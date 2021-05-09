@@ -18,6 +18,7 @@
 typedef struct menu_state {
     state_t base;
     sw_base_t *gui_base;
+    sfRectangleShape *tutorial;
 } menu_state_t;
 
 state_t *menu_state_create(game_data_t *data);

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox
+** Generic infobox definitions
 */
 
 #ifndef INFOBOX_H_
@@ -13,7 +13,7 @@
 #define INFO_WAIT 0.5f
 enum infobox_type { INFOBOX_SPELL, INFOBOX_ENTITY };
 
-struct rpg_t;
+typedef struct rpg rpg_t;
 
 typedef struct infobox_base {
     sfView *view;
@@ -22,12 +22,12 @@ typedef struct infobox_base {
     sfFont *font;
     sfVector2u window_size;
     sfVector2f box_size;
-    struct rpg_t *rpg;
+    rpg_t *rpg;
     enum infobox_type type;
 } infobox_base_t;
 
 infobox_base_t *infobox_create(
-    struct rpg_t *rpg, enum infobox_type type, void *data, char *font_name);
+    rpg_t *rpg, enum infobox_type type, void *data, char *font_name);
 infobox_base_t *infobox_recreate(
     enum infobox_type type, void *data, infobox_base_t *from);
 void infobox_init(infobox_base_t *base, void *data);

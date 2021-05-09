@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** spell
+** Spell data
 */
 
 #ifndef SPELL_H_
@@ -10,7 +10,7 @@
 
 #include "Rpg/Entities/stats.h"
 
-struct rpg_t;
+typedef struct rpg rpg_t;
 
 enum spell_type_e {
     SPELL_NONE,
@@ -24,8 +24,8 @@ enum effect_type_e { EFFECT_NONE, EFFECT_DAMAGE, EFFECT_BOOST };
 typedef struct spell_base {
     char *name;
     int texture_id;
-    int po;
-    int pa;
+    int op;
+    int ap;
     int area;
     int cast_left;
     int turn_limit;
@@ -57,18 +57,16 @@ typedef struct spell_debuff {
     int turns;
 } spell_debuff_t;
 
-void spells_init(struct rpg_t *rpg);
-spell_base_t *get_spell(struct rpg_t *rpg, char const *name);
+void spells_init(rpg_t *rpg);
+spell_base_t *get_spell(rpg_t *rpg, char const *name);
 
 spell_base_t *spell_create_from_file(char *file);
 void spell_destroy(spell_base_t *spell);
 
-void spell_base_parse(
-    spell_base_t *spell, char *file_content, size_t filesize);
+void spell_base_parse(spell_base_t *spell, char *file_content, size_t filesize);
 void spell_attack_parse(
     spell_attack_t *spell, char *file_content, size_t filesize);
-void spell_heal_parse(
-    spell_heal_t *spell, char *file_content, size_t filesize);
+void spell_heal_parse(spell_heal_t *spell, char *file_content, size_t filesize);
 void spell_debuff_parse(
     spell_debuff_t *spell, char *file_content, size_t filesize);
 void spell_effect_parse(

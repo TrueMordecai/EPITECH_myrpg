@@ -7,6 +7,7 @@
 
 #include "Rpg/Fight/fight.h"
 #include "Rpg/rpg.h"
+#include "GameEngine/particle_manager.h"
 
 static void remove_dead_allies(battle_t *battle)
 {
@@ -26,13 +27,16 @@ static void validate_boss_kill(battle_t *battle)
 {
     if (battle->zone->id != 2)
         return;
-    quests_validate(&battle->fight->rpg->quests);
+    if (battle->fight->rpg->quests
+            .quests[battle->fight->rpg->quests.current_quest]
+            .quest_type
+        == QUEST_KILL)
+        quests_validate(&battle->fight->rpg->quests);
 }
 
 static void apply_lose_malus(battle_t *battle)
 {
-    unsigned int i = 0;
-    unsigned int last = -1;
+    int last = -1;
     inventory_t *inv = &battle->fight->rpg->inventory;
 
     for (int i = 0; i < 200; i++) {
@@ -51,6 +55,7 @@ void battle_end(battle_t *battle)
 {
     battle->pos = (sfVector2i){0, 0};
     battle->size = battle->zone->size;
+    particle_manager_clear(battle->player->rpg->state->game_data->particles);
     map_reset_zoom(battle->zone->map);
     battle->zone->is_battle = 0;
     if (battle->player->entity->alive == 1) {
@@ -60,6 +65,7 @@ void battle_end(battle_t *battle)
         apply_lose_malus(battle);
         sfRectangleShape_setFillColor(battle->player->entity->rect, sfWhite);
     }
+    battle_end_setup(battle);
     fight_destroy(battle->fight);
     remove_dead_allies(battle);
     battle->player->body->velocity = (pe_vec2f_t){0, 0};

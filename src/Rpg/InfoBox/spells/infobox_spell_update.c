@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** MyRPG
 ** File description:
-** infobox_spell_update
+** Updates a spell infobox
 */
 
 #include "functions.h"
@@ -33,10 +33,10 @@ static void infobox_spell_set_spell_2(
     infobox_init_text(
         info->name, spell->name, (sfVector3f){0.65 * bs.x, 0.07 * bs.y, 0});
     update_type(info, spell);
-    infobox_init_text(info->pa, "PA: %d",
-        (sfVector3f){0.1 * bs.x, 0.25 * bs.y, -1}, spell->pa);
-    infobox_init_text(info->po, "PO: %d",
-        (sfVector3f){0.55 * bs.x, 0.25 * bs.y, -1}, spell->po);
+    infobox_init_text(info->ap, "AP: %d",
+        (sfVector3f){0.1 * bs.x, 0.25 * bs.y, -1}, spell->ap);
+    infobox_init_text(info->op, "OP: %d",
+        (sfVector3f){0.55 * bs.x, 0.25 * bs.y, -1}, spell->op);
     infobox_init_text(info->area, "Area: %d",
         (sfVector3f){0.1 * bs.x, 0.35 * bs.y, -1}, spell->area);
     infobox_init_text(info->turn_limit, "Casts: %d/%d",
