@@ -10,7 +10,6 @@
 #include <sw/widget.h>
 
 #include "GameEngine/game.h"
-#include "GameEngine/settings.h"
 #include "functions.h"
 #include "States/Settings/settings_state.h"
 

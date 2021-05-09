@@ -11,6 +11,7 @@
 #include <sw/widgets/base.h>
 #include <sw/widgets/button.h>
 
+#include "GameEngine/settings.h"
 #include "GameEngine/state.h"
 
 #define SETTINGS_DRAW_LAYERS (1)
@@ -18,6 +19,7 @@
 typedef struct settings_state {
     state_t base;
     sw_base_t gui;
+    settings_t old_settings;
 } settings_state_t;
 
 state_t *settings_state_create(game_data_t *data);
@@ -30,6 +32,7 @@ void settings_state_destroy(settings_state_t *state, state_id_t from);
 
 void settings_init_gui(settings_state_t *state);
 
+void settings_refit_size(sw_widget_t *widget);
 sw_widget_t *settings_title_create(settings_state_t *state);
 sw_widget_t *settings_body_create(settings_state_t *state);
 
@@ -62,6 +65,14 @@ typedef struct settings_display_button {
 
 settings_display_button_t *settings_display_button_create(
     game_data_t *data, unsigned *location);
+
+typedef struct settings_footer_t {
+    sw_base_t base;
+    sw_button_t *apply_button;
+    sw_button_t *back_button;
+} settings_footer_t;
+
+settings_footer_t *settings_footer_create(settings_state_t *state);
 
 #define SETTINGS(state)    ((state)->base.game_data->settings)
 #define WINDOW_SIZE(state) (SETTINGS(state).window_size)

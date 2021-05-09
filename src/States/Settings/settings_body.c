@@ -75,5 +75,6 @@ sw_widget_t *settings_body_create(settings_state_t *state)
     sw_glayout_t *layout = sw_glayout_create(body, (sw_vec2u_t){4, 3});
 
     settings_add_body_rows(state, layout);
+    settings_refit_size(body);
     return body;
 }

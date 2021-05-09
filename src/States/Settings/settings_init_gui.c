@@ -12,7 +12,7 @@
 #include "functions.h"
 #include "States/Settings/settings_state.h"
 
-static void settings_refit_size(sw_base_t *widget)
+void settings_refit_size(sw_widget_t *widget)
 {
     sw_vec2f_t max = SW_SIZE(widget);
     size_t children_count;
@@ -20,11 +20,9 @@ static void settings_refit_size(sw_base_t *widget)
     sw_widget_t *c;
     sw_vec2f_t bot_left;
 
-    if (children_count == 0)
-        sw_update(widget);
+    sw_update(widget);
     for (size_t i = 0; i < children_count; ++i) {
         c = children[i];
-        settings_refit_size(c);
         bot_left = (sw_vec2f_t){SW_POS(c).x + SW_SIZE(c).x + SW_PADDING(c).right
                 + SW_BORDER(c).right + SW_MARGIN(c).right,
             SW_POS(c).y + SW_SIZE(c).y + SW_PADDING(c).bottom
@@ -53,16 +51,20 @@ static void settings_add_window(settings_state_t *state)
     sw_vlayout_t *window_layout;
     sw_base_t *window = settings_window_create(&state->gui, &window_layout);
     sw_widget_t *title = settings_title_create(state);
+    sw_widget_t *footer = settings_footer_create(state);
 
     sw_vlayout_add(window_layout, title);
     sw_vlayout_add(window_layout, settings_body_create(state));
+    sw_vlayout_add(window_layout, footer);
     sw_layout_update((sw_layout_t *)window_layout);
     settings_refit_size(window);
     sw_set_position(window,
         (sw_vec2f_t){
             (WINDOW_SIZE(state).x - sw_get_size_spacing(window).x) / 2 - 10,
-            WINDOW_SIZE(state).y * 0.1});
+            (WINDOW_SIZE(state).y - sw_get_size_spacing(window).y) / 2});
     sw_update(title);
+    sw_update(footer);
+    sw_layout_update((sw_layout_t *)window_layout);
 }
 
 void settings_init_gui(settings_state_t *state)

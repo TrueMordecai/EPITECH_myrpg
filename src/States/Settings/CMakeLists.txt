@@ -10,6 +10,7 @@ set(SRC
     ${SRCROOT}/settings_destroy.c
     ${SRCROOT}/settings_display_button.c
     ${SRCROOT}/settings_draw.c
+    ${SRCROOT}/settings_footer.c
     ${SRCROOT}/settings_handle_events.c
     ${SRCROOT}/settings_init_gui.c
     ${SRCROOT}/settings_pause.c
