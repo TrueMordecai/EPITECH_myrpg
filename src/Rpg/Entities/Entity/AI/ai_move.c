@@ -65,15 +65,14 @@ static void attack(entity_t *entity, my_vec_t *allies)
     int *range =
         fight_get_range(entity->fight, entity->pos, spell->base.po, WALKABLE);
     int *sight = fight_get_sight(entity->fight,
-        (sfVector2i){entity->pos, spell->base.po}, (sfVector2i){-1, 0},
-        &range);
+        (sfVector2i){entity->pos, spell->base.po}, (sfVector2i){-1, 0}, &range);
     int ally = get_ally(sight, range, allies);
 
     if (ally == -1)
         return;
     entity->spell_select = 0;
     while (
-        spell->base.pa <= entity->stats->current_pa && spell->base.cast_left) {
+        spell->base.ap <= entity->stats->current_pa && spell->base.cast_left) {
         entity_cast_spell(
             entity, MY_VEC_GET_ELEM(entity_t *, allies, ally)->pos);
     }

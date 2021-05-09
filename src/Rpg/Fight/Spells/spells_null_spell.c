@@ -5,8 +5,8 @@
 ** spells_init
 */
 
-#include <stdalign.h>
 #include <libmy/printf.h>
+#include <stdalign.h>
 #include <libmy/collections/hash_map.h>
 
 #include "Rpg/Fight/spell.h"
@@ -25,7 +25,7 @@ void set_null_spell(void)
 
     punch->base.area = 1;
     punch->base.name = "ERROR SPELL";
-    punch->base.pa = 3;
+    punch->base.ap = 3;
     punch->base.po = 1;
     punch->base.texture_id = -1;
     punch->base.turn_limit = 3;

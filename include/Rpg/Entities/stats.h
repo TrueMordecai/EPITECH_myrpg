@@ -28,7 +28,7 @@ typedef struct stats_t {
     int current_pm;
     int current_pa;
     int life;
-    int pa;
+    int ap;
     int pm;
     int level;
     int xp;
@@ -40,7 +40,7 @@ typedef struct stats_t {
 stats_t *stats_create(void);
 void stats_init(stats_t *stats, int *elements, int *resistances, int life);
 void stats_init_blank(stats_t *stats);
-void stats_init_pa_pm(stats_t *stats, int pa, int pm);
+void stats_init_pa_pm(stats_t *stats, int ap, int pm);
 void stats_init_from_level(stats_t *stats, int level);
 void stats_reset(stats_t *stats, int only_pa_pm);
 void stats_destroy(stats_t *stats);

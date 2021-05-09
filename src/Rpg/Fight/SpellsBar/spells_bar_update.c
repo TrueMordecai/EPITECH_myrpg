@@ -61,7 +61,7 @@ void spells_bar_update(spells_bar_t *bar, entity_t *entity, float dt)
     life_ratio = stats->current_life / (float)stats->life;
     bar->last_entity = testing;
     my_snprintf(
-        buff, 9, "%d/%d PA", testing->stats->current_pa, testing->stats->pa);
+        buff, 9, "%d/%d AP", testing->stats->current_pa, testing->stats->ap);
     sfText_setString(bar->text_pa, buff);
     my_snprintf(
         buff, 9, "%d/%d PM", testing->stats->current_pm, testing->stats->pm);

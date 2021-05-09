@@ -26,7 +26,7 @@ void apply_effect_turn_start(stats_t *stats)
         effect = ((effect_t *)stats->effects.data) + i;
         if (!(effect->spell->type & EFFECT_BOOST))
             continue;
-        stats->current_pa += effect->spell->buff.pa;
+        stats->current_pa += effect->spell->buff.ap;
         stats->current_pm += effect->spell->buff.pm;
     }
 }

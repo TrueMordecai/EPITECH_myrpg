@@ -21,7 +21,7 @@ void infobox_entity_destroy(infobox_entity_t *info)
     sfText_destroy(info->name);
     sfText_destroy(info->level);
     sfText_destroy(info->life);
-    sfText_destroy(info->pa);
+    sfText_destroy(info->ap);
     sfText_destroy(info->pm);
     sfText_destroy(info->damage);
     sfText_destroy(info->resistance);

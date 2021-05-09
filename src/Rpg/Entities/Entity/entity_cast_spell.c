@@ -65,8 +65,8 @@ static void cast_spell(entity_t *from, entity_t *to, spell_base_t *spell)
 
 static void update_pa(entity_t *from, spell_base_t *spell)
 {
-    from->stats->current_pa -= spell->pa;
-    if (from->stats->current_pa < spell->pa)
+    from->stats->current_pa -= spell->ap;
+    if (from->stats->current_pa < spell->ap)
         spells_bar_set_selected(&from->fight->spells_bar, -1);
 }
 
@@ -76,7 +76,7 @@ void entity_cast_spell(entity_t *from, int to_cell)
     entity_t *to;
     int *area;
 
-    if (!spell || to_cell == -1 || from->stats->current_pa < spell->pa
+    if (!spell || to_cell == -1 || from->stats->current_pa < spell->ap
         || spell->cast_left-- <= 0)
         return;
     to = from->fight->grid[to_cell].entity;

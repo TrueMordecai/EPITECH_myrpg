@@ -39,7 +39,7 @@ void stats_add_effect(stats_t *stats, effect_t *effect)
         return;
     stats->current_life += effect->spell->buff.life;
     stats->life += effect->spell->buff.life;
-    stats->current_pa += effect->spell->buff.pa;
+    stats->current_pa += effect->spell->buff.ap;
     stats->current_pm += effect->spell->buff.pm;
     for (int j = 0; j < 4; j++) {
         stats->elements[j] += effect->spell->buff.elements[j];
@@ -58,7 +58,7 @@ void stats_remove_effect(stats_t *stats, int effect_id, int debuff)
         stats->life -= effect->spell->buff.life;
         if (debuff) {
             stats->current_pm -= effect->spell->buff.pm;
-            stats->current_pa -= effect->spell->buff.pa;
+            stats->current_pa -= effect->spell->buff.ap;
         }
         for (int j = 0; j < 4; j++) {
             stats->elements[j] -= effect->spell->buff.elements[j];

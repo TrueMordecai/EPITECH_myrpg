@@ -15,14 +15,14 @@ void stats_reset(stats_t *stats, int only_pa_pm)
         stats_clear_effects(stats);
         stats->current_life = stats->life;
     }
-    stats->current_pa = stats->pa;
+    stats->current_pa = stats->ap;
     stats->current_pm = stats->pm;
 }
 
 void stats_display(stats_t *stats)
 {
-    my_printf("Display stats:\n   Life %d/%d\n   PA %d/%d\n   PM %d/%d\n",
-        stats->current_life, stats->life, stats->current_pa, stats->pa,
+    my_printf("Display stats:\n   Life %d/%d\n   AP %d/%d\n   PM %d/%d\n",
+        stats->current_life, stats->life, stats->current_pa, stats->ap,
         stats->current_pm, stats->pm);
     my_printf("   Earth %d\n   Fire %d\n   Water %d\n   Wind %d\n",
         stats->elements[EARTH], stats->elements[FIRE], stats->elements[WATER],

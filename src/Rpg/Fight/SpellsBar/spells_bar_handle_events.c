@@ -48,7 +48,7 @@ static int update_selected(spells_bar_t *bar)
     else {
         if (id == -1
             || MY_VEC_GET_ELEM(spell_base_t *, &bar->last_entity->spells, id)
-                    ->pa
+                    ->ap
                 > bar->last_entity->stats->current_pa)
             bar->current_frame = -1;
         else {
@@ -68,8 +68,7 @@ int spells_bar_handle_events(spells_bar_t *bar, sfEvent *event)
     if (spells_bar_handle_move(bar, event, window))
         return 1;
     if (event->type == sfEvtMouseButtonPressed
-        && event->mouseButton.button == sfMouseLeft
-        && update_selected(bar))
+        && event->mouseButton.button == sfMouseLeft && update_selected(bar))
         return 1;
     return 0;
 }

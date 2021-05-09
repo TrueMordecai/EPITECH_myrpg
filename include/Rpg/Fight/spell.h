@@ -25,7 +25,7 @@ typedef struct spell_base {
     char *name;
     int texture_id;
     int po;
-    int pa;
+    int ap;
     int area;
     int cast_left;
     int turn_limit;

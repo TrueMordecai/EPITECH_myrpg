@@ -12,7 +12,7 @@ void infobox_entity_draw(infobox_entity_t *info, sfRenderWindow *window)
     sfRenderWindow_drawText(window, info->name, NULL);
     sfRenderWindow_drawText(window, info->level, NULL);
     sfRenderWindow_drawText(window, info->life, NULL);
-    sfRenderWindow_drawText(window, info->pa, NULL);
+    sfRenderWindow_drawText(window, info->ap, NULL);
     sfRenderWindow_drawText(window, info->pm, NULL);
     sfRenderWindow_drawText(window, info->damage, NULL);
     sfRenderWindow_drawText(window, info->resistance, NULL);
