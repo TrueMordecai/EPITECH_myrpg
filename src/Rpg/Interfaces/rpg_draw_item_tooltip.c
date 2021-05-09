@@ -20,7 +20,7 @@ static char *int_to_str(int i)
     return (str);
 }
 
-static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+static unsigned int draw_one_line(
     rpg_t *game, char *name, unsigned char stat, unsigned char drawed_line)
 {
     char *numeric_stat = int_to_str((int)stat);
@@ -44,28 +44,24 @@ static unsigned int rpg_inventory_draw_items_tooltip_draw_stats_one_line(
     return (1);
 }
 
-static void rpg_inventory_draw_items_tooltip_draw_stats(
+static void tooltip_draw_stats(
     rpg_t *game, item_t *items)
 {
     int drawed_line = 0;
 
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
-        game, "Earth : ", items->earth, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
-        game, "Fire : ", items->fire, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
-        game, "Water : ", items->water, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
-        game, "Wind : ", items->wind, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
-        game, "Life : ", items->life, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+    drawed_line += draw_one_line(game, "Level :", items->level, drawed_line);
+    drawed_line += draw_one_line(game, "Earth : ", items->earth, drawed_line);
+    drawed_line += draw_one_line(game, "Fire : ", items->fire, drawed_line);
+    drawed_line += draw_one_line(game, "Water : ", items->water, drawed_line);
+    drawed_line += draw_one_line(game, "Wind : ", items->wind, drawed_line);
+    drawed_line += draw_one_line(game, "Life : ", items->life, drawed_line);
+    drawed_line += draw_one_line(
         game, "Res Earth : ", items->res_earth, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+    drawed_line += draw_one_line(
         game, "Res Fire: ", items->res_fire, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+    drawed_line += draw_one_line(
         game, "Res Water : ", items->res_water, drawed_line);
-    drawed_line += rpg_inventory_draw_items_tooltip_draw_stats_one_line(
+    drawed_line += draw_one_line(
         game, "Res Wind : ", items->res_wind, drawed_line);
 }
 
@@ -88,6 +84,6 @@ extern void rpg_inventory_draw_items_tooltip(rpg_t *game, item_t *item)
                 / 2,
             (int)(70 * SL(game))});
     sfRenderWindow_drawSprite(game->wind, game->inventory.tooltip, NULL);
-    rpg_inventory_draw_items_tooltip_draw_stats(game, item);
+    tooltip_draw_stats(game, item);
     sfRenderWindow_drawText(game->wind, game->inventory.text, NULL);
 }
