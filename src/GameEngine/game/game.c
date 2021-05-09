@@ -13,8 +13,6 @@
 #include "GameEngine/settings.h"
 #include "States/Menu/menu_state.h"
 
-static const char *SETTINGS_PATH = "settings.cfg";
-
 static void init_window(game_data_t *data, sfVideoMode *mode, char const *name)
 {
     data->window = sfRenderWindow_create(*mode, name, sfClose, NULL);

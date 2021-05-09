@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 
+#include "GameEngine/game.h"
 #include "States/Settings/settings_state.h"
 
 state_t *settings_state_create(game_data_t *data)
@@ -23,6 +24,7 @@ state_t *settings_state_create(game_data_t *data)
         .draw = (state_draw_t)&settings_state_draw,
         .destroy = (state_destroy_t)&settings_state_destroy,
     };
+    state->old_settings = data->settings;
     settings_init_gui(state);
     return &state->base;
 }

@@ -18,6 +18,8 @@
 #define SCL(state) (state->base.game_data->settings.scale)
 #define SL(rpg)    ((rpg)->state->game_data->settings.scale)
 
+#define SETTINGS_PATH "settings.cfg"
+
 /// A runtime representation of a config file.
 ///
 /// config file lines of key-value pairs formatted as follows
@@ -104,8 +106,7 @@ bool cfg_file_get_str_value(
 /// unsigned int.
 ///
 /// @returns Whether the operation succeded.
-bool cfg_file_get_uint_value(
-    cfg_file_t *cfg, char const *key, unsigned *value);
+bool cfg_file_get_uint_value(cfg_file_t *cfg, char const *key, unsigned *value);
 
 /// Game engine settings.
 struct settings {
@@ -136,8 +137,7 @@ int settings_write(settings_t const *settings, char const *path);
 /// @param output The output stream, must not be @c NULL.
 ///
 /// @returns 0, on success.
-int settings_write_to_stream(
-    settings_t const *settings, my_iostream_t *output);
+int settings_write_to_stream(settings_t const *settings, my_iostream_t *output);
 
 /// Sets the given settings to their default values.
 void settings_init_default(settings_t *settings);
