@@ -5,8 +5,8 @@
 ** spells_init
 */
 
-#include <stdalign.h>
 #include <libmy/printf.h>
+#include <stdalign.h>
 #include <libmy/collections/hash_map.h>
 
 #include "Rpg/Fight/spell.h"
@@ -58,6 +58,7 @@ static void load_spells(rpg_t *rpg)
     load_spell(rpg, "burn", "assets/Spells/e_burn.spell");
     load_spell(rpg, "heal_zone", "assets/Spells/h_heal_zone.spell");
     load_spell(rpg, "heal", "assets/Spells/h_heal.spell");
+    load_spell(rpg, "fortify", "assets/Spells/e_fortify.spell");
 }
 
 spell_base_t *get_spell(rpg_t *rpg, char const *name)
