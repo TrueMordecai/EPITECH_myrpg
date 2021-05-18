@@ -31,7 +31,6 @@ typedef struct battle_end_s {
     sfSprite *item_sprite;
     item_t item_to_add;
     unsigned int average_level;
-    unsigned int enemy_number;
     bool is_on;
     bool is_win;
     bool is_item_add;

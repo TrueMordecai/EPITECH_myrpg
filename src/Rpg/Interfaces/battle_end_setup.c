@@ -13,15 +13,16 @@ struct fight_t;
 static void battle_end_setup_new_item(struct battle_t *b)
 {
     int total = 0;
+    int nb_ennemis = 0;
 
     for (int i = 0; i < b->fight->nb_entities; i++) {
         if (b->fight->entities[i]->team == ENNEMIES) {
             total += b->fight->entities[i]->stats->level;
-            b->fight->rpg->battle_end.enemy_number++;
+            nb_ennemis++;
         }
     }
     b->fight->rpg->battle_end.average_level =
-        total / b->fight->rpg->battle_end.enemy_number;
+        total / nb_ennemis;
     if (b->fight->rpg->battle_end.average_level <= 0)
         b->fight->rpg->battle_end.average_level = 1;
 }

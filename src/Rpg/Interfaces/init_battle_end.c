@@ -31,7 +31,6 @@ extern battle_end_t battle_end_init(rpg_t *rpg)
     b.is_win = false;
     b.is_item_add = false;
     b.average_level = 0;
-    b.enemy_number = 0;
     b.item_to_add = rpg_create_blank_item();
     return (b);
 }
